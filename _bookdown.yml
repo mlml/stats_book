@@ -1,0 +1,5 @@
+book_filename: "Stats_book"
+chapter_name: "Chapter "
+output_dir: docs
+clean: [packages.bib, bookdown.bbl]
+new_session: yes
