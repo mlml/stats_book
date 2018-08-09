@@ -1,0 +1,37 @@
+---
+title: 'Introduction'
+output:
+  html_document:
+    collapsed: yes
+    number_sections: yes
+    theme: united
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+bibliography: ../references/references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+
+This book grew out of lecture notes for the one-semester graduate course in "Experimental Methods" given yearly in the Department of Linguistics at McGill University. "Experimental" is meant in the sense of Experimental Linguistics, a term often used to cover any linguistic study based on quantitative data collected from the world, whether from laboratory experiments, speech or text corpora, online surveys, or another source.
+
+The course title implies two parts: (1) everything that goes into getting data, such as experimental design and common experimental methodologies, and (2) methods for visualization and quantitative analysis of data that has already been collected. The first time this course was taught (2013) Morgan and Michael decided there was only time for one of these, and we would just cover (2).  Michael knew more about actually running and interpreting experiments, while Morgan knew more about data analysis, so most lectures were drafted by Morgan, and many of the datasets used came from Michael's prosody.lab and have to do with prosody. These materials correspond to Chapters 1-XX; the last two chapters were added later, and were primarily written by Francisco. 
+
+We assumed that students arrived with a basic statistics course  (such as a class leading up to ANOVAs), and aimed for students to finish the course proficient in state-of-the-art statistical models (mixed-effect regression models) for analyzing linguistic data in the mid-2010s.  We focused on conceptual understanding and practical skills by doing the course "in R", but without actually providing instruction in R, which students were supposed to learn themselves somehow. Thus, this book assumes basic familiarity with R. In practice, students with a variety of backgrounds in statistics and programming (including "none") have done well in the course.
+
+The resulting lecture notes were used yearly in 2013--2017 in courses taught by subsets of Morgan, Michael, and Francisco. All three of us are linguists working primarily on speech sounds, hence the notes' sound-heavy focus.  Students who took the course turned out to be about half linguists and half language scientists from other fields (psychology, communication sciences/disorders, computer science), so we tried to make the notes useful and understandable for language scientists more broadly.  The notes have been updated by us over time, and now contain more material can than be reasonably covered in a semester.  We though it would be useful to release the notes as a "book"---in scare quotes because these remain fundamentally notes, written by working linguists, more familiar with certain techniques and types of data than others.  While one of us (Morgan) has some math/statistics training, we all are essentially self-taught data analysts, and none of us are statisticians.  We welcome any feedback on errors or ways that this book can be improved.
+
+The book uses publicly-available datasets and is written in RMarkdown, so that readers can follow along and replicate everything in R. (Where there is ambiguity in the text, a reader can consult the `.Rmd` source files to see exactly how anything was done.)  The datasets are either from the work of the three authors (and collaborators), or were already included in R packages (mostly `languageR`).  Francisco thanks collaborators Mirjam Ernestus and Jose Hualde (and ??) for permission to make the XX and XX datasets public.  We are grateful to Harald Baayen and his co-authors for making datasets in `languageR` available in the first place. We thank James Kirby for permission to incorporate some material from a statistics course module co-taught with Morgan at University of Chicago in 2010.
+
+Many people deserve thanks along the way from hastily-written slides to a book.  Students in each of the 2013--2017 Experimental Methods classes provided constant feedback on what worked and what didn't, as did McGill Lingusitics students who continued to use the materials for their research (especially Hye-Young Bang, Guilherme Garcia, Oriana Kilbourn-Ceron, Donghyun Kim, and Jeff Lamontagne).  Guilherme Garcia and Michael McAuliffe offered R tutorials and general help in some years, which were a crucial supplement for many students. David Flesicher  and Vanna Willerton did much of the typesetting and editing legwork to edit the notes into a coherent whole.  More than citations convey, we are indebted to existing materials by Harald Baayen, Ben Bolker, Samprit Chatterjee & Ali Hadi, Florian Jaeger, Roger Levy, Shravan Vasishth, Hadley Wickham, and especially Andrew Gelman & Jennifer Hill (*Data analysis using regression and multilevel/hierarchical models*).
+
+-- Morgan Sonderegger, Michael Wagner, Francisco Torreira
+
+August 2018
+

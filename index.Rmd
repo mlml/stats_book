@@ -1,15 +1,13 @@
 ---
-title: "Experimental Methods Part 2"
-author: "Morgan Sonderegger"
-date: "`r Sys.Date()`"
+title: "Quantitative Methods for Linguistic Data"
+author: "Morgan Sonderegger, Michael Wagner, Francisco Torreira"
+date: "v. 1.0: August 2018"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: references/references.bib
 biblio-style: apalike
 link-citations: yes
-github-repo: mlml/stats_book
-url: 'https://github.com/mlml/stats_book'
 output: bookdown::gitbook
 ---
 
-# Preface {-}
+# Preface{-}
