@@ -1,32 +1,7 @@
----
-title: 'Linear Regression'
-output:
-  pdf_document:
-    toc: yes
-    toc_depth: '3'
-  html_document:
-    collapsed: yes
-    number_sections: yes
-    theme: united
-    toc: yes
-    toc_float: yes
-bibliography: references/references.bib
----
-
-<script src="js/hideOutput.js"></script>
-
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: { 
-      equationNumbers: {
-             autoNumber: "all",
-      } 
-  }
-});
-</script>
-
-```{r setup, include=FALSE}
+```{r setup3, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
+
+library(languageR)
 ```
 
 # Linear Regression
@@ -36,15 +11,25 @@ knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
 This code is needed to make other code below work:
 ```{r, message=F, error=F, warning=F}
 library(gridExtra) # for grid.arrange() to print plots side-by-side
-library(languageR)
+require(languageR)
 library(dplyr)
 library(ggplot2)
 library(arm)
 
-alt <- read.delim('datasets/alternatives.txt')
-df <- read.delim('datasets/french_medial_vowel_devoicing.txt')
+## loads alternativesMcGillLing620.csv from OSF project for Wagner (2016) data
+alt <- read.csv(url("https://osf.io/6qctp/download"))
+
+## loads french_medial_vowel_devoicing.txt from OSF project for Torreira & Ernestus (2010) data
+df <- read.delim(url("https://osf.io/uncd8/download"))
 ```
 <!-- TODO later: just wrap this into actual text -->
+
+<!-- Old links: -->
+<!-- alt <- read.delim('datasets/alternatives.txt') -->
+<!-- df <- read.delim('datasets/french_medial_vowel_devoicing.txt') -->
+
+
+
 
 **Note**: Most answers to questions/exercises not listed in text are in [Solutions](#c2solns).
 
@@ -106,7 +91,7 @@ We will consider two broad types of regression in this book:
 
 1. *linear regression*, where the response ($Y$) is a continuous variable.  An example would be modeling reaction time (`RTlexdec`) as a function of word frequency (`WrittenFrequency`) for [the `english` dataset](#engdata).
 
-2. Later we will consider *logistic regression*, where the response ($Y$) is binary: 0 or 1.  An example would be modeling whether tapping occurs or not (`tapped`) as a function of `vowelDuration` and `speakingRate` in [the `tapped` dataset](#tapdata).
+2. Later we will consider *logistic regression*, where the response ($Y$) is binary: 0 or 1.  An example would be modeling whether tapping occurs or not (`tapping`) as a function of `vowelDuration` and `speakingRate` in [the `tapping` dataset](#tapdata).
 
 Regression with just one predictor is called *simple*, while regression with multiple predictors is called *multiple*. The two examples just given would be "simple linear regression" and "multiple logistic regression".
 
@@ -145,6 +130,8 @@ It is important to remember that the **validity of a regression analysis depends
 For example, if you are modeling data where $Y$ has a maximum value, fitting a simple linear regression (= a line) to this data doesn't make conceptual sense, a priori.  Here's an example using the `english` dataset:
 
 ```{r, fig.align='center', fig.height=4, fig.width=5}
+library(languageR) ## makes the 'english' dataset available
+
 ggplot(aes(x = Familiarity, y = CorrectLexdec), data = english) + geom_point(, alpha=0.1) + geom_smooth( method='lm')
 ```
 
@@ -1415,7 +1402,7 @@ Highly influential points are one example of *outliers*. It is also possible for
 
 We may return later to different strategies for detecting and dealing with outliers.  In many cases inspection of gross outliers will reveal data points that should be clearly excluded, such as a participant who always gave the same response, or data coding errors that cannot be corrected. In other cases the decision is more subjective.
 
-## Model Comparison {#c2modcomp}
+## Model Comparison
 
 So far in our discussion of regression, we have assumed that the form of the model is given: we already know what predictors will be used, and what terms will be included in the model.  In practice, with real data this is usually not clear---it is necessary to choose among several possible models of the same data, that differ in which terms they include. Choosing between models is called *variable selection* (or *model selection*). In order to perform variable selection, we need a way to perform *model comparison*: comparing two or more candidate models to assess which one is "better", in the sense of how well it fits the data relative to its expressive power (e.g. number of predictors).
 
@@ -1502,7 +1489,7 @@ The highly significant $F$ test means that adding these two variables does signi
 >
 > Hint: fit `m0 <- lm(RTlexdec ~ 1, english)` and compare to `m2`.
 
-### Non-nested model comparison {#c2aicbic}
+### Non-nested model comparison
 
 In non-nested model comparison, one model isn't a subset of the other.  For example, the two models `RT ~ Frequency` and `RT ~ Familiarity` would be non-nested.
 
