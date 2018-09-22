@@ -4,6 +4,7 @@ knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
 library(languageR)
 ```
 
+
 # Linear Regression
 
 **Preliminary code**
@@ -33,17 +34,19 @@ df <- read.delim(url("https://osf.io/uncd8/download"))
 
 **Note**: Most answers to questions/exercises not listed in text are in [Solutions](#c2solns).
 
-This chapter will cover topics in linear regression.  The broad topics we will cover are:
+<!-- TODO FUTURE: move all answers to Solutions, since code folding doesn't happen  -->
 
-1. Regression: General Introduction
+This chapter introduces linear regression. The broad topics we will cover are:
 
-2. Simple Linear Regression
+1. Regression: general introduction
 
-3. Multiple Linear Regression
+2. Simple linear regression
 
-4. Linear Regression Assumptions, Model Criticism, and Interpretation
+3. Multiple linear regression
 
-5. Model Comparison
+4. Linear regression assumptions, model criticism, and interpretation
+
+5. Model comparison
 
 ## Regression: General Introduction
 
@@ -157,15 +160,17 @@ The simplest application of simple linear regression (SLR) is to model an associ
 
 * $Y$: `RTlexdec` (= response)
     
-```{r, fig.align='center', fig.height=3, fig.width=5}
+```{r, fig.align='center', fig.height=3, fig.width=5, warning=FALSE}
 young <- filter(english, AgeSubject=='young')
 
 ggplot(young, aes(WrittenFrequency, RTlexdec)) +
   geom_point(size=0.5)
 ```
 
-<!-- TODO later: link "previous chapters" to relevant place -->
-In previous chapters, we have described this kind of association using a _correlation_, which gives us two types of information about the relationship:
+<!-- TODO later: when "previous chapters" put into book, add this back in: -->
+<!-- In previous chapters, we have described this kind of association using a _correlation -->
+
+One way to describe this kind of association which you may be familiar with is a _correlation_ coefficient which gives us two types of information about the relationship:
 
 1. *direction*: $r = -0.434$ 
     * $\implies$ negative relationship 
@@ -234,7 +239,7 @@ head(dplyr::select(english, WrittenFrequency, RTlexdec))
 
 ### SLR: parameter estimation
 
-To get a line of best fit, we want: $\beta_0$ and $\beta_1$, the *population values*.  Recall that we can't actually observe these, so we obtain *sample estimates*, written $\hat{\beta}_0, \hat{\beta}_1$.
+To get a line of best fit, we want: $\beta_0$ and $\beta_1$, the *population values*.  Recall that we can't actually observe these (Sec.\@ref(sample-population)), so we obtain *sample estimates*, written $\hat{\beta}_0, \hat{\beta}_1$.
 
 Once sample estimates are specified, Equation \@ref(eq:linreg2) gives *fitted values* for each observation, written $\hat{y}_i$:
 $$
@@ -395,6 +400,10 @@ For simple linear regression, we can derive such a metric by first defining thre
 ![](images/slr_quality_of_fit.png)
 </center>
 
+(Source: slides from *Business Statistics: A First Course (Third edition)*)
+
+<!-- TODO FUTURE: make own figure or get public domain figure -->
+
 The fundamental equality is:
 *SST* = <span style="color:blue">*SSR*</span> + <span style="color:orange">*SSE*</span>
 
@@ -506,7 +515,7 @@ You should find that both tests give identical $t$ and $p$-values.  So, a $t$-te
 
 We have forced an SLR fit in the plots above using the `method='lm'` flag, but by default `geom_smooth` uses a *nonparametric smoother* (such as LOESS, the `geom_smooth` default for small samples):
 
-```{r, fig.align='center', fig.height=3, fig.width=7}
+```{r, fig.align='center', fig.height=3, fig.width=7, message=FALSE}
 young <- filter(english, AgeSubject=='young')
 
 set.seed(2903)
@@ -740,7 +749,7 @@ It is often better to use empirical plots to visualize interactions---even thoug
 
 ### Categorical factors with more than two levels
 
-We are often interested in categorical predictors with more than two levels.  For example, for the [Dutch `regularity` data](#dregdata), we might wonder whether the size of a verb's morphological family affects what auxiliary it takes in the past tense.
+We are often interested in categorical predictors with more than two levels.  For example, for the [Dutch `regularity` data](#dregdata), we might wonder whether the size of a verb's morphological family size is affected by what auxiliary it takes in the past tense.
 ```{r, fig.align='center', fig.height=4, fig.width=5}
 regularity %>% ggplot(aes(Auxiliary, FamilySize)) + 
   geom_boxplot() + 
@@ -804,7 +813,8 @@ followed by two assumptions about the predictors and observations:
 
 6. Observations have roughly equal influence on the model
 
-We'll discuss each in turn, but first, a note of reassurance.  You should not fit regression models blindly, and it's important to be aware of the assumptions being made by these models, and their limitations.  The more you learn about regression (or any statistical technique), the easier it is to become paralyzed with fear by everything that could be wrong with your dataset.  In general you should just satisfy the assumptions of the technique being used as best you can, and then  **fit and report your model anyway**.  Keep in mind the dictum of George Box: "Essentially, all models are wrong, but some are useful."  That is, every model is just that: a *model* of reality, that is only as useful as the insight it can offer about the questions of interest.  Often, minor violations of model assumptions don't affect the qualitative conclusions you can draw from the model.  
+We'll discuss each in turn.
+
 
 Our presentation of regression assumptions and diagnostics is indebted to Chapters 4, 6 and 9 of @chatterjee2012regression, where you can find more detail.
 
@@ -825,13 +835,17 @@ in each case---and yet the datasets show qualitatively different patterns, as ca
 ![](images/anscombe.png)    
 </center>
 
+(Source: unknown, but definitely taken from somewhere)
+
+<!-- TODO FUTURE: find or fix -->
+
 With more than one predictor it becomes  difficult to check regression assumptions by just plotting the data, and visual methods such as *residual plots* (presented below) are crucial.
 
 ### Assumption 1: Linearity
 
 The first assumption of a linear regression model is that the relationship between the response ($Y$) and predictors ($X_i$) is... linear.
 
-While obvious, this assumption is **very important**: if it is violated, the model's predictions can be in serious error.
+While obvious, this assumption is very important: if it is violated, the model's predictions can be in serious error.
 
 The linearity assumption can be partially checked by making a scatterplot of $Y$ as a function of each predictor $X_i$.  It is hard to exhaustively check linearity for MLR, because nonlinearity might only become apparent when $Y$ is plotted as a function of several predictors.
 
@@ -885,7 +899,7 @@ In linguistics and psycholinguistics, violations of the independence assuption a
 
 Some solutions to these issues:
 
-* **Paired-t-tests**, where applicable (binary predictor; two measures per participant)
+* [**Paired-t-tests**](#paired-t-test), where applicable (binary predictor; two measures per participant)
     
 * **Mixed-effects regression** (more general solution, major focus later this term)
     
@@ -1080,11 +1094,11 @@ One can often correct for heteroscedasticity by using various transformations of
 
 ### Transforming to Normality
 
-Normality of the distribution of the response and predictors ($Y$ and $X_i$) is **not** an assumption of linear regression.  This is a widely-held misconception, perhaps because normality is an assumption of other basic statistical inference tools, such as $t$-tests.  
+Normality of the distribution of the response and predictors ($Y$ and $X_i$) is **not** an assumption of linear regression.  This is a common misconception, perhaps because normality is an assumption of other basic statistical inference tools, such as $t$-tests.  
 
-However, there is still good reason to be circumspect if $Y$ or $X_i$ are not normally-distributed, because this can often lead to violations of regression assumptions. This is why it is recommended to transform the predictors and response to normality to fix violations of the linearity, normality of errors, and homoscedasticity assumptions (among others).   Because non-normality of $Y$ or $X_i$ can easily lead to violations of regression assumptions, it is sometimes recommended to transform them to normality just to be safe. This makes it less likely that a regression assumption will be violated, but also changes the interpretation of the transformed variable, which may make it harder to interpret the model's results.
+However, there is still good reason to be circumspect if $Y$ or $X_i$ are not normally distributed, because this can often lead to violations of regression assumptions. This is why it is recommended to transform the predictors and response to normality to fix violations of the linearity, normality of errors, and homoscedasticity assumptions.   Because non-normality of $Y$ or $X_i$ can easily lead to violations of regression assumptions, it is sometimes recommended to transform them to normality just to be safe. This makes it less likely that a regression assumption will be violated, but also changes the interpretation of the transformed variable, which may make it harder to interpret the model's results.
 
-For linguistic data, **logarithmic** transformations are often useful when working with skewed distributions, because many kinds of linguistic data are roughly *log-normally* distributed, meaning the log-transformed variable is normally distributed. Some examples:
+For linguistic data, *logarithmic* transformations are often useful when working with skewed distributions, because many kinds of linguistic data are roughly *log-normally* distributed, meaning the log-transformed variable is normally distributed. Some examples:
 
 * Lexical statistics (e.g. lexical frequency, probability)
     
@@ -1110,7 +1124,7 @@ day10_plt2 <- ggplot(english, aes(x = WrittenFrequency_log)) +
 grid.arrange(day10_plt1, day10_plt2, ncol = 2)
 ```
 
-R note: ggplot functions such as `scale_x_log10()` can be used to plot data in its raw units on a log scale, which is often more interpretable.
+R note: ggplot functions such as `scale_x_log10()` can be used to plot data in its raw units on a log scale, which is often more interpretable. Ex:
 ```{r message=F}
  ggplot(english, aes(x = WrittenFrequency_raw)) + geom_histogram() + scale_x_log10() +
   xlab("Written Frequency (per million words)") + annotation_logticks(sides='b')
@@ -1154,7 +1168,7 @@ grid.arrange(plt5, plt6, ncol = 2)
 A crucial assumption of linear regression is that the predictors are *linearly independent*, meaning it isn't possible to write one predictor as a linear function of the others.  If you can do so, it's impossible to disentangle the effect of different predictors on the response. For example, temperatures in farenheit and centigrade are related by a linear function (F = $9/5$C + 32), so F and C are linearly dependent.
 
 Another way of thinking of linear dependence is that in a linear regression where you predict one predictor as a function of the others, the $R^2$ would be 1.
-Linear dependence of predictors will either give a model error or a weird model output  if you fit a linear regression in R, because the math to find least-squares estimates of coefficients doesn't work out if there is linear dependence: there is no longer a unique optimal solution. (For example, if the slope of F and C in a model were $\beta_1 = 2$ and $\beta_2 = 0$, then a different model using slopes of 0 and $10/9$ would also work.)^[In technical terms: the *design matrix* $X$ (where each column is the values of predictor $i$, across all observations) is not *full rank*, and the matrix $X^T X$, which is used to find the least-squares regression coefficient estimates, is *singular* (alternatively, there is a *singularity*)  Even if you don't understand the math of linear regression, it is useful to know that when you encounter these terms in R output it usually means some variable can be perfectly predicted from the others, and this is a problem.]  
+Linear dependence of predictors will either give a model error or a weird model output  if you fit a linear regression in R, because the math to find least-squares estimates of coefficients doesn't work out if there is linear dependence: there is no longer a unique optimal solution. (For example, if the slope of F and C in a model were $\beta_1 = 2$ and $\beta_2 = 0$, then a different model using slopes of 0 and $10/9$ would also work.)^[In technical terms: the *design matrix* $X$ (where each column is the values of predictor $i$, across all observations) is not *full rank*, and the matrix $X^T X$, which is used to find the least-squares regression coefficient estimates, is *singular* (alternatively, there is a *singularity*)  Even if you don't care about the math of linear regression, it is useful to know that when you encounter these terms in R output it usually means some variable can be perfectly predicted from the others, and this is a problem.]  
 
 #### Exercise {-}
 
@@ -1162,7 +1176,7 @@ Define a new variable in the `english` dataset that is the average of `WrittenFr
 
 ### Collinearity 
 
-Full linear dependence of predictors is usually a sign that something is conceptually wrong with your data, or your model structure.  In the F/C example, it doesn't make conceptual sense to have both as predictors of anything.
+Full linear dependence of predictors is usually a sign that something is conceptually wrong with your data, or your model structure.  In the farenheit/celsius example, it doesn't make conceptual sense to have both as predictors of anything.
 
 However, it is very common for there to be **partial** dependence between predictors---that is, $0 < R^2 < 1$ when you regress one predictor on the others. This is called *multicollinearity*, or just *collinearity*.^[Note that you can have $R^2<1$ even when one predictor is completely predictable from other predictors---as long as this dependence is not a linear function.  Sometimes it does not make conceptual sense to have two predictors related in this way in a model (e.g. VOT and log(VOT)), while in other settings it does (e.g. linear and quadratic terms for the same variable).]  Collinearity is ubiquitous in lingusitic data, and can significantly affect the estimates and interpretations of regression coefficients---particularly when collinearity is "high" (say, $|R|>0.8$) However, (high) **collinearity is not a violation of the assumptions of linear regression**! 
 
@@ -1196,7 +1210,7 @@ Why are these predictors linearly dependent?
 <!-- > -->
 <!-- > * Is `RTlexdec` affected by a word's familiarity (`Familiarity`) for young speakers? -->
 
-Let us simulate a small-scale experiment ($n=25$).  We measure `RT`, take `Familiarity` norms from a previous study, and would like to control for the following variables:
+Let us simulate a small-scale experiment ($n=25$), using data from young speakers in the `english` dataset.  We measure `RT`, take `Familiarity` norms from a previous study, and would like to control for the following variables:
 
 * `WrittenFrequency`
     
@@ -1250,7 +1264,7 @@ This kind of situation is called a *credit assignment problem*: we can tell that
 
 In general, collinearity increases Type II error: the probability of concluding a predictor has no effect on the response, when it actually does.  Collinearity does not in general affect the actual values of coefficient estimates, just their standard errors.^[However, when standard errors are high, the coefficient estimates themselves are by definition very uncertain, so in this sense collinearity "affects" coefficient values.]  
 
-Importantly, **collinearity is a property of the data**---not a violation of model assumptions.  To the extent that an effect is "missed" (a Type II error) in the presence of collinearity, this is because of the structure of the data.  In the example above, it makes intuitive sense that it is harder to detect a "real" effect of `AoA` when `frequency` is added as a predictor, because of the correlation between `AoA` and `frequency`.
+Importantly, **collinearity is a property of the data**---not a violation of model assumptions.  To the extent that an effect is "missed" (a Type II error) in the presence of collinearity, this is because of the structure of the data.  In the example above, it makes intuitive sense that it is harder to detect a "real" effect of `Familiarity` when `frequency` is added as a predictor, because of the correlation between `Familiarity` and `frequency`.
 
 Because collinearity isn't a violation of model assumptions, high collinearity cannot be diagnosed using diagnostic plots, such as those considered for Assumptions 1-4 above.  
 
@@ -1307,7 +1321,7 @@ The first assumption is hard to check in practice, and we won't consider it furt
 
 For example, consider the relationship between raw and log-transformed word frequency, and naming latency, in [the `english` dataset](#engdata). (The same data as  in [this example above](#c2ex3), but now fitting a simple line of best fit in each case.)
 
-```{r, message=FALSE, fig.align='center', fig.height=3, fig.width=8}
+```{r, message=FALSE, fig.align='center', fig.height=3, fig.width=8, echo=FALSE}
 
 plt7 <- ggplot(young, aes(WrittenFrequency_raw, RTnaming)) + 
   geom_point(size=0.5) + 
@@ -1400,7 +1414,20 @@ Highly influential points are one example of *outliers*. It is also possible for
 
 * Report how outliers were dealt with, and ideally what effect they have on the analysis, in any write-up.
 
-We may return later to different strategies for detecting and dealing with outliers.  In many cases inspection of gross outliers will reveal data points that should be clearly excluded, such as a participant who always gave the same response, or data coding errors that cannot be corrected. In other cases the decision is more subjective.
+<!-- We may return later to different strategies for detecting and dealing with outliers.   -->
+
+In many cases inspection of gross outliers will reveal data points that should be clearly excluded, such as a participant who always gave the same response, or data coding errors that cannot be corrected. In other cases the decision is more subjective.
+
+### Regression assumptions: reassurance
+
+<!-- We have just spent quite a while discussing assumptions that are made by linear regression models (and one assumption that isn't made, but is important anyway---multicollinearity).   -->
+
+It may seem a bit daunting that there are so many ways for a regression model to **not** be appropriate.
+<!-- it is risky to  to actually fit a model to your data.   -->
+It is important to take a step back, and remember: 
+<!-- Some reassurance:  -->
+when doing data analysis, you should just satisfy the assumptions of the statistical tool being used as best you can, and then  **fit and report your model anyway**.  You should not fit regression models blindly, and it's important to be aware of the assumptions being made by these models, and their limitations.  But the more you learn about regression (or any statistical technique), the easier it is to become paralyzed with fear by everything that could be wrong with your data.    Keep in mind the dictum of George Box: "Essentially, all models are wrong, but some are useful."  That is, every model is just that: a **model** of reality, that is only as useful as the insight it can offer about the questions of interest.  Often, minor violations of model assumptions don't affect the qualitative conclusions you can draw from the model.
+
 
 ## Model Comparison
 
@@ -1459,7 +1486,7 @@ F = \frac{(RSS_1 - RSS_2)/(p - q)}{RSS_2 / (n - p - 1)}
 $$
 gives a measure of how much the unexplained variance is reduced in the full model, with respect to the reduced model. Intuitively, $R$ divides how much effect "dropping" the $q$ extra predictors has on explained variance.  Note that $RSS_2$ will always be smaller than $RSS_1$, since adding predictors to a model can't give a **worse** fit to the data. What our hypothesis test checks is: does the superset model fit the data **significantly** better than the subset model, given the added complexity?
 
-It turns out that this test statistic follows an $F$ distribution (under the null hypothesis above) with $p-q$, $n-p$ degrees of freedom, written $F_{p-q,n-p}$.  So, we can perform hypothesis testing using an $F$ test, which may be familiar if you have seen ANOVAs.
+It turns out that this test statistic follows an $F$ distribution (under the null hypothesis above) with $p-q$, $n-p$ degrees of freedom, written $F_{p-q,n-p}$.  So, we can perform hypothesis testing using an [$F$-test](https://en.wikipedia.org/wiki/F-test), which may be familiar if you have seen ANOVAs.
 
 #### Example {- #c2ex1}
 
@@ -1471,13 +1498,13 @@ m2 <- lm(RTlexdec ~ WrittenFrequency + AgeSubject + LengthInLetters, english)
 anova(m1, m2)
 ```
 
-The highly significant $F$ test means that adding these two variables does significantly improve the model. 
+The highly significant $F$-test means that adding these two variables does significantly improve the model. 
 
 **Practical notes**: 
 
 * In experimental literature (at least in linguistics), "model comparison" is often used as shorthand for "nested model comparison via an F test" when comparing two linear regressions, because this is the most common way to do so.  We will sometimes use this shorthand as well.
 
-* The results of such a hypothesis test are usually reported in parentheses, like "$(F(2, 4564) = 3663, p<0.0001)$".
+* The results of such a hypothesis test are usually reported in parentheses, like "Subject age and the word's length in letters together affect RT beyond word frequency $(F(2, 4564) = 3663, p<0.0001)$".
 
 > **Questions**:
 >
@@ -1657,7 +1684,13 @@ This approach requires you to have a sense of what the "right" and "wrong" sign 
 
 #### Exercise: Phrase medial devoicing in European French {- #c2ex5}
 
-Recall that for this dataset, we are interested in whether there is an effect of `func` on `syldur`, after controlling for `c1`, `v`, and `speechrate`. (See the [Dataset appendix](#c2devdata) for a detailed description)
+This dataset is described in [the appendix](#devdata). We are interested in whether function words are shorter than content words---considering just words which are a consonant-vowel sequence---after controlling for the consonant and vowel identities (since different Cs/Vs are intrinsically longer than others) and how fast the speaker is speaking. 
+
+In terms of the variables in this dataset:
+
+* Is there is an effect of `func` on `syldur`...
+
+* ... after controlling for `c1`, `v`, and `speechrate`?
 
 **Part 1**: Model comparison
 
@@ -1729,7 +1762,9 @@ m2 <- lm(syldur~speechrate*(func+c1+v), df)
 summary(m2)
 ```
 
-There seems to be a significant interaction with preceding consonant, in particular preceding /k/ means less duration decrease with increasing rate. This makes sense, because in languages with "short lag" stops (like French p/t/k), duration of these stops depends minimally on speech rate.  So, we flag the `speechrate:c1` term for inclusion.
+There seems to be a significant interaction with preceding consonant, in particular preceding /k/ means less duration decrease with increasing rate.  There isn't an immediately obvious explanation for this interaction, so it's not "wrong sign", and it's fine to leave in the model.
+<!-- This makes sense, because in languages with "short lag" stops (like French p/t/k), duration of these stops depends minimally on speech rate.   -->
+<!-- So, we flag the `speechrate:c1` term for inclusion. -->
 
 <!-- TODO future: include reference here and make more understandable if not a phonetician -->
 
@@ -1852,7 +1887,7 @@ Interpretations of coefficients in the  model using standardized predictors:
 
 ### Interim recipe: building a multiple linear regression model
 
-Caveat: there is no single recipe for building a regression model of a dataset to address a research question!  Nonetheless, here is one possible recipe:
+Caveat: there is no single recipe for building a regression model of a dataset to address a research question!   Nonetheless, here is one possible recipe, which we have given as part of linear regression project directions in classes.^[Note that this recipe explicitly includes exploratory data analysis, which may not be appropriate depending on your analytic philosophy or conventions in your subfield.]
 
 1. **Preliminaries**
 
