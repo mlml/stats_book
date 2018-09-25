@@ -20,6 +20,9 @@ library(dplyr)
 transitions <- read.delim(url("https://osf.io/4v8r7/download"))
 ```
 
+<script src="js/hideOutput.js"></script>
+
+
 In this chapter we will introduce:
 
 * hypothesis testing, at a high level,
@@ -33,7 +36,7 @@ In this chapter we will introduce:
 
 <!-- TODO FUTURE: solutions -->
 
-## Hypothesis testing: high-level
+## Hypothesis testing: High-level
 
 Based on a sample of $n$ observations, we can compute the:
 
@@ -108,7 +111,7 @@ In this informal example, we assumed that we somehow knew SE---the population st
 
 ## $t$-tests
 
-### Single-sample $t$-test: setup
+### Single-sample $t$-test: Setup
 
 In the setting for a (single-sample) $t$-test, we assume that we have $n$ observations of some normally distributed random variable, such as log-transformed reaction times ([`english` dataset](#engdata)) or duration of vowels ([`tapping` dataset](#tapdata)).  In reality the random variable has some mean and standard deviation $\mu$ and $\sigma$, population values that we don't know.
 
@@ -270,7 +273,7 @@ In particular, it is often assumed that:
 
 unless stated otherwise. The reader of a paper or book (including this one) often must infer from context which test is being used: the type of data being analyzed and the results that are shown. For example, a comparison of two groups where $t$, d.f., $p$ are reported probably means a two-sided $t$ test was used.^[Also: with null hypothesis $\mu_1 = \mu_2$, not assuming equal  variances in the two groups, not paired.]
 
-#### Example: one-sample $t$-test {-}
+#### Example: One-sample $t$-test {-}
 
 For this example we use a new dataset: the Dutch verb regularity data (`regularity`) from the `languageR` package, described [here](#dregdata).  This dataset lists 700 Dutch irregular and regular verbs (the column `Regularity`), and includes variables which may help predict whether a verb is regular or not, including:
 
@@ -439,7 +442,7 @@ It is important to be aware of these assumptions---especially the second one, wh
 
 It is less clear how important the normality assumption is. If your samples are clearly not normally distributed---either by visual inspection , or for a priori reasons (e.g. a rating task---can't be normally distributed because of upper and lower bounds), you should use a non-parametric test instead (like Wilcoxson, discussed below). A common case in practice where $t$ tests are suspect is when there are clear outliers in one or both samples.  However, $t$-tests are relatively "robust"^[see e.g. discussion [here](https://stats.stackexchange.com/questions/121852/how-to-choose-between-t-test-or-non-parametric-test-e-g-wilcoxon-in-small-sampl , or @bland2015introduction p. 168.] to non-normally-distributed samples, and **many** papers especially in older literature report $t$-tests on (probably) non-normal observation distributions, in part because carrying out non-parametric tests was computationally difficult before the 1990s.  One shouldn't immediately discount the results of $t$-tests for the many types of linguistic data where normality is unlikely (like Likert scores, reaction times, durations of sounds/words), but do view these results critically---especially where significances are near the $\alpha$ cutoff. 
 
-### Paired $t$-test
+### Paired $t$-test {#paired-t-test}
 
 A useful variant of the $t$-test, which deals with a particular violation of the independence assumption, is for *paired* data, where the two samples consist of pairs of observations (A and B), and the difference between A and B is of interest.
 
@@ -670,7 +673,7 @@ In contrast, *non-parametric* hypothesis tests do not assume that the sample(s) 
 
 <!-- Non-parametric tests can thus be applied without worrying about aspects of the data that could mess up parametric tests (outliers, non-normality)---at the expense of lower power (ex: more likely to **not** find a significant difference between groups which do in reality differ). -->
 
-### Wilconxon tests
+### Wilcoxson tests
 
 The most commonly-used non-parametric analogue to $t$-tests are the *Wilcoxson signed-rank test* (for one sample, or paired data) and the *Wilcoxson rank-sum test* (for two samples, a.k.a. "Mann-Whitney test").^[The terminology is not standardized: the one-sample test is sometimes called "Wilcoxson $T$-test" (since it is analogous to a one-sample $t$-test), and the two sample test is also called "Mann-Whitney $U$-test" or "Mann-Whitney-Wilcoxson test" or a variation.]
 
@@ -696,7 +699,7 @@ The null hypothesis for this test is that the two samples are drawn from identic
 
 The consequence of this rank-based test statistic that is important to remember is that **Wilcoxson tests are robust to outliers** and skewed distributions---like medians are.
 
-#### Example:  regular vs. irregular auxiliaries {-}
+#### Example: auxiliaries {-}
 
 We know [from above](#shapiro-wilk-example) that the frequencies of Dutch "hebben" verbs are not normally distributed (i.e. $p < 0.0001$ in a Shapiro-Wilk test), so it was not actually appropriate to compare their frequencies with non-"hebben" verbs [using a $t$-test](#welch-example).
 

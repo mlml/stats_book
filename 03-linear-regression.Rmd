@@ -5,7 +5,7 @@ library(languageR)
 ```
 
 
-# Linear Regression
+# Linear regression
 
 **Preliminary code**
 
@@ -29,12 +29,9 @@ df <- read.delim(url("https://osf.io/uncd8/download"))
 <!-- alt <- read.delim('datasets/alternatives.txt') -->
 <!-- df <- read.delim('datasets/french_medial_vowel_devoicing.txt') -->
 
-
-
+<script src="js/hideOutput.js"></script>
 
 **Note**: Most answers to questions/exercises not listed in text are in [Solutions](#c2solns).
-
-<!-- TODO FUTURE: move all answers to Solutions, since code folding doesn't happen  -->
 
 This chapter introduces linear regression. The broad topics we will cover are:
 
@@ -48,7 +45,7 @@ This chapter introduces linear regression. The broad topics we will cover are:
 
 5. Model comparison
 
-## Regression: General Introduction
+## Regression: General introduction
 
 First, what is "regression"?    @chatterjee2012regression define it as  "a conceptually simple method for investigating functional relationships among variables":
 
@@ -150,7 +147,7 @@ For now, we will not go into what the assumptions of linear regression are, and 
 
 Note that R almost never checks whether your data and model meet regression analysis assumptions, unlike other software (e.g. SPSS, sometimes).
 
-## Simple Linear Regression
+## Simple linear regression
 
 The simplest application of simple linear regression (SLR) is to model an association between two continuous variables. 
 
@@ -194,7 +191,7 @@ which gives some information not captured by a correlation coefficient:
     
 Regression gives both types of information, and more.
 
-### SLR: continuous predictor
+### SLR: Continuous predictor
 
 The formula for simple linear regression, written for the $i^{\text{th}}$ observation, is:
 
@@ -237,7 +234,7 @@ head(dplyr::select(english, WrittenFrequency, RTlexdec))
 >
 > * What is $y_5$?
 
-### SLR: parameter estimation
+### SLR: Parameter estimation
 
 To get a line of best fit, we want: $\beta_0$ and $\beta_1$, the *population values*.  Recall that we can't actually observe these (Sec.\@ref(sample-population)), so we obtain *sample estimates*, written $\hat{\beta}_0, \hat{\beta}_1$.
 
@@ -353,7 +350,7 @@ confint(lm(RTlexdec~WrittenFrequency, young))
 
 Neither CI includes zero, consistent with the very low $p$-values in the model table above.
 
-#### Example: small subset {-}
+#### Example: Small subset {-}
 
 For the full dataset of `english` young speakers, it's a little silly to do hypothesis testing given how much data there is and the clarity of the pattern---the line of best fit has a tiny confidence interval.  Just for exposition, let's look at the line of best fit for a subset of just $n=100$ points:
 
@@ -544,7 +541,7 @@ Note the differences in the two plots:
 (Hence "**L**ocal" in LOESS.)
 
 
-## Multiple Linear Regression
+## Multiple linear regression
 
 In *multiple linear regression*, we use a linear model to predict a continuous response with $p$ predictors ($p>1$):
 
@@ -638,7 +635,7 @@ The adjusted $R^2$ measure only increases if the $p$ additional predictors impro
 
 R reports both adjusted and non-adjusted versions, as seen in the model summary above.
 
-### Interactions and Factors
+### Interactions and factors
 
 The models we have considered so far assume that each predictor affects the response **independently**.  For example, in [the example above](#c2ex1) (`RT ~ frequency + age`), our model assumes that the slope of the frequency effect on RT is the same for old speakers as for young speakers.  This looks like it might be approximately true:
 ```{r, fig.align='center', fig.height=3, fig.width=5}
@@ -781,7 +778,7 @@ Solution to (2): The value of `FamilySize` when `Auxiliary`="hebben".
 Solution to (3): The predicted difference in `FamilySize` between `Auxiliary`="zijn" and "hebben", and between `Auxiliary`="zijnheb" and "hebben".
 
 
-### Releveling Factors
+### Releveling factors
 
 It's often useful for conceptual understanding to change the ordering of a factor's levels. For the `regularity` example, we could make `zijn` the base level of the `Auxiliary` factor:
 ```{r}
@@ -795,7 +792,7 @@ summary(m5)
 >
 > * What is the interpretation of the intercept and the two `Auxiliary` coefficients in this new model?
 
-## Linear Regression Assumptions
+## Linear regression assumptions {#linear-regression-assumptions}
 
 Up to now, we have discussed regression models without worrying about the assumptions that are made by linear regression, about your data and the model.  We will cover six main assumptions, the first four have to do with the form of the model and errors:
 
@@ -818,7 +815,7 @@ We'll discuss each in turn.
 
 Our presentation of regression assumptions and diagnostics is indebted to Chapters 4, 6 and 9 of @chatterjee2012regression, where you can find more detail.
 
-### Visual Methods
+### Visual methods
 
 Visualization is crucial for checking model assumptions, and for data analysis in general.  A famous example illustrating this is *Anscombe's quartet*: a set of four small datasets of $(x,y)$ pairs with:
 
@@ -885,7 +882,7 @@ summary(mq)
 
 We will cover more nonlinear functions of predictors in [a later chapter](#nonlinear-effects). The important point here is that a model with just `rduration` as a predictor would have violated the linearity assumption, but a model with both `rduration` and `rduration^2` as predictors doesn't (arguably).
 
-### Assumption 2: Independence of Errors {#c2ioe}
+### Assumption 2: Independence of errors {#c2ioe}
 
 All regression equations we have considered contain an *error* or *residual* term: $\epsilon_i$ for the $i^{\text{th}}$ observation.  A crucial assumption is that these $\epsilon_i$ are **independent**: knowing the error for one observation shouldn't tell you anything about the error for another observation.
 
@@ -909,7 +906,7 @@ Until we cover mixed-effects regression, we will be getting around the fact that
 
 2. Analyzing datasets where this assumption does **not** hold, such as `tapping` or `english`, using analysis methods that do assume indepedence of errors (such as linear regression), with the understanding that our regression models are probably giving results that are "wrong" in some sense.
 
-### Assumption 3: Normality of Errors
+### Assumption 3: Normality of errors
 
 The next major assumption is that the errors $\epsilon_i$ are normally distributed, with mean 0 and a fixed variance.  This assumption is impossible to check directly, because we never observe the true *errors* $\epsilon_i$, only the *residuals* $e_i$.  The residuals are no longer normally distributed (even if the errors are), because some observations will be more influential than others in determining the fitted responses $\hat{y}_i$ when fitting the least-squares estimates of the regression coefficients. 
 
@@ -962,7 +959,7 @@ ggplot(aes(x=resid), data=data.sub) + geom_histogram() + xlab("Residual (standar
 
 This example illustrates probably the most common source of non-normal residuals: a highly non-normal distirbution of the predictor or response.
 
-#### Effect and Solution
+#### Effect and solution
 
 Non-normality of residuals is a pretty common violation of regression assumptions.  How much does it actually matter?   @gelman2007data (p. 46) argue "not much", at least in terms of the least-squares estimates of the regression line (i.e., the regression coefficient values), which is often what you are interested in.  
 
@@ -1027,7 +1024,7 @@ grid.arrange(day9_plt4, day9_plt3, ncol = 2)
 
 This exercise shows one reason that examining the residual distribution is useful.  If we didn't already know what the missing predictor was, the non-normality of the residual distribution gives us a way to look for an explanatory variable.  (Look at observations in each mode of the distribution, see what they have in common.)
 
-### Assumtion 4: Constancy of Variance
+### Assumtion 4: Constancy of variance
 
 *Homoscedasticity* is one of the trickier regression assumptions to think about: the assumption that $\epsilon_i$ is normally distributed with the same variance, across all values of the predictors.  
 
@@ -1051,7 +1048,7 @@ ggplot(aes(x=fitted, y=resid), data=data.sub) + geom_point() + geom_smooth() + x
 
 There is greater variance for higher fitted values, indicating heteroscedacticity.
 
-#### Effect and Solution
+#### Effect and solution
 
 In general, estimates of least-squares coefficients in the presence of heteroscedasticity are unbiased, but standard errors will be under- or over-estimated.  This means that confidence intervals will be too narrow/wide and $p$-values too low/high.
 
@@ -1092,7 +1089,7 @@ One can often correct for heteroscedasticity by using various transformations of
     * Transform predictor/response to normality
 
 
-### Transforming to Normality
+### Transforming to normality
 
 Normality of the distribution of the response and predictors ($Y$ and $X_i$) is **not** an assumption of linear regression.  This is a common misconception, perhaps because normality is an assumption of other basic statistical inference tools, such as $t$-tests.  
 
@@ -1163,7 +1160,7 @@ grid.arrange(plt5, plt6, ncol = 2)
 
 <!-- The point here is that the linearity assumption isn't met when $Y$ is untransformed word frequency, or at least it's unclear, whereas the assumption looks safe for log-transformed $Y$. -->
 
-### Assumption 5: Linear Independence of Predictors
+### Assumption 5: Linear independence of predictors
 
 A crucial assumption of linear regression is that the predictors are *linearly independent*, meaning it isn't possible to write one predictor as a linear function of the others.  If you can do so, it's impossible to disentangle the effect of different predictors on the response. For example, temperatures in farenheit and centigrade are related by a linear function (F = $9/5$C + 32), so F and C are linearly dependent.
 
@@ -1268,7 +1265,7 @@ Importantly, **collinearity is a property of the data**---not a violation of mod
 
 Because collinearity isn't a violation of model assumptions, high collinearity cannot be diagnosed using diagnostic plots, such as those considered for Assumptions 1-4 above.  
 
-#### Diagnosing Collinearity    
+#### Diagnosing collinearity    
 
 How can one then detect collinearity, and decide if it could be affecting (the standard errors of) regression coefficients?
 
@@ -1343,7 +1340,7 @@ The presence of highly-influential observations can lead to either Type I or Typ
 
 This isn't always the case, though---often, some points are inherently more influential than others (say, a couple participants with behavior very different from others), and we need to decide how to proceed in fitting and interpreting the model.
 
-### Measuring Influence 
+### Measuring influence {#lin-reg-measuring-influence}
 
 *Cook's distance* is a metric of how influential an observation is in a given model, defined as the product of two terms:
 
@@ -1418,7 +1415,7 @@ Highly influential points are one example of *outliers*. It is also possible for
 
 In many cases inspection of gross outliers will reveal data points that should be clearly excluded, such as a participant who always gave the same response, or data coding errors that cannot be corrected. In other cases the decision is more subjective.
 
-### Regression assumptions: reassurance
+### Regression assumptions: Reassurance
 
 <!-- We have just spent quite a while discussing assumptions that are made by linear regression models (and one assumption that isn't made, but is important anyway---multicollinearity).   -->
 
@@ -1429,7 +1426,7 @@ It is important to take a step back, and remember:
 when doing data analysis, you should just satisfy the assumptions of the statistical tool being used as best you can, and then  **fit and report your model anyway**.  You should not fit regression models blindly, and it's important to be aware of the assumptions being made by these models, and their limitations.  But the more you learn about regression (or any statistical technique), the easier it is to become paralyzed with fear by everything that could be wrong with your data.    Keep in mind the dictum of George Box: "Essentially, all models are wrong, but some are useful."  That is, every model is just that: a **model** of reality, that is only as useful as the insight it can offer about the questions of interest.  Often, minor violations of model assumptions don't affect the qualitative conclusions you can draw from the model.
 
 
-## Model Comparison
+## Model comparison {#lm-model-comparison}
 
 So far in our discussion of regression, we have assumed that the form of the model is given: we already know what predictors will be used, and what terms will be included in the model.  In practice, with real data this is usually not clear---it is necessary to choose among several possible models of the same data, that differ in which terms they include. Choosing between models is called *variable selection* (or *model selection*). In order to perform variable selection, we need a way to perform *model comparison*: comparing two or more candidate models to assess which one is "better", in the sense of how well it fits the data relative to its expressive power (e.g. number of predictors).
 
@@ -1516,7 +1513,7 @@ The highly significant $F$-test means that adding these two variables does signi
 >
 > Hint: fit `m0 <- lm(RTlexdec ~ 1, english)` and compare to `m2`.
 
-### Non-nested model comparison
+### Non-nested model comparison {#non-nested-model-comparison}
 
 In non-nested model comparison, one model isn't a subset of the other.  For example, the two models `RT ~ Frequency` and `RT ~ Familiarity` would be non-nested.
 
@@ -1600,7 +1597,7 @@ There are three components of any variable selection method:
 
 We'll consider a couple methods here, and cover others in later chapters.
 
-#### Method 1: Nested Model Comparison
+#### Method 1: Nested model comparison
 
 As noted above, "model comparison" is often used as shorthand for "comparison of nested models using F tests", when referring to linear regressions.
 
@@ -1610,7 +1607,7 @@ Which model of `m1`, `m2`, `m3` (from [the example above](#c2ex4)) would you cho
 
 Note: `anova(x,y,z)` can be used as shorthand when `x`, `y`, `z` are nested models, and so on (`anova(w,x,y,z)`...).
 
-#### Method 2: Stepwise Variable Selection
+#### Method 2: Stepwise variable selection
 
 A common type of variable selection uses "choose automatically" for Component 3 above (how do we decide which model to prefer).  In *stepwise* variable selection, we decide whether to add or drop terms based on any model comparison procedure (Component 1): AIC, BIC, $F$ test with $p<0.05$, etc.
 
@@ -1885,7 +1882,7 @@ Interpretations of coefficients in the  model using standardized predictors:
 >
 > * What is the relative importance of the three predictors for predicting reaction time?
 
-### Interim recipe: building a multiple linear regression model
+### Interim recipe: Building a multiple linear regression model
 
 Caveat: there is no single recipe for building a regression model of a dataset to address a research question!   Nonetheless, here is one possible recipe, which we have given as part of linear regression project directions in classes.^[Note that this recipe explicitly includes exploratory data analysis, which may not be appropriate depending on your analytic philosophy or conventions in your subfield.]
 
@@ -1939,7 +1936,7 @@ Caveat: there is no single recipe for building a regression model of a dataset t
 
 ## Solutions {#c2solns}
 
-### Multiple Linear Regression Solutions
+### Multiple linear regression: Solutions
 
 **Q**: What does it mean that this coefficient is positive? 
 
@@ -1957,7 +1954,7 @@ Caveat: there is no single recipe for building a regression model of a dataset t
   \text{Predicted } \texttt{RTlexdec} = \underbrace{6.552}_{\hat{\beta}_0} + (\underbrace{-0.011}_{\hat{\beta}_1} \cdot 3) + (\underbrace{-0.365}_{\hat{\beta}_2} \cdot \underbrace{1}_{\texttt{AgeSubject=='young'}}) + (\underbrace{-0.005}_{\hat{\beta}_3} \cdot 3 \cdot \underbrace{1}_{\texttt{AgeSubject=='young'}}) = 6.139
 \end{equation*}
 
-### Linear Regression Assumptions Solutions
+### Linear regression assumptions: Solutions
 
 **Q**: Is this the case?
 
@@ -1977,7 +1974,7 @@ Caveat: there is no single recipe for building a regression model of a dataset t
 
 ---
 
-### Model Comparison Solutions
+### Model comparison: Solutions
 
 <!-- TODO: future -->
 <!-- #### Solutions to [25 potential predictors](#c2tfpp) exercise: {-} -->

@@ -2,7 +2,7 @@
 knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
 ```
 
-# Categorical Data Analysis: Preliminaries {#cda}
+# Categorical data analysis: Preliminaries {#cda}
 
 **Preliminary code**
 ```{r, message=F, error=F, warning=F}
@@ -21,7 +21,7 @@ alternatives <- read.delim(url("https://osf.io/6qctp/download"), stringsAsFactor
 
 **Note**: Answers to some questions/exercises not listed in text are in [Solutions](#c3solns)
 
-<!-- TODO FUTURE: move all solutions to end of file, since code folding doesn't work -->
+<script src="js/hideOutput.js"></script>
 
 <!-- TODO FUTURE: actually complete solutions -->
 
@@ -178,7 +178,7 @@ fisher.test(xtabs(~Auxiliary + Regularity, regularity))
 ```
 As expected, whether a verb is irregular and which `Auxiliary` it takes are not independent.
 
-## Towards Logistic Regression
+## Towards logistic regression
 
 Intuitively, in logistic regression ([next chapter](#logistic-regression)) we will predict the probability that some event happens (e.g. tapping) as a function of predictors, given a bunch of data where each observation corresponds to observing whether the event happened or not, once ($Y=$ 0 or 1).  It would be tempting to just apply the tool we've learned so far---linear regression---to this task.  However, it's not obvious **what to predict** in such a model:
 
@@ -361,7 +361,7 @@ To summarize:
 
 The non-equivalence between changes in odds and changes in probability is important to remember when interpreting logistic regressions, which are in log-odds space.
 
-### Log Odds: sample and population
+### Log odds: sample and population
 
 The odds ratio is a useful *summary statistic* of the degree of dependence between two binary variables, analogous to correlations ($r$, $\rho$) for summarizing dependence between two continuous variables. 
 <!-- TODO FUTURE: if a chapter including correlations ever added in, add cross-ref -->
@@ -388,7 +388,7 @@ $$
 
 It turns out that **$\hat{L}$ is normally distributed with mean $\log(OR)$**, where $OR$ is the population value of the odds ratio.  Thus, if we want to do inferential statistics on the effect of binary $X$ on binary $Y$, it makes sense to work with **log-odds**, rather than probabilities.  
 
-#### Calculation and Interpretation
+#### Calculation and interpretation
 
 * The function from probability to log-odds is called *logit* ($\text{logit}(p)$)
 

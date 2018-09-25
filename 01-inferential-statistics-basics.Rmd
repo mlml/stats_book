@@ -17,6 +17,8 @@ library(dplyr)
 transitions <- read.delim(url("https://osf.io/4v8r7/download"))
 ```
 
+<script src="js/hideOutput.js"></script>
+
 <!-- TODO FUTURE: make solutions -->
 <!-- **Note**: Most answers to questions/exercises not listed in text are in [Solutions](#infIntro-solns). -->
 
@@ -45,7 +47,7 @@ These were described in earlier lectures that have yet to be turned into book ch
 <!-- TODO future: update -->
 
 
-## Population vs. sample
+## Population vs. sample {#sample-population}
 
 In an experiment, we are typically interested in **population** values of a parameter. For example, for the `tapping` dataset, we want to determine:
 
@@ -61,7 +63,7 @@ However, we can only take a *sample* of size $n$ and make an inference about the
     
 This is much of what we do in statistical analysis: estimate quantities of interest, whose true values we will never actually know, based on a finite sample.
 
-### Sample $\to$ population: high level
+### Sample $\to$ population: High level
 
 In inferential statistics, the general procedure is to use the sample to calculate *sample statistics*.  These sample statistics are used to estimate the *population values* of the parameters we actually care about. Ideally the sample statistics should be *unbiased estimators* of the population values, defined as:
 
@@ -404,7 +406,7 @@ Because a $t$ distribution is a little wider than a normal distribution, 95\% co
 
 When calculating errorbars (for plots, or to report in a paper), we usually should probably use $t$-based CI's, but it's easier to calculate CI's based on a normal distribution (also called `$z$-based'), and the difference is minimal as long as $n$ isn't too small.
 
-#### Example: sample sizes in the `transitions` dataset {-}
+#### Example: Sample sizes in the `transitions` dataset {-}
 
 For female (`F`) and male (`M`) speakers:
 ```{r}

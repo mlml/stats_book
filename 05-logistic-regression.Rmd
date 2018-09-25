@@ -2,7 +2,7 @@
 knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
 ```
 
-# Logistic Regression {#logistic-regression}
+# Logistic regression {#logistic-regression}
 
 **Preliminary code**
 
@@ -30,20 +30,14 @@ givenness <- mutate(givenness,
                     stressshift.num = (as.numeric(stressshift) - 1),
                     acoustics.std = arm::rescale(acoustics)
 )
-
-
-## loads alternativesMcGillLing620.csv from OSF project for Wagner (2016) data
-alternatives <- read.csv(url("https://osf.io/6qctp/download"))
-
 ```
+<script src="js/hideOutput.js"></script>
 
 **Note**: Answers to some questions/exercises not listed in text are in [Solutions](#c4solns)
 
-<!-- TODO FUTURE: move all solutions to end, since code folding doesn't work -->
-
 <!-- TODO FUTURE: actually fill in full solutions -->
 
-## Simple Logistic Regression
+## Simple logistic regression
 
 Analogously to "simple linear regression", which is predicting a continuous $Y$ from a single predictor $X$, in *simple logistic regression* we predict a binary $Y$.
 
@@ -93,7 +87,7 @@ $$
 and get a $p$-value and confidence interval for the slope ($\beta_1$).  The same is true for the intercept ($\beta_0$).
 
 
-### Interpreting the coefficients: logit, odds, and probability
+### Interpreting the coefficients: Logit, odds, and probability
 
 The regression coefficients, $\beta_0$ and $\beta_1$, can be interpreted in terms of log-odds, odds, or probability:
 
@@ -145,7 +139,7 @@ A few notes about the model output, compared to the output of the linear regress
 
 * The model table contains `z statistic` and `Pr(>|z|)` columns rather than  `t` and `Pr(>|t|)` columns.  This is because the test statistic $\hat{\beta_i}/{SE(\hat{\beta}_i})$ for logistic regression ($z$ in Eq. \@ref(eq:wald)) looks like a z-score and [follows a normal distribution](##log-reg-hyp-test), while the test statistic follows a $t$ distribution for linear regression.
 
-#### Interpreting the model: odds and log-odds
+#### Interpreting the model: Odds and log-odds
 
 > **Questions**: 
 >
@@ -187,7 +181,7 @@ exp(coefficients(mod1)[[2]])
 
 <!-- invlogit(-0.6897) = 0.334.  increasing acoustics.std by 1 corresponds to increase in logit by 1.637, = multiplying odds by 5.14 = exp(1.637) -->
 
-#### Interpreting the model: probability
+#### Interpreting the model: Probability
 
 We can plot the predicted $P$(stress shift) as a function of `acoustics` to get a sense of what the model predicts:
 
@@ -286,7 +280,7 @@ prop.table(xtabs(~npType + stressshift, data=givenness), margin=1)
 and see that the model matches these proportions exactly (`shift` column).   This makes sense, as predicting these two numbers is all the model has to do for simple logistic regression with one categorical predictor.
 
 
-### Differences from Linear Regression: Fitting and Interpretation {#c4differences}
+### Differences from linear regression: Fitting and interpretation {#c4differences}
 
 There are two important differences between logistic regression and linear regression, for our purposes:
 
@@ -335,7 +329,7 @@ badmodel <- glm(stressshift ~ acoustics.std, data=filter(givenness, stressshift=
 This means that the numeric algorithm used to maximize likelihood couldn't find a good solution for the regression coefficients. This makes sense, because the model is trying to fit 100\% probabilities (so log-odds = $\infty$), and has no data on the basis of which it can estimate the slope ($\beta_1$).  
 
 
-## Evaluating Logistic Regression Models
+## Evaluating logistic regression models
 
 We would like a measure of goodness-of-fit for logistic regression models: how well does the model predict $Y$, compared to a baseline model?  For linear regression, we used $R^2$ to quantify how similar the model's predictions ($\hat{y}_i$) were to the observations ($y_i$), relative to a baseline model where the model's prediction is always the grand mean---$R^2$ was simply the correlation between observed and predicted values.
 
@@ -499,7 +493,7 @@ does not differ between the baseline and full models.  This example illustrates 
 
 * Classification accuracy is a blunter tool than an LR test---it does not reflect effects that are small compared to baseline accuracy, because in order to affect classification accuracy an effect has to be big enough to change the sign of the predicted log odds.
 
-## Multiple Logistic Regression 
+## Multiple logistic regression 
 
 Like for linear regression, generalizing from one predictor to multiple predictors is straightforward for logistic regression.
 
@@ -519,7 +513,7 @@ or, rewriting with $\alpha_i = e^{\beta_i}$:
 
 That is, each predictor's effect on the odds are **multiplicative**.  A predictor that has no effect corresponds to multiplying by 1 ($\alpha_i = 1$), while predictors with "negative" effects decrease the odds ($\alpha_i < 1$) and predictors with "positive"" effects increase the odds ($\alpha_i > 1$).
 
-### Likelihood ratio test: general case
+### Likelihood ratio test: General case
 
 The likelihood ratio test generalizes to the case of comparing two nested logistic regression models, with $p$ and $q$ predictors:
 
@@ -777,7 +771,7 @@ lrAcc(mod3, 'stressshift')
 
 So accuracy actually **decreases** slightly when this interaction is added.  This can happen, because improving model likelihood and improving classification accuracy are not the same thing.^[It's worth noting that classification accuracy is very similar for the two models---close enough to be effectively the same, taking finite sample size into account. For a proportion estimated at $\hat{p} = 0.80$ (like classification accuracy, here) from $n=382$ observations, standard error is $\sqrt{p(1-p)/n} = 0.02$, so the 95\% CIs of classification accuracy of the two models overlap.]
 
-## Model Criticism for Logistic Regression
+## Model criticism for logistic regression
 
 Regression assumptions and model diagnostics are just as necessary to assess a fitted model ("model criticism") as for linear regression, where [we covered these topics](#linear-regression-assumptions) in depth.  The assumptions and diagnostics differ somewhat for logistic regression, but not at a qualitative level.  For example:
 
