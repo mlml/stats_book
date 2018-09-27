@@ -22,6 +22,10 @@ alt <- read.csv(url("https://osf.io/6qctp/download"))
 
 ## loads french_medial_vowel_devoicing.txt from OSF project for Torreira & Ernestus (2010) data
 df <- read.delim(url("https://osf.io/uncd8/download"))
+
+## loads halfrhymeMcGillLing620.csv from OSF project for Harder (2013) data
+halfrhyme <- read.csv(url("https://osf.io/37uqt/download"))
+
 ```
 <!-- TODO later: just wrap this into actual text -->
 
@@ -934,12 +938,9 @@ In general, we **check assumptions about errors by examining the distribution of
 #### Example {- #c2ex2}
 
 
-<!-- TODO future: add halfrhyme to dataset appendix chapter and cross-ref -->
-
-This is data from an experiment we have not discussed, called `halfrhyme`.  Let's  abstract away from what the variables actually mean, and just think of them as $Y$ and $X$:
+This exercises uses the `halfrhyme` data, briefly described [here](#halfdata).  Let's  abstract away from what the variables actually mean, and just think of them as $Y$ and $X$:
 ```{r, warning=FALSE}
-data <- read.delim("datasets/halfrhyme.txt")
-ggplot(aes(x=cohortSize, y=rhymeRating),  data=filter(data, conditionLabel=='bad')) +
+ggplot(aes(x=cohortSize, y=rhymeRating),  data=filter(halfrhyme, conditionLabel=='bad')) +
   geom_point() + geom_smooth(method='lm') + 
   geom_jitter() + xlab("X") + ylab("Y")
 ```
@@ -947,10 +948,10 @@ ggplot(aes(x=cohortSize, y=rhymeRating),  data=filter(data, conditionLabel=='bad
 The distribution of the standarized residuals for the regression of $Y$ as a function of $X$ is:
 
 ```{r, message=FALSE}
-data.sub <- filter(data, conditionLabel=='bad' & !is.na(cohortSize))
-mod <- lm(rhymeRating ~ cohortSize, data=data.sub)
-data.sub$resid <- rstandard(mod)
-ggplot(aes(x=resid), data=data.sub) + geom_histogram() + xlab("Residual (standardized)")
+halfrhyme.sub <- filter(halfrhyme, conditionLabel=='bad' & !is.na(cohortSize))
+mod <- lm(rhymeRating ~ cohortSize, data=halfrhyme.sub)
+halfrhyme.sub$resid <- rstandard(mod)
+ggplot(aes(x=resid), data=halfrhyme.sub) + geom_histogram() + xlab("Residual (standardized)")
 ```
  
 > **Questions**:
@@ -1039,11 +1040,11 @@ In this case, the model shows *heteroscedasticity*.
 For the `halfrhyme` data, the fitted value-residuals plot looks like:
 
 ```{r, message=FALSE}
-data.sub <- filter(data, conditionLabel=='bad' & !is.na(cohortSize))
-mod <- lm(rhymeRating ~ cohortSize, data=data.sub)
-data.sub$resid <- rstandard(mod)
-data.sub$fitted <- fitted(mod)
-ggplot(aes(x=fitted, y=resid), data=data.sub) + geom_point() + geom_smooth() + xlab("Fitted values") + ylab("Standardized residuals")
+halfrhyme.sub <- filter(halfrhyme, conditionLabel=='bad' & !is.na(cohortSize))
+mod <- lm(rhymeRating ~ cohortSize, data=halfrhyme.sub)
+halfrhyme.sub$resid <- rstandard(mod)
+halfrhyme.sub$fitted <- fitted(mod)
+ggplot(aes(x=fitted, y=resid), data=halfrhyme.sub) + geom_point() + geom_smooth() + xlab("Fitted values") + ylab("Standardized residuals")
 ```    
 
 There is greater variance for higher fitted values, indicating heteroscedacticity.

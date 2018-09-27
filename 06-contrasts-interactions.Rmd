@@ -279,7 +279,7 @@ contr.treatment(5)
 (Rows = factor levels; columns = contrasts)
 
 
-By deafult, R assumes that factor levels go in alphabetical order. In our data, we have re-leveled `context` so that  *Alternative* < *NoAlternative* < *New*. That is, *Alternative* is the "base level" (level 1).  A logistic regression of `shifted` on `context` using dummy coding gives:
+By default, R assumes that factor levels go in alphabetical order. In our data, we have re-leveled `context` so that  *Alternative* < *NoAlternative* < *New*. That is, *Alternative* is the "base level" (level 1).  A logistic regression of `shifted` on `context` using dummy coding gives:
 
 ```{r}
 summary(glm(shifted ~ context, data=alternatives, family='binomial'))
@@ -326,7 +326,7 @@ In general, it is not recommended to use dummy coding without good reason, e.g. 
 
 In general, you can't read off from the contrast matrix the  **interpretations** of the intercept and contrasts in an actual regression model. For example, it is not obvious from the two columns of the contrast matrix shown for dummy coding above ($(0,1,0)$ and $(0,0,1)$) that the first contrasts should be interpreted as "difference between level 2 and level 1". 
 
-Besides just memorizing the interpretation of each coding scheme, you can solve for the interpretations by taking the "generalized inverse" of the contrast matrix, uisng the `ginv` function in the MASS package.^[For the mathematical details of contrast coding, inlcuding why taking the generalized inverse gives contrast interpretations, see @schad2018capitalize or Sec. 6.2 of @venables2002modern.] 
+Besides just memorizing the interpretation of each coding scheme, you can solve for the interpretations by taking the "generalized inverse" of the contrast matrix, using the `ginv` function in the MASS package.^[For the mathematical details of contrast coding, including why taking the generalized inverse gives contrast interpretations, see @schad2018capitalize or Sec. 6.2 of @venables2002modern.] 
 
 This example (for dummy coding a three-level factor) shows how to obtain a matrix from which we can read off intercept and contrast interpretations from each row:
 
