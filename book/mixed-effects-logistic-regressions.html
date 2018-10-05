@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Quantitative Methods for Linguistic Data</title>
+  <meta name="description" content="Quantitative Methods for Linguistic Data">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Quantitative Methods for Linguistic Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Quantitative Methods for Linguistic Data" />
+  
+  
+  
+
+<meta name="author" content="Morgan Sonderegger, Michael Wagner, Francisco Torreira">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="linear-mixed-models.html">
+<link rel="next" href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Methods for Linguistic Data</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html"><i class="fa fa-check"></i><b>1</b> Inferential statistics: Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sample-population"><i class="fa fa-check"></i><b>1.1</b> Population vs. sample</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sample-to-population-high-level"><i class="fa fa-check"></i><b>1.1.1</b> Sample <span class="math inline">\(\to\)</span> population: High level</a></li>
+<li class="chapter" data-level="1.1.2" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sdsm"><i class="fa fa-check"></i><b>1.1.2</b> Sampling distribution of the sample mean</a></li>
+<li class="chapter" data-level="1.1.3" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sampling-from-a-non-normal-distribution"><i class="fa fa-check"></i><b>1.1.3</b> Sampling from a non-normal distribution</a></li>
+<li class="chapter" data-level="" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#confidence-intervals"><i class="fa fa-check"></i><b>1.2</b> Confidence intervals</a></li>
+<li class="chapter" data-level="1.3" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#t-distribution"><i class="fa fa-check"></i><b>1.3</b> <span class="math inline">\(t\)</span> distribution</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#t-based-confidence-intervals"><i class="fa fa-check"></i><b>1.3.1</b> <span class="math inline">\(t\)</span>-based confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#other-reading"><i class="fa fa-check"></i><b>1.4</b> Other reading</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>2</b> Hypothesis testing</a><ul>
+<li class="chapter" data-level="2.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-high-level"><i class="fa fa-check"></i><b>2.1</b> Hypothesis testing: High-level</a></li>
+<li class="chapter" data-level="2.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#z-scores"><i class="fa fa-check"></i><b>2.2</b> <span class="math inline">\(z\)</span>-scores</a></li>
+<li class="chapter" data-level="2.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#t-tests"><i class="fa fa-check"></i><b>2.3</b> <span class="math inline">\(t\)</span>-tests</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#single-sample-t-test-setup"><i class="fa fa-check"></i><b>2.3.1</b> Single-sample <span class="math inline">\(t\)</span>-test: Setup</a></li>
+<li class="chapter" data-level="2.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-in-general"><i class="fa fa-check"></i><b>2.3.2</b> Hypothesis testing in general</a></li>
+<li class="chapter" data-level="2.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#two-sample-t-test"><i class="fa fa-check"></i><b>2.3.3</b> Two-sample <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#welch-example"><i class="fa fa-check"></i><b>2.3.4</b> Unequal variances: Welch <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#t-test-assumptions"><i class="fa fa-check"></i><b>2.3.5</b> Assumptions behind <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#paired-t-test"><i class="fa fa-check"></i><b>2.3.6</b> Paired <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#reporting-a-hypothesis-test"><i class="fa fa-check"></i><b>2.3.7</b> Reporting a hypothesis test</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#checking-normality"><i class="fa fa-check"></i><b>2.4</b> Checking normality</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#visual-methods"><i class="fa fa-check"></i><b>2.4.1</b> Visual methods</a></li>
+<li class="chapter" data-level="2.4.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#q-q-plots"><i class="fa fa-check"></i><b>2.4.2</b> Q-Q plots</a></li>
+<li class="chapter" data-level="2.4.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#shapiro-wilk-example"><i class="fa fa-check"></i><b>2.4.3</b> Hypothesis test</a></li>
+<li class="chapter" data-level="2.4.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#other-parametric-tests"><i class="fa fa-check"></i><b>2.4.4</b> Other parametric tests</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#non-parametric-tests"><i class="fa fa-check"></i><b>2.5</b> Non-parametric tests</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#wilcoxson-tests"><i class="fa fa-check"></i><b>2.5.1</b> Wilcoxson tests</a></li>
+<li class="chapter" data-level="2.5.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#two-sample-wilcoxson-test"><i class="fa fa-check"></i><b>2.5.2</b> Two-sample Wilcoxson test</a></li>
+<li class="chapter" data-level="2.5.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#parametric-versus-non-parametric-tests"><i class="fa fa-check"></i><b>2.5.3</b> Parametric versus non-parametric tests</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#other-reading-1"><i class="fa fa-check"></i><b>2.6</b> Other reading</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>3</b> Linear regression</a><ul>
+<li class="chapter" data-level="3.1" data-path="linear-regression.html"><a href="linear-regression.html#regression-general-introduction"><i class="fa fa-check"></i><b>3.1</b> Regression: General introduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="linear-regression.html"><a href="linear-regression.html#linear-models"><i class="fa fa-check"></i><b>3.1.1</b> Linear models</a></li>
+<li class="chapter" data-level="3.1.2" data-path="linear-regression.html"><a href="linear-regression.html#terminology"><i class="fa fa-check"></i><b>3.1.2</b> Terminology</a></li>
+<li class="chapter" data-level="3.1.3" data-path="linear-regression.html"><a href="linear-regression.html#steps-and-assumptions-of-regression-analysis"><i class="fa fa-check"></i><b>3.1.3</b> Steps and assumptions of regression analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="linear-regression.html"><a href="linear-regression.html#simple-linear-regression"><i class="fa fa-check"></i><b>3.2</b> Simple linear regression</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="linear-regression.html"><a href="linear-regression.html#slr-continuous-predictor"><i class="fa fa-check"></i><b>3.2.1</b> SLR: Continuous predictor</a></li>
+<li class="chapter" data-level="3.2.2" data-path="linear-regression.html"><a href="linear-regression.html#slr-parameter-estimation"><i class="fa fa-check"></i><b>3.2.2</b> SLR: Parameter estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="linear-regression.html"><a href="linear-regression.html#hypothesis-testing-1"><i class="fa fa-check"></i><b>3.2.3</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="3.2.4" data-path="linear-regression.html"><a href="linear-regression.html#quality-of-fit"><i class="fa fa-check"></i><b>3.2.4</b> Quality of fit</a></li>
+<li class="chapter" data-level="3.2.5" data-path="linear-regression.html"><a href="linear-regression.html#categorical-predictor"><i class="fa fa-check"></i><b>3.2.5</b> Categorical predictor</a></li>
+<li class="chapter" data-level="3.2.6" data-path="linear-regression.html"><a href="linear-regression.html#slr-with-a-binary-categorical-predictor-vs.two-sample-t-test"><i class="fa fa-check"></i><b>3.2.6</b> SLR with a binary categorical predictor vs. two-sample <span class="math inline">\(t\)</span>-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="linear-regression.html"><a href="linear-regression.html#multiple-linear-regression"><i class="fa fa-check"></i><b>3.3</b> Multiple linear regression</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="linear-regression.html"><a href="linear-regression.html#goodness-of-fit-metrics"><i class="fa fa-check"></i><b>3.3.1</b> Goodness of fit metrics</a></li>
+<li class="chapter" data-level="3.3.2" data-path="linear-regression.html"><a href="linear-regression.html#interactions-and-factors"><i class="fa fa-check"></i><b>3.3.2</b> Interactions and factors</a></li>
+<li class="chapter" data-level="3.3.3" data-path="linear-regression.html"><a href="linear-regression.html#plotting-interactions"><i class="fa fa-check"></i><b>3.3.3</b> Plotting interactions</a></li>
+<li class="chapter" data-level="3.3.4" data-path="linear-regression.html"><a href="linear-regression.html#categorical-factors-with-more-than-two-levels"><i class="fa fa-check"></i><b>3.3.4</b> Categorical factors with more than two levels</a></li>
+<li class="chapter" data-level="3.3.5" data-path="linear-regression.html"><a href="linear-regression.html#releveling-factors"><i class="fa fa-check"></i><b>3.3.5</b> Releveling factors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-assumptions"><i class="fa fa-check"></i><b>3.4</b> Linear regression assumptions</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="linear-regression.html"><a href="linear-regression.html#visual-methods-1"><i class="fa fa-check"></i><b>3.4.1</b> Visual methods</a></li>
+<li class="chapter" data-level="3.4.2" data-path="linear-regression.html"><a href="linear-regression.html#assumption-1-linearity"><i class="fa fa-check"></i><b>3.4.2</b> Assumption 1: Linearity</a></li>
+<li class="chapter" data-level="3.4.3" data-path="linear-regression.html"><a href="linear-regression.html#c2ioe"><i class="fa fa-check"></i><b>3.4.3</b> Assumption 2: Independence of errors</a></li>
+<li class="chapter" data-level="3.4.4" data-path="linear-regression.html"><a href="linear-regression.html#assumption-3-normality-of-errors"><i class="fa fa-check"></i><b>3.4.4</b> Assumption 3: Normality of errors</a></li>
+<li class="chapter" data-level="3.4.5" data-path="linear-regression.html"><a href="linear-regression.html#assumtion-4-constancy-of-variance"><i class="fa fa-check"></i><b>3.4.5</b> Assumtion 4: Constancy of variance</a></li>
+<li class="chapter" data-level="3.4.6" data-path="linear-regression.html"><a href="linear-regression.html#interim-summary"><i class="fa fa-check"></i><b>3.4.6</b> Interim summary</a></li>
+<li class="chapter" data-level="3.4.7" data-path="linear-regression.html"><a href="linear-regression.html#transforming-to-normality"><i class="fa fa-check"></i><b>3.4.7</b> Transforming to normality</a></li>
+<li class="chapter" data-level="3.4.8" data-path="linear-regression.html"><a href="linear-regression.html#assumption-5-linear-independence-of-predictors"><i class="fa fa-check"></i><b>3.4.8</b> Assumption 5: Linear independence of predictors</a></li>
+<li class="chapter" data-level="3.4.9" data-path="linear-regression.html"><a href="linear-regression.html#collinearity"><i class="fa fa-check"></i><b>3.4.9</b> Collinearity</a></li>
+<li class="chapter" data-level="3.4.10" data-path="linear-regression.html"><a href="linear-regression.html#assumption-6-observations"><i class="fa fa-check"></i><b>3.4.10</b> Assumption 6: Observations</a></li>
+<li class="chapter" data-level="3.4.11" data-path="linear-regression.html"><a href="linear-regression.html#lin-reg-measuring-influence"><i class="fa fa-check"></i><b>3.4.11</b> Measuring influence</a></li>
+<li class="chapter" data-level="3.4.12" data-path="linear-regression.html"><a href="linear-regression.html#outliers"><i class="fa fa-check"></i><b>3.4.12</b> Outliers</a></li>
+<li class="chapter" data-level="3.4.13" data-path="linear-regression.html"><a href="linear-regression.html#regression-assumptions-reassurance"><i class="fa fa-check"></i><b>3.4.13</b> Regression assumptions: Reassurance</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="linear-regression.html"><a href="linear-regression.html#lm-model-comparison"><i class="fa fa-check"></i><b>3.5</b> Model comparison</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="linear-regression.html"><a href="linear-regression.html#nested-model-comparison"><i class="fa fa-check"></i><b>3.5.1</b> Nested model comparison</a></li>
+<li class="chapter" data-level="3.5.2" data-path="linear-regression.html"><a href="linear-regression.html#non-nested-model-comparison"><i class="fa fa-check"></i><b>3.5.2</b> Non-nested model comparison</a></li>
+<li class="chapter" data-level="3.5.3" data-path="linear-regression.html"><a href="linear-regression.html#c2varselect"><i class="fa fa-check"></i><b>3.5.3</b> Variable selection</a></li>
+<li class="chapter" data-level="3.5.4" data-path="linear-regression.html"><a href="linear-regression.html#interpretability-issues"><i class="fa fa-check"></i><b>3.5.4</b> Interpretability issues</a></li>
+<li class="chapter" data-level="3.5.5" data-path="linear-regression.html"><a href="linear-regression.html#interim-recipe-building-a-multiple-linear-regression-model"><i class="fa fa-check"></i><b>3.5.5</b> Interim recipe: Building a multiple linear regression model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="linear-regression.html"><a href="linear-regression.html#c2solns"><i class="fa fa-check"></i><b>3.6</b> Solutions</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="linear-regression.html"><a href="linear-regression.html#multiple-linear-regression-solutions"><i class="fa fa-check"></i><b>3.6.1</b> Multiple linear regression: Solutions</a></li>
+<li class="chapter" data-level="3.6.2" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-assumptions-solutions"><i class="fa fa-check"></i><b>3.6.2</b> Linear regression assumptions: Solutions</a></li>
+<li class="chapter" data-level="3.6.3" data-path="linear-regression.html"><a href="linear-regression.html#model-comparison-solutions"><i class="fa fa-check"></i><b>3.6.3</b> Model comparison: Solutions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cda.html"><a href="cda.html"><i class="fa fa-check"></i><b>4</b> Categorical data analysis: Preliminaries</a><ul>
+<li class="chapter" data-level="4.1" data-path="cda.html"><a href="cda.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="cda.html"><a href="cda.html#x2-contingency-tables"><i class="fa fa-check"></i><b>4.1.1</b> 2x2 contingency tables</a></li>
+<li class="chapter" data-level="4.1.2" data-path="cda.html"><a href="cda.html#the-chi-squared-test"><i class="fa fa-check"></i><b>4.1.2</b> The chi-squared test</a></li>
+<li class="chapter" data-level="4.1.3" data-path="cda.html"><a href="cda.html#fishers-exact-test"><i class="fa fa-check"></i><b>4.1.3</b> Fisher’s exact test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="cda.html"><a href="cda.html#towards-logistic-regression"><i class="fa fa-check"></i><b>4.2</b> Towards logistic regression</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="cda.html"><a href="cda.html#odds"><i class="fa fa-check"></i><b>4.2.1</b> Odds</a></li>
+<li class="chapter" data-level="4.2.2" data-path="cda.html"><a href="cda.html#log-odds"><i class="fa fa-check"></i><b>4.2.2</b> Log-odds</a></li>
+<li class="chapter" data-level="4.2.3" data-path="cda.html"><a href="cda.html#odds-ratios"><i class="fa fa-check"></i><b>4.2.3</b> Odds ratios</a></li>
+<li class="chapter" data-level="4.2.4" data-path="cda.html"><a href="cda.html#log-odds-sample-and-population"><i class="fa fa-check"></i><b>4.2.4</b> Log odds: sample and population</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="cda.html"><a href="cda.html#cda-other-readings"><i class="fa fa-check"></i><b>4.3</b> Other readings</a></li>
+<li class="chapter" data-level="4.4" data-path="cda.html"><a href="cda.html#c3solns"><i class="fa fa-check"></i><b>4.4</b> Solutions</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="cda.html"><a href="cda.html#solutions-to-exercise-1"><i class="fa fa-check"></i><b>4.4.1</b> Solutions to Exercise 1:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>5</b> Logistic regression</a><ul>
+<li class="chapter" data-level="5.1" data-path="logistic-regression.html"><a href="logistic-regression.html#simple-logistic-regression"><i class="fa fa-check"></i><b>5.1</b> Simple logistic regression</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#log-reg-hyp-test"><i class="fa fa-check"></i><b>5.1.1</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="5.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#interpreting-the-coefficients-logit-odds-and-probability"><i class="fa fa-check"></i><b>5.1.2</b> Interpreting the coefficients: Logit, odds, and probability</a></li>
+<li class="chapter" data-level="5.1.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-as-a-glm"><i class="fa fa-check"></i><b>5.1.3</b> Logistic regression as a GLM</a></li>
+<li class="chapter" data-level="5.1.4" data-path="logistic-regression.html"><a href="logistic-regression.html#c4differences"><i class="fa fa-check"></i><b>5.1.4</b> Differences from linear regression: Fitting and interpretation</a></li>
+<li class="chapter" data-level="5.1.5" data-path="logistic-regression.html"><a href="logistic-regression.html#fitting-a-logistic-regression-model"><i class="fa fa-check"></i><b>5.1.5</b> Fitting a logistic regression model</a></li>
+<li class="chapter" data-level="5.1.6" data-path="logistic-regression.html"><a href="logistic-regression.html#interpretation"><i class="fa fa-check"></i><b>5.1.6</b> Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="logistic-regression.html"><a href="logistic-regression.html#evaluating-logistic-regression-models"><i class="fa fa-check"></i><b>5.2</b> Evaluating logistic regression models</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#c4lrt"><i class="fa fa-check"></i><b>5.2.1</b> Likelihood ratio test</a></li>
+<li class="chapter" data-level="5.2.2" data-path="logistic-regression.html"><a href="logistic-regression.html#classification-accuracy"><i class="fa fa-check"></i><b>5.2.2</b> Classification accuracy</a></li>
+<li class="chapter" data-level="5.2.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-pseudo-r2"><i class="fa fa-check"></i><b>5.2.3</b> Pseudo-<span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="logistic-regression.html"><a href="logistic-regression.html#multiple-logistic-regression"><i class="fa fa-check"></i><b>5.3</b> Multiple logistic regression</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#likelihood-ratio-test-general-case"><i class="fa fa-check"></i><b>5.3.1</b> Likelihood ratio test: General case</a></li>
+<li class="chapter" data-level="5.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#log-reg-worked-example"><i class="fa fa-check"></i><b>5.3.2</b> Worked example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="logistic-regression.html"><a href="logistic-regression.html#model-criticism-for-logistic-regression"><i class="fa fa-check"></i><b>5.4</b> Model criticism for logistic regression</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#residual-plots"><i class="fa fa-check"></i><b>5.4.1</b> Residual plots</a></li>
+<li class="chapter" data-level="5.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#cooks-distance"><i class="fa fa-check"></i><b>5.4.2</b> Cook’s distance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="logistic-regression.html"><a href="logistic-regression.html#other-readings"><i class="fa fa-check"></i><b>5.5</b> Other readings</a></li>
+<li class="chapter" data-level="5.6" data-path="logistic-regression.html"><a href="logistic-regression.html#c4solns"><i class="fa fa-check"></i><b>5.6</b> Solutions</a></li>
+<li class="chapter" data-level="5.7" data-path="logistic-regression.html"><a href="logistic-regression.html#c4appendix2"><i class="fa fa-check"></i><b>5.7</b> Appendix: Other Generalized Linear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><i class="fa fa-check"></i><b>6</b> Practical Regression Topics 1: Multi-level factors, contrast coding, interactions</a><ul>
+<li class="chapter" data-level="6.1" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#multi-level-factors-introduction"><i class="fa fa-check"></i><b>6.1</b> Multi-level factors: Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#contrast-coding"><i class="fa fa-check"></i><b>6.2</b> Contrast coding</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#first-examples"><i class="fa fa-check"></i><b>6.2.1</b> First examples</a></li>
+<li class="chapter" data-level="6.2.2" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#basic-interpretation-of-contrasts"><i class="fa fa-check"></i><b>6.2.2</b> Basic interpretation of contrasts</a></li>
+<li class="chapter" data-level="6.2.3" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#contrast-coding-schemes"><i class="fa fa-check"></i><b>6.2.3</b> Contrast coding schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#c5mlf"><i class="fa fa-check"></i><b>6.3</b> Assessing a multi-level factor’s contribution</a></li>
+<li class="chapter" data-level="6.4" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#practice-with-interactions"><i class="fa fa-check"></i><b>6.4</b> Practice with interactions</a></li>
+<li class="chapter" data-level="6.5" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#c5solns"><i class="fa fa-check"></i><b>6.5</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html"><i class="fa fa-check"></i><b>7</b> Linear Mixed Models</a><ul>
+<li class="chapter" data-level="7.1" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#mixed-effects-models-motivation"><i class="fa fa-check"></i><b>7.1</b> Mixed-Effects Models: Motivation</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#simpsons-paradox"><i class="fa fa-check"></i><b>7.1.1</b> Simpson’s paradox</a></li>
+<li class="chapter" data-level="7.1.2" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#repeated-measure-anovas"><i class="fa fa-check"></i><b>7.1.2</b> Repeated-measure ANOVAs</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#linear-mixed-models-1-one-grouping-factor-random-intercepts"><i class="fa fa-check"></i><b>7.2</b> Linear Mixed Models 1: One grouping factor, random intercepts</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#c6model1A"><i class="fa fa-check"></i><b>7.2.1</b> Model 1A: Simple linear regression</a></li>
+<li class="chapter" data-level="7.2.2" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#c6model1b"><i class="fa fa-check"></i><b>7.2.2</b> Model 1B: Random intercept only</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#c6lmm2"><i class="fa fa-check"></i><b>7.3</b> Linear Mixed Models 2: One grouping factor, random intercepts and slopes</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#c6model1c"><i class="fa fa-check"></i><b>7.3.1</b> Model 1C</a></li>
+<li class="chapter" data-level="7.3.2" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#fitting-model-1c"><i class="fa fa-check"></i><b>7.3.2</b> Fitting Model 1C</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#linear-mixed-models-3-two-grouping-factors"><i class="fa fa-check"></i><b>7.4</b> Linear Mixed Models 3: Two grouping factors</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#model-2a-by-participant-and-by-item-random-intercepts"><i class="fa fa-check"></i><b>7.4.1</b> Model 2A: By-participant and by-item random intercepts</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#evaluating-lmms"><i class="fa fa-check"></i><b>7.5</b> Evaluating LMMs</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#hypothesis-testing-2"><i class="fa fa-check"></i><b>7.5.1</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="7.5.2" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#significance-of-a-random-effect-term"><i class="fa fa-check"></i><b>7.5.2</b> Significance of a random effect term</a></li>
+<li class="chapter" data-level="7.5.3" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#c6fixedp"><i class="fa fa-check"></i><b>7.5.3</b> Significance of fixed effects</a></li>
+<li class="chapter" data-level="7.5.4" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#evaluating-goodness-of-fit"><i class="fa fa-check"></i><b>7.5.4</b> Evaluating goodness of fit</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#linear-mixed-models-4-multiple-predictors"><i class="fa fa-check"></i><b>7.6</b> Linear Mixed Models 4: Multiple predictors</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#types-of-predictors"><i class="fa fa-check"></i><b>7.6.1</b> Types of Predictors</a></li>
+<li class="chapter" data-level="7.6.2" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#model-3a-random-intercepts-only"><i class="fa fa-check"></i><b>7.6.2</b> Model 3A: Random intercepts only</a></li>
+<li class="chapter" data-level="7.6.3" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#model-3b-random-intercepts-and-all-possible-random-slopes"><i class="fa fa-check"></i><b>7.6.3</b> Model 3B: Random intercepts and all possible random slopes</a></li>
+<li class="chapter" data-level="7.6.4" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#assessing-variability"><i class="fa fa-check"></i><b>7.6.4</b> Assessing Variability</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#more-on-random-slopes"><i class="fa fa-check"></i><b>7.7</b> More on Random Slopes</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#what-does-adding-a-random-slope-term-do"><i class="fa fa-check"></i><b>7.7.1</b> What does adding a random slope term do?</a></li>
+<li class="chapter" data-level="7.7.2" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#discussion-adding-a-random-slope"><i class="fa fa-check"></i><b>7.7.2</b> Discussion: Adding a random slope</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#random-effect-correlations"><i class="fa fa-check"></i><b>7.8</b> Random Effect Correlations</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#model-1e-correlated-random-slope-intercept"><i class="fa fa-check"></i><b>7.8.1</b> Model 1E: <strong>Correlated</strong> random slope &amp; intercept</a></li>
+<li class="chapter" data-level="7.8.2" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#c6discuss"><i class="fa fa-check"></i><b>7.8.2</b> Dicussion: Adding a correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#model-criticism-for-linear-mixed-models"><i class="fa fa-check"></i><b>7.9</b> Model Criticism for Linear Mixed Models</a><ul>
+<li class="chapter" data-level="7.9.1" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#model-3b-residual-plots"><i class="fa fa-check"></i><b>7.9.1</b> Model 3B: Residual plots</a></li>
+<li class="chapter" data-level="7.9.2" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#model-3b-random-effect-distribution"><i class="fa fa-check"></i><b>7.9.2</b> Model 3B: Random effect distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.10" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#c6factorsissue"><i class="fa fa-check"></i><b>7.10</b> Random Slopes for Factors</a><ul>
+<li class="chapter" data-level="7.10.1" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#model-with-random-effect-correlations"><i class="fa fa-check"></i><b>7.10.1</b> Model with random-effect correlations</a></li>
+<li class="chapter" data-level="7.10.2" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#models-without-random-effect-correlations"><i class="fa fa-check"></i><b>7.10.2</b> Models without random-effect correlations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#c6extraexamples"><i class="fa fa-check"></i><b>7.11</b> Appendix: Extra Examples</a><ul>
+<li class="chapter" data-level="7.11.1" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#predicting-confidence-intervals-by-simulation"><i class="fa fa-check"></i><b>7.11.1</b> Predicting confidence intervals by simulation</a></li>
+<li class="chapter" data-level="7.11.2" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#random-intercept-and-slope-model-for-givenness-data"><i class="fa fa-check"></i><b>7.11.2</b> Random intercept and slope model for <code>givenness</code> data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.12" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#other-readings-1"><i class="fa fa-check"></i><b>7.12</b> Other readings</a></li>
+<li class="chapter" data-level="7.13" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#c6extendedexercise"><i class="fa fa-check"></i><b>7.13</b> Appendix: Extended Exercise</a></li>
+<li class="chapter" data-level="7.14" data-path="linear-mixed-models.html"><a href="linear-mixed-models.html#c6solns"><i class="fa fa-check"></i><b>7.14</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html"><i class="fa fa-check"></i><b>8</b> Mixed-Effects Logistic Regressions</a><ul>
+<li class="chapter" data-level="8.1" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#preliminaries"><i class="fa fa-check"></i><b>8.1</b> Preliminaries</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#motivation"><i class="fa fa-check"></i><b>8.1.1</b> Motivation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#basics"><i class="fa fa-check"></i><b>8.2</b> Basics</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#c7m1"><i class="fa fa-check"></i><b>8.2.1</b> Model 1: <code>givenness</code> data, crossed random effects (intercepts + slopes)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#hypothesis-testing-3"><i class="fa fa-check"></i><b>8.3</b> Hypothesis Testing</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#fixed-effects"><i class="fa fa-check"></i><b>8.3.1</b> Fixed effects</a></li>
+<li class="chapter" data-level="8.3.2" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#random-effects"><i class="fa fa-check"></i><b>8.3.2</b> Random effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#fixed-random-effects"><i class="fa fa-check"></i><b>8.4</b> Fixed + Random Effects</a></li>
+<li class="chapter" data-level="8.5" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#melr-practice"><i class="fa fa-check"></i><b>8.5</b> MELR Practice</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#c7ex1"><i class="fa fa-check"></i><b>8.5.1</b> Exercise 1: tapping</a></li>
+<li class="chapter" data-level="8.5.2" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#c7ex2"><i class="fa fa-check"></i><b>8.5.2</b> Exercise 2: t/d deletion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#model-criticism-for-mixed-effects-logistic-regression"><i class="fa fa-check"></i><b>8.6</b> Model Criticism for Mixed-Effects Logistic Regression</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#random-effect-distributions"><i class="fa fa-check"></i><b>8.6.1</b> Random-effect distributions</a></li>
+<li class="chapter" data-level="8.6.2" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#residual-plots-1"><i class="fa fa-check"></i><b>8.6.2</b> Residual plots</a></li>
+<li class="chapter" data-level="8.6.3" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#influence"><i class="fa fa-check"></i><b>8.6.3</b> Influence</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#evaluation-measures"><i class="fa fa-check"></i><b>8.7</b> Evaluation Measures</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#evaluation-measure-1-likelihood-ratio-test"><i class="fa fa-check"></i><b>8.7.1</b> Evaluation measure 1: Likelihood ratio test</a></li>
+<li class="chapter" data-level="8.7.2" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#evaluation-measure-2-classification-accuracy"><i class="fa fa-check"></i><b>8.7.2</b> Evaluation measure 2: Classification accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#miscellaneous-mixed-effects-regression-topics"><i class="fa fa-check"></i><b>8.8</b> Miscellaneous Mixed-Effects Regression Topics</a><ul>
+<li class="chapter" data-level="8.8.1" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#c7m2"><i class="fa fa-check"></i><b>8.8.1</b> Random-effect correlation issues</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#appendices"><i class="fa fa-check"></i><b>8.9</b> Appendices</a><ul>
+<li class="chapter" data-level="8.9.1" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#appendix-random-slopes-for-factors"><i class="fa fa-check"></i><b>8.9.1</b> Appendix: Random slopes for factors</a></li>
+<li class="chapter" data-level="8.9.2" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#c7appendix2"><i class="fa fa-check"></i><b>8.9.2</b> Appendix: Multi-level factors and uncorrelated random effects</a></li>
+<li class="chapter" data-level="8.9.3" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#appendix-what-can-happen-if-a-random-slope-isnt-included"><i class="fa fa-check"></i><b>8.9.3</b> Appendix: What can happen if a random slope isn’t included?</a></li>
+<li class="chapter" data-level="8.9.4" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#c7classAppendix"><i class="fa fa-check"></i><b>8.9.4</b> Appendix: By-participant and by-item classification accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="mixed-effects-logistic-regressions.html"><a href="mixed-effects-logistic-regressions.html#c7solns"><i class="fa fa-check"></i><b>8.10</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><i class="fa fa-check"></i><b>9</b> Practical Regression Topics 2: Ordered factors, nonlinear effects, model predictions, post-hoc tests</a><ul>
+<li class="chapter" data-level="9.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#introduction-1"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#ordered-factors"><i class="fa fa-check"></i><b>9.2</b> Ordered Factors</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#orthogonal-polynomial-contrasts"><i class="fa fa-check"></i><b>9.2.1</b> Orthogonal polynomial contrasts</a></li>
+<li class="chapter" data-level="9.2.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#using-an-ordered-factor-as-a-predictor"><i class="fa fa-check"></i><b>9.2.2</b> Using an ordered factor as a predictor</a></li>
+<li class="chapter" data-level="9.2.3" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#further-points"><i class="fa fa-check"></i><b>9.2.3</b> Further points</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#nonlinear-effects"><i class="fa fa-check"></i><b>9.3</b> Nonlinear Effects</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#splines-definition-and-benefits"><i class="fa fa-check"></i><b>9.3.1</b> Splines: definition and benefits</a></li>
+<li class="chapter" data-level="9.3.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#restricted-cubic-splines"><i class="fa fa-check"></i><b>9.3.2</b> Restricted cubic splines</a></li>
+<li class="chapter" data-level="9.3.3" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#choosing-spline-complexity"><i class="fa fa-check"></i><b>9.3.3</b> Choosing spline complexity</a></li>
+<li class="chapter" data-level="9.3.4" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#rcs-components"><i class="fa fa-check"></i><b>9.3.4</b> RCS components</a></li>
+<li class="chapter" data-level="9.3.5" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#using-rcs-in-a-mixed-model"><i class="fa fa-check"></i><b>9.3.5</b> Using RCS in a mixed model</a></li>
+<li class="chapter" data-level="9.3.6" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#random-slopes-for-rcs-terms"><i class="fa fa-check"></i><b>9.3.6</b> Random slopes for RCS terms</a></li>
+<li class="chapter" data-level="9.3.7" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#nonlinear-effects-summary"><i class="fa fa-check"></i><b>9.3.7</b> Nonlinear effects: Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#predictions-from-mixed-models"><i class="fa fa-check"></i><b>9.4</b> Predictions from Mixed Models</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#making-model-predictions"><i class="fa fa-check"></i><b>9.4.1</b> Making Model Predictions</a></li>
+<li class="chapter" data-level="9.4.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#simulation-based-predictions"><i class="fa fa-check"></i><b>9.4.2</b> Simulation-based predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#post-hoc-mult-comp"><i class="fa fa-check"></i><b>9.5</b> Post-Hoc Tests and Multiple Comparisons</a></li>
+<li class="chapter" data-level="9.6" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#c8indivpreds"><i class="fa fa-check"></i><b>9.6</b> Appendix: Model predictions for indiviudal participants</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#predictions-incorporating-offsets-for-individual-speakers"><i class="fa fa-check"></i><b>9.6.1</b> Predictions incorporating offsets for individual speakers</a></li>
+<li class="chapter" data-level="9.6.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#predicted-williams-effect-for-each-speaker"><i class="fa fa-check"></i><b>9.6.2</b> Predicted Williams effect for each speaker</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#c8slopesForFactors"><i class="fa fa-check"></i><b>9.7</b> Appendix: Random slopes for factors</a></li>
+<li class="chapter" data-level="9.8" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#c8solns"><i class="fa fa-check"></i><b>9.8</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="appendix-datasets.html"><a href="appendix-datasets.html"><i class="fa fa-check"></i><b>10</b> Appendix: Datasets</a><ul>
+<li class="chapter" data-level="10.1" data-path="appendix-datasets.html"><a href="appendix-datasets.html#engdata"><i class="fa fa-check"></i><b>10.1</b> <code>english</code> lexical decision and naming latencies</a></li>
+<li class="chapter" data-level="10.2" data-path="appendix-datasets.html"><a href="appendix-datasets.html#dutch-regularity"><i class="fa fa-check"></i><b>10.2</b> Dutch <code id="dregdata">regularity</code></a></li>
+<li class="chapter" data-level="10.3" data-path="appendix-datasets.html"><a href="appendix-datasets.html#european-french-phrase-medial-vowel-devoicing"><i class="fa fa-check"></i><b>10.3</b> European French phrase-medial vowel <code id="devdata">devoicing</code></a><ul>
+<li class="chapter" data-level="10.3.1" data-path="appendix-datasets.html"><a href="appendix-datasets.html#background"><i class="fa fa-check"></i><b>10.3.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="appendix-datasets.html"><a href="appendix-datasets.html#north-american-english-tapping"><i class="fa fa-check"></i><b>10.4</b> North American English <code id="tapdata">tapping</code></a><ul>
+<li class="chapter" data-level="10.4.1" data-path="appendix-datasets.html"><a href="appendix-datasets.html#background-1"><i class="fa fa-check"></i><b>10.4.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="appendix-datasets.html"><a href="appendix-datasets.html#halfdata"><i class="fa fa-check"></i><b>10.5</b> <code>halfrhyme</code>: English half-rhymes</a></li>
+<li class="chapter" data-level="10.6" data-path="appendix-datasets.html"><a href="appendix-datasets.html#givedata"><i class="fa fa-check"></i><b>10.6</b> <code>givenness</code> data: the Williams Effect</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="appendix-datasets.html"><a href="appendix-datasets.html#background-2"><i class="fa fa-check"></i><b>10.6.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="appendix-datasets.html"><a href="appendix-datasets.html#alternatives"><i class="fa fa-check"></i><b>10.7</b> <code id="altdata">alternatives</code></a><ul>
+<li class="chapter" data-level="10.7.1" data-path="appendix-datasets.html"><a href="appendix-datasets.html#background-3"><i class="fa fa-check"></i><b>10.7.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="appendix-datasets.html"><a href="appendix-datasets.html#votdata"><i class="fa fa-check"></i><b>10.8</b> VOT</a><ul>
+<li class="chapter" data-level="10.8.1" data-path="appendix-datasets.html"><a href="appendix-datasets.html#background-4"><i class="fa fa-check"></i><b>10.8.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.9" data-path="appendix-datasets.html"><a href="appendix-datasets.html#transitionsdata"><i class="fa fa-check"></i><b>10.9</b> Transitions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Quantitative Methods for Linguistic Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mixed-effects-logistic-regressions" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Mixed-Effects Logistic Regressions</h1>
+<p><strong>Preliminary code</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gridExtra) <span class="co"># for grid.arrange() to print plots side-by-side</span>
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(arm)
+<span class="kw">library</span>(languageR)
+<span class="kw">library</span>(influence.ME)
+
+tapped &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;datasets/tapped2.txt&quot;</span>)
+
+## there is some missing data for &#39;tapped&#39; variable -- exclude to avoid warnings later
+tapped &lt;-<span class="st"> </span><span class="kw">filter</span>(tapped, !<span class="kw">is.na</span>(tapped))
+
+tapped &lt;-<span class="st"> </span><span class="kw">mutate</span>(tapped, <span class="dt">tapped.num=</span><span class="kw">as.numeric</span>(tapped)-<span class="dv">1</span>)
+tapped$released &lt;-<span class="st"> </span><span class="kw">factor</span>(tapped$released, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Unreleased&quot;</span>, <span class="st">&quot;Released&quot;</span>))
+tapped &lt;-<span class="st"> </span><span class="kw">mutate</span>(tapped, 
+                 <span class="dt">syntax.trans =</span> arm::<span class="kw">rescale</span>(syntax),
+                 <span class="dt">speechrate.slow =</span> arm::<span class="kw">rescale</span>(speechrate)
+)
+                
+givenness &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;datasets/givenness2.csv&quot;</span>)
+alternatives &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;datasets/alternatives.txt&quot;</span>)
+
+givenness &lt;-<span class="st"> </span><span class="kw">mutate</span>(givenness,
+                    <span class="dt">conditionLabel.williams =</span> arm::<span class="kw">rescale</span>(conditionLabel),
+                    <span class="dt">clabel.williams =</span> arm::<span class="kw">rescale</span>(conditionLabel),
+                    <span class="dt">npType.pronoun =</span> arm::<span class="kw">rescale</span>(npType),
+                    <span class="dt">npType.pron =</span> arm::<span class="kw">rescale</span>(npType),
+                    <span class="dt">voice.passive =</span> arm::<span class="kw">rescale</span>(voice),
+                    <span class="dt">order.std =</span> arm::<span class="kw">rescale</span>(order),
+                    <span class="dt">stressshift.num =</span> (<span class="kw">as.numeric</span>(stressshift) -<span class="st"> </span><span class="dv">1</span>)
+)
+
+## function for computing accuracy of a logistic regression model 
+## (on the dataset used to fit the model)
+## lrMod = fitted model
+## responseVar = name of response variable for lrMod
+## use.ranef = TRUE or FALSE (should we predict for grouping factor levels in this data, or for an &quot;average&quot; level? TRUE/FALSE)
+##
+## adapted from: https://www.r-bloggers.com/evaluating-logistic-regression-models/
+lrAcc &lt;-<span class="st"> </span>function(lrMod, responseVar, <span class="dt">use.ranef=</span><span class="ot">TRUE</span>){
+    ## convert response variable into a factor if it&#39;s not one
+  if(!<span class="kw">is.factor</span>(<span class="kw">model.frame</span>(lrMod)[,responseVar])){
+    <span class="kw">model.frame</span>(lrMod)[,responseVar] &lt;-<span class="st"> </span><span class="kw">as.factor</span>(<span class="kw">model.frame</span>(lrMod)[,responseVar])
+  }
+
+    ## model predictions in log-odds
+  if(use.ranef){
+    preds =<span class="st"> </span><span class="kw">predict</span>(lrMod, <span class="dt">newdata=</span><span class="kw">model.frame</span>(lrMod))
+  } else{
+    ## predict for average participant/item/other
+        preds =<span class="st"> </span><span class="kw">predict</span>(lrMod, <span class="dt">newdata=</span><span class="kw">model.frame</span>(lrMod), <span class="dt">re.form=</span><span class="ot">NA</span>)
+  }
+    ## transform to 0/1 prediction
+    preds &lt;-<span class="st"> </span>((<span class="kw">sign</span>(preds)/<span class="dv">2</span>)+<span class="fl">0.5</span>)
+    
+    ## response variable values, transformed to 0/1
+    respVarValues &lt;-<span class="st"> </span><span class="kw">model.frame</span>(lrMod)[,responseVar]
+    ## if the response is already 0/1, just use it
+    if(<span class="kw">is.numeric</span>(respVarValues)){
+        y &lt;-<span class="st"> </span>respVarValues
+    } else{
+        ## otherwise, transform to 0/1
+        y &lt;-<span class="st"> </span>(<span class="kw">as.numeric</span>(<span class="kw">model.frame</span>(lrMod)[,responseVar])-<span class="dv">1</span>)
+    }
+    
+    ## how often is prediction the same as the actual response
+    acc &lt;-<span class="st"> </span><span class="kw">sum</span>(preds==y)/<span class="kw">length</span>(preds)
+    
+    <span class="kw">return</span>(acc)
+    
+}
+
+## baseline accuracy for a logisitic regression model lrMod
+## with a given response variable
+baselineAcc &lt;-<span class="st"> </span>function(lrMod, responseVar){
+    response &lt;-<span class="st"> </span><span class="kw">model.frame</span>(lrMod)[,responseVar]
+    tab &lt;-<span class="st"> </span><span class="kw">table</span>(response)
+    <span class="kw">return</span>(<span class="kw">max</span>(tab)/<span class="kw">sum</span>(tab))
+}</code></pre></div>
+<p><strong>Note</strong>: Answers to questions/exercises not listed in text are in <a href="mixed-effects-logistic-regressions.html#c7solns">Solutions</a></p>
+<div id="preliminaries" class="section level2">
+<h2><span class="header-section-number">8.1</span> Preliminaries</h2>
+<p><em>Mixed-effects logistic regression</em> (MELR) is to logistic regression as linear mixed-effects models are to linear regression. MELRs combine pieces we have seen previously:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Logistic regression</strong></p>
+<ul>
+<li><p>Binary response <span class="math inline">\(Y\)</span></p>
+<ul>
+<li>Ex: <code>tapped</code> = 1 or 0, in the <code>tapping</code> dataset.</li>
+</ul></li>
+<li><p>Model log-odds that <span class="math inline">\(Y\)</span> happens.</p></li>
+</ul></li>
+<li><p><strong>Fixed effects</strong></p>
+<ul>
+<li><p>“Predictors” from logistic regression, now called “fixed effects”</p>
+<ul>
+<li>Ex: <code>speechrate</code>, <code>vowelduration</code>, <code>syntax</code></li>
+</ul></li>
+<li><p>Capture effect of each predictor across participants/items.</p></li>
+</ul></li>
+<li><p><strong>Random effects</strong></p>
+<ul>
+<li><p>Capture by-participant/item variability</p></li>
+<li><p>Ex: in overall tapping rate (“random intercept”), in the effect of a predictor across participants (“random slope”) or items.</p></li>
+</ul></li>
+</ol>
+<p>Remember that logistic regression models the <strong>log-odds</strong> of a “hit” (<span class="math inline">\(Y=1\)</span>) as a function of predictors. Not the number of hits, the probability of a hit, or anything else.</p>
+<p>Some additional readings on MELR models can be found in <span class="citation">Gelman and Hill (<a href="#ref-gelman2007data">2007</a> ch. 14)</span>, <span class="citation">(Jaeger <a href="#ref-jaeger08">2008</a>)</span>, <span class="citation">Johnson (<a href="#ref-johnson2008quantitative">2008</a> ch. 7.4)</span>.</p>
+<div id="motivation" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> Motivation</h3>
+<p>To get a sense of what kind of variability is captured by the random effects in MELR models, we can examine by-participant and by-item variability in two datasets we modeled using logistic regression(TODO VANNA: link?), just plotting the empirical data.</p>
+<div id="c7tapdata" class="section level4 unnumbered">
+<h4>Tapping data</h4>
+<p>From the <a href="appendix-datasets.html#tapdata"><code>tapping</code> dataset</a>, here are by-participant and by-item plots for the effect of <code>syntax</code>, the predictor of primary interest, on the probability of <code>tapping</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gridExtra)
+day19Plot1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>syntax, <span class="dt">y=</span>tapped.num), <span class="dt">data=</span>tapped) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="dt">geom=</span><span class="st">&#39;line&#39;</span>, <span class="kw">aes</span>(<span class="dt">group=</span>participant)) +
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.6</span>)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;% tapped by speaker&quot;</span>) 
+
+day19Plot2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>syntax, <span class="dt">y=</span>tapped.num), <span class="dt">data=</span>tapped) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="dt">geom=</span><span class="st">&#39;line&#39;</span>, <span class="kw">aes</span>(<span class="dt">group=</span>item)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.6</span>)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;% tapped by item&quot;</span>) 
+
+<span class="kw">grid.arrange</span>(day19Plot1, day19Plot2, <span class="dt">ncol =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="08-mixed-effects-logistic-regressions_files/figure-html/unnamed-chunk-2-1.png" width="576" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>Does it look like there is by-participant variability in the intercept, slope, or both? What about by-item variability?</li>
+</ul>
+</blockquote>
+</div>
+<div id="c7givedata" class="section level4 unnumbered">
+<h4>Givenness data</h4>
+<p>For the <a href="appendix-datasets.html#givedata"><code>givenness</code> dataset</a>, here are by-participant and by-item plots for the Williams effect (the effect of <code>conditionLabel</code> on probability of <code>stressshift</code>), which was of primary interest:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">day19Plot3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>conditionLabel, <span class="dt">y=</span>stressshift.num), <span class="dt">data=</span>givenness) +
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="dt">geom=</span><span class="st">&#39;line&#39;</span>, <span class="kw">aes</span>(<span class="dt">group=</span>participant)) +
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">1.0</span>)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;% shifted by speaker&quot;</span>) 
+
+day19Plot4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>conditionLabel, <span class="dt">y=</span>stressshift.num), <span class="dt">data=</span>givenness) +
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="dt">geom=</span><span class="st">&#39;line&#39;</span>, <span class="kw">aes</span>(<span class="dt">group=</span>item)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">1.0</span>)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;% shifted by item&quot;</span>) 
+
+<span class="kw">grid.arrange</span>(day19Plot3, day19Plot4, <span class="dt">ncol =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="08-mixed-effects-logistic-regressions_files/figure-html/unnamed-chunk-3-1.png" width="576" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>Again, for participants and items: do you think there is variability in the intercept? Slope? Both?</li>
+</ul>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="basics" class="section level2">
+<h2><span class="header-section-number">8.2</span> Basics</h2>
+<p>Formally, we assume that there are <span class="math inline">\(n\)</span> observations. <strong>Fixed effects</strong> and <strong>random effects</strong> are defined in the same way as for linear mixed-effects models:</p>
+<ul>
+<li><p><span class="math inline">\(\beta_0\)</span>: the fixed-effect coefficient for the intercept</p></li>
+<li><p><span class="math inline">\(\beta_1, \ldots, \beta_k\)</span>: the fixed effect coefficients for <span class="math inline">\(k\)</span> predictors:</p></li>
+</ul>
+<p>Random effects are defined with respect to one or more <em>grouping levels</em>. For example, there could be data from <span class="math inline">\(J\)</span> participants.</p>
+<p>Mixed-effect logistic regressions are one kind of <em>generalized linear mixed model</em> (GLMM)—analogously to logistic regression being one kind of generalized linear model. To fit a MELR model in the <code>lme4</code> package, you use the <code>glmer()</code> function (<strong>g</strong>eneralized <strong>l</strong>inear <strong>m</strong>ixed <strong>e</strong>ffects <strong>r</strong>egression), with a <code>family=binomial()</code> argument, similarly to fitting a logistic regression using the <code>glm()</code> function.<a href="#fn40" class="footnoteRef" id="fnref40"><sup>40</sup></a></p>
+<p>All pieces of an MELR model are familiar from our units on linear mixed models (Chapter 6) and logistic regression (Chapter 4), so we will dive right in to a realistic example model that uses:</p>
+<ul>
+<li><p>Crossed random effects (participants, items)</p></li>
+<li><p>Multiple predictors</p></li>
+</ul>
+<div id="c7m1" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> Model 1: <code>givenness</code> data, crossed random effects (intercepts + slopes)</h3>
+<p>We again consider the <code>givenness</code> data, using the binary annotation by a research assistant for whether stress shifted from the noun phrase (1/0 = shifted/not shifted).</p>
+<ul>
+<li>The response is <code>stressshift</code></li>
+</ul>
+<p>The data is grouped by:</p>
+<ul>
+<li><p>participants (<span class="math inline">\(1, ..., J\)</span>)</p></li>
+<li><p>items (<span class="math inline">\(1, ..., K\)</span>)</p></li>
+</ul>
+<p>We use these fixed effect terms, to build a relatively simple model (no interactions):</p>
+<ul>
+<li><p><code>clabel.williams</code> (varies across participants and items)</p></li>
+<li><p><code>npType.pron</code> (varies across participants and items)</p></li>
+<li><p><code>voice.passive</code> (varies across participants, not across items)</p></li>
+</ul>
+<p>Recall that <code>clabel.williams</code> and <code>npType.pron</code> are observation-level (they vary across participants and items) while <code>voice.passive</code> is item-level (it varies across participants, but not items).</p>
+<p>The random effects contain intercepts and all possible random slopes:</p>
+<ul>
+<li><p>Intercepts: by-participant, by-word</p></li>
+<li><p>Slopes:</p>
+<ul>
+<li><p>Participant: <code>clabel.williams</code>, <code>npType.pron</code>, <code>voice.passive</code></p></li>
+<li><p>Item: <code>clabel.williams</code>, <code>npType.pron</code></p></li>
+</ul></li>
+</ul>
+<hr />
+<p>It may be helpful for your understanding to explicitly write out what the equation for this model is. To do so, we define:</p>
+<ul>
+<li><p><span class="math inline">\(\alpha_{0, j}\)</span> : random intercept for participant <span class="math inline">\(j\)</span></p></li>
+<li><p><span class="math inline">\(\delta_{0, k}\)</span> : random intercept for item <span class="math inline">\(k\)</span></p></li>
+<li><p><span class="math inline">\(\alpha_{\text{clabel}, j}\)</span> : random slope of <span class="math inline">\(\texttt{clabel}\)</span> for participant <span class="math inline">\(j\)</span></p></li>
+<li><p><span class="math inline">\(\delta_{\text{clabel}, k}\)</span> : random slope of <span class="math inline">\(\texttt{clabel}\)</span> for item <span class="math inline">\(k\)</span></p></li>
+<li><p>… similar for other random slopes.</p></li>
+</ul>
+<p>The model for observation <span class="math inline">\(i\)</span> is then:</p>
+<span class="math display">\[\begin{align*}
+  \text{logit}\left(P(y_i = 1)\right) &amp;= \beta_0 + \alpha_{0,j[i]} + \delta_{0, k[i]} + \\
+  &amp;\hphantom{{}={==}} \left( \beta_{\texttt{clabel}} + \alpha_{\texttt{clabel},j[i]} + \delta_{\texttt{clabel},k[i]} \right) \cdot \texttt{clabel}_i + \\
+  &amp;\hphantom{{}={==}} \left( \beta_{\texttt{npType}} + \alpha_{\texttt{npType},j[i]} + \delta_{\texttt{npType},k[i]} \right) \cdot \texttt{npType}_i + \\
+  &amp;\hphantom{{}={==}} \left( \beta_{\texttt{voice}} + \alpha_{\texttt{voice}, j[i]} \right) \cdot \texttt{voice}_{k[i]}
+\end{align*}\]</span>
+<p>In this formula:</p>
+<ul>
+<li><p><span class="math inline">\(\beta_0 + \alpha_{0,j[i]} + \delta_{0, k[i]}\)</span> is our <strong>intercept</strong> for participant <span class="math inline">\(j[i]\)</span> and item <span class="math inline">\(k[i]\)</span></p></li>
+<li><p><span class="math inline">\(\beta_{\texttt{clabel}} + \alpha_{\texttt{clabel},j[i]} + \delta_{\texttt{clabel},k[i]}\)</span> is our <strong>slope for <code>clabel.williams</code></strong> for participant <span class="math inline">\(j[i]\)</span>, item <span class="math inline">\(k[i]\)</span></p></li>
+<li><p><span class="math inline">\(\beta_{\texttt{npType}} + \alpha_{\texttt{npType},j[i]} + \delta_{\texttt{npType},k[i]}\)</span> is our <strong>slope for <code>npType.pron</code></strong> for participant <span class="math inline">\(j[i]\)</span>, item <span class="math inline">\(k[i]\)</span></p></li>
+<li><p><span class="math inline">\(\beta_{\texttt{voice}} + \alpha_{\texttt{voice}, j[i]}\)</span> is our <strong>slope for <code>voice.passive</code></strong> for participant <span class="math inline">\(j[i]\)</span></p></li>
+</ul>
+<p>(Recall that observation <span class="math inline">\(i\)</span> is from participant <span class="math inline">\(j[i]\)</span> and item <span class="math inline">\(k[i]\)</span>.)</p>
+<hr />
+<p>The terms fitted in this model—and hence shown in the regression model output—are:</p>
+<ul>
+<li><p>4 fixed-effect coefficients: <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_{\texttt{clabel}}\)</span>, <span class="math inline">\(\beta_{\texttt{npType}}\)</span>, <span class="math inline">\(\beta_{\texttt{voice}}\)</span></p>
+<ul>
+<li>For 3 predictors</li>
+</ul></li>
+<li><p>7 variance components:</p>
+<ul>
+<li><p>Random intercepts: 2 terms</p></li>
+<li><p>Random slopes: 5 terms</p></li>
+<li><p>No correlations</p></li>
+</ul></li>
+</ul>
+<p>Note that unlike linear mixed-effects models, there is no residual error variance term, for the same reasons as for logistic regression, discussed in Sec. <a href="logistic-regression.html#c4differences">5.1.4</a>.</p>
+<div id="fitting-the-model" class="section level4">
+<h4><span class="header-section-number">8.2.1.1</span> Fitting the model</h4>
+<p>To fit this model in R:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lrMod1 &lt;-<span class="st"> </span><span class="kw">glmer</span>(stressshift ~<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron +<span class="st"> </span>voice.passive +<span class="st"> </span>
+<span class="st">                  </span>(<span class="dv">1</span> +<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron||item) +
+<span class="st">                  </span>(<span class="dv">1</span> +<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron +<span class="st"> </span>voice.passive||participant),
+                <span class="dt">data=</span>givenness, 
+                <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>, 
+                <span class="dt">control=</span><span class="kw">glmerControl</span>(<span class="dt">optimizer =</span> <span class="st">&quot;bobyqa&quot;</span>))</code></pre></div>
+<p>Note that the <code>control=glmerControl(optimizer = &quot;bobyqa&quot;)</code> option is not necessary, but often facilitates model convergence.<a href="#fn41" class="footnoteRef" id="fnref41"><sup>41</sup></a></p>
+<p>The model output is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(lrMod1)</code></pre></div>
+<pre><code>## Generalized linear mixed model fit by maximum likelihood (Laplace
+##   Approximation) [glmerMod]
+##  Family: binomial  ( logit )
+## Formula: stressshift ~ clabel.williams + npType.pron + voice.passive +  
+##     (1 + clabel.williams + npType.pron || item) + (1 + clabel.williams +  
+##     npType.pron + voice.passive || participant)
+##    Data: givenness
+## Control: glmerControl(optimizer = &quot;bobyqa&quot;)
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##    349.6    393.0   -163.8    327.6      371 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -2.2442 -0.3174 -0.1881  0.4603  4.5955 
+## 
+## Random effects:
+##  Groups        Name            Variance  Std.Dev. 
+##  participant   voice.passive   1.648e+00 1.284e+00
+##  participant.1 npType.pron     5.823e-01 7.631e-01
+##  participant.2 clabel.williams 5.013e-15 7.080e-08
+##  participant.3 (Intercept)     1.685e-01 4.105e-01
+##  item          npType.pron     5.394e-01 7.344e-01
+##  item.1        clabel.williams 1.619e+00 1.273e+00
+##  item.2        (Intercept)     2.624e-14 1.620e-07
+## Number of obs: 382, groups:  participant, 27; item, 16
+## 
+## Fixed effects:
+##                 Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)      -1.1383     0.2076  -5.483 4.18e-08 ***
+## clabel.williams   3.7711     0.5676   6.644 3.05e-11 ***
+## npType.pron       0.7917     0.3987   1.986   0.0471 *  
+## voice.passive     0.6496     0.4149   1.566   0.1174    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Correlation of Fixed Effects:
+##             (Intr) clbl.w npTyp.
+## clabl.wllms -0.458              
+## npType.pron -0.141  0.174       
+## voice.passv -0.036  0.082  0.028</code></pre>
+</div>
+<div id="interpreting-the-model" class="section level4">
+<h4><span class="header-section-number">8.2.1.2</span> Interpreting the model</h4>
+<p>The fixed-effect and random-effect terms are interpreted similarly to a linear mixed-effects model, with the difference that the model predicts changes in log-odds.</p>
+<p>Some examples of fixed effects:</p>
+<ul>
+<li><p>The intercept is <span class="math inline">\(\hat{\beta}_0 = -1.13\)</span>:</p>
+<ul>
+<li>Interpretation: for an average subject and average item, with all predictors held at mean values:
+<span class="math display">\[\begin{equation*}
+  P(\text{shift stress}) = \text{logit}^{-1}(-1.13) = 0.24
+\end{equation*}\]</span></li>
+</ul></li>
+<li><p>The slope for <code>npType</code> is <span class="math inline">\(\hat{\beta}_{\texttt{npType}} = 0.79\)</span></p>
+<ul>
+<li><p>Interpretation: for an average subject and item, the log-odds of shifting stress are 0.79 higher for pronouns than for full NPs.</p></li>
+<li><p>(Alternatively: the odds of shifting stress are 2.20 times higher (<span class="math inline">\(=e^{0.79}\)</span>) for pronouns than for full NPs.)</p></li>
+</ul></li>
+</ul>
+<p>For the random effects, first considering random intercepts:</p>
+<ul>
+<li><p>By-participant random intercept variance: <span class="math inline">\(\hat{\sigma}_{s,0} = 0.41\)</span></p>
+<ul>
+<li><p>95% of participants have “baseline” log-odds of shifting stress in (-1.96, -0.31)</p>
+<ul>
+<li><p>(= <span class="math inline">\(\hat{\beta}_0 \pm 1.96 \cdot \hat{\sigma}_{s,0}\)</span>)</p></li>
+<li><p>Alternatively, 95% of participants have baseline probability of shifting stress in (0.12, 0.42) (=invlogit(-1.96), invlogit(-0.31)).</p></li>
+</ul></li>
+</ul></li>
+<li><p>In contrast, there is basically no variability among <em>items</em> in “baseline” log-odds of shifting stress (<span class="math inline">\(\hat{\sigma}_{w,0} \approx 0\)</span>).</p></li>
+</ul>
+<p>For random slopes, consider the condition label effect (i.e. the “Williams effect”). The degree of variability among participants and items in the <code>clabel.williams</code> slope is: <span class="math display">\[
+      \hat{\sigma}_{\texttt{clabel}, partic}, \quad
+      \hat{\sigma}_{\texttt{clabel}, item}
+    \]</span></p>
+<p>To visualize the predicted Williams effect for different participants and items:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">particSlopes &lt;-<span class="st"> </span><span class="kw">fixef</span>(lrMod1)[<span class="st">&#39;clabel.williams&#39;</span>] +<span class="st"> </span><span class="kw">ranef</span>(lrMod1)$participant$clabel.williams
+itemSlopes &lt;-<span class="st"> </span><span class="kw">fixef</span>(lrMod1)[<span class="st">&#39;clabel.williams&#39;</span>] +<span class="st"> </span><span class="kw">ranef</span>(lrMod1)$item$clabel.williams
+
+
+lrMod1SlopeDf &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">data.frame</span>(<span class="dt">type=</span><span class="st">&#39;participants&#39;</span>, <span class="dt">slope=</span>particSlopes),
+                       <span class="kw">data.frame</span>(<span class="dt">type=</span><span class="st">&#39;items&#39;</span>, <span class="dt">slope=</span>itemSlopes))
+
+<span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>slope), <span class="dt">data=</span>lrMod1SlopeDf) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth=</span><span class="fl">0.25</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(~type, <span class="dt">scales=</span><span class="st">&quot;free&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlim</span>(<span class="dv">1</span>,<span class="dv">6</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Predicted clabel slope&quot;</span>)</code></pre></div>
+<p><img src="08-mixed-effects-logistic-regressions_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The model predicts that the size of the Williams effect varies among items—but not participants—and is robust, in the sense of having the same direction across all participants and items.</p>
+<p>Thus: participants (but not items) differ in the intercept, while items (but not participants) differ in the Williams effect (the <code>clabel.williams</code> slope).</p>
+</div>
+</div>
+</div>
+<div id="hypothesis-testing-3" class="section level2">
+<h2><span class="header-section-number">8.3</span> Hypothesis Testing</h2>
+<div id="fixed-effects" class="section level3">
+<h3><span class="header-section-number">8.3.1</span> Fixed effects</h3>
+<p>Recall that for linear mixed-effects models, there is not a consensus on how to calculate p-values and whether doing so is a good idea, (see Sec <a href="linear-mixed-models.html#c6fixedp">7.5.3</a> for more detail) so no test statistic or <span class="math inline">\(p\)</span>-value is given by default in the <code>lmer</code> output. One rough method was to assume that the estimated coefficient value divided by its standard error was normally distributed, and use this to calculate a <span class="math inline">\(p\)</span>-value (for a two-sided “Wald test”).</p>
+<p>For generalized linear mixed-effects models, this is a somewhat more kosher method, and <code>glmer()</code> shows by default:</p>
+<ul>
+<li><p>The test statistic <span class="math inline">\(z\)</span> (<span class="math inline">\(=\frac{\hat{\beta}}{SE(\hat{\beta})}\)</span>)</p></li>
+<li><p>The <span class="math inline">\(p\)</span>-value for a two-sided Wald test.<a href="#fn42" class="footnoteRef" id="fnref42"><sup>42</sup></a></p></li>
+</ul>
+<p>However, these <span class="math inline">\(p\)</span>-values are still approximations—they are only correct in the limit of a large number of observations and large number of groups. <strong>These Wald-test based <span class="math inline">\(p\)</span>-values are good enough for our purposes</strong>, but better methods would be:</p>
+<ul>
+<li><p>A likelihood ratio (LR) test: slightly better, fast</p></li>
+<li><p>Parametric bootstrap: much better, very slow</p></li>
+</ul>
+<p>See the discussion for linear mixed models in <span class="citation">Baayen (<a href="#ref-baayen2008analyzing">2008</a>)</span> for more detail on both, and <a href="https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html#testing-hypotheses">Ben Bolker’s GLMM page</a> for more recent discussion. You may want to use a “better” method when reporting <span class="math inline">\(p\)</span>-values in a paper. Here are a few examples:</p>
+<div id="lr-test-for-one-term" class="section level4 unnumbered">
+<h4>LR test for one term</h4>
+<p>To calculate an LR test <span class="math inline">\(p\)</span>-value for just the <code>npType.pron</code> fixed-effect term in Model 1:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lrMod1.sub &lt;-<span class="st"> </span><span class="kw">update</span>(lrMod1, . ~<span class="st"> </span>. -<span class="st"> </span>npType.pron)
+<span class="kw">anova</span>(lrMod1, lrMod1.sub)</code></pre></div>
+<pre><code>## Data: givenness
+## Models:
+## lrMod1.sub: stressshift ~ clabel.williams + voice.passive + (1 + clabel.williams + 
+## lrMod1.sub:     npType.pron || item) + (1 + clabel.williams + npType.pron + 
+## lrMod1.sub:     voice.passive || participant)
+## lrMod1: stressshift ~ clabel.williams + npType.pron + voice.passive + 
+## lrMod1:     (1 + clabel.williams + npType.pron || item) + (1 + clabel.williams + 
+## lrMod1:     npType.pron + voice.passive || participant)
+##            Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(&gt;Chisq)  
+## lrMod1.sub 10 351.18 390.63 -165.59   331.18                           
+## lrMod1     11 349.64 393.04 -163.82   327.64 3.5413      1    0.05986 .
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The <span class="math inline">\(p\)</span>-value (<span class="math inline">\(p=0.059\)</span>) is slightly higher than for the Wald test used in <code>lrMod1</code> (<span class="math inline">\(p=0.047\)</span>).</p>
+</div>
+<div id="lr-test-for-each-term" class="section level4 unnumbered">
+<h4>LR test for each term</h4>
+<p>The <code>afex</code> package lets you quickly compute an LR-based <span class="math inline">\(p\)</span>-value for each term:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(afex)</code></pre></div>
+<pre><code>## Warning: package &#39;afex&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## Warning: package &#39;emmeans&#39; was built under R version 3.4.4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## fit model and get LR-based p-values:
+lrMod1.lr &lt;-<span class="st"> </span><span class="kw">mixed</span>(stressshift ~<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron +<span class="st"> </span>voice.passive +<span class="st">  </span>(<span class="dv">1</span> +<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron||item) +
+<span class="st">                  </span>(<span class="dv">1</span> +<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron +<span class="st"> </span>voice.passive||participant),
+                <span class="dt">data=</span>givenness, 
+                <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>, <span class="dt">method=</span><span class="st">&#39;LRT&#39;</span>,
+                <span class="dt">control=</span><span class="kw">glmerControl</span>(<span class="dt">optimizer =</span> <span class="st">&quot;bobyqa&quot;</span>))</code></pre></div>
+<pre><code>## Fitting 4 (g)lmer() models:
+## [....]</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## see the results:
+lrMod1.lr</code></pre></div>
+<pre><code>## Mixed Model Anova Table (Type 3 tests, LRT-method)
+## 
+## Model: stressshift ~ clabel.williams + npType.pron + voice.passive + 
+## Model:     (1 + clabel.williams + npType.pron || item) + (1 + clabel.williams + 
+## Model:     npType.pron + voice.passive || participant)
+## Data: givenness
+## Df full model: 11
+##            Effect df     Chisq p.value
+## 1 clabel.williams  1 26.67 ***  &lt;.0001
+## 2     npType.pron  1    3.54 +     .06
+## 3   voice.passive  1      2.36     .12
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;+&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="parametric-bootstrap-pb-test-for-each-term" class="section level4 unnumbered">
+<h4>Parametric Bootstrap (PB) test for each term</h4>
+<p>This example uses a version of Model 1 with random intercepts only, because using random slopes takes a very long time. Note this is only for pedagogical purposes—it is never a good idea to report a model where the only random effects are random intercepts!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(afex)
+
+## use multiple cores, if your machine has them.
+<span class="kw">require</span>(parallel)
+(nc &lt;-<span class="st"> </span><span class="kw">detectCores</span>()) <span class="co"># number of cores</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cl &lt;-<span class="st"> </span><span class="kw">makeCluster</span>(<span class="kw">rep</span>(<span class="st">&quot;localhost&quot;</span>, nc)) <span class="co"># make cluster</span>
+
+## fit a *random-intercepts only* model (in general, not OK, but it would take much longer to fit the model with random slopes).  
+## This still takes 5 minutes on my 8-core computer:
+
+lrMod1.pb &lt;-<span class="st"> </span><span class="kw">mixed</span>(stressshift ~<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron +<span class="st"> </span>voice.passive +<span class="st"> </span>
+<span class="st">                  </span>(<span class="dv">1</span>|item) +<span class="st"> </span>(<span class="dv">1</span>|participant),
+                <span class="dt">data=</span>givenness, 
+                <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>, <span class="dt">method=</span><span class="st">&#39;PB&#39;</span>, <span class="dt">args_test=</span><span class="kw">list</span>(<span class="dt">nsim=</span><span class="dv">1000</span>, <span class="dt">cl=</span>cl), 
+                <span class="dt">control=</span><span class="kw">glmerControl</span>(<span class="dt">optimizer =</span> <span class="st">&quot;bobyqa&quot;</span>), <span class="dt">cl=</span>cl)</code></pre></div>
+<pre><code>## Fitting 4 (g)lmer() models.
+## Obtaining 3 p-values:
+## [...]</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##  look at the p-values (nb: 0.001 = minimum p-value when nsim=1000)
+lrMod1.pb</code></pre></div>
+<pre><code>## Mixed Model Anova Table (Type 3 tests, PB-method)
+## 
+## Model: stressshift ~ clabel.williams + npType.pron + voice.passive + 
+## Model:     (1 | item) + (1 | participant)
+## Data: givenness
+##            Effect df      Chisq p.value
+## 1 clabel.williams  1 150.61 ***   .0010
+## 2     npType.pron  1     5.06 *     .03
+## 3   voice.passive  1    7.43 **    .009
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;+&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<div id="random-effects" class="section level3">
+<h3><span class="header-section-number">8.3.2</span> Random effects</h3>
+<p>It may also be of interest to test whether random-effect terms significantly improve the model. As for linear mixed models, in the large-sample limit the difference in deviance between the model with and without <span class="math inline">\(k\)</span> random effect terms is approximately <span class="math inline">\(\chi^2(k)\)</span> distributed. Thus, we can use a likelihood ratio test to assess the null hypothesis that (all of) the random effect terms have zero variance.</p>
+<div id="example-20" class="section level4 unnumbered">
+<h4>Example</h4>
+<p>Do items significantly differ in the <code>clabel</code> effect (i.e. the Williams effect), in Model 1?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lrMod1<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">glmer</span>(stressshift ~<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron +<span class="st"> </span>voice.passive +<span class="st"> </span>
+<span class="st">                    </span>(<span class="dv">1</span> +<span class="st"> </span>npType.pron ||<span class="st"> </span>item) +
+<span class="st">                    </span>(<span class="dv">1</span> +<span class="st"> </span>npType.pron +<span class="st"> </span>voice.passive +<span class="st"> </span>clabel.williams ||<span class="st"> </span>participant),
+                  <span class="dt">data=</span>givenness, 
+                  <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>,
+                  <span class="dt">control=</span><span class="kw">glmerControl</span>(<span class="dt">optimizer =</span> <span class="st">&quot;bobyqa&quot;</span>))
+<span class="kw">anova</span>(lrMod1, lrMod1<span class="fl">.1</span>)</code></pre></div>
+<pre><code>## Data: givenness
+## Models:
+## lrMod1.1: stressshift ~ clabel.williams + npType.pron + voice.passive + 
+## lrMod1.1:     (1 + npType.pron || item) + (1 + npType.pron + voice.passive + 
+## lrMod1.1:     clabel.williams || participant)
+## lrMod1: stressshift ~ clabel.williams + npType.pron + voice.passive + 
+## lrMod1:     (1 + clabel.williams + npType.pron || item) + (1 + clabel.williams + 
+## lrMod1:     npType.pron + voice.passive || participant)
+##          Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(&gt;Chisq)  
+## lrMod1.1 10 352.24 391.69 -166.12   332.24                           
+## lrMod1   11 349.64 393.04 -163.82   327.64 4.5994      1    0.03198 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>This result could be reported as: “A likelihood ratio test showed that items differed significantly in the effect of condition label (<span class="math inline">\(\chi^2(1) = 4.6\)</span>, <span class="math inline">\(p=0.031\)</span>).”</p>
+</div>
+</div>
+</div>
+<div id="fixed-random-effects" class="section level2">
+<h2><span class="header-section-number">8.4</span> Fixed + Random Effects</h2>
+<p>In a model with random slopes, it is not clear what the best way is to assess “does predictor <span class="math inline">\(X\)</span> significantly improve the model?” Testing the fixed-effect only (as above) is the most common method—but this does not take into account variability in the effect among participants or items. It is possible for a predictor to show no <strong>overall</strong> effect (across participants and items), but to show significant variability among participants or items—indeed, this may be <strong>why</strong> there is no significant overall effect.</p>
+<p>We can instead assess the contribution of predictor <span class="math inline">\(X\)</span> by doing model comparison (via a LR test) with a model where all terms involving <span class="math inline">\(X\)</span> are excluded (fixed and random effects). For example, to assess the contribution of <code>voice</code> to Model 1, we would exclude the fixed effect and the by-participant random effect:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## all terms involving `voice` excluded
+lrMod1<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">glmer</span>(stressshift ~<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron +
+<span class="st">                    </span>(<span class="dv">1</span> +<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron||<span class="st"> </span>item) +
+<span class="st">                    </span>(<span class="dv">1</span> +<span class="st">  </span>npType.pron +<span class="st"> </span>clabel.williams ||<span class="st"> </span>participant),
+                  <span class="dt">data=</span>givenness, 
+                  <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>,
+                  <span class="dt">control=</span><span class="kw">glmerControl</span>(<span class="dt">optimizer =</span> <span class="st">&quot;bobyqa&quot;</span>))
+<span class="kw">anova</span>(lrMod1, lrMod1<span class="fl">.1</span>)</code></pre></div>
+<pre><code>## Data: givenness
+## Models:
+## lrMod1.1: stressshift ~ clabel.williams + npType.pron + (1 + clabel.williams + 
+## lrMod1.1:     npType.pron || item) + (1 + npType.pron + clabel.williams || 
+## lrMod1.1:     participant)
+## lrMod1: stressshift ~ clabel.williams + npType.pron + voice.passive + 
+## lrMod1:     (1 + clabel.williams + npType.pron || item) + (1 + clabel.williams + 
+## lrMod1:     npType.pron + voice.passive || participant)
+##          Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(&gt;Chisq)  
+## lrMod1.1  9 353.08 388.59 -167.54   335.08                           
+## lrMod1   11 349.64 393.04 -163.82   327.64 7.4458      2    0.02416 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>So adding information about item voicing (the <code>voice</code> predictor) does significantly improve the model (<span class="math inline">\(\chi^2(2)=7.4\)</span>, <span class="math inline">\(p=0.024\)</span>)—even though there is no overall effect (fixed effect: <span class="math inline">\(p=0.11\)</span>). This is because there is a lot of between-participant variability in the effect.</p>
+<p>It is not standard (in 2018) to assess a predictor’s contribution by excluding both fixed and random effects, but this option is worth keeping in mind, depending on your research questions.</p>
+</div>
+<div id="melr-practice" class="section level2">
+<h2><span class="header-section-number">8.5</span> MELR Practice</h2>
+<p>These two exercises give practice fitting and interpreting mixed-effects logistic regression models.</p>
+<div id="c7ex1" class="section level3">
+<h3><span class="header-section-number">8.5.1</span> Exercise 1: tapping</h3>
+<p>For this exercise, use the updated version of the <code>tapping</code> data, in <code>tapped2.txt</code>. For this data: the <strong>response</strong> is <code>tapped</code>, and let the <strong>predictors</strong> be:</p>
+<ul>
+<li><p><code>syntax.trans</code>: whether <code>syntax</code> is <em>transitive</em> (0.5) or <em>intransitive</em> (-0.5)</p></li>
+<li><p><code>speechrate.slow</code>: whether <code>speechrate</code> is <em>slow</em> (0.5) or <em>fast</em> (-0.5)</p></li>
+</ul>
+<p><strong>Part 1</strong>: Fitting</p>
+<p>Fit an MELR model of this data, with:</p>
+<ul>
+<li><p>Fixed effects for both predictors</p></li>
+<li><p>By-participant and by-item random intercepts</p></li>
+<li><p>By-participant and by-item random slopes for both <code>syntax.trans</code> and <code>speechrate.slow</code></p></li>
+</ul>
+<p>(Make sure you understand: why is it OK to include these random-slope terms? Is either <code>syntax.trans</code> or <code>speechrate.slow</code> participant-level or item-level?)</p>
+<p>How does this model assume tapping rate depends on syntax and speech rate, intuitively?</p>
+<p><strong>Part 2</strong>: Interpretation</p>
+<ul>
+<li><p>Do participants or items vary more in the intercept?</p></li>
+<li><p>How much do participants vary in the slope of <code>syntax.trans</code>?</p></li>
+<li><p>Do the model results for <code>syntax.trans</code> fit with what we saw in the <a href="mixed-effects-logistic-regressions.html#c7tapdata">empirical data</a>?</p></li>
+</ul>
+</div>
+<div id="c7ex2" class="section level3">
+<h3><span class="header-section-number">8.5.2</span> Exercise 2: t/d deletion</h3>
+<p>This exercise uses data in <code>td.csv</code>, from <span class="citation">Sonderegger, Bane, and Graff (<a href="#ref-sonderegger2017medium">2017</a>)</span>, on English t/d deletion: whether word-final /t/ or /d/ in a consonant cluster is deleted (ex: “best cake” pronounced as “bes’ cake” or bes[t] cake“). A long sociolinguistic literature shows that the rate of t/d deletion depends on many factors, including three which are included in this dataset:</p>
+<ul>
+<li><p>The following phonological context: <code>following</code> has levels <em>vowel</em> and <em>consonant</em></p></li>
+<li><p>Speaking rate: <code>speechrate</code> is a continuous variable (syllables/second)</p></li>
+<li><p>Morphological class: <code>morph</code> has levels <em>mono</em> (monomorphemes) and <em>past</em> (past-tense morphemes).</p></li>
+</ul>
+<p>The morphological class effect is of primary interest, for understanding how variable speech phenomena are represented in the mind. The main research question is thus: is there a significant effect of <code>morph</code>, in the expected direction (<em>mono</em> words show more frequent deletion than <em>past</em> words)?</p>
+<p>In this dataset:</p>
+<ul>
+<li><p>The response variable is <code>td</code> (1/0 if the word-final consonant is/isn’t deleted)</p></li>
+<li><p>The data is grouped by <code>speaker</code> and <code>word</code></p>
+<ul>
+<li>This data is from a speech corpus and, like most corpus data, is very unbalanced: some speakers and words have many more observations than others. In particular, the number of observations for each level of <code>word</code> will be proportional to the word’s frequency (ex: ~50% of the data is “and” and “just” observations).</li>
+</ul></li>
+</ul>
+<p><strong>Part 1</strong>: Data preparation, model fitting</p>
+<p>What does “all possible random slopes” mean here?</p>
+<ul>
+<li>Hint: are there any word-level or speaker-level variables?</li>
+</ul>
+<p>Code the data as “centered”:</p>
+<ul>
+<li><p>Make numeric and centered versions of <code>following</code> and <code>morph</code></p></li>
+<li><p>Make a standardized (centered+scaled) version of <code>speechrate</code></p></li>
+</ul>
+<p>Discard all but the first 2000 observations of the dataset. (This makes the dataset size comparable to most previous work on t/d deletion.)</p>
+<p>Fit a mixed-effects logistic regression model, called <code>ex2.mod</code>, of <code>td</code> as a function of:</p>
+<ul>
+<li><p>Fixed effects: main effects for all three variables</p></li>
+<li><p>Random effects:</p>
+<ul>
+<li><p>All possible by-speaker and by-word random effects</p></li>
+<li><p>No correlations between random effects</p></li>
+</ul></li>
+</ul>
+<p><strong>Part 2</strong>: Interpretation</p>
+<ul>
+<li><p>Are the fixed effects in the expected direction?</p></li>
+<li><p>Is there a (significant) effect of <code>morph</code>?</p></li>
+</ul>
+<p>Now, fit the same model but without any by-word random effects. (This is close to the model fitted in most previous work.)</p>
+<ul>
+<li><p>How do the results change (esp. for <code>morph</code>)?</p></li>
+<li><p>Why do you think this is?</p>
+<ul>
+<li>(Hint: word frequency)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="model-criticism-for-mixed-effects-logistic-regression" class="section level2">
+<h2><span class="header-section-number">8.6</span> Model Criticism for Mixed-Effects Logistic Regression</h2>
+<p>Model criticism tools are mostly similar to those used for logistic regression (<span class="citation">Baayen (<a href="#ref-baayen2008analyzing">2008</a>)</span>), with one addition for mixed-effects models: <strong>examining random-effect distributions</strong>, to address whether</p>
+<ul>
+<li><p>they are approximately normal</p></li>
+<li><p>they show evidence of outlier participants or items.</p></li>
+</ul>
+<div id="random-effect-distributions" class="section level3">
+<h3><span class="header-section-number">8.6.1</span> Random-effect distributions</h3>
+<p>We use Model 1 from section <a href="mixed-effects-logistic-regressions.html#c7m1">8.2.1</a> as an example. Recall that the random effects are:</p>
+<ul>
+<li><p>By-participant: intercept, slopes of <code>clabel.williams</code>, <code>npType.pron</code>, <code>voice.passive</code></p></li>
+<li><p>By-item: intercept, slopes of <code>clabel.williams</code> and <code>npType.pron</code></p></li>
+</ul>
+<p>In the pairwise plot of by-participant random effects:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairscor.fnc</span>(<span class="kw">ranef</span>(lrMod1)$participant)</code></pre></div>
+<p><img src="08-mixed-effects-logistic-regressions_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>There are no obvious outliers. One possible outlier is the participant with the highest random intercept value (lower-right plot, right-most point).</p>
+<p>In the pairwise plot of by-item random effects:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pairscor.fnc</span>(<span class="kw">ranef</span>(lrMod1)$item)</code></pre></div>
+<p><img src="08-mixed-effects-logistic-regressions_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /> There are no obvious outliers.</p>
+<p>All histograms in these two plots look roughly like normal distributions, suggesting no substantial deviations from the normality-of-random-effects assumption. This isn’t surprising, given that the model is assuming random effects are normally distributed. It would be better to check the distributions of participant and item empirical means, and of empirical slopes for each predictor. We leave this as an exercise. <!-- (TODO: fill in example) --></p>
+</div>
+<div id="residual-plots-1" class="section level3">
+<h3><span class="header-section-number">8.6.2</span> Residual plots</h3>
+<p>We will skip these, for lack of time. Residual plots for MELR are similar to logistic regression, and similar issues arise (see Sec. <a href="logistic-regression.html#residual-plots">5.4.1</a> for more details.)</p>
+<ul>
+<li><p>Raw residuals are uninformative, since the model predicts probabilities but observations are 0 or 1.</p></li>
+<li><p>Work-arounds exist: binned residuals (calculated using functions in the <code>arm</code> package) or deviance residuals.</p></li>
+</ul>
+</div>
+<div id="influence" class="section level3">
+<h3><span class="header-section-number">8.6.3</span> Influence</h3>
+<p>For non-mixed-effects regression models, we used <strong>Cook’s distance</strong> as a measure of influence, roughly defined as “how much do the model coefficients (<span class="math inline">\(\hat{\beta}\)</span>’s) change when observation <span class="math inline">\(i\)</span> is removed?”</p>
+<p>Cook’s distance can be similarly defined for mixed-effects models, at each “level” of the model:</p>
+<ul>
+<li><p>How much do the fixed-effect coefficients (<span class="math inline">\(\hat{\beta}\)</span>’s) change when observation <span class="math inline">\(i\)</span> is removed?</p></li>
+<li><p><strong>or</strong> `` `` when participant <span class="math inline">\(j\)</span> is removed?</p></li>
+<li><p><strong>or</strong> `` `` when item <span class="math inline">\(k\)</span> is removed?</p></li>
+</ul>
+<p>That is, there can be influential items, participants (etc.), or observations.</p>
+<p>Unlike for non-mixed models, there is no formula to compute Cook’s distance: you have to actually refit the model without a given observation/participant/item to check how much the model changes. The <code>influence</code> function in the <code>influenceME</code> package does this for you. (It also works for linear mixed-effects models.)</p>
+<p><strong>Warning</strong>: because <code>influence()</code> refits the model <span class="math inline">\(J\)</span> times for <span class="math inline">\(J\)</span> levels (e.g. participants), or <span class="math inline">\(n\)</span> times for <span class="math inline">\(n\)</span> observations, it can take a very long time.</p>
+<div id="example-compute-influence-of-each-participant-for-model-1" class="section level4 unnumbered">
+<h4>Example: Compute influence of each participant for Model 1</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1.influence.partic &lt;-<span class="st">  </span><span class="kw">influence</span>(lrMod1, <span class="dt">group=</span><span class="st">&quot;participant&quot;</span>)
+
+<span class="co"># Create data frame with cooks distance for each participant label:</span>
+cd=<span class="kw">cooks.distance</span>(m1.influence.partic)
+
+<span class="co"># Histogram of cook&#39;s distance:</span>
+<span class="kw">qplot</span>(cd) +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Histogram Cook&#39;s distance (participants)&quot;</span>)</code></pre></div>
+<p><img src="08-mixed-effects-logistic-regressions_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Two participants seem to have an unusual influence (as measured by cook’s distance). How do you know which ones?</p>
+<ul>
+<li>The row names in the object cd tell you the participant number.</li>
+<li>You could just look at the individual values (type ‘cd’ at R prompt), but it’s easier if you sort these values in decending order (the command used here assures that we keep the row names with the the participant number):</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cd[<span class="kw">order</span>(-cd),,drop =<span class="st"> </span><span class="ot">FALSE</span>]</code></pre></div>
+<pre><code>##            [,1]
+## 530 0.225778367
+## 548 0.185550214
+## 563 0.074174496
+## 529 0.063628074
+## 554 0.055073386
+## 297 0.053395685
+## 541 0.052571319
+## 549 0.044627482
+## 24  0.043046353
+## 540 0.039707331
+## 547 0.039506196
+## 557 0.038630256
+## 432 0.035733805
+## 555 0.030503148
+## 544 0.028093074
+## 553 0.025852398
+## 556 0.022235841
+## 564 0.019375321
+## 559 0.016134504
+## 550 0.015203804
+## 552 0.013620053
+## 558 0.012093557
+## 561 0.012054054
+## 560 0.010068154
+## 542 0.008765176
+## 524 0.008675731
+## 562 0.008593942</code></pre>
+<p>It’s even easier if you plot the indvidual distances:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Cook&#39;s distance for each individual participant, ordred by distance:</span>
+
+cooksDistance=<span class="kw">data.frame</span>(<span class="dt">participant=</span><span class="kw">rownames</span>(cd),<span class="dt">CD=</span>cd)
+
+<span class="kw">ggplot</span>(<span class="dt">data=</span>cooksDistance,<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">reorder</span>(participant,CD),<span class="dt">y =</span> CD)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&#39;Cook</span><span class="ch">\&#39;</span><span class="st">s distance for each participant&#39;</span>) +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</code></pre></div>
+<p><img src="08-mixed-effects-logistic-regressions_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>There are two very influential participants: 548 and (most influential) 530. These turn out to be the two participants with the strongest <code>voice</code> effects.<a href="#fn43" class="footnoteRef" id="fnref43"><sup>43</sup></a></p>
+<p>We could also examine the influence of each item or each observation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">influence</span>(lrMod1, <span class="dt">group=</span><span class="st">&quot;item&quot;</span>)
+<span class="kw">influence</span>(lrMod1, <span class="dt">obs=</span>T)</code></pre></div>
+</div>
+<div id="detour-what-can-an-influential-participant-do" class="section level4 unnumbered">
+<h4>Detour: What can an influential participant do?</h4>
+<p>Participant 530 was noted above as a potential outlier—s/he has the highest Cook’s distance. It is good practice to see what happens if influential participants (etc.) are omitted.</p>
+<p>Compare the models fitted to the dataset with and without this participant:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lrMod1.no530 &lt;-<span class="st"> </span><span class="kw">update</span>(lrMod1, . ~<span class="st"> </span>., <span class="dt">data=</span><span class="kw">filter</span>(givenness, participant!=<span class="dv">530</span>))
+
+<span class="kw">summary</span>(lrMod1)$coefficients</code></pre></div>
+<pre><code>##                   Estimate Std. Error   z value     Pr(&gt;|z|)
+## (Intercept)     -1.1383258  0.2076053 -5.483124 4.178800e-08
+## clabel.williams  3.7710505  0.5675843  6.644036 3.052075e-11
+## npType.pron      0.7917211  0.3987366  1.985574 4.708063e-02
+## voice.passive    0.6496316  0.4149409  1.565600 1.174422e-01</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(lrMod1.no530)$coefficients</code></pre></div>
+<pre><code>##                   Estimate Std. Error   z value     Pr(&gt;|z|)
+## (Intercept)     -1.1848192  0.2138651 -5.540030 3.024197e-08
+## clabel.williams  3.8105677  0.5956800  6.397005 1.584543e-10
+## npType.pron      0.9129111  0.3427896  2.663182 7.740552e-03
+## voice.passive    0.3137257  0.3848432  0.815204 4.149556e-01</code></pre>
+<p>We see that excluding this participant:</p>
+<ul>
+<li><p>Strengthens the effects of <code>clabel.williams</code> and <code>npType.pron</code> (higher effect size, lower <span class="math inline">\(p\)</span>-value)</p></li>
+<li><p>Lessens the effect of <code>voice.passive</code> (much lower effect size, higher <span class="math inline">\(p\)</span>-value)</p></li>
+</ul>
+<p>Thus, excluding this participant makes the results a little clearer (the non-significant result is now very weak; the significant results are even stronger), but doesn’t change any qualitative conclusion. One could either exclude this participant or not in reporting the model, but the <strong>existence</strong> of this influential participant should be reported regardless.</p>
+<p>This example illustrates why examining influence can be beneficial, beyond simply checking whether model assumptions are satisfied: you may find that some participants or items behave very differently from others, and are obscuring clearer results.</p>
+</div>
+</div>
+</div>
+<div id="evaluation-measures" class="section level2">
+<h2><span class="header-section-number">8.7</span> Evaluation Measures</h2>
+<p>As for logistic regression, mixed-effects logistic regression models are evaluated by comparing <strong>baseline</strong> and <strong>full</strong> models. We considered these comparison methods:</p>
+<ol style="list-style-type: decimal">
+<li><p>Likelihood ratio test</p></li>
+<li><p>Classification accuracy</p></li>
+</ol>
+<p>For mixed-effects models, the baseline model is usually taken to be the <strong>intercepts-only model</strong>, which contains random intercepts for each grouping factor (e.g. participant, item) and the fixed-effect intercept (<span class="math inline">\(\beta_0\)</span>).</p>
+<p>For our Model 1, the baseline intercepts-only model would be:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m0 &lt;-<span class="st"> </span><span class="kw">glmer</span>(stressshift ~<span class="st"> </span>(<span class="dv">1</span>|item) +<span class="st"> </span>(<span class="dv">1</span>|participant), <span class="dt">data=</span>givenness, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)</code></pre></div>
+<p>This baseline can be interpreted as “participants and items vary in (<span class="math inline">\(P\)</span>(shift stress))”, or “how well can the response (<code>stressshift</code>) be predicted, without adding any information about the predictors?”&quot; Note that for <strong>new data</strong> (unseen participants or items), the baseline model will just predict the most common outcome—which is exactly what the baseline model for (non-mixed-effects) logistic regression does.</p>
+<p>Comparing the baseline model to the full model asks: how much does the model improve by adding information about the predictors? Note that this means both fixed-effect coefficients and random slopes—and either could significantly improve likelihood.</p>
+<div id="evaluation-measure-1-likelihood-ratio-test" class="section level3">
+<h3><span class="header-section-number">8.7.1</span> Evaluation measure 1: Likelihood ratio test</h3>
+As we’ve now seen in many cases, the difference in deviance between the baseline (<span class="math inline">\(M_0\)</span>) and full (<span class="math inline">\(M_1\)</span>) models:
+<span class="math display">\[\begin{equation*}
+  \Delta D = -2 \log \frac{L(M_0)}{L(M_1)}
+\end{equation*}\]</span>
+<p>can be used for a hypothesis-test for large enough samples. If any set of <span class="math inline">\(k\)</span> terms (fixed-effects <span class="math inline">\(\beta\)</span>’s and/or random-effect <span class="math inline">\(\sigma\)</span>’s) are 0, <span class="math inline">\(\Delta D\)</span> follows a <span class="math inline">\(\chi^2(k)\)</span> distribution. Thus, we can test the hypothesis that these <span class="math inline">\(k\)</span> terms are 0 using a likelihood ratio test.</p>
+<p>For our Model 1, a LR test comparing the full model to the baseline gives:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(m0, lrMod1)</code></pre></div>
+<pre><code>## Data: givenness
+## Models:
+## m0: stressshift ~ (1 | item) + (1 | participant)
+## lrMod1: stressshift ~ clabel.williams + npType.pron + voice.passive + 
+## lrMod1:     (1 + clabel.williams + npType.pron || item) + (1 + clabel.williams + 
+## lrMod1:     npType.pron + voice.passive || participant)
+##        Df    AIC    BIC  logLik deviance Chisq Chi Df Pr(&gt;Chisq)    
+## m0      3 502.24 514.08 -248.12   496.24                            
+## lrMod1 11 349.64 393.04 -163.82   327.64 168.6      8  &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Thus, adding these three predictors significantly improves the model (<span class="math inline">\(\Delta D = 168.8\)</span>, <span class="math inline">\(df=8\)</span>, <span class="math inline">\(p&lt; 0.0001\)</span>).</p>
+</div>
+<div id="evaluation-measure-2-classification-accuracy" class="section level3">
+<h3><span class="header-section-number">8.7.2</span> Evaluation measure 2: Classification accuracy</h3>
+Classification accuracy is defined similarly to (non-mixed-effects) logistic regression. For each observation, the model is used to predict the probability that the response is 1 (<span class="math inline">\(Y=1\)</span>) for observation <span class="math inline">\(i\)</span>, and this probability is used to predict the value of <span class="math inline">\(y_i\)</span>:
+<span class="math display">\[\begin{equation*}
+      \hat{y}_i = 
+      \begin{cases}
+        1 &amp; \text{if } \hat{p}_i &gt; 0.5 \\
+        0 &amp; \text{if } \hat{p}_i \leq 0.5
+      \end{cases}
+\end{equation*}\]</span>
+<p><em>Classification accuracy</em> is the percent of these predictions that are the same as the observed responses <span class="math inline">\(y_i\)</span>.</p>
+<p>As for non-ME case, a model’s classification accuracy must be compared against the baseline model’s accuracy.</p>
+<p>For our Model 1:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lrAcc</span>(lrMod1, <span class="st">&#39;stressshift&#39;</span>)</code></pre></div>
+<pre><code>## [1] 0.8638743</code></pre>
+<p>classification accuracy is 86%, compared to 65% for the baseline model:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">baselineAcc</span>(lrMod1, <span class="st">&#39;stressshift&#39;</span>)</code></pre></div>
+<pre><code>## [1] 0.6465969</code></pre>
+<p>Note that the 86% classification accuracy uses the random-effect estimates for the participants and items in this data. That means it does not give a good estimate of what the model’s accuracy would be on <em>unseen</em> data (new participants and items), which is what we usually care about. We can obtain this accuracy using model predictions for an “average” participant and item, which is equivalent to setting all random effect terms to zero. The <code>use.ranef=FALSE</code> flag does this for the <code>lrAcc()</code> function. Classification accuracy for an average participant/item is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lrAcc</span>(lrMod1, <span class="st">&#39;stressshift&#39;</span>, <span class="dt">use.ranef=</span><span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>## [1] 0.7879581</code></pre>
+<p>Thus, classification accuracy still improves over the baseline (14% increase), but by less than if computed over the participants/items in this dataset.</p>
+<p>Note that all these measures are <strong>observation-level</strong>: they give the percent of observations classified correctly. This number is easy to report, but it should be remembered that we are usually interested in generalizing to new levels of the grouping factors (e.g. new participants and items)—not observations, per se. It is also possible to examine accuracy by participant and item, to get a sense of how well the model will predict an unseen level, as shown in the Appendix of Sec. <a href="mixed-effects-logistic-regressions.html#c7classAppendix">8.9.4</a>.</p>
+</div>
+</div>
+<div id="miscellaneous-mixed-effects-regression-topics" class="section level2">
+<h2><span class="header-section-number">8.8</span> Miscellaneous Mixed-Effects Regression Topics</h2>
+<p>Two miscellaneous but important topics for fitting mixed-effects models in general, with logistic regression examples:</p>
+<ol style="list-style-type: decimal">
+<li><p>Correlations among random effects—discussed next.</p></li>
+<li><p>Factors and random effects</p></li>
+</ol>
+<p>Issue 2 was discussed for LMEMs in Section <a href="linear-mixed-models.html#c6factorsissue">7.10</a>: problems arise if you want to use factors in models with uncorrelated random effects. The basic issues are the same for MELR models. An example is given in the next section, but we advise skipping this section until this issue actually comes up in practice for you.</p>
+<div id="c7m2" class="section level3">
+<h3><span class="header-section-number">8.8.1</span> Random-effect correlation issues</h3>
+<p>Let’s consider Model 1 with correlations between random effects added, which we call <strong>Model 2</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lrMod2 &lt;-<span class="st"> </span><span class="kw">glmer</span>(stressshift ~<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron +<span class="st"> </span>voice.passive +
+<span class="st">                    </span>(<span class="dv">1</span> +<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron|item) +
+<span class="st">                    </span>(<span class="dv">1</span> +<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron +<span class="st"> </span>voice.passive|participant),
+                <span class="dt">data=</span>givenness, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>,<span class="dt">control=</span><span class="kw">glmerControl</span>(<span class="dt">optimizer =</span> <span class="st">&quot;bobyqa&quot;</span>))</code></pre></div>
+<p>The model’s random-effect terms are:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(lrMod2)$varcor</code></pre></div>
+<pre><code>##  Groups      Name            Std.Dev. Corr                
+##  participant (Intercept)     0.67835                      
+##              clabel.williams 1.19637  -0.726              
+##              npType.pron     1.30652  -0.218  0.657       
+##              voice.passive   1.32666  -0.141 -0.094 -0.796
+##  item        (Intercept)     0.45694                      
+##              clabel.williams 1.51394  -1.000              
+##              npType.pron     0.85705   1.000 -1.000</code></pre>
+<p>Several correlations are 1 or -1, indicating perfect correlation between random-effect terms. This is highly unlikely to reflect reality (e.g. a speaker’s William effect is 100% predictable from their rate of stress shifting). Instead, usually <strong>correlations near 1 or -1 signal a problem</strong> in fitting the model. Models with <strong>perfect</strong> random-effect correlations (or where some random effect variances are 0, but this seems to be less of a problem) are “singular fits”: see technical/practical discussion by Ben Bolker <a href="https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html#singular-models-random-effect-variances-estimated-as-zero-or-correlations-estimated-as---1">here</a></p>
+<p>(Near-)perfect random effect correlations can result from:</p>
+<ol style="list-style-type: decimal">
+<li><p>Uncentered or collinear predictors</p></li>
+<li><p>A problem in how the model is specified</p></li>
+<li><p>There not being enough data to estimate the correlation terms.</p></li>
+</ol>
+<p>Case 1 is sometimes resolvable by transforming your data: centering continuous variables and using contrast-coding schemes where contrasts are sum-to-zero and orthogonal. Case 2 means you did something wrong—such as trying to fit an uncorrelated random effect for a factor <code>X</code> using the formula <code>(1+X|participant)</code>, or using predictors that are linearly dependent in the random-effect formula.</p>
+<p>In Case 3, the model is said to be <em>overparametrized</em>: the random-effect structure of the model is too complex for the amount of data—either in terms of observations, or the number of levels of a grouping factor. That is, too many random effect terms are being estimated given the dataset size. (Intuitively: if there are 10 speakers and 10 random effect terms, the model is roughly trying to fit 10 variables using 10 numbers—for which there will be no unique ‘best’ solution.)</p>
+<p>Overparametrization is very common (in 2017) (TODO MORGAN: is this still true? Maybe you could update this to 2018) in linguistic data, and is probably responsible for the perfect correlations in Model 2:</p>
+<ul>
+<li><p>There are 16 items, from which 6 by-item random-effect terms are being estimated (1 intercept, 2 slopes, 3 correlations).</p></li>
+<li><p>There are 27 participants, from which 10 by-participant `` `` (1 intercept, 3 slopes, 6 correlations).</p></li>
+</ul>
+<p>The issue of high random effect correlations:</p>
+<ul>
+<li><p>occurs easily (in 2017) (TODO MORGAN: could prob update this one also) for the dataset sizes/number of grouping factor levels typical in linguistic data.</p></li>
+<li><p>is often problematic (e.g. can cause Type I errors), even if the model converges.</p></li>
+</ul>
+<!-- How to deal with this issue?   -->
+<p>It is not clear that there is a general solution to deal with this issue, without moving to Bayesian mixed-effects models (see below). One “backwards elimination” option, similar to that recommended by <span class="citation">Barr et al. (<a href="#ref-barr2013random">2013</a>)</span>, is:</p>
+<ol style="list-style-type: decimal">
+<li><p>Iteratively remove correlations until remaining correlations are sensible.</p></li>
+<li><p>Check using model comparison that the difference in likelihood ratio from the model with all correlations (even if it didn’t converge) isn’t significant.</p></li>
+</ol>
+<p>An alternative “forward” method is:</p>
+<ol style="list-style-type: decimal">
+<li><p>Start with the no-correlations model (with all possible random slopes).</p></li>
+<li><p>Add correlations iteratively, from examining pairwise plots of random effects, using model comparison.</p></li>
+</ol>
+<p>Ben Bolker’s FAQ <a href="https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html#singular-models-random-effect-variances-estimated-as-zero-or-correlations-estimated-as---1">here</a> gives some other possibilities.</p>
+<p>The “backwards” and “forwards” strategies often work, but they are ad-hoc solutions. We first give an example of the “backward” strategy, then show an alternative (fit a Bayesian MELR model) that is cleaner, at the expense of fitting a model whose architecture is quite different from the original (problematic) model.</p>
+<div id="example-dropping-correlation-terms" class="section level4 unnumbered">
+<h4>Example: Dropping correlation terms</h4>
+<p>First, drop one of the perfect correlations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lrMod2.red1 &lt;-<span class="st"> </span><span class="kw">update</span>(lrMod2, . ~<span class="st"> </span>. -<span class="st"> </span>(<span class="dv">1</span>+clabel.williams+npType.pron|item) +<span class="st"> </span>(<span class="dv">1</span>+clabel.williams|item) +<span class="st"> </span>(<span class="dv">0</span>+npType.pron|item))</code></pre></div>
+<p>The resulting model still has a perfect correlation among the by-item random effects:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(lrMod2.red1)$varcor</code></pre></div>
+<pre><code>##  Groups      Name            Std.Dev. Corr                
+##  participant (Intercept)     0.60099                      
+##              clabel.williams 1.05584  -0.642              
+##              npType.pron     1.30842  -0.070  0.655       
+##              voice.passive   1.29183  -0.201 -0.157 -0.827
+##  item        (Intercept)     0.41505                      
+##              clabel.williams 1.40683  -1.000              
+##  item.1      npType.pron     0.70982</code></pre>
+<p>Next, drop this correlation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lrMod2.red2 &lt;-<span class="st"> </span><span class="kw">update</span>(lrMod2, . ~<span class="st"> </span>. -<span class="st"> </span>(<span class="dv">1</span>+clabel.williams+npType.pron|item) +<span class="st"> </span>(<span class="dv">1</span>|item) +<span class="st"> </span>(<span class="dv">0</span>+clabel.williams|item) +<span class="st"> </span>(<span class="dv">0</span>+npType.pron|item))</code></pre></div>
+<p>The resulting model has no more near-perfect correlations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(lrMod2.red2)$varcor</code></pre></div>
+<pre><code>##  Groups      Name            Std.Dev. Corr                
+##  participant (Intercept)     0.54756                      
+##              clabel.williams 1.02080  -0.549              
+##              npType.pron     1.33817   0.007  0.644       
+##              voice.passive   1.30948  -0.327 -0.082 -0.807
+##  item        (Intercept)     0.00000                      
+##  item.1      clabel.williams 1.13985                      
+##  item.2      npType.pron     0.70400</code></pre>
+<p>Finally, do a likelihood ratio test comparing the models with and without the correlation terms:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(lrMod2, lrMod2.red2)</code></pre></div>
+<pre><code>## Data: givenness
+## Models:
+## lrMod2.red2: stressshift ~ clabel.williams + npType.pron + voice.passive + 
+## lrMod2.red2:     (1 + clabel.williams + npType.pron + voice.passive | participant) + 
+## lrMod2.red2:     (1 | item) + (0 + clabel.williams | item) + (0 + npType.pron | 
+## lrMod2.red2:     item)
+## lrMod2: stressshift ~ clabel.williams + npType.pron + voice.passive + 
+## lrMod2:     (1 + clabel.williams + npType.pron | item) + (1 + clabel.williams + 
+## lrMod2:     npType.pron + voice.passive | participant)
+##             Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(&gt;Chisq)
+## lrMod2.red2 17 352.88 419.95 -159.44   318.88                         
+## lrMod2      20 353.31 432.22 -156.66   313.31 5.5704      3     0.1345</code></pre>
+<p>The models do not differ significantly (<span class="math inline">\(\Delta D = 5.6\)</span>, <span class="math inline">\(df=3\)</span>, <span class="math inline">\(p=0.13\)</span>), suggesting that removing the correlation terms cannot have made much difference. Crucially, none of the fixed-effect terms—which are usually of primary interest—have qualitatively changed.</p>
+<p>We don’t give an example here of the “forward strategy”. What’s crucial to remember when worrying about random-effect correlations is that <strong>whether/which correlations added is less important than including random slopes</strong>, as we discussed for LMEMs in Sec. <a href="linear-mixed-models.html#c6discuss">7.8.2</a>.</p>
+</div>
+<div id="example-bayesian-mems" class="section level4 unnumbered">
+<h4>Example: Bayesian MEMs</h4>
+<p>Another, more radical way to deal with overparametrized models is to fit a different class of model: a <em>Bayesian mixed-effects model</em>. In Bayesian regression models, each parameter has a “prior distribution” specifying how likely different parameter values are thought to be, a priori; these distributions are updated using the actual data, resulting in a “posterior distribution”, which describes how likely different parameter values are given the observed data <em>and</em> the prior. These distributions can be summarized to give familiar-looking model output: a most-likely value for each parameter (the “fixed-effect estimate”: usually the posterior mode (MAP)), a “<span class="math inline">\(p\)</span>-value” of sorts estimated by where 0 lies on the posterior distribution for a parameter, and so on.<a href="#fn44" class="footnoteRef" id="fnref44"><sup>44</sup></a></p>
+<p>The crucial aspect of Bayesian models for present purposes is that with properly chosen priors, they cannot be “overparametrized”—having less data to estimate a parameter just means the prior will have more influence on the posterior distribution for that parameter (and hence its MAP estimate).</p>
+<p>For Bayesian mixed-effects models, the standard prior (Wishart) used for the random-effects covariance matrix (all random effects variances + correlations) is an “informative” prior where correlation parameters closer to 0 are progressively more likely. This pulls the estimates for these correlation parameters towards zero, and avoids perfect (1 or -1) values.</p>
+<p>The <a href="https://cran.r-project.org/web/packages/blme/index.html"><code>blme</code> package</a> extends the <code>lme4</code> package to fit Bayesian mixed-effects models (<span class="citation">Chung et al. (<a href="#ref-Chung2013likelihood">2013</a>)</span>). The <code>lmer</code> and <code>glmer</code> functions (from the <code>lme4</code> package) become functions called <code>blmer</code> and <code>bglmer</code>. Particular choices of prior for the fixed and random effects are made by default, and you can just use the same model formula as for your <code>lmer</code> and <code>glmer</code> model, adding a <code>b</code>. For our <a href="mixed-effects-logistic-regressions.html#c7m2">Model 2</a>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(blme)
+
+lrMod2.bayesian &lt;-<span class="st"> </span><span class="kw">bglmer</span>(stressshift ~<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron +<span class="st"> </span>voice.passive +
+<span class="st">                    </span>(<span class="dv">1</span> +<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron|item) +
+<span class="st">                    </span>(<span class="dv">1</span> +<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron +<span class="st"> </span>voice.passive|participant),
+                <span class="dt">data=</span>givenness, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>,<span class="dt">control=</span><span class="kw">glmerControl</span>(<span class="dt">optimizer =</span> <span class="st">&quot;bobyqa&quot;</span>))</code></pre></div>
+<p>The resulting model has no near-perfect correlations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(lrMod2.bayesian)</code></pre></div>
+<pre><code>## Loading required package: blme</code></pre>
+<pre><code>## Cov prior  : participant ~ wishart(df = 6.5, scale = Inf, posterior.scale = cov, common.scale = TRUE)
+##            : item ~ wishart(df = 5.5, scale = Inf, posterior.scale = cov, common.scale = TRUE)
+## Prior dev  : -2.976
+## 
+## Generalized linear mixed model fit by maximum likelihood (Laplace
+##   Approximation) [bglmerMod]
+##  Family: binomial  ( logit )
+## Formula: stressshift ~ clabel.williams + npType.pron + voice.passive +  
+##     (1 + clabel.williams + npType.pron | item) + (1 + clabel.williams +  
+##     npType.pron + voice.passive | participant)
+##    Data: givenness
+## Control: glmerControl(optimizer = &quot;bobyqa&quot;)
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##    360.5    439.4   -160.3    320.5      362 
+## 
+## Scaled residuals: 
+##      Min       1Q   Median       3Q      Max 
+## -2.05023 -0.24401 -0.07532  0.29963  2.57711 
+## 
+## Random effects:
+##  Groups      Name            Variance Std.Dev. Corr             
+##  participant (Intercept)     1.1974   1.0943                    
+##              clabel.williams 3.1481   1.7743   -0.62            
+##              npType.pron     3.4775   1.8648   -0.18  0.50      
+##              voice.passive   3.7961   1.9484    0.03  0.06 -0.68
+##  item        (Intercept)     0.7312   0.8551                    
+##              clabel.williams 4.6235   2.1502   -0.79            
+##              npType.pron     1.9166   1.3844    0.56 -0.73      
+## Number of obs: 382, groups:  participant, 27; item, 16
+## 
+## Fixed effects:
+##                 Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)      -1.9235     0.5112  -3.763 0.000168 ***
+## clabel.williams   5.8044     1.1396   5.093 3.52e-07 ***
+## npType.pron       0.9937     0.6655   1.493 0.135425    
+## voice.passive     1.2633     0.6879   1.836 0.066286 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Correlation of Fixed Effects:
+##             (Intr) clbl.w npTyp.
+## clabl.wllms -0.799              
+## npType.pron  0.027  0.011       
+## voice.passv -0.151  0.235 -0.199</code></pre>
+<p>This seems like a great solution—no need for hackily removing terms, as in the “backwards” method above. You should just be aware that these (Bayesian) models are quite different from non-Bayesian ME models, and it’s up to you whether you are comfortable using them without learning more about how they work. The resulting models are not simply <code>(g)lmer</code> fits with different correlation parameters—as you can see by comparing the fixed and random effects for <code>lrMod2.bayesian</code> and <code>lrMod2</code>:</p>
+<ul>
+<li><p>Fixed effects estimates/SEs consistently larger/smaller in the Bayesian model</p></li>
+<li><p>Random effect variances/correlations consistently further/closer to 0 in the Bayesian model</p></li>
+</ul>
+<p>It is possible that the Bayesian model is actually giving more accurate estimates—the point is just that it gives <strong>different</strong> estimates from the <code>(g)lmer</code> model.</p>
+</div>
+</div>
+</div>
+<div id="appendices" class="section level2">
+<h2><span class="header-section-number">8.9</span> Appendices</h2>
+<div id="appendix-random-slopes-for-factors" class="section level3">
+<h3><span class="header-section-number">8.9.1</span> Appendix: Random slopes for factors</h3>
+<!-- * This is miscellaneous but important topic in practical applications -->
+<!-- * Have so far only looked at factors with 2 levels in mixed models -->
+<!--     * Factors with >2 levels a little tricker -->
+<p>(TODO MORGAN: this topic isn’t mentioned anywhere else in the chapter. Consider introducing it – maybe something like what is in the comments up here)</p>
+<p>We show an example using the <a href="appendix-datasets.html#altdata"><code>alternatives</code> dataset</a>. Recall the basic results, for how the probability of shifting stress (to <code>prominence</code> = <em>Adjective</em>, from <em>Noun</em>) depends on <code>context</code>:</p>
+<p><img src="08-mixed-effects-logistic-regressions_files/figure-html/unnamed-chunk-33-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>The probability of shifting stress decreases from <em>Alternative</em> to <em>NoAlternative</em> to <em>New</em>. We previously examined this data using a logistic regression, and will now use a mixed-effects logistic regression model.</p>
+<p>In this model:</p>
+<ul>
+<li><p>The response is <code>prominence</code> (<em>adjective</em> or <em>noun</em>)</p></li>
+<li><p>The predictor is <code>context</code> (<em>Alternative</em>, <em>NoAlternative</em>, <em>New</em>)</p></li>
+<li><p>We include all possible random slopes and intercepts (by-participant and by-item), <strong>with</strong> correlations</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(alternativesMod1)</code></pre></div>
+<pre><code>## Generalized linear mixed model fit by maximum likelihood (Laplace
+##   Approximation) [glmerMod]
+##  Family: binomial  ( logit )
+## Formula: prominence ~ context + (1 + context | item) + (1 + context |  
+##     participant)
+##    Data: alternatives
+## Control: glmerControl(optimizer = &quot;bobyqa&quot;)
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##    654.6    721.1   -312.3    624.6      607 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.5691 -0.5550  0.2148  0.5648  2.5891 
+## 
+## Random effects:
+##  Groups      Name        Variance  Std.Dev. Corr       
+##  participant (Intercept) 0.6585734 0.81153             
+##              context1    0.0917516 0.30291   0.06      
+##              context2    0.0169077 0.13003  -0.24  0.95
+##  item        (Intercept) 0.6781250 0.82348             
+##              context1    0.0008455 0.02908  0.81       
+##              context2    0.4283623 0.65449  0.62  0.96 
+## Number of obs: 622, groups:  participant, 18; item, 12
+## 
+## Fixed effects:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)   1.2516     0.3652   3.427  0.00061 ***
+## context1      0.8659     0.1492   5.803  6.5e-09 ***
+## context2      0.8132     0.2662   3.054  0.00226 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Correlation of Fixed Effects:
+##          (Intr) cntxt1
+## context1 0.092        
+## context2 0.566  0.062</code></pre>
+<p>The random-effect correlations in this model have the issue discussed above: some correlations are near perfect (<span class="math inline">\(r \approx 0.95\)</span>), indicating that the model is probably overparametrized. We can deal with this by omitting the correlation terms.</p>
+</div>
+<div id="c7appendix2" class="section level3">
+<h3><span class="header-section-number">8.9.2</span> Appendix: Multi-level factors and uncorrelated random effects</h3>
+<p>(Only look through this section if you have a factor with multiple levels and you run into correlations that are too high.)</p>
+<p>As with linear mixed-effects models, in order to fit a model with no correlations between random effects, any factor must be converted into numeric variables corresponding to the contrasts (the notation || will not work when a factor has &gt;2 levels!):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alternatives$context1 &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(~context, alternatives)[,<span class="dv">2</span>]
+alternatives$context2 &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(~context, alternatives)[,<span class="dv">3</span>]</code></pre></div>
+<p>which does manually what R does under the hood.</p>
+<p>The model with uncorrelated random effects is then:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alternativesMod2 &lt;-<span class="st"> </span><span class="kw">glmer</span>(shifted ~<span class="st"> </span>context +<span class="st"> </span>
+<span class="st">                            </span>(<span class="dv">1</span>+context1+context2||item) +<span class="st"> </span>
+<span class="st">                            </span>(<span class="dv">1</span>+context1+context2||participant), 
+                          <span class="dt">data=</span>alternatives, 
+                          <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>,
+                          <span class="dt">control=</span><span class="kw">glmerControl</span>(<span class="dt">optimizer =</span> <span class="st">&quot;bobyqa&quot;</span>))
+<span class="kw">summary</span>(alternativesMod2)</code></pre></div>
+<pre><code>## Generalized linear mixed model fit by maximum likelihood (Laplace
+##   Approximation) [glmerMod]
+##  Family: binomial  ( logit )
+## Formula: shifted ~ context + (1 + context1 + context2 || item) + (1 +  
+##     context1 + context2 || participant)
+##    Data: alternatives
+## Control: glmerControl(optimizer = &quot;bobyqa&quot;)
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##    646.8    686.7   -314.4    628.8      613 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -2.9286 -0.5564 -0.2484  0.5676  3.5763 
+## 
+## Random effects:
+##  Groups        Name        Variance Std.Dev.
+##  participant   context2    0.00000  0.0000  
+##  participant.1 context1    0.06545  0.2558  
+##  participant.2 (Intercept) 0.67379  0.8208  
+##  item          context2    0.29399  0.5422  
+##  item.1        context1    0.00000  0.0000  
+##  item.2        (Intercept) 0.56035  0.7486  
+## Number of obs: 622, groups:  participant, 18; item, 12
+## 
+## Fixed effects:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)  -1.1533     0.3199  -3.605 0.000312 ***
+## context1     -0.8716     0.1375  -6.338 2.32e-10 ***
+## context2     -0.7014     0.1909  -3.673 0.000240 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Correlation of Fixed Effects:
+##          (Intr) cntxt1
+## context1 0.054        
+## context2 0.129  0.018</code></pre>
+<p>Comparing the models with and without correlations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(alternativesMod1, alternativesMod2)</code></pre></div>
+<pre><code>## Data: alternatives
+## Models:
+## alternativesMod2: shifted ~ context + (1 + context1 + context2 || item) + (1 + 
+## alternativesMod2:     context1 + context2 || participant)
+## alternativesMod1: prominence ~ context + (1 + context | item) + (1 + context | 
+## alternativesMod1:     participant)
+##                  Df    AIC    BIC  logLik deviance  Chisq Chi Df
+## alternativesMod2  9 646.83 686.73 -314.42   628.83              
+## alternativesMod1 15 654.56 721.05 -312.28   624.56 4.2702      6
+##                  Pr(&gt;Chisq)
+## alternativesMod2           
+## alternativesMod1     0.6402</code></pre>
+<p>The difference in likelihood between the models is small and not significant (<span class="math inline">\(\Delta D = 1.94\)</span>, <span class="math inline">\(df=6\)</span>, <span class="math inline">\(p=0.92\)</span>). In addition, the fixed-effect estimates and standard errors are very similar in the two models. Thus, it is reasonable to omit the random-effect correlations.</p>
+<p>As noted for linear mixed-effects models in Section <a href="linear-mixed-models.html#c6factorsissue">7.10</a>:</p>
+<ul>
+<li><p>To include a random slope for any factor (even if just 2 levels) in a model with uncorrelated random effects, you need to code as numeric variable(s).</p></li>
+<li><p>For a factor with 2 levels, you can just use a centered version (e.g. <code>arm::rescale</code>), which is essentially sum coding.</p></li>
+<li><p>For factors with more levels (or to use dummy coding for a two-level factor), you manually extract the contrasts to make numeric variables.</p></li>
+</ul>
+</div>
+<div id="appendix-what-can-happen-if-a-random-slope-isnt-included" class="section level3">
+<h3><span class="header-section-number">8.9.3</span> Appendix: What can happen if a random slope isn’t included?</h3>
+<p>We show an example illustrating the potential danger from not including a random slope term, using the <a href="appendix-datasets.html#givedata"><code>givenness</code> data</a>.</p>
+<p>Let’s fit a logistic mixed-effects model for this data which only contains random intercept terms (no random slopes):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod1<span class="fl">.3</span> &lt;-<span class="st"> </span><span class="kw">glmer</span>(stressshift ~<span class="st"> </span>clabel.williams +<span class="st"> </span>npType.pron +<span class="st"> </span>voice.passive +
+<span class="st">                  </span>(<span class="dv">1</span>|item) +
+<span class="st">                  </span>(<span class="dv">1</span>|participant),
+                <span class="dt">data=</span>givenness,
+                <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)</code></pre></div>
+<p>this model is the same as <a href="mixed-effects-logistic-regressions.html#c7m1">Model 1</a>, but without random slopes.</p>
+<p>The fixed effect estimates are:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(mod1<span class="fl">.3</span>)$coefficients</code></pre></div>
+<pre><code>##                   Estimate Std. Error   z value     Pr(&gt;|z|)
+## (Intercept)     -1.0110841  0.1644734 -6.147402 7.876258e-10
+## clabel.williams  3.1918034  0.3288389  9.706283 2.834878e-22
+## npType.pron      0.6148035  0.2767721  2.221335 2.632827e-02
+## voice.passive    0.7639485  0.2781885  2.746154 6.029846e-03</code></pre>
+<p>Compare these estimates to those from Model 1 (which includes random-slope terms):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(lrMod1)$coefficients</code></pre></div>
+<pre><code>##                   Estimate Std. Error   z value     Pr(&gt;|z|)
+## (Intercept)     -1.1383258  0.2076053 -5.483124 4.178800e-08
+## clabel.williams  3.7710505  0.5675843  6.644036 3.052075e-11
+## npType.pron      0.7917211  0.3987366  1.985574 4.708063e-02
+## voice.passive    0.6496316  0.4149409  1.565600 1.174422e-01</code></pre>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li><p>What term(s) differ greatly in significance between the two models?</p></li>
+<li><p>What kind of variability does this suggest exists?</p>
+<ul>
+<li>(Among subjects, or items?)</li>
+</ul></li>
+</ul>
+<p>Let’s look at the random effects for the two models:</p>
+<ol style="list-style-type: decimal">
+<li>Random effects for the random intercepts-only model:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">VarCorr</span>(mod1<span class="fl">.3</span>),<span class="dt">comp=</span><span class="kw">c</span>(<span class="st">&quot;Variance&quot;</span>,<span class="st">&quot;Std.Dev.&quot;</span>))</code></pre></div>
+<pre><code>##  Groups      Name        Variance Std.Dev.
+##  participant (Intercept) 0.039786 0.19946 
+##  item        (Intercept) 0.000000 0.00000</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Random effects for the model with random slopes (Model 1):</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">VarCorr</span>(lrMod1),<span class="dt">comp=</span><span class="kw">c</span>(<span class="st">&quot;Variance&quot;</span>,<span class="st">&quot;Std.Dev.&quot;</span>))</code></pre></div>
+<pre><code>##  Groups        Name            Variance   Std.Dev.  
+##  participant   voice.passive   1.6482e+00 1.2838e+00
+##  participant.1 npType.pron     5.8230e-01 7.6308e-01
+##  participant.2 clabel.williams 5.0132e-15 7.0804e-08
+##  participant.3 (Intercept)     1.6855e-01 4.1054e-01
+##  item          npType.pron     5.3942e-01 7.3445e-01
+##  item.1        clabel.williams 1.6193e+00 1.2725e+00
+##  item.2        (Intercept)     2.6237e-14 1.6198e-07</code></pre>
+<p>The effects of adding random slopes to this model are:</p>
+<ul>
+<li><p>The standard errors for all fixed-effect terms increase</p></li>
+<li><p><strong><code>voice.passive</code> loses signifiance</strong></p></li>
+</ul>
+<p>To see why this effect loses significance, we examine an (empirical) by-participant plot of the <code>voice.passive</code> effect:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(givenness,<span class="kw">aes</span>(<span class="dt">x =</span> voice,<span class="dt">y =</span> stressshift.num)) +<span class="st"> </span><span class="kw">stat_summary</span>(<span class="dt">fun.y=</span>mean, <span class="dt">geom=</span><span class="st">&quot;point&quot;</span>,<span class="dt">size=</span><span class="dv">1</span>, <span class="dt">shape=</span><span class="dv">1</span>) +<span class="st"> </span><span class="kw">stat_summary</span>(<span class="dt">fun.data =</span> <span class="st">&quot;mean_cl_boot&quot;</span>, <span class="dt">geom=</span><span class="st">&quot;errorbar&quot;</span>,<span class="dt">size=</span><span class="fl">0.3</span>, <span class="dt">width=</span>.<span class="dv">15</span>) +<span class="st"> </span><span class="kw">stat_summary</span>(<span class="kw">aes</span>(<span class="dt">label=</span><span class="kw">round</span>(..y..,<span class="dv">2</span>)), <span class="dt">fun.y=</span>mean, <span class="dt">geom=</span><span class="st">&quot;text&quot;</span>, <span class="dt">size=</span><span class="fl">1.5</span>,  <span class="dt">position=</span><span class="kw">position_dodge</span>(<span class="dt">width=</span><span class="fl">0.9</span>), <span class="dt">hjust=</span>-<span class="fl">0.25</span>)  +<span class="st"> </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))  +<span class="st"> </span><span class="kw">facet_wrap</span>(~participant) +<span class="st"> </span><span class="kw">theme_bw</span>(<span class="dt">base_size =</span> <span class="dv">7</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&#39;% Stressshift&#39;</span>) +<span class="st"> </span><span class="kw">xlab</span>(<span class="st">&#39;Voice&#39;</span>)</code></pre></div>
+<p><img src="08-mixed-effects-logistic-regressions_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p>Participants vary greatly in the size and direction of the effect, and <strong>no participant except 530</strong> shows a robust effect.</p>
+<p>The by-participant random slope for <code>voice</code> in the model with random slopes is <span class="math inline">\(\hat{\sigma}_{\texttt{voice},partic} = 1.3\)</span>. This is large, compared to the size of the fixed-effect for this variable (<span class="math inline">\(\hat{\beta}_{\texttt{voice}} = 0.65\)</span>).</p>
+<p>In other words: in this data, there is too much by-participant variability in <code>voice</code> effect to say with confidence that there is an <strong>overall</strong> significant effect (across participants).</p>
+<p>But without a random slope term, the model was unduly influenced by one participant who does show an effect, leading us to spuriously conclude that there is a significant (<span class="math inline">\(p&lt;0.05\)</span>) <span class="math inline">\(\hat{\beta}_{\texttt{voice}}\)</span> effect—a Type I error.</p>
+</div>
+<div id="c7classAppendix" class="section level3">
+<h3><span class="header-section-number">8.9.4</span> Appendix: By-participant and by-item classification accuracy</h3>
+<p>TODO (2018) (MORGAN - want to leave this appendix here incomplete? There is a refference to it in the chapter so it can either be populated or we’ll have to remove the reference) <!-- ((Q4M: I couldn't find the code for these figures and it was taking a bit too long to reverse engineer since I wasn't familiar with the dataset)) --></p>
+<!-- --- -->
+<!-- * More informative report of classification accuracy: -->
+<!--     * "The model correctly predicted whether stress shifted for 88.0% of observations, compared to 62.7% for a baseline model including only by-participant and by-item intercepts. Within individual subjects, the model's classification accuracy ranged from 62.5-100%; within items, it ranged from 62.5-96.3%" -->
+</div>
+</div>
+<div id="c7solns" class="section level2">
+<h2><span class="header-section-number">8.10</span> Solutions</h2>
+<p><strong><a href="mixed-effects-logistic-regressions.html#c7tapdata">Question about tapping data</a></strong>: Does it look like there is by-participant variability in the intercept, slope, or both? And by-item variability?</p>
+<p><strong>A</strong>: It looks like there is some by-participant variability in the intercepts, and also in the slopes; it looks like there is almost no variability in the by-item intercepts, there is quite a bit in the slopes.</p>
+<hr />
+<p><strong><a href="mixed-effects-logistic-regressions.html#c7givedata">Question about givenness data</a></strong>: Again, for participants and items: do you think there is variability in the intercept? Slope? Both?</p>
+<p><strong>A</strong>: There is some variability in the by-participant intercept and very little in the slope; there is almost no variablity in the by-item intercept and some in the slope.</p>
+<hr />
+<p><strong><a href="mixed-effects-logistic-regressions.html#c7ex1">Exercise 1: tapping</a></strong>:</p>
+<p>The model is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ex1.mod &lt;-<span class="st"> </span><span class="kw">glmer</span>(tapped ~<span class="st"> </span>speechrate.slow +<span class="st"> </span>syntax.trans +<span class="st"> </span>(<span class="dv">1</span> +<span class="st"> </span>syntax.trans +<span class="st"> </span>speechrate.slow||participant) +<span class="st"> </span>(<span class="dv">1</span>+syntax.trans +<span class="st"> </span>speechrate.slow||item), <span class="dt">data=</span>tapped, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)
+<span class="kw">summary</span>(ex1.mod)</code></pre></div>
+<pre><code>## Generalized linear mixed model fit by maximum likelihood (Laplace
+##   Approximation) [glmerMod]
+##  Family: binomial  ( logit )
+## Formula: tapped ~ speechrate.slow + syntax.trans + (1 + syntax.trans +  
+##     speechrate.slow || participant) + (1 + syntax.trans + speechrate.slow ||  
+##     item)
+##    Data: tapped
+## 
+##      AIC      BIC   logLik deviance df.resid 
+##    330.0    371.2   -156.0    312.0      706 
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -2.4530 -0.2026 -0.0697 -0.0302  4.1061 
+## 
+## Random effects:
+##  Groups        Name            Variance  Std.Dev. 
+##  participant   (Intercept)     2.011e+00 1.418e+00
+##  participant.1 syntax.trans    0.000e+00 0.000e+00
+##  participant.2 speechrate.slow 1.272e+01 3.566e+00
+##  item          (Intercept)     3.174e-01 5.634e-01
+##  item.1        syntax.trans    4.284e-01 6.545e-01
+##  item.2        speechrate.slow 5.115e-10 2.262e-05
+## Number of obs: 715, groups:  participant, 23; item, 8
+## 
+## Fixed effects:
+##                 Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)      -4.3843     0.6155  -7.123 1.06e-12 ***
+## speechrate.slow  -4.0897     1.0355  -3.950 7.83e-05 ***
+## syntax.trans      1.0909     0.4209   2.592  0.00955 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Correlation of Fixed Effects:
+##             (Intr) spchr.
+## spechrt.slw  0.419       
+## syntax.trns -0.156 -0.068</code></pre>
+<p>Both <code>syntax.trans</code> and <code>speechrate.slow</code> are observation level: they both vary within participants and items, as you can check with e.g. <code>xtabs(~syntax + participant, data=tapped)</code></p>
+<p>The model assumes that the log-odds of tapping depend on both speech rate and syntax, and that the slope of both predictors can vary between participants and items, who also differ in their “baseline” tapping rates. It does not assume that there may be an interaction between syntax and speech rate.</p>
+<p>Participants vary more than items in the intercept (random effect <span class="math inline">\(\sigma\)</span> = 0.56 versus 1.4).</p>
+<p>The variance component for the by-participant <code>syntax.trans</code> random slope, <span class="math inline">\(0\)</span>, is how much participants are predicted to vary in the slope of <code>syntax.trans</code>.</p>
+<p>In the <a href="mixed-effects-logistic-regressions.html#c7tapdata">empirical plots</a>, it looked like:</p>
+<ul>
+<li><p>with respect to <code>syntax</code>, participants vary in intercept, maybe in slope.</p></li>
+<li><p>items vary little in intercept (less than participant) if at all, but vary a lot in slope.</p></li>
+<li><p>Across participants and items, there is a positive effect of <code>syntax</code>—many more participants/items show a positive slope than a negative one.</p></li>
+</ul>
+<p>The model results are mostly consistent with this data:</p>
+<ul>
+<li><p>By-participant random intercept variance <span class="math inline">\(&gt;\)</span> by-item random intercept variance</p></li>
+<li><p>There is substantial by-item variation the <code>syntax.trans</code> effect—the by-item <span class="math inline">\(\sigma\)</span> for the random slope (0.65) is comparable to the fixed effect size (1.09). However, there is no by-participant variation predicted in the <code>syntax.trans</code> effect, which seems odd.</p></li>
+</ul>
+<hr />
+<p><a href="mixed-effects-logistic-regressions.html#c7ex2"><strong>Exercise 2</strong></a></p>
+<p>Data prep and fitting the two models:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">td &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;datasets/td.csv&quot;</span>)
+
+## take the first 2000 observations -- a typical sample size for previous work on t/d deletion
+td &lt;-<span class="st"> </span>td[<span class="dv">1</span>:<span class="dv">2000</span>,]
+
+## make numeric versions of morph, following (two-level factors) that are centered
+td$morph.num &lt;-<span class="st"> </span>arm::<span class="kw">rescale</span>(td$morph)
+td$following.num &lt;-<span class="st"> </span>arm::<span class="kw">rescale</span>(td$following)
+
+## make centered + divided by 2 SD version of speech rate
+td$speechrate.rs &lt;-<span class="st"> </span>arm::<span class="kw">rescale</span>(td$speechrate)
+
+## fit model with all possible random effects (uncorrelated)
+mod.td &lt;-<span class="st"> </span><span class="kw">glmer</span>(td ~<span class="st"> </span>following.num +<span class="st"> </span>speechrate.rs +<span class="st"> </span>morph.num +<span class="st"> </span>(<span class="dv">1</span>+following.num+speechrate.rs||Word) +<span class="st"> </span>(<span class="dv">1</span>+morph.num+speechrate.rs +<span class="st"> </span>following.num||Speaker), <span class="dt">family=</span><span class="st">&#39;binomial&#39;</span>, <span class="dt">control=</span><span class="kw">glmerControl</span>(<span class="dt">optimizer =</span> <span class="st">&quot;bobyqa&quot;</span>), <span class="dt">data=</span>td)
+
+mod.td.nowordranef &lt;-<span class="st"> </span><span class="kw">glmer</span>(td ~<span class="st"> </span>following.num +<span class="st"> </span>speechrate.rs +<span class="st"> </span>morph.num +<span class="st"> </span>(<span class="dv">1</span>+morph.num+speechrate.rs +<span class="st"> </span>following.num||Speaker), <span class="dt">family=</span><span class="st">&#39;binomial&#39;</span>, <span class="dt">control=</span><span class="kw">glmerControl</span>(<span class="dt">optimizer =</span> <span class="st">&quot;bobyqa&quot;</span>), <span class="dt">data=</span>td)</code></pre></div>
+<p>Interpretation: (No solutions yet!) (TODO MORGAN)</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-gelman2007data">
+<p>Gelman, Andrew, and Jennifer Hill. 2007. <em>Data analysis using regression and multilevel/hierarchical models</em>. Cambridge: Cambridge University Press.</p>
+</div>
+<div id="ref-jaeger08">
+<p>Jaeger, T.F. 2008. “Categorical data analysis: Away from ANOVAs (transformation or not) and towards logit mixed models.” <em>Journal of Memory and Language</em> 59 (4). Elsevier: 434–46. doi:<a href="https://doi.org/10.1016/j.jml.2007.11.007">10.1016/j.jml.2007.11.007</a>.</p>
+</div>
+<div id="ref-johnson2008quantitative">
+<p>Johnson, K. 2008. <em>Quantitative Methods in Linguistics</em>. Malden, MA: Wiley-Blackwell.</p>
+</div>
+<div id="ref-baayen2008analyzing">
+<p>Baayen, R.H. 2001. <em>Word Frequency Distributions</em>. Kluwer Academic Publishers.</p> 2008. <em>Analyzing Linguistic Data</em>. Cambridge: Cambridge University Press.</p>
+</div>
+<div id="ref-sonderegger2017medium">
+<p>Sonderegger, Morgan, Max Bane, and Peter Graff. 2017. “The Medium-Term Dynamics of Accents on Reality Television.” <em>Language</em> 93 (3): 598–640.</p>
+</div>
+<div id="ref-barr2013random">
+<p>Barr, Dale J, Roger Levy, Christoph Scheepers, and Harry J Tily. 2013. “Random Effects Structure for Confirmatory Hypothesis Testing: Keep It Maximal.” <em>Journal of Memory and Language</em> 68 (3). Elsevier: 255–78.</p>
+</div>
+<div id="ref-Chung2013likelihood">
+<p>Chung, Yeojin, Sophia Rabe-Hesketh, Vincent Dorie, Andrew Gelman, and Jingchen Liu. 2013. “A Nondegenerate Penalized Likelihood Estimator for Variance Parameters in Multilevel Models.” <em>Psychometrika</em> 78 (4). Springer: 685–709. <a href="http://gllamm.org/" class="uri">http://gllamm.org/</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="40">
+<li id="fn40"><p>The <code>family='binomial'</code> argument specifies this regression uses a “logit link”, as for logistic regressions (see <span class="citation">Baayen (<a href="#ref-baayen2008analyzing">2008</a>)</span>).<a href="mixed-effects-logistic-regressions.html#fnref40">↩</a></p></li>
+<li id="fn41"><p>This option changes the optimization function R uses to find the parameters that maximize likelihood.<a href="mixed-effects-logistic-regressions.html#fnref41">↩</a></p></li>
+<li id="fn42"><p>Meaning, how likely is it that <span class="math inline">\(|z|\)</span> would be at least this large, under the null hypothesis, assuming that <span class="math inline">\(z\)</span> is normally distributed?<a href="mixed-effects-logistic-regressions.html#fnref42">↩</a></p></li>
+<li id="fn43"><p>To see this, plot participant’s Cook’s distance values against their <code>voice</code> random slope values (<code>ranef(lrMod1)$participant[['voice.passive']]</code>).<a href="mixed-effects-logistic-regressions.html#fnref43">↩</a></p></li>
+<li id="fn44"><p>In fact, a (non-Bayesian) mixed-effects model can be thought of as a Bayesian model with an “uninformative” prior (TODO MORGAN: reference?)—different parameter values are almost equally likely, a priori, and the posterior distribution is mostly determined by maximizing likelihood given the data.<a href="mixed-effects-logistic-regressions.html#fnref44">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="linear-mixed-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

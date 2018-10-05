@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Quantitative Methods for Linguistic Data</title>
+  <meta name="description" content="Quantitative Methods for Linguistic Data">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Quantitative Methods for Linguistic Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Quantitative Methods for Linguistic Data" />
+  
+  
+  
+
+<meta name="author" content="Morgan Sonderegger, Michael Wagner, Francisco Torreira">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="logistic-regression.html">
+<link rel="next" href="lmem.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Methods for Linguistic Data</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html"><i class="fa fa-check"></i><b>1</b> Inferential statistics: Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sample-population"><i class="fa fa-check"></i><b>1.1</b> Population vs. sample</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sample-to-population-high-level"><i class="fa fa-check"></i><b>1.1.1</b> Sample <span class="math inline">\(\to\)</span> population: High level</a></li>
+<li class="chapter" data-level="1.1.2" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sdsm"><i class="fa fa-check"></i><b>1.1.2</b> Sampling distribution of the sample mean</a></li>
+<li class="chapter" data-level="1.1.3" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sampling-from-a-non-normal-distribution"><i class="fa fa-check"></i><b>1.1.3</b> Sampling from a non-normal distribution</a></li>
+<li class="chapter" data-level="" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#confidence-intervals"><i class="fa fa-check"></i><b>1.2</b> Confidence intervals</a></li>
+<li class="chapter" data-level="1.3" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#t-distribution"><i class="fa fa-check"></i><b>1.3</b> <span class="math inline">\(t\)</span> distribution</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#t-based-confidence-intervals"><i class="fa fa-check"></i><b>1.3.1</b> <span class="math inline">\(t\)</span>-based confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#other-reading"><i class="fa fa-check"></i><b>1.4</b> Other reading</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>2</b> Hypothesis testing</a><ul>
+<li class="chapter" data-level="2.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-high-level"><i class="fa fa-check"></i><b>2.1</b> Hypothesis testing: High-level</a></li>
+<li class="chapter" data-level="2.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#z-scores"><i class="fa fa-check"></i><b>2.2</b> <span class="math inline">\(z\)</span>-scores</a></li>
+<li class="chapter" data-level="2.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#t-tests"><i class="fa fa-check"></i><b>2.3</b> <span class="math inline">\(t\)</span>-tests</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#single-sample-t-test-setup"><i class="fa fa-check"></i><b>2.3.1</b> Single-sample <span class="math inline">\(t\)</span>-test: Setup</a></li>
+<li class="chapter" data-level="2.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-in-general"><i class="fa fa-check"></i><b>2.3.2</b> Hypothesis testing in general</a></li>
+<li class="chapter" data-level="2.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#two-sample-t-test"><i class="fa fa-check"></i><b>2.3.3</b> Two-sample <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#welch-example"><i class="fa fa-check"></i><b>2.3.4</b> Unequal variances: Welch <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#t-test-assumptions"><i class="fa fa-check"></i><b>2.3.5</b> Assumptions behind <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#paired-t-test"><i class="fa fa-check"></i><b>2.3.6</b> Paired <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#reporting-a-hypothesis-test"><i class="fa fa-check"></i><b>2.3.7</b> Reporting a hypothesis test</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#checking-normality"><i class="fa fa-check"></i><b>2.4</b> Checking normality</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#visual-methods"><i class="fa fa-check"></i><b>2.4.1</b> Visual methods</a></li>
+<li class="chapter" data-level="2.4.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#q-q-plots"><i class="fa fa-check"></i><b>2.4.2</b> Q-Q plots</a></li>
+<li class="chapter" data-level="2.4.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#shapiro-wilk-example"><i class="fa fa-check"></i><b>2.4.3</b> Hypothesis test</a></li>
+<li class="chapter" data-level="2.4.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#other-parametric-tests"><i class="fa fa-check"></i><b>2.4.4</b> Other parametric tests</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#non-parametric-tests"><i class="fa fa-check"></i><b>2.5</b> Non-parametric tests</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#wilcoxson-tests"><i class="fa fa-check"></i><b>2.5.1</b> Wilcoxson tests</a></li>
+<li class="chapter" data-level="2.5.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#two-sample-wilcoxson-test"><i class="fa fa-check"></i><b>2.5.2</b> Two-sample Wilcoxson test</a></li>
+<li class="chapter" data-level="2.5.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#parametric-versus-non-parametric-tests"><i class="fa fa-check"></i><b>2.5.3</b> Parametric versus non-parametric tests</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#other-reading-1"><i class="fa fa-check"></i><b>2.6</b> Other reading</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>3</b> Linear regression</a><ul>
+<li class="chapter" data-level="3.1" data-path="linear-regression.html"><a href="linear-regression.html#regression-general-introduction"><i class="fa fa-check"></i><b>3.1</b> Regression: General introduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="linear-regression.html"><a href="linear-regression.html#linear-models"><i class="fa fa-check"></i><b>3.1.1</b> Linear models</a></li>
+<li class="chapter" data-level="3.1.2" data-path="linear-regression.html"><a href="linear-regression.html#terminology"><i class="fa fa-check"></i><b>3.1.2</b> Terminology</a></li>
+<li class="chapter" data-level="3.1.3" data-path="linear-regression.html"><a href="linear-regression.html#steps-and-assumptions-of-regression-analysis"><i class="fa fa-check"></i><b>3.1.3</b> Steps and assumptions of regression analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="linear-regression.html"><a href="linear-regression.html#simple-linear-regression"><i class="fa fa-check"></i><b>3.2</b> Simple linear regression</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="linear-regression.html"><a href="linear-regression.html#slr-continuous-predictor"><i class="fa fa-check"></i><b>3.2.1</b> SLR: Continuous predictor</a></li>
+<li class="chapter" data-level="3.2.2" data-path="linear-regression.html"><a href="linear-regression.html#slr-parameter-estimation"><i class="fa fa-check"></i><b>3.2.2</b> SLR: Parameter estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="linear-regression.html"><a href="linear-regression.html#hypothesis-testing-1"><i class="fa fa-check"></i><b>3.2.3</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="3.2.4" data-path="linear-regression.html"><a href="linear-regression.html#quality-of-fit"><i class="fa fa-check"></i><b>3.2.4</b> Quality of fit</a></li>
+<li class="chapter" data-level="3.2.5" data-path="linear-regression.html"><a href="linear-regression.html#categorical-predictor"><i class="fa fa-check"></i><b>3.2.5</b> Categorical predictor</a></li>
+<li class="chapter" data-level="3.2.6" data-path="linear-regression.html"><a href="linear-regression.html#slr-with-a-binary-categorical-predictor-vs.two-sample-t-test"><i class="fa fa-check"></i><b>3.2.6</b> SLR with a binary categorical predictor vs. two-sample <span class="math inline">\(t\)</span>-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="linear-regression.html"><a href="linear-regression.html#multiple-linear-regression"><i class="fa fa-check"></i><b>3.3</b> Multiple linear regression</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="linear-regression.html"><a href="linear-regression.html#goodness-of-fit-metrics"><i class="fa fa-check"></i><b>3.3.1</b> Goodness of fit metrics</a></li>
+<li class="chapter" data-level="3.3.2" data-path="linear-regression.html"><a href="linear-regression.html#interactions-and-factors"><i class="fa fa-check"></i><b>3.3.2</b> Interactions and factors</a></li>
+<li class="chapter" data-level="3.3.3" data-path="linear-regression.html"><a href="linear-regression.html#plotting-interactions"><i class="fa fa-check"></i><b>3.3.3</b> Plotting interactions</a></li>
+<li class="chapter" data-level="3.3.4" data-path="linear-regression.html"><a href="linear-regression.html#categorical-factors-with-more-than-two-levels"><i class="fa fa-check"></i><b>3.3.4</b> Categorical factors with more than two levels</a></li>
+<li class="chapter" data-level="3.3.5" data-path="linear-regression.html"><a href="linear-regression.html#releveling-factors"><i class="fa fa-check"></i><b>3.3.5</b> Releveling factors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-assumptions"><i class="fa fa-check"></i><b>3.4</b> Linear regression assumptions</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="linear-regression.html"><a href="linear-regression.html#visual-methods-1"><i class="fa fa-check"></i><b>3.4.1</b> Visual methods</a></li>
+<li class="chapter" data-level="3.4.2" data-path="linear-regression.html"><a href="linear-regression.html#assumption-1-linearity"><i class="fa fa-check"></i><b>3.4.2</b> Assumption 1: Linearity</a></li>
+<li class="chapter" data-level="3.4.3" data-path="linear-regression.html"><a href="linear-regression.html#c2ioe"><i class="fa fa-check"></i><b>3.4.3</b> Assumption 2: Independence of errors</a></li>
+<li class="chapter" data-level="3.4.4" data-path="linear-regression.html"><a href="linear-regression.html#assumption-3-normality-of-errors"><i class="fa fa-check"></i><b>3.4.4</b> Assumption 3: Normality of errors</a></li>
+<li class="chapter" data-level="3.4.5" data-path="linear-regression.html"><a href="linear-regression.html#assumtion-4-constancy-of-variance"><i class="fa fa-check"></i><b>3.4.5</b> Assumtion 4: Constancy of variance</a></li>
+<li class="chapter" data-level="3.4.6" data-path="linear-regression.html"><a href="linear-regression.html#interim-summary"><i class="fa fa-check"></i><b>3.4.6</b> Interim summary</a></li>
+<li class="chapter" data-level="3.4.7" data-path="linear-regression.html"><a href="linear-regression.html#transforming-to-normality"><i class="fa fa-check"></i><b>3.4.7</b> Transforming to normality</a></li>
+<li class="chapter" data-level="3.4.8" data-path="linear-regression.html"><a href="linear-regression.html#assumption-5-linear-independence-of-predictors"><i class="fa fa-check"></i><b>3.4.8</b> Assumption 5: Linear independence of predictors</a></li>
+<li class="chapter" data-level="3.4.9" data-path="linear-regression.html"><a href="linear-regression.html#collinearity"><i class="fa fa-check"></i><b>3.4.9</b> Collinearity</a></li>
+<li class="chapter" data-level="3.4.10" data-path="linear-regression.html"><a href="linear-regression.html#assumption-6-observations"><i class="fa fa-check"></i><b>3.4.10</b> Assumption 6: Observations</a></li>
+<li class="chapter" data-level="3.4.11" data-path="linear-regression.html"><a href="linear-regression.html#lin-reg-measuring-influence"><i class="fa fa-check"></i><b>3.4.11</b> Measuring influence</a></li>
+<li class="chapter" data-level="3.4.12" data-path="linear-regression.html"><a href="linear-regression.html#outliers"><i class="fa fa-check"></i><b>3.4.12</b> Outliers</a></li>
+<li class="chapter" data-level="3.4.13" data-path="linear-regression.html"><a href="linear-regression.html#regression-assumptions-reassurance"><i class="fa fa-check"></i><b>3.4.13</b> Regression assumptions: Reassurance</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="linear-regression.html"><a href="linear-regression.html#lm-model-comparison"><i class="fa fa-check"></i><b>3.5</b> Model comparison</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="linear-regression.html"><a href="linear-regression.html#nested-model-comparison"><i class="fa fa-check"></i><b>3.5.1</b> Nested model comparison</a></li>
+<li class="chapter" data-level="3.5.2" data-path="linear-regression.html"><a href="linear-regression.html#non-nested-model-comparison"><i class="fa fa-check"></i><b>3.5.2</b> Non-nested model comparison</a></li>
+<li class="chapter" data-level="3.5.3" data-path="linear-regression.html"><a href="linear-regression.html#c2varselect"><i class="fa fa-check"></i><b>3.5.3</b> Variable selection</a></li>
+<li class="chapter" data-level="3.5.4" data-path="linear-regression.html"><a href="linear-regression.html#interpretability-issues"><i class="fa fa-check"></i><b>3.5.4</b> Interpretability issues</a></li>
+<li class="chapter" data-level="3.5.5" data-path="linear-regression.html"><a href="linear-regression.html#interim-recipe-building-a-multiple-linear-regression-model"><i class="fa fa-check"></i><b>3.5.5</b> Interim recipe: Building a multiple linear regression model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="linear-regression.html"><a href="linear-regression.html#c2solns"><i class="fa fa-check"></i><b>3.6</b> Solutions</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="linear-regression.html"><a href="linear-regression.html#multiple-linear-regression-solutions"><i class="fa fa-check"></i><b>3.6.1</b> Multiple linear regression: Solutions</a></li>
+<li class="chapter" data-level="3.6.2" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-assumptions-solutions"><i class="fa fa-check"></i><b>3.6.2</b> Linear regression assumptions: Solutions</a></li>
+<li class="chapter" data-level="3.6.3" data-path="linear-regression.html"><a href="linear-regression.html#model-comparison-solutions"><i class="fa fa-check"></i><b>3.6.3</b> Model comparison: Solutions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cda.html"><a href="cda.html"><i class="fa fa-check"></i><b>4</b> Categorical data analysis: Preliminaries</a><ul>
+<li class="chapter" data-level="4.1" data-path="cda.html"><a href="cda.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="cda.html"><a href="cda.html#x2-contingency-tables"><i class="fa fa-check"></i><b>4.1.1</b> 2x2 contingency tables</a></li>
+<li class="chapter" data-level="4.1.2" data-path="cda.html"><a href="cda.html#the-chi-squared-test"><i class="fa fa-check"></i><b>4.1.2</b> The chi-squared test</a></li>
+<li class="chapter" data-level="4.1.3" data-path="cda.html"><a href="cda.html#fishers-exact-test"><i class="fa fa-check"></i><b>4.1.3</b> Fisher’s exact test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="cda.html"><a href="cda.html#towards-logistic-regression"><i class="fa fa-check"></i><b>4.2</b> Towards logistic regression</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="cda.html"><a href="cda.html#odds"><i class="fa fa-check"></i><b>4.2.1</b> Odds</a></li>
+<li class="chapter" data-level="4.2.2" data-path="cda.html"><a href="cda.html#log-odds"><i class="fa fa-check"></i><b>4.2.2</b> Log-odds</a></li>
+<li class="chapter" data-level="4.2.3" data-path="cda.html"><a href="cda.html#odds-ratios"><i class="fa fa-check"></i><b>4.2.3</b> Odds ratios</a></li>
+<li class="chapter" data-level="4.2.4" data-path="cda.html"><a href="cda.html#log-odds-sample-and-population"><i class="fa fa-check"></i><b>4.2.4</b> Log odds: sample and population</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="cda.html"><a href="cda.html#cda-other-readings"><i class="fa fa-check"></i><b>4.3</b> Other readings</a></li>
+<li class="chapter" data-level="4.4" data-path="cda.html"><a href="cda.html#c3solns"><i class="fa fa-check"></i><b>4.4</b> Solutions</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="cda.html"><a href="cda.html#solutions-to-exercise-1"><i class="fa fa-check"></i><b>4.4.1</b> Solutions to Exercise 1:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>5</b> Logistic regression</a><ul>
+<li class="chapter" data-level="5.1" data-path="logistic-regression.html"><a href="logistic-regression.html#simple-logistic-regression"><i class="fa fa-check"></i><b>5.1</b> Simple logistic regression</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#log-reg-hyp-test"><i class="fa fa-check"></i><b>5.1.1</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="5.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#interpreting-the-coefficients-logit-odds-and-probability"><i class="fa fa-check"></i><b>5.1.2</b> Interpreting the coefficients: Logit, odds, and probability</a></li>
+<li class="chapter" data-level="5.1.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-as-a-glm"><i class="fa fa-check"></i><b>5.1.3</b> Logistic regression as a GLM</a></li>
+<li class="chapter" data-level="5.1.4" data-path="logistic-regression.html"><a href="logistic-regression.html#c4differences"><i class="fa fa-check"></i><b>5.1.4</b> Differences from linear regression: Fitting and interpretation</a></li>
+<li class="chapter" data-level="5.1.5" data-path="logistic-regression.html"><a href="logistic-regression.html#fitting-a-logistic-regression-model"><i class="fa fa-check"></i><b>5.1.5</b> Fitting a logistic regression model</a></li>
+<li class="chapter" data-level="5.1.6" data-path="logistic-regression.html"><a href="logistic-regression.html#interpretation"><i class="fa fa-check"></i><b>5.1.6</b> Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="logistic-regression.html"><a href="logistic-regression.html#evaluating-logistic-regression-models"><i class="fa fa-check"></i><b>5.2</b> Evaluating logistic regression models</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#c4lrt"><i class="fa fa-check"></i><b>5.2.1</b> Likelihood ratio test</a></li>
+<li class="chapter" data-level="5.2.2" data-path="logistic-regression.html"><a href="logistic-regression.html#classification-accuracy"><i class="fa fa-check"></i><b>5.2.2</b> Classification accuracy</a></li>
+<li class="chapter" data-level="5.2.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-pseudo-r2"><i class="fa fa-check"></i><b>5.2.3</b> Pseudo-<span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="logistic-regression.html"><a href="logistic-regression.html#multiple-logistic-regression"><i class="fa fa-check"></i><b>5.3</b> Multiple logistic regression</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#likelihood-ratio-test-general-case"><i class="fa fa-check"></i><b>5.3.1</b> Likelihood ratio test: General case</a></li>
+<li class="chapter" data-level="5.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#log-reg-worked-example"><i class="fa fa-check"></i><b>5.3.2</b> Worked example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="logistic-regression.html"><a href="logistic-regression.html#model-criticism-logistic-regression"><i class="fa fa-check"></i><b>5.4</b> Model criticism for logistic regression</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#residual-plots"><i class="fa fa-check"></i><b>5.4.1</b> Residual plots</a></li>
+<li class="chapter" data-level="5.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-cooks-distance"><i class="fa fa-check"></i><b>5.4.2</b> Cook’s distance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="logistic-regression.html"><a href="logistic-regression.html#other-readings"><i class="fa fa-check"></i><b>5.5</b> Other readings</a></li>
+<li class="chapter" data-level="5.6" data-path="logistic-regression.html"><a href="logistic-regression.html#c4solns"><i class="fa fa-check"></i><b>5.6</b> Solutions</a></li>
+<li class="chapter" data-level="5.7" data-path="logistic-regression.html"><a href="logistic-regression.html#c4appendix2"><i class="fa fa-check"></i><b>5.7</b> Appendix: Other Generalized Linear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><i class="fa fa-check"></i><b>6</b> Practical Regression Topics 1: Multi-level factors, contrast coding, interactions</a><ul>
+<li class="chapter" data-level="6.1" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#multi-level-factors-introduction"><i class="fa fa-check"></i><b>6.1</b> Multi-level factors: Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#contrast-coding"><i class="fa fa-check"></i><b>6.2</b> Contrast coding</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#first-examples"><i class="fa fa-check"></i><b>6.2.1</b> First examples</a></li>
+<li class="chapter" data-level="6.2.2" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#basic-interpretation-of-contrasts"><i class="fa fa-check"></i><b>6.2.2</b> Basic interpretation of contrasts</a></li>
+<li class="chapter" data-level="6.2.3" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#contrast-coding-schemes"><i class="fa fa-check"></i><b>6.2.3</b> Contrast coding schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#c5mlf"><i class="fa fa-check"></i><b>6.3</b> Assessing a multi-level factor’s contribution</a></li>
+<li class="chapter" data-level="6.4" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#practice-with-interactions"><i class="fa fa-check"></i><b>6.4</b> Practice with interactions</a></li>
+<li class="chapter" data-level="6.5" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#c5solns"><i class="fa fa-check"></i><b>6.5</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="lmem.html"><a href="lmem.html"><i class="fa fa-check"></i><b>7</b> Linear mixed models</a><ul>
+<li class="chapter" data-level="7.1" data-path="lmem.html"><a href="lmem.html#mixed-effects-models-motivation"><i class="fa fa-check"></i><b>7.1</b> Mixed-effects models: Motivation</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="lmem.html"><a href="lmem.html#simpsons-paradox"><i class="fa fa-check"></i><b>7.1.1</b> Simpson’s paradox</a></li>
+<li class="chapter" data-level="7.1.2" data-path="lmem.html"><a href="lmem.html#repeated-measure-anovas"><i class="fa fa-check"></i><b>7.1.2</b> Repeated-measure ANOVAs</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="lmem.html"><a href="lmem.html#linear-mixed-models-1-one-grouping-factor-random-intercepts"><i class="fa fa-check"></i><b>7.2</b> Linear mixed models 1: One grouping factor, random intercepts</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="lmem.html"><a href="lmem.html#c6model1A"><i class="fa fa-check"></i><b>7.2.1</b> Model 1A: Simple linear regression</a></li>
+<li class="chapter" data-level="7.2.2" data-path="lmem.html"><a href="lmem.html#c6model1b"><i class="fa fa-check"></i><b>7.2.2</b> Model 1B: Random intercept only</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="lmem.html"><a href="lmem.html#c6lmm2"><i class="fa fa-check"></i><b>7.3</b> Linear mixed models 2: One grouping factor, random intercepts and slopes</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="lmem.html"><a href="lmem.html#c6model1c"><i class="fa fa-check"></i><b>7.3.1</b> Model 1C</a></li>
+<li class="chapter" data-level="7.3.2" data-path="lmem.html"><a href="lmem.html#fitting-model-1c"><i class="fa fa-check"></i><b>7.3.2</b> Fitting Model 1C</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="lmem.html"><a href="lmem.html#linear-mixed-models-3-two-grouping-factors"><i class="fa fa-check"></i><b>7.4</b> Linear mixed models 3: Two grouping factors</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="lmem.html"><a href="lmem.html#c6model2A"><i class="fa fa-check"></i><b>7.4.1</b> Model 2A: By-participant and by-item random intercepts</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="lmem.html"><a href="lmem.html#evaluating-lmms"><i class="fa fa-check"></i><b>7.5</b> Evaluating LMMs</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="lmem.html"><a href="lmem.html#hypothesis-testing-2"><i class="fa fa-check"></i><b>7.5.1</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="7.5.2" data-path="lmem.html"><a href="lmem.html#significance-of-a-random-effect-term"><i class="fa fa-check"></i><b>7.5.2</b> Significance of a random effect term</a></li>
+<li class="chapter" data-level="7.5.3" data-path="lmem.html"><a href="lmem.html#c6fixedp"><i class="fa fa-check"></i><b>7.5.3</b> Significance of fixed effects</a></li>
+<li class="chapter" data-level="7.5.4" data-path="lmem.html"><a href="lmem.html#evaluating-goodness-of-fit"><i class="fa fa-check"></i><b>7.5.4</b> Evaluating goodness of fit</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lmem.html"><a href="lmem.html#linear-mixed-models-4-multiple-predictors"><i class="fa fa-check"></i><b>7.6</b> Linear mixed models 4: Multiple predictors</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="lmem.html"><a href="lmem.html#types-of-predictors"><i class="fa fa-check"></i><b>7.6.1</b> Types of predictors</a></li>
+<li class="chapter" data-level="7.6.2" data-path="lmem.html"><a href="lmem.html#c6model3A"><i class="fa fa-check"></i><b>7.6.2</b> Model 3A: Random intercepts only</a></li>
+<li class="chapter" data-level="7.6.3" data-path="lmem.html"><a href="lmem.html#c6model3B"><i class="fa fa-check"></i><b>7.6.3</b> Model 3B: Random intercepts and all possible random slopes</a></li>
+<li class="chapter" data-level="7.6.4" data-path="lmem.html"><a href="lmem.html#assessing-variability"><i class="fa fa-check"></i><b>7.6.4</b> Assessing variability</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="lmem.html"><a href="lmem.html#more-on-random-slopes"><i class="fa fa-check"></i><b>7.7</b> More on random slopes</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="lmem.html"><a href="lmem.html#what-does-adding-a-random-slope-term-do"><i class="fa fa-check"></i><b>7.7.1</b> What does adding a random slope term do?</a></li>
+<li class="chapter" data-level="7.7.2" data-path="lmem.html"><a href="lmem.html#adding-a-random-slope"><i class="fa fa-check"></i><b>7.7.2</b> Discussion: Adding a random slope</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="lmem.html"><a href="lmem.html#random-effect-correlations"><i class="fa fa-check"></i><b>7.8</b> Random effect correlations</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="lmem.html"><a href="lmem.html#model-1e-correlated-random-slope-intercept"><i class="fa fa-check"></i><b>7.8.1</b> Model 1E: <strong>Correlated</strong> random slope &amp; intercept</a></li>
+<li class="chapter" data-level="7.8.2" data-path="lmem.html"><a href="lmem.html#c6discuss"><i class="fa fa-check"></i><b>7.8.2</b> Dicussion: Adding a correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="lmem.html"><a href="lmem.html#model-criticism-for-linear-mixed-models"><i class="fa fa-check"></i><b>7.9</b> Model criticism for linear mixed models</a><ul>
+<li class="chapter" data-level="7.9.1" data-path="lmem.html"><a href="lmem.html#model-3b-residual-plots"><i class="fa fa-check"></i><b>7.9.1</b> Model 3B: Residual plots</a></li>
+<li class="chapter" data-level="7.9.2" data-path="lmem.html"><a href="lmem.html#model-3b-random-effect-distribution"><i class="fa fa-check"></i><b>7.9.2</b> Model 3B: Random effect distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.10" data-path="lmem.html"><a href="lmem.html#c6factorsissue"><i class="fa fa-check"></i><b>7.10</b> Random slopes for factors</a><ul>
+<li class="chapter" data-level="7.10.1" data-path="lmem.html"><a href="lmem.html#model-with-random-effect-correlations"><i class="fa fa-check"></i><b>7.10.1</b> Model with random-effect correlations</a></li>
+<li class="chapter" data-level="7.10.2" data-path="lmem.html"><a href="lmem.html#lmem-mwrec"><i class="fa fa-check"></i><b>7.10.2</b> Models without random-effect correlations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="lmem.html"><a href="lmem.html#other-readings-1"><i class="fa fa-check"></i><b>7.11</b> Other readings</a></li>
+<li class="chapter" data-level="7.12" data-path="lmem.html"><a href="lmem.html#c6extraexamples"><i class="fa fa-check"></i><b>7.12</b> Appendix: Extra examples</a><ul>
+<li class="chapter" data-level="7.12.1" data-path="lmem.html"><a href="lmem.html#lmm-simulation-confint"><i class="fa fa-check"></i><b>7.12.1</b> Predicting confidence intervals by simulation</a></li>
+<li class="chapter" data-level="7.12.2" data-path="lmem.html"><a href="lmem.html#random-intercept-and-slope-model-for-givenness-data"><i class="fa fa-check"></i><b>7.12.2</b> Random intercept and slope model for <code>givenness</code> data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.13" data-path="lmem.html"><a href="lmem.html#c6extendedexercise"><i class="fa fa-check"></i><b>7.13</b> Appendix: Extended exercise</a></li>
+<li class="chapter" data-level="7.14" data-path="lmem.html"><a href="lmem.html#c6solns"><i class="fa fa-check"></i><b>7.14</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html"><i class="fa fa-check"></i><b>8</b> Mixed-effects logistic regression</a><ul>
+<li class="chapter" data-level="8.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#preliminaries"><i class="fa fa-check"></i><b>8.1</b> Preliminaries</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#motivation"><i class="fa fa-check"></i><b>8.1.1</b> Motivation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#basics"><i class="fa fa-check"></i><b>8.2</b> Basics</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7m1"><i class="fa fa-check"></i><b>8.2.1</b> Model 1: <code>givenness</code> data, crossed random effects (intercepts + slopes)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#hypothesis-testing-3"><i class="fa fa-check"></i><b>8.3</b> Hypothesis testing</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#fixed-effects"><i class="fa fa-check"></i><b>8.3.1</b> Fixed effects</a></li>
+<li class="chapter" data-level="8.3.2" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#random-effects"><i class="fa fa-check"></i><b>8.3.2</b> Random effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#fixed-and-random-effects"><i class="fa fa-check"></i><b>8.4</b> Fixed and random effects</a></li>
+<li class="chapter" data-level="8.5" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#melr-practice"><i class="fa fa-check"></i><b>8.5</b> MELR Practice</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7ex1"><i class="fa fa-check"></i><b>8.5.1</b> Exercise 1: tapping</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#model-criticism-for-mixed-effects-logistic-regression"><i class="fa fa-check"></i><b>8.6</b> Model criticism for mixed-effects logistic regression</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#random-effect-distributions"><i class="fa fa-check"></i><b>8.6.1</b> Random-effect distributions</a></li>
+<li class="chapter" data-level="8.6.2" data-path="logistic-regression.html"><a href="logistic-regression.html#residual-plots"><i class="fa fa-check"></i><b>8.6.2</b> Residual plots</a></li>
+<li class="chapter" data-level="8.6.3" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#influence"><i class="fa fa-check"></i><b>8.6.3</b> Influence</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#evaluation-measures"><i class="fa fa-check"></i><b>8.7</b> Evaluation measures</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#evaluation-measure-1-likelihood-ratio-test"><i class="fa fa-check"></i><b>8.7.1</b> Evaluation measure 1: Likelihood ratio test</a></li>
+<li class="chapter" data-level="8.7.2" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#evaluation-measure-2-classification-accuracy"><i class="fa fa-check"></i><b>8.7.2</b> Evaluation measure 2: Classification accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#miscellaneous-mixed-effects-regression-topics"><i class="fa fa-check"></i><b>8.8</b> Miscellaneous mixed-effects regression topics</a><ul>
+<li class="chapter" data-level="8.8.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7m2"><i class="fa fa-check"></i><b>8.8.1</b> Random-effect correlation issues</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#other-readings-2"><i class="fa fa-check"></i><b>8.9</b> Other readings</a></li>
+<li class="chapter" data-level="8.10" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#appendices"><i class="fa fa-check"></i><b>8.10</b> Appendices</a><ul>
+<li class="chapter" data-level="8.10.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#melr-random-slopes-for-factors"><i class="fa fa-check"></i><b>8.10.1</b> Appendix: Random slopes for factors</a></li>
+<li class="chapter" data-level="8.10.2" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7appendix2"><i class="fa fa-check"></i><b>8.10.2</b> Appendix: Multi-level factors and uncorrelated random effects</a></li>
+<li class="chapter" data-level="8.10.3" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#appendix-what-can-happen-if-a-random-slope-isnt-included"><i class="fa fa-check"></i><b>8.10.3</b> Appendix: What can happen if a random slope isn’t included?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7solns"><i class="fa fa-check"></i><b>8.11</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><i class="fa fa-check"></i><b>9</b> Practical regression topics 2: Ordered factors, nonlinear effects, model predictions, post-hoc tests</a><ul>
+<li class="chapter" data-level="9.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#introduction-1"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#ordered-factors"><i class="fa fa-check"></i><b>9.2</b> Ordered factors</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#orthogonal-polynomial-contrasts"><i class="fa fa-check"></i><b>9.2.1</b> Orthogonal polynomial contrasts</a></li>
+<li class="chapter" data-level="9.2.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#using-an-ordered-factor-as-a-predictor"><i class="fa fa-check"></i><b>9.2.2</b> Using an ordered factor as a predictor</a></li>
+<li class="chapter" data-level="9.2.3" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#further-points"><i class="fa fa-check"></i><b>9.2.3</b> Further points</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#nonlinear-effects"><i class="fa fa-check"></i><b>9.3</b> Nonlinear effects</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#splines-definition-and-benefits"><i class="fa fa-check"></i><b>9.3.1</b> Splines: Definition and benefits</a></li>
+<li class="chapter" data-level="9.3.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#restricted-cubic-splines"><i class="fa fa-check"></i><b>9.3.2</b> Restricted cubic splines</a></li>
+<li class="chapter" data-level="9.3.3" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#choosing-spline-complexity"><i class="fa fa-check"></i><b>9.3.3</b> Choosing spline complexity</a></li>
+<li class="chapter" data-level="9.3.4" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#rcs-components"><i class="fa fa-check"></i><b>9.3.4</b> RCS components</a></li>
+<li class="chapter" data-level="9.3.5" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#using-rcs-in-a-mixed-model"><i class="fa fa-check"></i><b>9.3.5</b> Using RCS in a mixed model</a></li>
+<li class="chapter" data-level="9.3.6" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#random-slopes-for-rcs-terms"><i class="fa fa-check"></i><b>9.3.6</b> Random slopes for RCS terms</a></li>
+<li class="chapter" data-level="9.3.7" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#nonlinear-effects-summary"><i class="fa fa-check"></i><b>9.3.7</b> Nonlinear effects: Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#predictions-from-mixed-models"><i class="fa fa-check"></i><b>9.4</b> Predictions from mixed models</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#making-model-predictions"><i class="fa fa-check"></i><b>9.4.1</b> Making Model Predictions</a></li>
+<li class="chapter" data-level="9.4.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#simulation-based-predictions"><i class="fa fa-check"></i><b>9.4.2</b> Simulation-based predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#post-hoc-mult-comp"><i class="fa fa-check"></i><b>9.5</b> Post-hoc tests and multiple comparisons</a></li>
+<li class="chapter" data-level="9.6" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#c8indivpreds"><i class="fa fa-check"></i><b>9.6</b> Appendix: Model predictions for indiviudal participants</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#predictions-incorporating-offsets-for-individual-speakers"><i class="fa fa-check"></i><b>9.6.1</b> Predictions incorporating offsets for individual speakers</a></li>
+<li class="chapter" data-level="9.6.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#predicted-williams-effect-for-each-speaker"><i class="fa fa-check"></i><b>9.6.2</b> Predicted Williams effect for each speaker</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#c8slopesForFactors"><i class="fa fa-check"></i><b>9.7</b> Appendix: Random slopes for factors</a></li>
+<li class="chapter" data-level="9.8" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#c8solns"><i class="fa fa-check"></i><b>9.8</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="datasets-appendix.html"><a href="datasets-appendix.html"><i class="fa fa-check"></i><b>10</b> Appendix: Datasets and packages</a><ul>
+<li class="chapter" data-level="10.1" data-path="datasets-appendix.html"><a href="datasets-appendix.html#engdata"><i class="fa fa-check"></i><b>10.1</b> <code>english</code> lexical decision and naming latencies</a></li>
+<li class="chapter" data-level="10.2" data-path="datasets-appendix.html"><a href="datasets-appendix.html#dutch-regularity"><i class="fa fa-check"></i><b>10.2</b> Dutch <code id="dregdata">regularity</code></a></li>
+<li class="chapter" data-level="10.3" data-path="datasets-appendix.html"><a href="datasets-appendix.html#european-french-phrase-medial-vowel-devoicing"><i class="fa fa-check"></i><b>10.3</b> European French phrase-medial vowel <code id="devdata">devoicing</code></a><ul>
+<li class="chapter" data-level="10.3.1" data-path="datasets-appendix.html"><a href="datasets-appendix.html#background"><i class="fa fa-check"></i><b>10.3.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="datasets-appendix.html"><a href="datasets-appendix.html#north-american-english-tapping"><i class="fa fa-check"></i><b>10.4</b> North American English <code id="tapdata">tapping</code></a><ul>
+<li class="chapter" data-level="10.4.1" data-path="datasets-appendix.html"><a href="datasets-appendix.html#background-1"><i class="fa fa-check"></i><b>10.4.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="datasets-appendix.html"><a href="datasets-appendix.html#halfdata"><i class="fa fa-check"></i><b>10.5</b> <code>halfrhyme</code>: English half-rhymes</a></li>
+<li class="chapter" data-level="10.6" data-path="datasets-appendix.html"><a href="datasets-appendix.html#givedata"><i class="fa fa-check"></i><b>10.6</b> <code>givenness</code> data: the Williams Effect</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="datasets-appendix.html"><a href="datasets-appendix.html#background-2"><i class="fa fa-check"></i><b>10.6.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="datasets-appendix.html"><a href="datasets-appendix.html#alternatives"><i class="fa fa-check"></i><b>10.7</b> <code id="altdata">alternatives</code></a><ul>
+<li class="chapter" data-level="10.7.1" data-path="datasets-appendix.html"><a href="datasets-appendix.html#background-3"><i class="fa fa-check"></i><b>10.7.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="datasets-appendix.html"><a href="datasets-appendix.html#votdata"><i class="fa fa-check"></i><b>10.8</b> VOT</a><ul>
+<li class="chapter" data-level="10.8.1" data-path="datasets-appendix.html"><a href="datasets-appendix.html#background-4"><i class="fa fa-check"></i><b>10.8.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.9" data-path="datasets-appendix.html"><a href="datasets-appendix.html#transitionsdata"><i class="fa fa-check"></i><b>10.9</b> Transitions</a></li>
+<li class="chapter" data-level="10.10" data-path="datasets-appendix.html"><a href="datasets-appendix.html#packages"><i class="fa fa-check"></i><b>10.10</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Quantitative Methods for Linguistic Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Practical Regression Topics 1: Multi-level factors, contrast coding, interactions</h1>
+<p><strong>Preliminary code</strong></p>
+<p>This code is needed to make other code below work:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gridExtra) <span class="co"># for grid.arrange() to print plots side-by-side</span>
+<span class="kw">library</span>(languageR)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(arm)
+<span class="kw">library</span>(boot)
+
+
+## loads givennessMcGillLing620.csv from OSF project for Wagner (2012) data
+givenness &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">url</span>(<span class="st">&quot;https://osf.io/q9e3a/download&quot;</span>))
+
+givenness &lt;-<span class="st"> </span><span class="kw">mutate</span>(givenness,
+                       <span class="dt">conditionLabel.williams =</span> <span class="kw">rescale</span>(conditionLabel),
+                       <span class="dt">clabel.williams =</span> <span class="kw">rescale</span>(conditionLabel),
+                       <span class="dt">npType.pronoun =</span> <span class="kw">rescale</span>(npType),
+                       <span class="dt">npType.pron =</span> <span class="kw">rescale</span>(npType),
+                       <span class="dt">voice.passive =</span> <span class="kw">rescale</span>(voice),
+                       <span class="dt">order.std =</span> <span class="kw">rescale</span>(order),
+                       <span class="dt">stressshift.num =</span> (<span class="kw">as.numeric</span>(stressshift) -<span class="st"> </span><span class="dv">1</span>)
+)
+## note: &quot;stress shift&quot; generally called &quot;prominence shift&quot; etc. in the text
+
+## loads alternativesMcGillLing620.csv from OSF project for Wagner (2016) data
+alternatives &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">url</span>(<span class="st">&quot;https://osf.io/6qctp/download&quot;</span>))
+
+## loads french_medial_vowel_devoicing.txt from OSF project for Torreira &amp; Ernestus (2010) data
+devoicing &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="kw">url</span>(<span class="st">&quot;https://osf.io/uncd8/download&quot;</span>))</code></pre></div>
+<p><strong>Note</strong>: Answers to some questions/exercises not listed in text are in <a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#c5solns">Solutions</a></p>
+<script src="js/hideOutput.js"></script>
+<div id="multi-level-factors-introduction" class="section level2">
+<h2><span class="header-section-number">6.1</span> Multi-level factors: Introduction</h2>
+<p>Thus far, we have only used factors with two levels as predictors. In general, we want to be able to include factors with <span class="math inline">\(&gt;2\)</span> levels in regression models, such as part of speech (noun, verb, adjective, …), native language (L1 = English, French, Mandarin, other), and so on.</p>
+<p>In this chapter we introduce techniques needed to effectively fit and interpret regression models which include multi-level factors:</p>
+<ul>
+<li><p><strong>Contrast coding</strong>, which captures how the different levels of the factor affect the response</p></li>
+<li><p><strong>Hypothesis testing</strong> to assess whether a multi-level factor helps predict the response, overall (without reference to particular levels)</p></li>
+<li><p><strong>Interpreting interaction terms</strong> involving multi-level factors, which are present in most models fitted in practice.</p></li>
+</ul>
+</div>
+<div id="contrast-coding" class="section level2">
+<h2><span class="header-section-number">6.2</span> Contrast coding</h2>
+<p>A factor <span class="math inline">\(X\)</span> with <span class="math inline">\(k\)</span> levels corresponds to <span class="math inline">\(k-1\)</span> categorical predictors, called <em>contrasts</em>. There are different ways of mapping <span class="math inline">\(k\)</span> levels into <span class="math inline">\(k-1\)</span> categorical predictors, corresponding to hypotheses that you want to test about how the factor affects the response. These different choices of contrasts (or “coding schemes”) result in different interpretations of:</p>
+<ol style="list-style-type: decimal">
+<li><p>The intercept</p></li>
+<li><p>Regression coefficients for <span class="math inline">\(X\)</span> in terms of levels of <span class="math inline">\(X\)</span></p></li>
+</ol>
+<p>That is, <strong>the meaning of the intercept and the meaning of the regression coefficients corresponding to <span class="math inline">\(X\)</span> depend on the coding scheme</strong>. This is fundamentally why factors with more than two levels are confusing—there is no single way to interpret them.</p>
+<div id="first-examples" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> First examples</h3>
+<div id="givenness-data-two-level-factor" class="section level4 unnumbered">
+<h4><a href="datasets-appendix.html#givedata"><code>givenness</code> data</a>: two-level factor</h4>
+<p>Let’s begin with a linear regression example using the <a href="datasets-appendix.html#givedata"><code>givenness</code> data</a>, with a single predictor: the two-level factor <code>conditionLabel</code>, which is of primary interest. <!-- examples we've seen in previous chapters ([here](TODO MORGAN: not sure what example you're refering to, there's no example with givenness data in the linear regression chapter) and [here](#c4ex1)).  First, consider a two-level factor: `conditionLabel`, for the `givenness` data. T --> This factor has two levels: <em>Contrast</em> and <em>Williams</em>. (Note that while discussing contrast coding, we will use <em>italics</em> to refer to levels of a factor, and <code>teletype</code> to refer to actual names of factors or other predictors.)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(acoustics ~<span class="st"> </span>conditionLabel, <span class="dt">data=</span>givenness)
+<span class="kw">summary</span>(mod)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = acoustics ~ conditionLabel, data = givenness)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.31843 -0.56264  0.01977  0.53651  2.50851 
+## 
+## Coefficients:
+##                        Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)            -0.87510    0.05708 -15.331  &lt; 2e-16 ***
+## conditionLabelWilliams  0.31774    0.08224   3.863 0.000131 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.8032 on 380 degrees of freedom
+## Multiple R-squared:  0.03779,    Adjusted R-squared:  0.03526 
+## F-statistic: 14.93 on 1 and 380 DF,  p-value: 0.0001315</code></pre>
+<p>The <code>conditionLabelWilliams</code> row of the regression table gives the coefficient value for the single <em>contrast</em> corresponding to the two-level factor, which has two values: 0 and 1.</p>
+<p>To see this, examine the <em>contrast matrix</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">contrasts</span>(givenness$conditionLabel)</code></pre></div>
+<pre><code>##          Williams
+## Contrast        0
+## Williams        1</code></pre>
+<p>which says there is a single contrast, which R (confusingly) calls <code>Williams</code>—the name of the second level. This numeric variable takes on the value 1 when the level of <code>condition</code> is <em>Williams</em> and 0 when the level of <code>condition</code> is <em>Contrast</em>.</p>
+<p>In the regression above:</p>
+<ul>
+<li><p>The interpretation of the intercept is: value of <code>acoustics</code> when <code>conditionLabel</code> = <em>Contrast</em></p></li>
+<li><p>The interpretation of the regression coefficient <code>conditionLabelWilliams</code> is: difference in <code>acoustics</code> between <code>conditionLabel</code> = <em>Contrast</em> and <code>conditionLabel</code> = <em>Williams</em>.</p></li>
+</ul>
+<p>These are the interpretations of (1) and (2) resulting from this choice of contrast, which is called “dummy coding” (see Sec. <a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#dummy-coding">6.2.3.1</a> for more detail). R uses dummy coding by default for factors.</p>
+<p>In previous analyses of the <code>givenness</code> data, we have often used a “standardized” version of <code>conditionLabel</code>, called <code>clabel.williams</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(acoustics ~<span class="st"> </span>clabel.williams, <span class="dt">data=</span>givenness)
+<span class="kw">summary</span>(mod)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = acoustics ~ clabel.williams, data = givenness)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.31843 -0.56264  0.01977  0.53651  2.50851 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     -0.72205    0.04109 -17.570  &lt; 2e-16 ***
+## clabel.williams  0.31774    0.08224   3.863 0.000131 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.8032 on 380 degrees of freedom
+## Multiple R-squared:  0.03779,    Adjusted R-squared:  0.03526 
+## F-statistic: 14.93 on 1 and 380 DF,  p-value: 0.0001315</code></pre>
+<p>a numeric variable which takes on values of roughly -0.5 and 0.5. This is equivalent to using a different contrast coding scheme, where the two values of the <code>conditionLabel</code> contrast are (roughly) -0.5 and 0.5.</p>
+<p>(To see this, we can actually set the contrast values to -0.5 and 0.5 for the <code>conditionLabel</code> factor, and carry out a regression using <code>conditionLabel</code> as a factor:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## sets contrast levels to -0.5 and 0.5
+<span class="kw">contrasts</span>(givenness$conditionLabel) &lt;-<span class="st"> </span><span class="kw">contr.sum</span>(<span class="dv">2</span>)/<span class="dv">2</span>
+
+## carry out the regression and see results
+mod &lt;-<span class="st"> </span><span class="kw">lm</span>(acoustics ~<span class="st"> </span>conditionLabel, <span class="dt">data=</span>givenness)
+<span class="kw">summary</span>(mod)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = acoustics ~ conditionLabel, data = givenness)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.31843 -0.56264  0.01977  0.53651  2.50851 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     -0.71623    0.04112 -17.417  &lt; 2e-16 ***
+## conditionLabel1 -0.31774    0.08224  -3.863 0.000131 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.8032 on 380 degrees of freedom
+## Multiple R-squared:  0.03779,    Adjusted R-squared:  0.03526 
+## F-statistic: 14.93 on 1 and 380 DF,  p-value: 0.0001315</code></pre>
+<p>Note the results are identical to using <code>clabel.williams</code> as the predictor.)</p>
+<p>The interpretations of (1) and (2) are now:</p>
+<ul>
+<li><p>Intercept: <strong>Average value</strong> of <code>acoustics</code> (across both levels of <code>conditionLabel</code>)</p></li>
+<li><p>Regression coefficient for <code>conditionLabel</code>: difference in <code>acoustics</code> between <code>conditionLabel</code> = <em>Contrast</em> and <em>Williams</em>.</p></li>
+</ul>
+<p>That is, the interpretation of the intercept has changed from dummy coding, but the interpretation of the contrast’s regression coefficient has not changed.</p>
+</div>
+<div id="example-three-level-factor-with-devoicing-dataset" class="section level4 unnumbered">
+<h4>Example: Three-level factor with <a href="datasets-appendix.html#devdata"><code>devoicing</code> dataset</a></h4>
+<p>As another example, consider a simple linear regression of the effect of vowel (<code>v</code>: three levels = <em>i</em>, <em>u</em>, <em>y</em>) on syllable duration (<code>syldur</code>) in the devoicing dataset:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">lm</span>(syldur ~<span class="st"> </span>v, <span class="dt">data=</span>devoicing)
+<span class="kw">summary</span>(mod)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = syldur ~ v, data = devoicing)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -108.006  -26.925    1.075   23.055  115.994 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  123.006      2.050  59.999   &lt;2e-16 ***
+## vu            15.963      6.686   2.388   0.0173 *  
+## vy            -4.082      3.304  -1.235   0.2173    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 36.56 on 547 degrees of freedom
+## Multiple R-squared:  0.01559,    Adjusted R-squared:  0.01199 
+## F-statistic: 4.331 on 2 and 547 DF,  p-value: 0.01361</code></pre>
+<p>The interpretations of (1) and (2) are:</p>
+<ul>
+<li><p>Intercept: value of <code>syldur</code> when <code>vowel</code> = <em>i</em></p></li>
+<li>Regression coefficients for <code>syldur</code>:
+<ul>
+<li><p>Contrast 1: difference in <code>syldur</code> between <code>vowel</code> = <em>u</em> and <em>i</em></p></li>
+<li><p>Contrast 2: difference in <code>syldur</code> between <code>vowel</code> = <em>u</em> and <em>y</em></p></li>
+</ul></li>
+</ul>
+<p>The <code>v</code> variable has been turned into two numeric variables:</p>
+<ul>
+<li><p>Contrast 1: 1 when <code>vowel</code>=<em>u</em>, 0 otherwise</p></li>
+<li><p>Contrast 2: 1 when <code>vowel</code>=<em>y</em>, 0 otherwise</p></li>
+</ul>
+<p>as can be seen in the two columns of the contrast matrix:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">contrasts</span>(devoicing$v)</code></pre></div>
+<pre><code>##   u y
+## i 0 0
+## u 1 0
+## y 0 1</code></pre>
+</div>
+</div>
+<div id="basic-interpretation-of-contrasts" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Basic interpretation of contrasts</h3>
+<p>These examples illustrate the most crucial aspect of contrasts: <strong>contrasts correspond to different hypotheses you’re testing about how the response differs between groups</strong>.<a href="#fn26" class="footnoteRef" id="fnref26"><sup>26</sup></a></p>
+<p>For example, based on our research questions, we may be interested in:</p>
+<ul>
+<li><p>“What is the difference in <span class="math inline">\(Y\)</span> between level 1 and level 3 of the factor?”</p></li>
+<li><p>“What is the difference in <span class="math inline">\(Y\)</span> between level 3 and the previous levels (1-2) of the factor?”</p></li>
+</ul>
+<p>Different contrast coding schemes are used to test different hypotheses. Only <span class="math inline">\(k-1\)</span> such hypotheses can be included at once in a model, for a factor with <span class="math inline">\(k\)</span> levels, in order for the predictors to not be linearly dependent (= one can be perfectly predicted from the others). As a result, contrasts do <strong>not</strong> correspond to “the value of <span class="math inline">\(Y\)</span> at level foo of the factor” (e.g. “<code>syldur</code> when <code>v</code> is <em>i</em>”)—they always correspond to <strong>differences</strong> between levels. This is a frequent point of confusion.</p>
+<p>Contrast coding is a powerful and useful tool. Unfortunately, interpreting contrasts is confusing, the terminology for talking about contrasts is only partially standardized, and there are few good and comprehensive readings on contrast coding—the only one we are aware of is <span class="citation">Schad, Hohenstein, Vasishth, &amp; Kliegl (<a href="#ref-schad2018capitalize">2018</a>)</span>, who go into both mathematical and practical detail. Another useful exposition by UCLA’s statistical consulting service, which focuses largely on practical implementation using R is <a href="http://www.ats.ucla.edu/stat/r/library/contrast_coding.htm">here</a>.<br />
+We will cover a few common contrast coding schemes, through examples.</p>
+<div id="c5ex1" class="section level4 unnumbered">
+<h4>Example</h4>
+<p>For this example, we will be using the <code>alternatives</code> dataset, described in detail <a href="datasets-appendix.html#altdata">here</a>. Each row corresponds to a single sentence read by a participant in a speech production experiment, and the important columns are:</p>
+<ul>
+<li><p>Predictor: <code>context</code>, with levels <em>New</em>, <em>NoAlternative</em>, <em>Alternative</em></p></li>
+<li><p>Response: <code>shifted</code>, a binary (0/1) factor indicating whether prominence was shifted in the sentence read by the speaker</p></li>
+</ul>
+<p>We first do some data preparation:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## reorder factor levels to make conceptual sense: &quot;NoAlternative&quot; is conceptually between &quot;Alternative&quot; and &quot;New&quot;
+alternatives &lt;-<span class="st"> </span><span class="kw">mutate</span>(alternatives, <span class="dt">context=</span><span class="kw">factor</span>(context, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Alternative&quot;</span>, <span class="st">&quot;NoAlternative&quot;</span>, <span class="st">&quot;New&quot;</span>)))
+
+## remove rows where response is NA (this is  just due to an issue with this dataset)
+alternatives &lt;-<span class="st"> </span><span class="kw">filter</span>(alternatives, !<span class="kw">is.na</span>(prominence))
+
+## add a 0/1 variable where 1 = adj prominence (shifted), 0 = N prominence
+alternatives &lt;-<span class="st"> </span>alternatives %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">shifted =</span> -<span class="dv">1</span>*<span class="kw">as.numeric</span>(<span class="kw">factor</span>(prominence))+<span class="dv">2</span>)</code></pre></div>
+<p>The basic results are:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## plot of the basic pattern
+<span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>context, <span class="dt">y =</span> shifted), <span class="dt">data=</span>alternatives) +
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="dt">geom=</span><span class="st">&#39;errorbar&#39;</span>,<span class="dt">width=</span><span class="fl">0.2</span>, <span class="kw">aes</span>(<span class="dt">color=</span>context)) +
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;P(adj stressed)&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:altFig1"></span>
+<img src="06-contrasts-interactions_files/figure-html/altFig1-1.png" alt="Effect of `context` on proportion of tokens with shifted prominence, for the `alternatives` data." width="288" />
+<p class="caption">
+Figure 6.1: Effect of <code>context</code> on proportion of tokens with shifted prominence, for the <code>alternatives</code> data.
+</p>
+</div>
+<p>The probability of shifting prominence decreases from <em>Alternative</em> to <em>NoAlternative</em> to <em>New</em>.</p>
+<p>For exemplifying different contrast coding schemes, we will need the condition means: the <strong>log-odds</strong> of shifting prominence in the empirical data, in each context:</p>
+<ul>
+<li><p><code>context</code> = <em>Alternative</em>: 0.345</p></li>
+<li><p><code>context</code> = <em>NoAlternative</em>: -1.036</p></li>
+<li><p><code>context</code> = <em>New</em>: -1.736</p></li>
+</ul>
+<blockquote>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>What are the equivalent probabilities?</li>
+</ul>
+</blockquote>
+<p>(This is just practice in going from log-odds to probabilities.)</p>
+<div class="fold o">
+<pre><code>## [1] 0.585</code></pre>
+<pre><code>## [1] 0.262</code></pre>
+<pre><code>## [1] 0.15</code></pre>
+</div>
+<p>For practice with data summarization: this hidden table shows how to calculate empirical probabilities and log-odds for each condition, using <code>dplyr</code> functions:</p>
+<div class="fold s o">
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## empirical p and log-odds of shifting prominence:
+conditionMeans &lt;-<span class="st"> </span>alternatives %&gt;%<span class="st"> </span><span class="kw">group_by</span>(context) %&gt;%<span class="st"> </span><span class="kw">summarise</span>(<span class="dt">p=</span><span class="kw">mean</span>(shifted), <span class="dt">logOdds=</span><span class="kw">log</span>(p/(<span class="dv">1</span>-p)))
+conditionMeans</code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   context           p logOdds
+##   &lt;fct&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+## 1 Alternative   0.585   0.345
+## 2 NoAlternative 0.262  -1.04 
+## 3 New           0.150  -1.74</code></pre>
+</div>
+</div>
+</div>
+<div id="contrast-coding-schemes" class="section level3">
+<h3><span class="header-section-number">6.2.3</span> Contrast coding schemes</h3>
+<div id="dummy-coding" class="section level4">
+<h4><span class="header-section-number">6.2.3.1</span> Dummy coding</h4>
+<p>We first consider <em>dummy coding</em>, also known as <em>treatment coding</em>.</p>
+<p>In dummy coding:</p>
+<ul>
+<li><p>The <strong>intercept</strong> corresponds to level 1</p></li>
+<li><p><strong>Contrast 1</strong> corresponds to level 2 minus level 1</p></li>
+<li><p><strong>Contrast <span class="math inline">\(k\)</span></strong> corresponds to level <span class="math inline">\(k+1\)</span> minus level 1.</p></li>
+</ul>
+<p>For example, for a four-level factor coded using dummy contrasts, the first/second/third contrast correspond to the difference between level 4/3/2 and level 1.</p>
+<blockquote>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>What does the hypothesis test <span class="math inline">\(H_0~:~\beta_1 = 0\)</span> correspond to asking? (What levels are hypothesized to have the same value of <span class="math inline">\(Y\)</span>?)</li>
+</ul>
+</blockquote>
+<p>The <em>contrast matrix</em> for dummy coding for a three-level factor is:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th><code>Contrast1</code></th>
+<th><code>Contrast2</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Level 1</em></td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td><em>Level 2</em></td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td><em>Level 3</em></td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>The contrast matrix shows the mapping from a categorical predictor with <span class="math inline">\(k\)</span> levels, to a set of <span class="math inline">\(k-1\)</span> numeric variables (the contrasts). In the example above, observations from <em>Level 1</em> have values 0 for both the first and second contrast.</p>
+<p>The contrast matrix looks similar for factors with more levels , such as <span class="math inline">\(k=4\)</span> or <span class="math inline">\(k=5\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">contr.treatment</span>(<span class="dv">4</span>)</code></pre></div>
+<pre><code>##   2 3 4
+## 1 0 0 0
+## 2 1 0 0
+## 3 0 1 0
+## 4 0 0 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">contr.treatment</span>(<span class="dv">5</span>)</code></pre></div>
+<pre><code>##   2 3 4 5
+## 1 0 0 0 0
+## 2 1 0 0 0
+## 3 0 1 0 0
+## 4 0 0 1 0
+## 5 0 0 0 1</code></pre>
+<p>(Rows = factor levels; columns = contrasts)</p>
+<p>By default, R assumes that factor levels go in alphabetical order. In our data, we have re-leveled <code>context</code> so that <em>Alternative</em> &lt; <em>NoAlternative</em> &lt; <em>New</em>. That is, <em>Alternative</em> is the “base level” (level 1). A logistic regression of <code>shifted</code> on <code>context</code> using dummy coding gives:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">glm</span>(shifted ~<span class="st"> </span>context, <span class="dt">data=</span>alternatives, <span class="dt">family=</span><span class="st">&#39;binomial&#39;</span>))</code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = shifted ~ context, family = &quot;binomial&quot;, data = alternatives)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.3269  -0.7793  -0.5696   1.0349   1.9487  
+## 
+## Coefficients:
+##                      Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)            0.3448     0.1418   2.432    0.015 *  
+## contextNoAlternative  -1.3809     0.2115  -6.529 6.61e-11 ***
+## contextNew            -2.0813     0.2409  -8.639  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 789.96  on 621  degrees of freedom
+## Residual deviance: 694.53  on 619  degrees of freedom
+## AIC: 700.53
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<p>The coefficient for contrast is the <code>contextNoAlternative</code> row. The coefficient value is the estimated difference, between <code>context</code> = <em>NoAlternative</em> and <code>context</code> = <em>Alternative</em>, in the log-odds of stress shifting.</p>
+<blockquote>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>What is the interpretation of the second contrast’s coefficient (<code>contextNew</code>)?</li>
+</ul>
+</blockquote>
+<p>We can compare these coefficient values to the corresponding differences in empirical means (log-odds, given for each level in <a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#c5ex1">a previous example</a>):</p>
+<ul>
+<li><p><span class="math inline">\(\hat{\beta}_1 = -1.38\)</span></p>
+<ul>
+<li><em>NoAlternative</em> mean - <em>Alternative</em> mean = -1.381</li>
+</ul></li>
+<li><p><span class="math inline">\(\hat{\beta}_2 = -2.08\)</span></p>
+<ul>
+<li><em>New</em> mean - <em>Alternative</em> mean = -2.081</li>
+</ul></li>
+<li><p><span class="math inline">\(\hat{\beta}_0 = 0.344\)</span></p>
+<ul>
+<li><em>Alternative</em> mean = 0.345</li>
+</ul></li>
+</ul>
+<p>From the <span class="math inline">\(p\)</span>-values for these coefficients, we can conclude:</p>
+<ul>
+<li><p><em>NoAlternative</em> and <em>Alternative</em> differ significantly</p></li>
+<li><p><em>New</em> and <em>NoAlternative</em> also differ significantly</p></li>
+<li><p><em>Alternative</em> is significantly different from 0.</p></li>
+</ul>
+<p>Dummy coding is what R uses by default for factors, perhaps because this coding scheme is most traditional or easiest to understand.</p>
+<p>However, dummy coding has important drawbacks: each contrast doesn’t sum to zero (for balanced data), which means there is collinearity between contrasts—for no good reason. Intuitively, we would like <span class="math inline">\(k-1\)</span> <em>independent</em> contrasts for a factor with <span class="math inline">\(k\)</span> levels, but dummy contrasts aren’t independent—if you know that contrast 1 = 1 (for some observation), you already know that the level isn’t <em>1</em> (the base level), which gives you information about contrast 2.</p>
+<p>A more practical drawback is that dummy contrasts are not “centered”: the intercept for dummy coding is level 1, but this is often not of direct interest. It often makes more sense for the intercept to be interpretable as some sort of grand mean—the “average value” across the dataset. (In <em>simple coding</em>, the intercept is the grand mean (average of levels 1, 2, …), but the contrasts have the same interpretation as in dummy coding.)</p>
+<p>In general, it is not recommended to use dummy coding without good reason, e.g. you are actually interested in the value of level 1 and differences between level <span class="math inline">\(k\)</span> and level 1.</p>
+</div>
+<div id="contrast-matrix-rightarrow-interpretation" class="section level4">
+<h4><span class="header-section-number">6.2.3.2</span> Contrast matrix <span class="math inline">\(\rightarrow\)</span> interpretation</h4>
+<p>In general, you can’t read off from the contrast matrix the <strong>interpretations</strong> of the intercept and contrasts in an actual regression model. For example, it is not obvious from the two columns of the contrast matrix shown for dummy coding above (<span class="math inline">\((0,1,0)\)</span> and <span class="math inline">\((0,0,1)\)</span>) that the first contrasts should be interpreted as “difference between level 2 and level 1”.</p>
+<p>Besides just memorizing the interpretation of each coding scheme, you can solve for the interpretations by taking the “generalized inverse” of the contrast matrix, using the <code>ginv</code> function in the MASS package.<a href="#fn27" class="footnoteRef" id="fnref27"><sup>27</sup></a></p>
+<p>This example (for dummy coding a three-level factor) shows how to obtain a matrix from which we can read off intercept and contrast interpretations from each row:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ginv</span>(<span class="kw">contr.treatment</span>(<span class="dv">3</span>))</code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    0    1    0
+## [2,]    0    0    1</code></pre>
+<p>The three rows of this matrix correspond to the interpretation of the intercept and contrasts:</p>
+<ol style="list-style-type: decimal">
+<li><p>Row 1 = Intercept:</p>
+<ul>
+<li><em>Level 1</em> (vector <span class="math inline">\((1,0,0)\)</span> means “<em>Level 1</em> minus 0 x <em>Level 2</em> minus 0 x <em>Level 3</em>”)</li>
+</ul></li>
+<li><p>Row 2 = Contrast 1:</p>
+<ul>
+<li><em>Level 2 - Level 1</em> (vector <span class="math inline">\((-1,1,0)\)</span> means “<em>Level 2</em> minus <em>Level 1</em>”)</li>
+</ul></li>
+<li><p>Row 3 = Contrast 2:</p>
+<ul>
+<li><em>Level 3 - Level 1</em></li>
+</ul></li>
+</ol>
+<p>You can get a similar matrix for any contrast matrix <span class="math inline">\(X\)</span> using <code>ginv(X)</code>.</p>
+</div>
+<div id="sum-coding" class="section level4">
+<h4><span class="header-section-number">6.2.3.3</span> Sum coding</h4>
+<p>Next, we consider <em>sum coding</em>, also known as <em>deviation coding</em>. For a factor with <span class="math inline">\(k\)</span> levels:</p>
+<ul>
+<li><p>The interpretation of the <strong>intercept</strong> is: mean of <em>level 1</em>, … , <em>level <span class="math inline">\(k\)</span></em> (“grand mean”)</p></li>
+<li><p>Contrast 1: <em>level 1</em> <span class="math inline">\(-\)</span> grand mean</p></li>
+<li><p>Contrast 2: <em>level 2</em> <span class="math inline">\(-\)</span> grand mean</p></li>
+<li><p>Contrast <span class="math inline">\(k\)</span>: <em>level <span class="math inline">\(k\)</span></em> <span class="math inline">\(-\)</span> grand mean</p></li>
+</ul>
+<p>For example, for a factor with three levels, the first contrasts corresponds to “difference between <span class="math inline">\(level 1\)</span> and the mean of <em>levels 1/2/3</em>”.</p>
+<blockquote>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>What does the hypothesis test <span class="math inline">\(H_0 ~:~ \beta_1 = 0\)</span> correspond to? (What is equal to what?)</li>
+</ul>
+</blockquote>
+<p>The contrast matrix for sum coding with <span class="math inline">\(k=3\)</span> levels is:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th><code>Contrast1</code></th>
+<th><code>Contrast2</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Level 1</em> (<em>Alternative</em>)</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td><em>Level 2</em> (<em>NoAlternative</em>)</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td><em>Level 3</em> (<em>New</em>)</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<p>In R, this is <code>contr.sum(3)</code>. You can see how the contrast matrix looks for a factor with <span class="math inline">\(k\)</span> levels by extrapolating from <span class="math inline">\(k=4\)</span> and <span class="math inline">\(k=5\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">contr.sum</span>(<span class="dv">4</span>)</code></pre></div>
+<pre><code>##   [,1] [,2] [,3]
+## 1    1    0    0
+## 2    0    1    0
+## 3    0    0    1
+## 4   -1   -1   -1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">contr.sum</span>(<span class="dv">5</span>)</code></pre></div>
+<pre><code>##   [,1] [,2] [,3] [,4]
+## 1    1    0    0    0
+## 2    0    1    0    0
+## 3    0    0    1    0
+## 4    0    0    0    1
+## 5   -1   -1   -1   -1</code></pre>
+<p>Sum contrasts have the advantage that each contrast is <strong>centered</strong> (for balanced data): the contrast sums to zero across the dataset. This tends to reduce collinearity, and allows for easier interpretation of main effects in the presence of interactions (as “omnibus” effects). It does not eliminate collinearity, because knowing the value of one contrast still tells you something about the value of the others. (Why?)</p>
+<p>An aside: as above, the interpretations of the intercept and contrasts are not obvious from the contrast matrix, but we can get these interpretations by taking the generalized inverse:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ginv</span>(<span class="kw">contr.sum</span>(<span class="dv">3</span>))</code></pre></div>
+<pre><code>##            [,1]       [,2]       [,3]
+## [1,]  0.6666667 -0.3333333 -0.3333333
+## [2,] -0.3333333  0.6666667 -0.3333333</code></pre>
+<p>where we see:</p>
+<ul>
+<li><p>Row 1: intercept</p>
+<ul>
+<li>1/3 <span class="math inline">\(\times\)</span> each level = <strong>grand mean</strong></li>
+</ul></li>
+<li><p>Row 2: <span class="math inline">\((2/3, -1/3, -1/3) = (1, 0, 0) - (1/3, 1/3, 1/3)\)</span></p>
+<ul>
+<li>Difference between <em>level 1</em> and grand mean</li>
+</ul></li>
+<li><p>Row 3: <span class="math inline">\((-1/3,2/3,1/3) = (0, 1, 0) - (1/3, 1/3, 1/3)\)</span></p>
+<ul>
+<li>Difference between <em>level 2</em> and grand mean</li>
+</ul></li>
+</ul>
+</div>
+<div id="example-16" class="section level4 unnumbered">
+<h4>Example</h4>
+<p>Let’s refit the simple logistic regression <a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#c5ex1">above</a>, but now coding <code>context</code> using sum contrasts:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## sum-coded version of context
+alternatives$context.sum &lt;-<span class="st"> </span>alternatives$context
+<span class="kw">contrasts</span>(alternatives$context.sum) &lt;-<span class="st"> </span><span class="kw">contr.sum</span>(<span class="dv">3</span>)
+<span class="kw">summary</span>(<span class="kw">glm</span>(shifted ~<span class="st"> </span>context.sum, <span class="dt">data=</span>alternatives, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>))</code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = shifted ~ context.sum, family = &quot;binomial&quot;, data = alternatives)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.3269  -0.7793  -0.5696   1.0349   1.9487  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)  -0.80925    0.09584  -8.444   &lt;2e-16 ***
+## context.sum1  1.15409    0.12604   9.157   &lt;2e-16 ***
+## context.sum2 -0.22684    0.13190  -1.720   0.0855 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 789.96  on 621  degrees of freedom
+## Residual deviance: 694.53  on 619  degrees of freedom
+## AIC: 700.53
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<p>Remembering that the ordering of the levels of <code>context</code> is <em>Alternative</em>, <em>NoAlternative</em>, <em>New</em>:</p>
+<blockquote>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li><p>What are the interpretations of:</p></li>
+<li><p>The intercept?</p></li>
+<li><p><code>context.sum1</code>?</p></li>
+<li><p><code>context.sum2</code>?</p></li>
+<li><p>The coefficient for the second contrast isn’t significant. What corresponding difference is not significant (roughly, “is very small”), in the empirical data (Figure <a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#fig:altFig1">6.1</a>)?</p></li>
+</ul>
+</blockquote>
+<p><strong>Example</strong>: interpretation of contrast 1:</p>
+<ul>
+<li><p>Level 1 (= <em>Alternative</em>) condition mean = 0.344</p></li>
+<li><p>Average of condition means: <span class="math inline">\((0.344 + -1.036 + -1.736)/3 = -0.809\)</span></p></li>
+<li><p>Difference between these: <span class="math inline">\(0.344 - - 0.809 = 1.15\)</span></p></li>
+<li><p><span class="math inline">\(\hat{\beta}_1\)</span> = 1.15</p></li>
+</ul>
+</div>
+<div id="helmert-coding" class="section level4">
+<h4><span class="header-section-number">6.2.3.4</span> Helmert coding</h4>
+<p>We next consider <em>Helmert coding</em>, where each contrast corresponds to the difference between <em>level <span class="math inline">\(k\)</span></em> and the previous levels.<a href="#fn28" class="footnoteRef" id="fnref28"><sup>28</sup></a></p>
+<ul>
+<li><p>The interpretation of the <strong>intercept</strong> is: mean of <em>level 1</em>, … , <em>level <span class="math inline">\(k\)</span></em> (“grand mean”, as for sum coding)</p></li>
+<li><p>Contrast 1: <span class="math inline">\(\frac{1}{2}\times\)</span> (<em>level 2</em> - <em>level 1</em>)</p></li>
+<li><p>Contrast 2: <span class="math inline">\(\frac{1}{3}\times\)</span> (<em>level 3</em> - (mean of <em>level 1</em> and <em>level 2</em>))</p></li>
+<li><p>etc.</p></li>
+</ul>
+<p>The contrast matrix for Helmert contrasts with <span class="math inline">\(k=3\)</span> levels is:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th><code>Contrast1</code></th>
+<th><code>Contrast2</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Level 1</em> (<em>Alternative</em>)</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+<tr class="even">
+<td><em>Level 2</em> (<em>NoAlternative</em>)</td>
+<td>1</td>
+<td>-1</td>
+</tr>
+<tr class="odd">
+<td><em>Level 3</em> (<em>New</em>)</td>
+<td>0</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>For <span class="math inline">\(k=4\)</span> and <span class="math inline">\(k=5\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">contr.helmert</span>(<span class="dv">4</span>)</code></pre></div>
+<pre><code>##   [,1] [,2] [,3]
+## 1   -1   -1   -1
+## 2    1   -1   -1
+## 3    0    2   -1
+## 4    0    0    3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">contr.helmert</span>(<span class="dv">5</span>)</code></pre></div>
+<pre><code>##   [,1] [,2] [,3] [,4]
+## 1   -1   -1   -1   -1
+## 2    1   -1   -1   -1
+## 3    0    2   -1   -1
+## 4    0    0    3   -1
+## 5    0    0    0    4</code></pre>
+<p>Helmert contrasts are <em>orthogonal</em>: knowing the value of one contrast doesn’t tell you anything about the value of another contrast. For example, knowing the difference between <em>level 1</em> and <em>level 2</em> (contrast 1) tells you nothing about the difference between <em>level 3</em> and previous levels (contrast 2). This property is desirable: orthogonality minimizes collinearity between contrasts.</p>
+<p>Again, to derive the interpretation of Helmert contrasts:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ginv</span>(<span class="kw">contr.helmert</span>(<span class="dv">3</span>))</code></pre></div>
+<pre><code>##            [,1]       [,2]      [,3]
+## [1,] -0.5000000  0.5000000 0.0000000
+## [2,] -0.1666667 -0.1666667 0.3333333</code></pre>
+<p>where we see:</p>
+<ul>
+<li><p>Row 1: intercept</p>
+<ul>
+<li>1/3 <span class="math inline">\(\times\)</span> each level = <strong>grand mean</strong></li>
+</ul></li>
+<li><p>Row 2: <span class="math inline">\(\frac{1}{2}\times \left[(0, 1, 0) - (1, 0, 0)\right]\)</span></p>
+<ul>
+<li><span class="math inline">\(\frac{1}{2}\)</span> difference between <em>level 2</em> and <em>level 1</em></li>
+</ul></li>
+<li><p>Row 3: <span class="math inline">\(\frac{1}{3}\times \left[(0, 0, 1) - (1, 1, 0) \times\frac{1}{2}\right]\)</span></p>
+<ul>
+<li><span class="math inline">\(\frac{1}{3}\)</span> difference between <em>level 3</em> and mean of the previous levels</li>
+</ul></li>
+</ul>
+</div>
+<div id="example-17" class="section level4 unnumbered">
+<h4>Example</h4>
+<p>Let’s refit the simple logistic regression <a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#c5ex1">above</a>, but now coding <code>context</code> using Helmert contrasts.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Helmert-coded version of context
+alternatives$context.helm &lt;-<span class="st"> </span>alternatives$context
+<span class="kw">contrasts</span>(alternatives$context.helm) &lt;-<span class="st"> </span><span class="kw">contr.helmert</span>(<span class="dv">3</span>)
+
+<span class="kw">summary</span>(<span class="kw">glm</span>(shifted ~<span class="st"> </span>context.helm, <span class="dt">data=</span>alternatives, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>))</code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = shifted ~ context.helm, family = &quot;binomial&quot;, data = alternatives)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.3269  -0.7793  -0.5696   1.0349   1.9487  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)   -0.80925    0.09584  -8.444  &lt; 2e-16 ***
+## context.helm1 -0.69047    0.10575  -6.529 6.61e-11 ***
+## context.helm2 -0.46362    0.07388  -6.275 3.49e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 789.96  on 621  degrees of freedom
+## Residual deviance: 694.53  on 619  degrees of freedom
+## AIC: 700.53
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<blockquote>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li><p>What are the interpretations of:</p></li>
+<li><p>The intercept? (same as for sum coding)</p></li>
+<li><p><code>context.helm1</code>?</p></li>
+<li><p><code>context.helm2</code>?</p></li>
+</ul>
+</blockquote>
+<p>(What two differences between levels are significant?)</p>
+<p>Having all Helmert contrast coefficients significant, and in the same direction, is <strong>consistent with</strong> (but does not prove) that <em>level 1</em> &lt; <em>level 2</em> &lt; <em>level 3</em>. To actually show that each level is “less” than the subsequent level (= the response is significantly lower), you need to either apply <a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#post-hoc-mult-comp">post-hoc tests</a> or use “successive difference” contrasts (see below).</p>
+</div>
+<div id="other-coding-schemes" class="section level4">
+<h4><span class="header-section-number">6.2.3.5</span> Other coding schemes</h4>
+<p>Many other contrast coding schemes exist. A couple useful ones:</p>
+<ul>
+<li><p>Successive-difference coding (1 &lt; 2, 2 &lt; 3, …) (<code>contr.sdif</code> in <code>MASS</code> library)</p></li>
+<li><p>User-defined contrast (<strong>any</strong> <span class="math inline">\(k - 1\)</span> functions of the <span class="math inline">\(k\)</span> levels)</p></li>
+</ul>
+<p>The <a href="https://stats.idre.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/">UCLA page</a> mentioned above explains different contrast schemes well, using R examples.</p>
+</div>
+<div id="practical-advice" class="section level4">
+<h4><span class="header-section-number">6.2.3.6</span> Practical advice</h4>
+<p>Two pieces of practical advice:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Don’t use dummy-coded contrasts</strong> (R’s default), except in special circumstances (e.g. you are actually interested in level 1’s value).</li>
+</ol>
+<ul>
+<li><p>The fact that the contrasts are neither centered nor orthogonal can easily lead to unnecessary interpretability, collinearity, and model convergence issues.</p></li>
+<li><p>Because dummy coding is the default in R, not using it requires either changing the default contrast coding R uses, or changing the contrasts manually for every factor.</p></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Use a “centered” contrast coding scheme</strong>, such as sum, Helmert, or simple contrast coding.</li>
+</ol>
+<ul>
+<li>Sum-coded contrasts are not orthogonal (bad), but easier to interpret (good). Helmert-coded contrasts are orthogonal (good), but harder to interpret (bad).</li>
+</ul>
+<p>If you have a multi-level factor in your data you will have to use contrast coding. But contrasts can be difficult to think about, including deciding which coding scheme to use. Using and interpreting contrasts gets easier with practice, and it’s important to keep the big picture in mind: contrast coding schemes are just fancy ways of <strong>testing hypotheses about the relationship between a factor and the response</strong>. As such, which coding scheme you use is just a matter of convenience, depending on which hypotheses you want to test, and practical considerations (e.g. collinearity). There is no “wrong” contrast coding scheme, just better and worse ones for a particular case.</p>
+<p>Importantly, different contrast coding schemes give the <strong>same regression model</strong>, in the sense that it makes the same predictions (<span class="math inline">\(Y\)</span>) given predictor values (<span class="math inline">\(X\)</span>). However, the values and significances of regression coefficients change when different coding schemes are used—as we saw above, fitting the same model using three different coding schemes.</p>
+</div>
+</div>
+</div>
+<div id="c5mlf" class="section level2">
+<h2><span class="header-section-number">6.3</span> Assessing a multi-level factor’s contribution</h2>
+<p>For continuous predictors and factors with two levels, the question “does this predictor significantly affect the response?” is answered by the significance of the regression coefficient. For a factor with 3+ levels, we would like to ask the same question (e.g. “does <code>context</code> affect the likelihood of shifting prominence?”), but no one coefficient’s <span class="math inline">\(p\)</span>-value gives the answer, because the factor’s effect on the response is <strong>jointly</strong> captured by all its contrasts.</p>
+<p>Instead, we assess whether a factor with 3+ levels affects the response by viewing this as a special case of <strong>model comparison</strong> (discussed <a href="linear-regression.html#lm-model-comparison">here</a>). For a factor with <span class="math inline">\(k\)</span> levels, the <span class="math inline">\(k-1\)</span> contrasts correspond to <span class="math inline">\(k-1\)</span> predictors (that is, numeric variables <span class="math inline">\(X_i\)</span>). Suppose there are <span class="math inline">\(p-1\)</span> additional predictors in the regression model. We can then compare:</p>
+<ul>
+<li><p>Full model <span class="math inline">\(M_1\)</span>: factor + other predictors (degrees of freedom <span class="math inline">\(df = n + p + k - 2\)</span>)</p></li>
+<li><p>Reduced model <span class="math inline">\(M_0\)</span>: other predictors, only (<span class="math inline">\(df = n + p - 1\)</span>)</p></li>
+</ul>
+<p>using the methods previously discussed: an <span class="math inline">\(F\)</span> test for linear regression (seen in <a href="linear-regression.html#c2ex1">this example</a>), or a <a href="logistic-regression.html#c4lrt">likelihood ratio test</a> for logistic regression. In either case, the difference in degrees of freedom between the two models is just the number of contrasts (<span class="math inline">\(k-1\)</span>).</p>
+<div id="example-18" class="section level4 unnumbered">
+<h4>Example</h4>
+<p>Does <code>context</code> significantly affect whether prominence is shifted, in <code>alternatives</code>?</p>
+<p>In this case, <span class="math inline">\(p=1\)</span> (intercept-only model) and <span class="math inline">\(k=3\)</span> Thus, the change in <span class="math inline">\(df\)</span> between the models is 2. To carry out the model comparison:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## likelihood ratio test to check whether context significantly affects prominence shift 
+m1 &lt;-<span class="st"> </span><span class="kw">glm</span>(shifted ~<span class="st"> </span>context, <span class="dt">data=</span>alternatives, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)
+m0 &lt;-<span class="st"> </span><span class="kw">glm</span>(shifted ~<span class="st"> </span><span class="dv">1</span>, <span class="dt">data=</span>alternatives, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)
+<span class="kw">anova</span>(m0,m1, <span class="dt">test=</span><span class="st">&quot;Chisq&quot;</span>)</code></pre></div>
+<pre><code>## Analysis of Deviance Table
+## 
+## Model 1: shifted ~ 1
+## Model 2: shifted ~ context
+##   Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    
+## 1       621     789.96                          
+## 2       619     694.53  2   95.432 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><a href="logistic-regression.html#c4lrt">Recall</a> that <code>test=&quot;Chisq&quot;</code> specifies a likelihood ratio test (<span class="math inline">\(\chi^2\)</span>) between models. Under <code>Pr(&gt;Chi)</code> we see that <code>context</code> does indeed significantly affect prominence shift (<code>Pr(&gt;Chisq) &lt; 2.2e-16</code>).</p>
+<p>Importantly, the result of model comparison does not depend on the coding scheme used! Thus, it is also not affected by collinearity between contrasts (which is a consideration in which contrast scheme to choose).</p>
+<p>For example, let us examine how <code>shifted</code> depends on <code>context</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## the regression coefficients are very different for the two contrasts for context
+## under different coding schemes...
+mod2 &lt;-<span class="st"> </span><span class="kw">glm</span>(shifted ~<span class="st"> </span>context, <span class="dt">data=</span>alternatives, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)
+mod2.helm &lt;-<span class="st"> </span><span class="kw">glm</span>(shifted ~<span class="st"> </span>context.helm, <span class="dt">data=</span>alternatives, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)
+mod2.sum &lt;-<span class="st"> </span><span class="kw">glm</span>(shifted ~<span class="st"> </span>context.sum, <span class="dt">data=</span>alternatives, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)
+mod0 &lt;-<span class="st"> </span><span class="kw">glm</span>(shifted ~<span class="st"> </span><span class="dv">1</span>, <span class="dt">data=</span>alternatives, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)</code></pre></div>
+<p>the full models with different coding schemes for <code>context</code> give the same result for the likelihood ratio test, which asks whether context significantly contributes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(mod0, mod2, <span class="dt">test=</span><span class="st">&quot;Chisq&quot;</span>)</code></pre></div>
+<pre><code>## Analysis of Deviance Table
+## 
+## Model 1: shifted ~ 1
+## Model 2: shifted ~ context
+##   Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    
+## 1       621     789.96                          
+## 2       619     694.53  2   95.432 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(mod0, mod2.helm, <span class="dt">test=</span><span class="st">&quot;Chisq&quot;</span>)</code></pre></div>
+<pre><code>## Analysis of Deviance Table
+## 
+## Model 1: shifted ~ 1
+## Model 2: shifted ~ context.helm
+##   Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    
+## 1       621     789.96                          
+## 2       619     694.53  2   95.432 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(mod0, mod2.sum, <span class="dt">test=</span><span class="st">&quot;Chisq&quot;</span>)</code></pre></div>
+<pre><code>## Analysis of Deviance Table
+## 
+## Model 1: shifted ~ 1
+## Model 2: shifted ~ context.sum
+##   Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    
+## 1       621     789.96                          
+## 2       619     694.53  2   95.432 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<div id="practice-with-interactions" class="section level2">
+<h2><span class="header-section-number">6.4</span> Practice with interactions</h2>
+<p>Interpreting interaction terms in a regression model gets trickier for factors with 3+ levels, and for interactions between 3+ predictors (“three-way” etc. interactions). It is useful to interpret model coefficients together with empirical plots. We give a couple examples here.</p>
+<div id="example-1-two-way-interaction-with-multi-level-factor" class="section level4 unnumbered">
+<h4>Example 1: Two-way interaction with multi-level factor</h4>
+<p><strong>Data</strong>: vowel devoicing data (described in detail <a href="datasets-appendix.html#devdata">here</a>)</p>
+<p>Our question is: does the effect of <code>speechrate</code> on <code>syldur</code> depend on following prosodic boundary type (<code>folbound</code>)?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>speechrate,<span class="dt">y=</span>syldur), <span class="dt">data=</span>devoicing) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&#39;lm&#39;</span>, <span class="kw">aes</span>(<span class="dt">color=</span>folbound)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Speech rate&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Syllable duration (ms)&quot;</span>)</code></pre></div>
+<p><img src="06-contrasts-interactions_files/figure-html/unnamed-chunk-26-1.png" width="384" style="display: block; margin: auto;" /> Note that <code>folbound</code> has the levels <em>-</em> (no boundary), <em>1</em> (weak boundary), and <em>2</em> (strong boundary).</p>
+<blockquote>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>Choose a coding scheme (sum? Helmert?) so that one contrast = “- versus <em>2</em>/ <em>3</em>”
+<ul>
+<li>Hint: you’ll first need to change factor levels so that <em>3</em> &lt; <em>2</em> &lt; <em>-</em></li>
+</ul></li>
+<li>Carry out a linear regression of <code>speechrate</code> on <code>syldur\*folbound</code></li>
+</ul>
+</blockquote>
+<p>Answer (in comments), and implementation:</p>
+<div class="fold s o">
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## we should choose *Helmert contrasts*:
+## contrast 1: difference between 3 and 2
+## contrast 2: difference between - and 2/3
+
+## change factor levels for folbound so highest&gt;lowest
+devoicing &lt;-<span class="st"> </span><span class="kw">mutate</span>(devoicing, <span class="dt">folbound=</span><span class="kw">factor</span>(folbound, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;2&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;-&quot;</span>)))
+
+## Choose a contrast scheme for folbound so that one contrast is 2/1 vs - (the distinction seen in the plot)
+<span class="kw">contrasts</span>(devoicing$folbound) &lt;-<span class="st"> </span><span class="kw">contr.helmert</span>(<span class="dv">3</span>)</code></pre></div>
+</div>
+<p>Before fitting the model, let’s figure out what results we “should” get, by determining the interpretation of each coefficient of the <code>speechrate*folbound</code> interaction. In terms of the above plot:</p>
+<ul>
+<li><p>Contrast 1: difference in slope of the line between <em>2</em> and <em>1</em></p></li>
+<li><p>Contrast 2: difference in slope of the line between <em>-</em> and <em>2/1</em></p></li>
+</ul>
+<blockquote>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>What directions do we expect?</li>
+</ul>
+</blockquote>
+<p>The fitted model is:</p>
+<div class="fold o">
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">lm</span>(syldur ~<span class="st"> </span>speechrate*folbound, <span class="dt">data=</span>devoicing))</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = syldur ~ speechrate * folbound, data = devoicing)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -109.769  -21.641    0.858   21.919  111.630 
+## 
+## Coefficients:
+##                      Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)          204.4614     8.6510  23.635  &lt; 2e-16 ***
+## speechrate           -10.8602     1.2524  -8.671  &lt; 2e-16 ***
+## folbound1              0.4630    12.2837   0.038  0.96995    
+## folbound2            -20.9193     4.9541  -4.223 2.83e-05 ***
+## speechrate:folbound1   0.2153     1.7835   0.121  0.90398    
+## speechrate:folbound2   1.9173     0.7130   2.689  0.00739 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 32.47 on 544 degrees of freedom
+## Multiple R-squared:  0.2276, Adjusted R-squared:  0.2205 
+## F-statistic: 32.06 on 5 and 544 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>Focusing just on the last two rows:</p>
+<ul>
+<li><p><code>speechrate:folbound1</code>: contrast 1 is not significant, reflecting the very small difference between the slopes of <code>speechrate</code> for <em>1</em> and <em>2</em>.</p></li>
+<li><p><code>speechrate:folbound2</code>: contrast 2 is positive and highly significant, reflecting the less-negative slope of <code>speechrate</code> for <em>-</em> compared to <em>1</em> and <em>2</em>.</p></li>
+</ul>
+<p>We can thus say that the effect of speech rate does differ by prosodic boundary type. This could be reported in a paper as: &gt; “The effect of speech rate differed by prosodic boundary type: speech rate had a stronger effect for null boundaries than for non-null (i.e. weak or strong) boundaries (<span class="math inline">\(\hat{\beta}=1.91\)</span>, <span class="math inline">\(t=2.7\)</span>, <span class="math inline">\(p=0.007\)</span>), but did not significantly differ between weak and strong boundaries (<span class="math inline">\(p=0.9\)</span>).”</p>
+</div>
+<div id="example-2-three-way-interaction" class="section level4 unnumbered">
+<h4>Example 2: Three-way interaction</h4>
+<p><strong>Data</strong>: <code>givenness</code></p>
+<p>Recall that for this data, the strength of the Williams effect (the <code>conditionLabel</code> slope) depends on <code>voice</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>voice, <span class="dt">y =</span> stressshift.num), <span class="dt">data=</span>givenness) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="dt">geom=</span><span class="st">&#39;errorbar&#39;</span>,<span class="dt">width=</span><span class="fl">0.2</span>, <span class="kw">aes</span>(<span class="dt">color=</span>conditionLabel)) +
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;% shifted stress&quot;</span>) </code></pre></div>
+<p><img src="06-contrasts-interactions_files/figure-html/unnamed-chunk-29-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Let’s now ask: does this dependence differ between full NPs and pronouns? This question is addressed by including a <strong>3-way interaction</strong> in the model: <code>conditionLabel:voice:npType</code>.</p>
+<p>In the empirical data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>voice, <span class="dt">y =</span> stressshift.num), <span class="dt">data=</span>givenness) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">stat_summary</span>(<span class="dt">fun.data=</span><span class="st">&quot;mean_cl_boot&quot;</span>, <span class="dt">geom=</span><span class="st">&#39;errorbar&#39;</span>,<span class="dt">width=</span><span class="fl">0.2</span>, <span class="kw">aes</span>(<span class="dt">color=</span>conditionLabel)) +
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;% shifted stress&quot;</span>) +<span class="st"> </span><span class="kw">facet_wrap</span>(~npType)</code></pre></div>
+<p><img src="06-contrasts-interactions_files/figure-html/unnamed-chunk-30-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>this three-way interaction corresponds to asking: is there a qualitative difference between the left and right panels? (That is: a difference in how <code>voice</code> modulates the <code>conditionLabel</code> effect.)</p>
+<blockquote>
+<p><strong>Questions</strong>:</p>
+<ul>
+<li>What is the expected <em>sign</em> of the three-way interaction term? What is its interpretation? (“For full NPs, A has a bigger effect on… compared to …”)</li>
+</ul>
+</blockquote>
+Check your intuition against the last row of the fitted model:
+<div class="fold o">
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">glm</span>(<span class="dt">formula =</span> stressshift ~<span class="st"> </span>conditionLabel.williams *<span class="st"> </span>npType.pron *<span class="st"> </span>voice.passive, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="dt">data =</span> givenness))</code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = stressshift ~ conditionLabel.williams * npType.pron * 
+##     voice.passive, family = &quot;binomial&quot;, data = givenness)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.9728  -0.5746  -0.3518   0.5553   2.5601  
+## 
+## Coefficients:
+##                                                   Estimate Std. Error
+## (Intercept)                                        -0.9807     0.1704
+## conditionLabel.williams                             3.2322     0.3347
+## npType.pron                                         0.4295     0.3403
+## voice.passive                                       0.3168     0.3392
+## conditionLabel.williams:npType.pron                 0.7082     0.6684
+## conditionLabel.williams:voice.passive               1.9230     0.6662
+## npType.pron:voice.passive                          -0.8359     0.6776
+## conditionLabel.williams:npType.pron:voice.passive   2.1099     1.3308
+##                                                   z value Pr(&gt;|z|)    
+## (Intercept)                                        -5.756 8.61e-09 ***
+## conditionLabel.williams                             9.658  &lt; 2e-16 ***
+## npType.pron                                         1.262  0.20691    
+## voice.passive                                       0.934  0.35028    
+## conditionLabel.williams:npType.pron                 1.060  0.28937    
+## conditionLabel.williams:voice.passive               2.887  0.00389 ** 
+## npType.pron:voice.passive                          -1.234  0.21731    
+## conditionLabel.williams:npType.pron:voice.passive   1.585  0.11289    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 496.24  on 381  degrees of freedom
+## Residual deviance: 323.94  on 374  degrees of freedom
+## AIC: 339.94
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+</div>
+<p>The three-way <code>conditionLabel.williams:npType.pron:voice.passive</code> interaction effect is:</p>
+<ul>
+<li><p>Positive</p></li>
+<li><p>Not significant (<span class="math inline">\(p=0.11\)</span>).</p></li>
+</ul>
+<p>Note that the <code>conditionLabel.williams</code> and <code>conditionLabel.williams:voice.passive</code> effects are significant. Thus, there is a Williams effect (averaging across other variables), and this effect is stronger for passive-voice items. This modulation seems slightly larger for full NPs, but is not significantly larger.</p>
+</div>
+</div>
+<div id="c5solns" class="section level2">
+<h2><span class="header-section-number">6.5</span> Solutions</h2>
+<p><strong>Q</strong>: What does the hypothesis test <span class="math inline">\(H_0~:~\beta_1 = 0\)</span> correspond to asking? (What levels are hypothesized to have the same value of <span class="math inline">\(Y\)</span>?)</p>
+<p><strong>A</strong>: “Do <em>level 1</em> and <em>level 2</em> have the same value (for the response)?”</p>
+<hr />
+<p><strong>Q</strong>: What is the interpretation of the second contrast’s coefficient (<code>contextNew</code>)?</p>
+<p><strong>A</strong>: Difference in log-odds of prominence shifting between <code>context</code>=<em>New</em> and <code>context</code>=<em>Alternative</em>.</p>
+<hr />
+<p><strong>Q</strong>: What does the hypothesis test <span class="math inline">\(H_0 ~:~ \beta_1 = 0\)</span> correspond to? (What is equal to what?)</p>
+<p><strong>A</strong>: “Do <em>level 1</em> and the grand mean differ?”</p>
+<hr />
+<p><strong>Q</strong>: What are the interpretations of:</p>
+<ul>
+<li><p>The Intercept?</p></li>
+<li><p><code>context.sum1</code>?</p></li>
+<li><p><code>context.sum2</code>?</p></li>
+</ul>
+<p>The coefficient for the second contrast isn’t significant. What corresponding difference is not significant (roughly, “is very small”), in the empirical data?</p>
+<p><strong>A</strong>:</p>
+<ul>
+<li><p>Intercept: grand mean</p></li>
+<li><p><code>context.sum1</code>: difference between <em>Alternative</em> and grand mean</p></li>
+<li><p><code>context.sum2</code>: difference between <em>NoAlternative</em> and grand mean</p></li>
+</ul>
+<p>So, the latter difference isn’t significantly different from zero. You can see this in the empirical plot: the value of green isn’t so different from the mean of green, red, and blue.</p>
+<hr />
+<p><strong>Q</strong>: What directions do we expect?</p>
+<p><strong>A</strong>: The slope of the speech rate effect seems to be shallower (= less negative) for <em>-</em> than for <em>2/1</em>. Thus, we expect a <strong>positive</strong> value for the Contrast 2 regression coefficient (<em>-</em> slope minus <em>2/1</em> slopes). There doesn’t look to be much difference between the <em>2</em> and <em>1</em> slopes, so we expect the Contrast 1 regression coefficient (<em>2</em> slope minus <em>1</em> slope) to be near zero.</p>
+<hr />
+<p><strong>Q</strong>: What is the expected <em>sign</em> of the three-way interaction term? What is its interpretation? (“For full NPs, A has a bigger effect on… compared to …”)</p>
+<p><strong>A</strong>: Positive. “The difference in Williams effect size between passive and active voice items is larger for pronouns than for full NPs.”</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-schad2018capitalize">
+<p>Schad, D. J., Hohenstein, S., Vasishth, S., &amp; Kliegl, R. (2018). How to capitalize on a priori contrasts in linear (mixed) models: A tutorial. <em>ArXiv Preprint ArXiv:1807.10451</em>. Retrieved from <a href="https://arxiv.org/abs/1807.10451v1" class="uri">https://arxiv.org/abs/1807.10451v1</a></p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="26">
+<li id="fn26"><p>Contrasts also correspond to different interpretations of the intercept, but this is often less important in practice.<a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#fnref26">↩</a></p></li>
+<li id="fn27"><p>For the mathematical details of contrast coding, including why taking the generalized inverse gives contrast interpretations, see <span class="citation">Schad et al. (<a href="#ref-schad2018capitalize">2018</a>)</span> or Sec. 6.2 of <span class="citation">Venables &amp; Ripley (<a href="#ref-venables2002modern">2002</a>)</span>.<a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#fnref27">↩</a></p></li>
+<li id="fn28"><p>Confusingly, this coding scheme is also sometimes also called <em>reverse Helmert</em> due to disagreement on which direction is “reverse” (comparing to previous or later levels?).<a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#fnref28">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="logistic-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lmem.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

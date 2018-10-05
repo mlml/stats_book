@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Quantitative Methods for Linguistic Data</title>
+  <meta name="description" content="Quantitative Methods for Linguistic Data">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Quantitative Methods for Linguistic Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Quantitative Methods for Linguistic Data" />
+  
+  
+  
+
+<meta name="author" content="Morgan Sonderegger, Michael Wagner, Francisco Torreira">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="datasets-appendix.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Methods for Linguistic Data</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html"><i class="fa fa-check"></i><b>1</b> Inferential statistics: Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sample-population"><i class="fa fa-check"></i><b>1.1</b> Population vs. sample</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sample-to-population-high-level"><i class="fa fa-check"></i><b>1.1.1</b> Sample <span class="math inline">\(\to\)</span> population: High level</a></li>
+<li class="chapter" data-level="1.1.2" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sdsm"><i class="fa fa-check"></i><b>1.1.2</b> Sampling distribution of the sample mean</a></li>
+<li class="chapter" data-level="1.1.3" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sampling-from-a-non-normal-distribution"><i class="fa fa-check"></i><b>1.1.3</b> Sampling from a non-normal distribution</a></li>
+<li class="chapter" data-level="" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#confidence-intervals"><i class="fa fa-check"></i><b>1.2</b> Confidence intervals</a></li>
+<li class="chapter" data-level="1.3" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#t-distribution"><i class="fa fa-check"></i><b>1.3</b> <span class="math inline">\(t\)</span> distribution</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#t-based-confidence-intervals"><i class="fa fa-check"></i><b>1.3.1</b> <span class="math inline">\(t\)</span>-based confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#other-reading"><i class="fa fa-check"></i><b>1.4</b> Other reading</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>2</b> Hypothesis testing</a><ul>
+<li class="chapter" data-level="2.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-high-level"><i class="fa fa-check"></i><b>2.1</b> Hypothesis testing: High-level</a></li>
+<li class="chapter" data-level="2.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#z-scores"><i class="fa fa-check"></i><b>2.2</b> <span class="math inline">\(z\)</span>-scores</a></li>
+<li class="chapter" data-level="2.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#t-tests"><i class="fa fa-check"></i><b>2.3</b> <span class="math inline">\(t\)</span>-tests</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#single-sample-t-test-setup"><i class="fa fa-check"></i><b>2.3.1</b> Single-sample <span class="math inline">\(t\)</span>-test: Setup</a></li>
+<li class="chapter" data-level="2.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-in-general"><i class="fa fa-check"></i><b>2.3.2</b> Hypothesis testing in general</a></li>
+<li class="chapter" data-level="2.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#two-sample-t-test"><i class="fa fa-check"></i><b>2.3.3</b> Two-sample <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#welch-example"><i class="fa fa-check"></i><b>2.3.4</b> Unequal variances: Welch <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#t-test-assumptions"><i class="fa fa-check"></i><b>2.3.5</b> Assumptions behind <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#paired-t-test"><i class="fa fa-check"></i><b>2.3.6</b> Paired <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#reporting-a-hypothesis-test"><i class="fa fa-check"></i><b>2.3.7</b> Reporting a hypothesis test</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#checking-normality"><i class="fa fa-check"></i><b>2.4</b> Checking normality</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#visual-methods"><i class="fa fa-check"></i><b>2.4.1</b> Visual methods</a></li>
+<li class="chapter" data-level="2.4.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#q-q-plots"><i class="fa fa-check"></i><b>2.4.2</b> Q-Q plots</a></li>
+<li class="chapter" data-level="2.4.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#shapiro-wilk-example"><i class="fa fa-check"></i><b>2.4.3</b> Hypothesis test</a></li>
+<li class="chapter" data-level="2.4.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#other-parametric-tests"><i class="fa fa-check"></i><b>2.4.4</b> Other parametric tests</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#non-parametric-tests"><i class="fa fa-check"></i><b>2.5</b> Non-parametric tests</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#wilcoxson-tests"><i class="fa fa-check"></i><b>2.5.1</b> Wilcoxson tests</a></li>
+<li class="chapter" data-level="2.5.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#two-sample-wilcoxson-test"><i class="fa fa-check"></i><b>2.5.2</b> Two-sample Wilcoxson test</a></li>
+<li class="chapter" data-level="2.5.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#parametric-versus-non-parametric-tests"><i class="fa fa-check"></i><b>2.5.3</b> Parametric versus non-parametric tests</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#other-reading-1"><i class="fa fa-check"></i><b>2.6</b> Other reading</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>3</b> Linear regression</a><ul>
+<li class="chapter" data-level="3.1" data-path="linear-regression.html"><a href="linear-regression.html#regression-general-introduction"><i class="fa fa-check"></i><b>3.1</b> Regression: General introduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="linear-regression.html"><a href="linear-regression.html#linear-models"><i class="fa fa-check"></i><b>3.1.1</b> Linear models</a></li>
+<li class="chapter" data-level="3.1.2" data-path="linear-regression.html"><a href="linear-regression.html#terminology"><i class="fa fa-check"></i><b>3.1.2</b> Terminology</a></li>
+<li class="chapter" data-level="3.1.3" data-path="linear-regression.html"><a href="linear-regression.html#steps-and-assumptions-of-regression-analysis"><i class="fa fa-check"></i><b>3.1.3</b> Steps and assumptions of regression analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="linear-regression.html"><a href="linear-regression.html#simple-linear-regression"><i class="fa fa-check"></i><b>3.2</b> Simple linear regression</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="linear-regression.html"><a href="linear-regression.html#slr-continuous-predictor"><i class="fa fa-check"></i><b>3.2.1</b> SLR: Continuous predictor</a></li>
+<li class="chapter" data-level="3.2.2" data-path="linear-regression.html"><a href="linear-regression.html#slr-parameter-estimation"><i class="fa fa-check"></i><b>3.2.2</b> SLR: Parameter estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="linear-regression.html"><a href="linear-regression.html#hypothesis-testing-1"><i class="fa fa-check"></i><b>3.2.3</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="3.2.4" data-path="linear-regression.html"><a href="linear-regression.html#quality-of-fit"><i class="fa fa-check"></i><b>3.2.4</b> Quality of fit</a></li>
+<li class="chapter" data-level="3.2.5" data-path="linear-regression.html"><a href="linear-regression.html#categorical-predictor"><i class="fa fa-check"></i><b>3.2.5</b> Categorical predictor</a></li>
+<li class="chapter" data-level="3.2.6" data-path="linear-regression.html"><a href="linear-regression.html#slr-with-a-binary-categorical-predictor-vs.two-sample-t-test"><i class="fa fa-check"></i><b>3.2.6</b> SLR with a binary categorical predictor vs. two-sample <span class="math inline">\(t\)</span>-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="linear-regression.html"><a href="linear-regression.html#multiple-linear-regression"><i class="fa fa-check"></i><b>3.3</b> Multiple linear regression</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="linear-regression.html"><a href="linear-regression.html#goodness-of-fit-metrics"><i class="fa fa-check"></i><b>3.3.1</b> Goodness of fit metrics</a></li>
+<li class="chapter" data-level="3.3.2" data-path="linear-regression.html"><a href="linear-regression.html#interactions-and-factors"><i class="fa fa-check"></i><b>3.3.2</b> Interactions and factors</a></li>
+<li class="chapter" data-level="3.3.3" data-path="linear-regression.html"><a href="linear-regression.html#plotting-interactions"><i class="fa fa-check"></i><b>3.3.3</b> Plotting interactions</a></li>
+<li class="chapter" data-level="3.3.4" data-path="linear-regression.html"><a href="linear-regression.html#categorical-factors-with-more-than-two-levels"><i class="fa fa-check"></i><b>3.3.4</b> Categorical factors with more than two levels</a></li>
+<li class="chapter" data-level="3.3.5" data-path="linear-regression.html"><a href="linear-regression.html#releveling-factors"><i class="fa fa-check"></i><b>3.3.5</b> Releveling factors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-assumptions"><i class="fa fa-check"></i><b>3.4</b> Linear regression assumptions</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="linear-regression.html"><a href="linear-regression.html#visual-methods-1"><i class="fa fa-check"></i><b>3.4.1</b> Visual methods</a></li>
+<li class="chapter" data-level="3.4.2" data-path="linear-regression.html"><a href="linear-regression.html#assumption-1-linearity"><i class="fa fa-check"></i><b>3.4.2</b> Assumption 1: Linearity</a></li>
+<li class="chapter" data-level="3.4.3" data-path="linear-regression.html"><a href="linear-regression.html#c2ioe"><i class="fa fa-check"></i><b>3.4.3</b> Assumption 2: Independence of errors</a></li>
+<li class="chapter" data-level="3.4.4" data-path="linear-regression.html"><a href="linear-regression.html#assumption-3-normality-of-errors"><i class="fa fa-check"></i><b>3.4.4</b> Assumption 3: Normality of errors</a></li>
+<li class="chapter" data-level="3.4.5" data-path="linear-regression.html"><a href="linear-regression.html#assumtion-4-constancy-of-variance"><i class="fa fa-check"></i><b>3.4.5</b> Assumtion 4: Constancy of variance</a></li>
+<li class="chapter" data-level="3.4.6" data-path="linear-regression.html"><a href="linear-regression.html#interim-summary"><i class="fa fa-check"></i><b>3.4.6</b> Interim summary</a></li>
+<li class="chapter" data-level="3.4.7" data-path="linear-regression.html"><a href="linear-regression.html#transforming-to-normality"><i class="fa fa-check"></i><b>3.4.7</b> Transforming to normality</a></li>
+<li class="chapter" data-level="3.4.8" data-path="linear-regression.html"><a href="linear-regression.html#assumption-5-linear-independence-of-predictors"><i class="fa fa-check"></i><b>3.4.8</b> Assumption 5: Linear independence of predictors</a></li>
+<li class="chapter" data-level="3.4.9" data-path="linear-regression.html"><a href="linear-regression.html#collinearity"><i class="fa fa-check"></i><b>3.4.9</b> Collinearity</a></li>
+<li class="chapter" data-level="3.4.10" data-path="linear-regression.html"><a href="linear-regression.html#assumption-6-observations"><i class="fa fa-check"></i><b>3.4.10</b> Assumption 6: Observations</a></li>
+<li class="chapter" data-level="3.4.11" data-path="linear-regression.html"><a href="linear-regression.html#lin-reg-measuring-influence"><i class="fa fa-check"></i><b>3.4.11</b> Measuring influence</a></li>
+<li class="chapter" data-level="3.4.12" data-path="linear-regression.html"><a href="linear-regression.html#outliers"><i class="fa fa-check"></i><b>3.4.12</b> Outliers</a></li>
+<li class="chapter" data-level="3.4.13" data-path="linear-regression.html"><a href="linear-regression.html#regression-assumptions-reassurance"><i class="fa fa-check"></i><b>3.4.13</b> Regression assumptions: Reassurance</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="linear-regression.html"><a href="linear-regression.html#lm-model-comparison"><i class="fa fa-check"></i><b>3.5</b> Model comparison</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="linear-regression.html"><a href="linear-regression.html#nested-model-comparison"><i class="fa fa-check"></i><b>3.5.1</b> Nested model comparison</a></li>
+<li class="chapter" data-level="3.5.2" data-path="linear-regression.html"><a href="linear-regression.html#non-nested-model-comparison"><i class="fa fa-check"></i><b>3.5.2</b> Non-nested model comparison</a></li>
+<li class="chapter" data-level="3.5.3" data-path="linear-regression.html"><a href="linear-regression.html#c2varselect"><i class="fa fa-check"></i><b>3.5.3</b> Variable selection</a></li>
+<li class="chapter" data-level="3.5.4" data-path="linear-regression.html"><a href="linear-regression.html#interpretability-issues"><i class="fa fa-check"></i><b>3.5.4</b> Interpretability issues</a></li>
+<li class="chapter" data-level="3.5.5" data-path="linear-regression.html"><a href="linear-regression.html#interim-recipe-building-a-multiple-linear-regression-model"><i class="fa fa-check"></i><b>3.5.5</b> Interim recipe: Building a multiple linear regression model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="linear-regression.html"><a href="linear-regression.html#c2solns"><i class="fa fa-check"></i><b>3.6</b> Solutions</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="linear-regression.html"><a href="linear-regression.html#multiple-linear-regression-solutions"><i class="fa fa-check"></i><b>3.6.1</b> Multiple linear regression: Solutions</a></li>
+<li class="chapter" data-level="3.6.2" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-assumptions-solutions"><i class="fa fa-check"></i><b>3.6.2</b> Linear regression assumptions: Solutions</a></li>
+<li class="chapter" data-level="3.6.3" data-path="linear-regression.html"><a href="linear-regression.html#model-comparison-solutions"><i class="fa fa-check"></i><b>3.6.3</b> Model comparison: Solutions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cda.html"><a href="cda.html"><i class="fa fa-check"></i><b>4</b> Categorical data analysis: Preliminaries</a><ul>
+<li class="chapter" data-level="4.1" data-path="cda.html"><a href="cda.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="cda.html"><a href="cda.html#x2-contingency-tables"><i class="fa fa-check"></i><b>4.1.1</b> 2x2 contingency tables</a></li>
+<li class="chapter" data-level="4.1.2" data-path="cda.html"><a href="cda.html#the-chi-squared-test"><i class="fa fa-check"></i><b>4.1.2</b> The chi-squared test</a></li>
+<li class="chapter" data-level="4.1.3" data-path="cda.html"><a href="cda.html#fishers-exact-test"><i class="fa fa-check"></i><b>4.1.3</b> Fisher’s exact test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="cda.html"><a href="cda.html#towards-logistic-regression"><i class="fa fa-check"></i><b>4.2</b> Towards logistic regression</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="cda.html"><a href="cda.html#odds"><i class="fa fa-check"></i><b>4.2.1</b> Odds</a></li>
+<li class="chapter" data-level="4.2.2" data-path="cda.html"><a href="cda.html#log-odds"><i class="fa fa-check"></i><b>4.2.2</b> Log-odds</a></li>
+<li class="chapter" data-level="4.2.3" data-path="cda.html"><a href="cda.html#odds-ratios"><i class="fa fa-check"></i><b>4.2.3</b> Odds ratios</a></li>
+<li class="chapter" data-level="4.2.4" data-path="cda.html"><a href="cda.html#log-odds-sample-and-population"><i class="fa fa-check"></i><b>4.2.4</b> Log odds: sample and population</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="cda.html"><a href="cda.html#cda-other-readings"><i class="fa fa-check"></i><b>4.3</b> Other readings</a></li>
+<li class="chapter" data-level="4.4" data-path="cda.html"><a href="cda.html#c3solns"><i class="fa fa-check"></i><b>4.4</b> Solutions</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="cda.html"><a href="cda.html#solutions-to-exercise-1"><i class="fa fa-check"></i><b>4.4.1</b> Solutions to Exercise 1:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>5</b> Logistic regression</a><ul>
+<li class="chapter" data-level="5.1" data-path="logistic-regression.html"><a href="logistic-regression.html#simple-logistic-regression"><i class="fa fa-check"></i><b>5.1</b> Simple logistic regression</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#log-reg-hyp-test"><i class="fa fa-check"></i><b>5.1.1</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="5.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#interpreting-the-coefficients-logit-odds-and-probability"><i class="fa fa-check"></i><b>5.1.2</b> Interpreting the coefficients: Logit, odds, and probability</a></li>
+<li class="chapter" data-level="5.1.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-as-a-glm"><i class="fa fa-check"></i><b>5.1.3</b> Logistic regression as a GLM</a></li>
+<li class="chapter" data-level="5.1.4" data-path="logistic-regression.html"><a href="logistic-regression.html#c4differences"><i class="fa fa-check"></i><b>5.1.4</b> Differences from linear regression: Fitting and interpretation</a></li>
+<li class="chapter" data-level="5.1.5" data-path="logistic-regression.html"><a href="logistic-regression.html#fitting-a-logistic-regression-model"><i class="fa fa-check"></i><b>5.1.5</b> Fitting a logistic regression model</a></li>
+<li class="chapter" data-level="5.1.6" data-path="logistic-regression.html"><a href="logistic-regression.html#interpretation"><i class="fa fa-check"></i><b>5.1.6</b> Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="logistic-regression.html"><a href="logistic-regression.html#evaluating-logistic-regression-models"><i class="fa fa-check"></i><b>5.2</b> Evaluating logistic regression models</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#c4lrt"><i class="fa fa-check"></i><b>5.2.1</b> Likelihood ratio test</a></li>
+<li class="chapter" data-level="5.2.2" data-path="logistic-regression.html"><a href="logistic-regression.html#classification-accuracy"><i class="fa fa-check"></i><b>5.2.2</b> Classification accuracy</a></li>
+<li class="chapter" data-level="5.2.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-pseudo-r2"><i class="fa fa-check"></i><b>5.2.3</b> Pseudo-<span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="logistic-regression.html"><a href="logistic-regression.html#multiple-logistic-regression"><i class="fa fa-check"></i><b>5.3</b> Multiple logistic regression</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#likelihood-ratio-test-general-case"><i class="fa fa-check"></i><b>5.3.1</b> Likelihood ratio test: General case</a></li>
+<li class="chapter" data-level="5.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#log-reg-worked-example"><i class="fa fa-check"></i><b>5.3.2</b> Worked example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="logistic-regression.html"><a href="logistic-regression.html#model-criticism-logistic-regression"><i class="fa fa-check"></i><b>5.4</b> Model criticism for logistic regression</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#residual-plots"><i class="fa fa-check"></i><b>5.4.1</b> Residual plots</a></li>
+<li class="chapter" data-level="5.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-cooks-distance"><i class="fa fa-check"></i><b>5.4.2</b> Cook’s distance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="logistic-regression.html"><a href="logistic-regression.html#other-readings"><i class="fa fa-check"></i><b>5.5</b> Other readings</a></li>
+<li class="chapter" data-level="5.6" data-path="logistic-regression.html"><a href="logistic-regression.html#c4solns"><i class="fa fa-check"></i><b>5.6</b> Solutions</a></li>
+<li class="chapter" data-level="5.7" data-path="logistic-regression.html"><a href="logistic-regression.html#c4appendix2"><i class="fa fa-check"></i><b>5.7</b> Appendix: Other Generalized Linear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><i class="fa fa-check"></i><b>6</b> Practical Regression Topics 1: Multi-level factors, contrast coding, interactions</a><ul>
+<li class="chapter" data-level="6.1" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#multi-level-factors-introduction"><i class="fa fa-check"></i><b>6.1</b> Multi-level factors: Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#contrast-coding"><i class="fa fa-check"></i><b>6.2</b> Contrast coding</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#first-examples"><i class="fa fa-check"></i><b>6.2.1</b> First examples</a></li>
+<li class="chapter" data-level="6.2.2" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#basic-interpretation-of-contrasts"><i class="fa fa-check"></i><b>6.2.2</b> Basic interpretation of contrasts</a></li>
+<li class="chapter" data-level="6.2.3" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#contrast-coding-schemes"><i class="fa fa-check"></i><b>6.2.3</b> Contrast coding schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#c5mlf"><i class="fa fa-check"></i><b>6.3</b> Assessing a multi-level factor’s contribution</a></li>
+<li class="chapter" data-level="6.4" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#practice-with-interactions"><i class="fa fa-check"></i><b>6.4</b> Practice with interactions</a></li>
+<li class="chapter" data-level="6.5" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#c5solns"><i class="fa fa-check"></i><b>6.5</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="lmem.html"><a href="lmem.html"><i class="fa fa-check"></i><b>7</b> Linear mixed models</a><ul>
+<li class="chapter" data-level="7.1" data-path="lmem.html"><a href="lmem.html#mixed-effects-models-motivation"><i class="fa fa-check"></i><b>7.1</b> Mixed-effects models: Motivation</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="lmem.html"><a href="lmem.html#simpsons-paradox"><i class="fa fa-check"></i><b>7.1.1</b> Simpson’s paradox</a></li>
+<li class="chapter" data-level="7.1.2" data-path="lmem.html"><a href="lmem.html#repeated-measure-anovas"><i class="fa fa-check"></i><b>7.1.2</b> Repeated-measure ANOVAs</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="lmem.html"><a href="lmem.html#linear-mixed-models-1-one-grouping-factor-random-intercepts"><i class="fa fa-check"></i><b>7.2</b> Linear mixed models 1: One grouping factor, random intercepts</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="lmem.html"><a href="lmem.html#c6model1A"><i class="fa fa-check"></i><b>7.2.1</b> Model 1A: Simple linear regression</a></li>
+<li class="chapter" data-level="7.2.2" data-path="lmem.html"><a href="lmem.html#c6model1b"><i class="fa fa-check"></i><b>7.2.2</b> Model 1B: Random intercept only</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="lmem.html"><a href="lmem.html#c6lmm2"><i class="fa fa-check"></i><b>7.3</b> Linear mixed models 2: One grouping factor, random intercepts and slopes</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="lmem.html"><a href="lmem.html#c6model1c"><i class="fa fa-check"></i><b>7.3.1</b> Model 1C</a></li>
+<li class="chapter" data-level="7.3.2" data-path="lmem.html"><a href="lmem.html#fitting-model-1c"><i class="fa fa-check"></i><b>7.3.2</b> Fitting Model 1C</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="lmem.html"><a href="lmem.html#linear-mixed-models-3-two-grouping-factors"><i class="fa fa-check"></i><b>7.4</b> Linear mixed models 3: Two grouping factors</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="lmem.html"><a href="lmem.html#c6model2A"><i class="fa fa-check"></i><b>7.4.1</b> Model 2A: By-participant and by-item random intercepts</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="lmem.html"><a href="lmem.html#evaluating-lmms"><i class="fa fa-check"></i><b>7.5</b> Evaluating LMMs</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="lmem.html"><a href="lmem.html#hypothesis-testing-2"><i class="fa fa-check"></i><b>7.5.1</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="7.5.2" data-path="lmem.html"><a href="lmem.html#significance-of-a-random-effect-term"><i class="fa fa-check"></i><b>7.5.2</b> Significance of a random effect term</a></li>
+<li class="chapter" data-level="7.5.3" data-path="lmem.html"><a href="lmem.html#c6fixedp"><i class="fa fa-check"></i><b>7.5.3</b> Significance of fixed effects</a></li>
+<li class="chapter" data-level="7.5.4" data-path="lmem.html"><a href="lmem.html#evaluating-goodness-of-fit"><i class="fa fa-check"></i><b>7.5.4</b> Evaluating goodness of fit</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lmem.html"><a href="lmem.html#linear-mixed-models-4-multiple-predictors"><i class="fa fa-check"></i><b>7.6</b> Linear mixed models 4: Multiple predictors</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="lmem.html"><a href="lmem.html#types-of-predictors"><i class="fa fa-check"></i><b>7.6.1</b> Types of predictors</a></li>
+<li class="chapter" data-level="7.6.2" data-path="lmem.html"><a href="lmem.html#c6model3A"><i class="fa fa-check"></i><b>7.6.2</b> Model 3A: Random intercepts only</a></li>
+<li class="chapter" data-level="7.6.3" data-path="lmem.html"><a href="lmem.html#c6model3B"><i class="fa fa-check"></i><b>7.6.3</b> Model 3B: Random intercepts and all possible random slopes</a></li>
+<li class="chapter" data-level="7.6.4" data-path="lmem.html"><a href="lmem.html#assessing-variability"><i class="fa fa-check"></i><b>7.6.4</b> Assessing variability</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="lmem.html"><a href="lmem.html#more-on-random-slopes"><i class="fa fa-check"></i><b>7.7</b> More on random slopes</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="lmem.html"><a href="lmem.html#what-does-adding-a-random-slope-term-do"><i class="fa fa-check"></i><b>7.7.1</b> What does adding a random slope term do?</a></li>
+<li class="chapter" data-level="7.7.2" data-path="lmem.html"><a href="lmem.html#adding-a-random-slope"><i class="fa fa-check"></i><b>7.7.2</b> Discussion: Adding a random slope</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="lmem.html"><a href="lmem.html#random-effect-correlations"><i class="fa fa-check"></i><b>7.8</b> Random effect correlations</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="lmem.html"><a href="lmem.html#model-1e-correlated-random-slope-intercept"><i class="fa fa-check"></i><b>7.8.1</b> Model 1E: <strong>Correlated</strong> random slope &amp; intercept</a></li>
+<li class="chapter" data-level="7.8.2" data-path="lmem.html"><a href="lmem.html#c6discuss"><i class="fa fa-check"></i><b>7.8.2</b> Dicussion: Adding a correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="lmem.html"><a href="lmem.html#model-criticism-for-linear-mixed-models"><i class="fa fa-check"></i><b>7.9</b> Model criticism for linear mixed models</a><ul>
+<li class="chapter" data-level="7.9.1" data-path="lmem.html"><a href="lmem.html#model-3b-residual-plots"><i class="fa fa-check"></i><b>7.9.1</b> Model 3B: Residual plots</a></li>
+<li class="chapter" data-level="7.9.2" data-path="lmem.html"><a href="lmem.html#model-3b-random-effect-distribution"><i class="fa fa-check"></i><b>7.9.2</b> Model 3B: Random effect distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.10" data-path="lmem.html"><a href="lmem.html#c6factorsissue"><i class="fa fa-check"></i><b>7.10</b> Random slopes for factors</a><ul>
+<li class="chapter" data-level="7.10.1" data-path="lmem.html"><a href="lmem.html#model-with-random-effect-correlations"><i class="fa fa-check"></i><b>7.10.1</b> Model with random-effect correlations</a></li>
+<li class="chapter" data-level="7.10.2" data-path="lmem.html"><a href="lmem.html#lmem-mwrec"><i class="fa fa-check"></i><b>7.10.2</b> Models without random-effect correlations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="lmem.html"><a href="lmem.html#other-readings-1"><i class="fa fa-check"></i><b>7.11</b> Other readings</a></li>
+<li class="chapter" data-level="7.12" data-path="lmem.html"><a href="lmem.html#c6extraexamples"><i class="fa fa-check"></i><b>7.12</b> Appendix: Extra examples</a><ul>
+<li class="chapter" data-level="7.12.1" data-path="lmem.html"><a href="lmem.html#lmm-simulation-confint"><i class="fa fa-check"></i><b>7.12.1</b> Predicting confidence intervals by simulation</a></li>
+<li class="chapter" data-level="7.12.2" data-path="lmem.html"><a href="lmem.html#random-intercept-and-slope-model-for-givenness-data"><i class="fa fa-check"></i><b>7.12.2</b> Random intercept and slope model for <code>givenness</code> data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.13" data-path="lmem.html"><a href="lmem.html#c6extendedexercise"><i class="fa fa-check"></i><b>7.13</b> Appendix: Extended exercise</a></li>
+<li class="chapter" data-level="7.14" data-path="lmem.html"><a href="lmem.html#c6solns"><i class="fa fa-check"></i><b>7.14</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html"><i class="fa fa-check"></i><b>8</b> Mixed-effects logistic regression</a><ul>
+<li class="chapter" data-level="8.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#preliminaries"><i class="fa fa-check"></i><b>8.1</b> Preliminaries</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#motivation"><i class="fa fa-check"></i><b>8.1.1</b> Motivation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#basics"><i class="fa fa-check"></i><b>8.2</b> Basics</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7m1"><i class="fa fa-check"></i><b>8.2.1</b> Model 1: <code>givenness</code> data, crossed random effects (intercepts + slopes)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#hypothesis-testing-3"><i class="fa fa-check"></i><b>8.3</b> Hypothesis testing</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#fixed-effects"><i class="fa fa-check"></i><b>8.3.1</b> Fixed effects</a></li>
+<li class="chapter" data-level="8.3.2" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#random-effects"><i class="fa fa-check"></i><b>8.3.2</b> Random effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#fixed-and-random-effects"><i class="fa fa-check"></i><b>8.4</b> Fixed and random effects</a></li>
+<li class="chapter" data-level="8.5" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#melr-practice"><i class="fa fa-check"></i><b>8.5</b> MELR Practice</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7ex1"><i class="fa fa-check"></i><b>8.5.1</b> Exercise 1: tapping</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#model-criticism-for-mixed-effects-logistic-regression"><i class="fa fa-check"></i><b>8.6</b> Model criticism for mixed-effects logistic regression</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#random-effect-distributions"><i class="fa fa-check"></i><b>8.6.1</b> Random-effect distributions</a></li>
+<li class="chapter" data-level="8.6.2" data-path="logistic-regression.html"><a href="logistic-regression.html#residual-plots"><i class="fa fa-check"></i><b>8.6.2</b> Residual plots</a></li>
+<li class="chapter" data-level="8.6.3" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#influence"><i class="fa fa-check"></i><b>8.6.3</b> Influence</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#evaluation-measures"><i class="fa fa-check"></i><b>8.7</b> Evaluation measures</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#evaluation-measure-1-likelihood-ratio-test"><i class="fa fa-check"></i><b>8.7.1</b> Evaluation measure 1: Likelihood ratio test</a></li>
+<li class="chapter" data-level="8.7.2" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#evaluation-measure-2-classification-accuracy"><i class="fa fa-check"></i><b>8.7.2</b> Evaluation measure 2: Classification accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#miscellaneous-mixed-effects-regression-topics"><i class="fa fa-check"></i><b>8.8</b> Miscellaneous mixed-effects regression topics</a><ul>
+<li class="chapter" data-level="8.8.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7m2"><i class="fa fa-check"></i><b>8.8.1</b> Random-effect correlation issues</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#other-readings-2"><i class="fa fa-check"></i><b>8.9</b> Other readings</a></li>
+<li class="chapter" data-level="8.10" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#appendices"><i class="fa fa-check"></i><b>8.10</b> Appendices</a><ul>
+<li class="chapter" data-level="8.10.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#melr-random-slopes-for-factors"><i class="fa fa-check"></i><b>8.10.1</b> Appendix: Random slopes for factors</a></li>
+<li class="chapter" data-level="8.10.2" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7appendix2"><i class="fa fa-check"></i><b>8.10.2</b> Appendix: Multi-level factors and uncorrelated random effects</a></li>
+<li class="chapter" data-level="8.10.3" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#appendix-what-can-happen-if-a-random-slope-isnt-included"><i class="fa fa-check"></i><b>8.10.3</b> Appendix: What can happen if a random slope isn’t included?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7solns"><i class="fa fa-check"></i><b>8.11</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><i class="fa fa-check"></i><b>9</b> Practical regression topics 2: Ordered factors, nonlinear effects, model predictions, post-hoc tests</a><ul>
+<li class="chapter" data-level="9.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#introduction-1"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#ordered-factors"><i class="fa fa-check"></i><b>9.2</b> Ordered factors</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#orthogonal-polynomial-contrasts"><i class="fa fa-check"></i><b>9.2.1</b> Orthogonal polynomial contrasts</a></li>
+<li class="chapter" data-level="9.2.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#using-an-ordered-factor-as-a-predictor"><i class="fa fa-check"></i><b>9.2.2</b> Using an ordered factor as a predictor</a></li>
+<li class="chapter" data-level="9.2.3" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#further-points"><i class="fa fa-check"></i><b>9.2.3</b> Further points</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#nonlinear-effects"><i class="fa fa-check"></i><b>9.3</b> Nonlinear effects</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#splines-definition-and-benefits"><i class="fa fa-check"></i><b>9.3.1</b> Splines: Definition and benefits</a></li>
+<li class="chapter" data-level="9.3.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#restricted-cubic-splines"><i class="fa fa-check"></i><b>9.3.2</b> Restricted cubic splines</a></li>
+<li class="chapter" data-level="9.3.3" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#choosing-spline-complexity"><i class="fa fa-check"></i><b>9.3.3</b> Choosing spline complexity</a></li>
+<li class="chapter" data-level="9.3.4" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#rcs-components"><i class="fa fa-check"></i><b>9.3.4</b> RCS components</a></li>
+<li class="chapter" data-level="9.3.5" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#using-rcs-in-a-mixed-model"><i class="fa fa-check"></i><b>9.3.5</b> Using RCS in a mixed model</a></li>
+<li class="chapter" data-level="9.3.6" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#random-slopes-for-rcs-terms"><i class="fa fa-check"></i><b>9.3.6</b> Random slopes for RCS terms</a></li>
+<li class="chapter" data-level="9.3.7" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#nonlinear-effects-summary"><i class="fa fa-check"></i><b>9.3.7</b> Nonlinear effects: Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#predictions-from-mixed-models"><i class="fa fa-check"></i><b>9.4</b> Predictions from mixed models</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#making-model-predictions"><i class="fa fa-check"></i><b>9.4.1</b> Making Model Predictions</a></li>
+<li class="chapter" data-level="9.4.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#simulation-based-predictions"><i class="fa fa-check"></i><b>9.4.2</b> Simulation-based predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#post-hoc-mult-comp"><i class="fa fa-check"></i><b>9.5</b> Post-hoc tests and multiple comparisons</a></li>
+<li class="chapter" data-level="9.6" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#c8indivpreds"><i class="fa fa-check"></i><b>9.6</b> Appendix: Model predictions for indiviudal participants</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#predictions-incorporating-offsets-for-individual-speakers"><i class="fa fa-check"></i><b>9.6.1</b> Predictions incorporating offsets for individual speakers</a></li>
+<li class="chapter" data-level="9.6.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#predicted-williams-effect-for-each-speaker"><i class="fa fa-check"></i><b>9.6.2</b> Predicted Williams effect for each speaker</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#c8slopesForFactors"><i class="fa fa-check"></i><b>9.7</b> Appendix: Random slopes for factors</a></li>
+<li class="chapter" data-level="9.8" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#c8solns"><i class="fa fa-check"></i><b>9.8</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="datasets-appendix.html"><a href="datasets-appendix.html"><i class="fa fa-check"></i><b>10</b> Appendix: Datasets and packages</a><ul>
+<li class="chapter" data-level="10.1" data-path="datasets-appendix.html"><a href="datasets-appendix.html#engdata"><i class="fa fa-check"></i><b>10.1</b> <code>english</code> lexical decision and naming latencies</a></li>
+<li class="chapter" data-level="10.2" data-path="datasets-appendix.html"><a href="datasets-appendix.html#dutch-regularity"><i class="fa fa-check"></i><b>10.2</b> Dutch <code id="dregdata">regularity</code></a></li>
+<li class="chapter" data-level="10.3" data-path="datasets-appendix.html"><a href="datasets-appendix.html#european-french-phrase-medial-vowel-devoicing"><i class="fa fa-check"></i><b>10.3</b> European French phrase-medial vowel <code id="devdata">devoicing</code></a><ul>
+<li class="chapter" data-level="10.3.1" data-path="datasets-appendix.html"><a href="datasets-appendix.html#background"><i class="fa fa-check"></i><b>10.3.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="datasets-appendix.html"><a href="datasets-appendix.html#north-american-english-tapping"><i class="fa fa-check"></i><b>10.4</b> North American English <code id="tapdata">tapping</code></a><ul>
+<li class="chapter" data-level="10.4.1" data-path="datasets-appendix.html"><a href="datasets-appendix.html#background-1"><i class="fa fa-check"></i><b>10.4.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="datasets-appendix.html"><a href="datasets-appendix.html#halfdata"><i class="fa fa-check"></i><b>10.5</b> <code>halfrhyme</code>: English half-rhymes</a></li>
+<li class="chapter" data-level="10.6" data-path="datasets-appendix.html"><a href="datasets-appendix.html#givedata"><i class="fa fa-check"></i><b>10.6</b> <code>givenness</code> data: the Williams Effect</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="datasets-appendix.html"><a href="datasets-appendix.html#background-2"><i class="fa fa-check"></i><b>10.6.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="datasets-appendix.html"><a href="datasets-appendix.html#alternatives"><i class="fa fa-check"></i><b>10.7</b> <code id="altdata">alternatives</code></a><ul>
+<li class="chapter" data-level="10.7.1" data-path="datasets-appendix.html"><a href="datasets-appendix.html#background-3"><i class="fa fa-check"></i><b>10.7.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="datasets-appendix.html"><a href="datasets-appendix.html#votdata"><i class="fa fa-check"></i><b>10.8</b> VOT</a><ul>
+<li class="chapter" data-level="10.8.1" data-path="datasets-appendix.html"><a href="datasets-appendix.html#background-4"><i class="fa fa-check"></i><b>10.8.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.9" data-path="datasets-appendix.html"><a href="datasets-appendix.html#transitionsdata"><i class="fa fa-check"></i><b>10.9</b> Transitions</a></li>
+<li class="chapter" data-level="10.10" data-path="datasets-appendix.html"><a href="datasets-appendix.html#packages"><i class="fa fa-check"></i><b>10.10</b> Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Quantitative Methods for Linguistic Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+
+<div id="refs" class="references">
+<div>
+<p>Agresti, A. (2003). <em>Categorical data analysis</em>. Wiley.</p>
+</div>
+<div>
+<p>Agresti, A. (2007). <em>An introduction to categorical data analysis</em>. Wiley.</p>
+</div>
+<div>
+<p>Baayen, R. (2001). <em>Word Frequency Distributions</em>. Kluwer Academic Publishers.</p>
+</div>
+<div>
+<p>Baayen, R. (2008). <em>Analyzing linguistic data</em>. Cambridge: Cambridge University Press.</p>
+</div>
+<div>
+<p>Baayen, R. H. (2013). <em>LanguageR: Data sets and functions with “analyzing linguistic data: A practical introduction to statistics”.</em> Retrieved from <a href="https://CRAN.R-project.org/package=languageR" class="uri">https://CRAN.R-project.org/package=languageR</a></p>
+</div>
+<div>
+<p>Baayen, R. H., &amp; Prado Martin, F. M. del. (2005). Semantic density and past-tense formation in three germanic languages. <em>Language</em>, <em>81</em>(3), 666–698.</p>
+</div>
+<div>
+<p>Baayen, R., Davidson, D., &amp; Bates, D. (2008). Mixed-effects modeling with crossed random effects for subjects and items. <em>Journal of Memory and Language</em>, <em>59</em>(4), 390–412.</p>
+</div>
+<div>
+<p>Barr, D. J., Levy, R., Scheepers, C., &amp; Tily, H. J. (2013). Random effects structure for confirmatory hypothesis testing: Keep it maximal. <em>Journal of Memory and Language</em>, <em>68</em>(3), 255–278.</p>
+</div>
+<div>
+<p>Bates, D., Kliegl, R., Vasishth, S., &amp; Baayen, H. (2015). Parsimonious mixed models. <em>ArXiv Preprint ArXiv:1506.04967</em>.</p>
+</div>
+<div>
+<p>Bates, D., Mächler, M., Bolker, B., &amp; Walker, S. (2014). Fitting linear mixed-effects models using lme4. <em>ArXiv Preprint ArXiv:1406.5823</em>.</p>
+</div>
+<div>
+<p>Behrens, J. T. (1997). Principles and procedures of exploratory data analysis. <em>Psychological Methods</em>, <em>2</em>(2), 131–160.</p>
+</div>
+<div>
+<p>Belsley, K., D.A., &amp; Welsch, R. (1980). <em>Regression Diagnostics. Identifying Influential Data and Sources of Collinearity</em>. New York: John Wiley &amp; Sons.</p>
+</div>
+<div>
+<p>Bland, M. (2015). <em>An introduction to medical statistics</em>. Oxford University Press.</p>
+</div>
+<div>
+<p>Chatterjee, S., &amp; Hadi, A. (2012). <em>Regression Analysis by Example</em> (5th ed.). Hoboken, NJ: John Wiley &amp; Sons.</p>
+</div>
+<div>
+<p>Cho, T., &amp; Ladefoged, P. (1999). Variation and universals in VOT: evidence from 18 languages. <em>Journal of Phonetics</em>, <em>27</em>(2), 207–229. <a href="https://doi.org/10.1006/jpho.1999.0094" class="uri">https://doi.org/10.1006/jpho.1999.0094</a></p>
+</div>
+<div>
+<p>Chung, Y., Rabe-Hesketh, S., Dorie, V., Gelman, A., &amp; Liu, J. (2013). A nondegenerate penalized likelihood estimator for variance parameters in multilevel models. <em>Psychometrika</em>, <em>78</em>(4), 685–709.</p>
+</div>
+<div>
+<p>Clark, H. H. (1973). The language-as-fixed-effect fallacy: A critique of language statistics in psychological research. <em>Journal of Verbal Learning and Verbal Behavior</em>, <em>12</em>(4), 335–359.</p>
+</div>
+<div>
+<p>Crawley, M. J. (2015). <em>Statistics: an introduction using R</em> (Second edition). Wiley.</p>
+</div>
+<div>
+<p>Dalgaard, P. (2008). <em>Introductory statistics with R</em> (2nd ed.). New York, NY: Springer.</p>
+</div>
+<div>
+<p>Faraway, J. J. (2016). <em>Extending the linear model with R: generalized linear, mixed effects and nonparametric regression models</em>. CRC Press Taylor &amp; Francis Group.</p>
+</div>
+<div>
+<p>Gelman, A., &amp; Hill, J. (2007). <em>Data analysis using regression and multilevel/hierarchical models</em>. Cambridge: Cambridge University Press.</p>
+</div>
+<div>
+<p>Gelman, A., &amp; Su, Y.-S. (2018). <em>Arm: Data analysis using regression and multilevel/hierarchical models</em>. Retrieved from <a href="https://CRAN.R-project.org/package=arm" class="uri">https://CRAN.R-project.org/package=arm</a></p>
+</div>
+<div>
+<p>Godfrey, J., &amp; Holliman, E. (1997). <em>Switchboard-1 Release 2</em>. Philadelphia: Linguistic Data Consortium.</p>
+</div>
+<div>
+<p>Harder, L. (2013). Feature mismatch in half-rhymes. <em>Unpublished MA Research Paper McGill University</em>.</p>
+</div>
+<div>
+<p>Harrell, F. (2001). <em>Regression modeling strategies: With applications to linear models, logistic regression, and survival analysis</em>. New York: Springer Verlag.</p>
+</div>
+<div>
+<p>Harrell Jr, F. E. (2018). <em>Rms: Regression modeling strategies</em>. Retrieved from <a href="https://CRAN.R-project.org/package=rms" class="uri">https://CRAN.R-project.org/package=rms</a></p>
+</div>
+<div>
+<p>Harrell Jr, F. E., Charles Dupont, &amp; others. (2018). <em>Hmisc: Harrell miscellaneous</em>. Retrieved from <a href="https://CRAN.R-project.org/package=Hmisc" class="uri">https://CRAN.R-project.org/package=Hmisc</a></p>
+</div>
+<div>
+<p>Jaeger, T. (2008). Categorical data analysis: Away from ANOVAs (transformation or not) and towards logit mixed models. <em>Journal of Memory and Language</em>, <em>59</em>(4), 434–446. <a href="https://doi.org/10.1016/j.jml.2007.11.007" class="uri">https://doi.org/10.1016/j.jml.2007.11.007</a></p>
+</div>
+<div>
+<p>Johnson, K. (2008). <em>Quantitative methods in linguistics</em>. Malden, MA: Wiley-Blackwell.</p>
+</div>
+<div>
+<p>Kilbourn-Ceron, O. (2017). <em>Speech production planning affects variation in external sandhi</em> (PhD thesis). McGill University.</p>
+</div>
+<div>
+<p>Kilbourn-Ceron, O., Wagner, M., &amp; Clayards, M. (2017). The effect of production planning locality on external sandhi: A study in /t/. In <em>Proceedings of the 52nd Annual Meeting of the Chicago Linguistic Society</em>.</p>
+</div>
+<div>
+<p>Kruschke, J. (2014). <em>Doing bayesian data analysis: A tutorial with r, jags, and stan</em>. Academic Press.</p>
+</div>
+<div>
+<p>Lenth, R. (2016). Least-squares means: The R package lsmeans. <em>Journal of Statistical Software</em>, <em>69</em>(1), 1–33. <a href="https://doi.org/10.18637/jss.v069.i01" class="uri">https://doi.org/10.18637/jss.v069.i01</a></p>
+</div>
+<div>
+<p>Lenth, R. (2018). <em>Emmeans: Estimated marginal means, aka least-squares means</em>. Retrieved from <a href="https://CRAN.R-project.org/package=emmeans" class="uri">https://CRAN.R-project.org/package=emmeans</a></p>
+</div>
+<div>
+<p>Levy, R. (2012). <em>Probabilistic methods in the study of language</em>.</p>
+</div>
+<div>
+<p>Matuschek, H., Kliegl, R., Vasishth, S., Baayen, H., &amp; Bates, D. (2017). Balancing Type I error and power in linear mixed models. <em>Journal of Memory and Language</em>, <em>94</em>, 305–315.</p>
+</div>
+<div>
+<p>McElreath, R. (2015). <em>Statistical Rethinking: A Bayesian Course with Examples in R and Stan</em>. Chapman &amp; Hall/CRC.</p>
+</div>
+<div>
+<p>Morris, R. J., Mccrea, C. R., &amp; Herring, K. D. (2008). Voice onset time differences between adult males and females: Isolated syllables. <em>Journal of Phonetics</em>, <em>36</em>(2), 308–317. <a href="https://doi.org/10.1016/j.wocn.2007.06.003" class="uri">https://doi.org/10.1016/j.wocn.2007.06.003</a></p>
+</div>
+<div>
+<p>Navarro, D. (2015). <em>Learning Statistics with R</em>. School of Psychology, University of Adelaide, Adelaide, Australia.</p>
+</div>
+<div>
+<p>Nicenboim, B., &amp; Vasishth, S. (2016). Statistical methods for linguistic research: Foundational Ideas—Part II. <em>Language and Linguistics Compass</em>, <em>10</em>(11), 591–613.</p>
+</div>
+<div>
+<p>Nieuwenhuis, R., Te Grotenhuis, M., &amp; Pelzer, B. (2012). Influence.ME: Tools for detecting influential data in mixed effects models. <em>R Journal</em>, <em>4</em>(2), 38–47.</p>
+</div>
+<div>
+<p>Roberts, S. G., Torreira, F., &amp; Levinson, S. C. (2015). The effects of processing and sequence organization on the timing of turn taking: A corpus study. <em>Frontiers in Psychology</em>, <em>6</em>, 1–16. <a href="https://doi.org/10.3389/fpsyg.2015.00509" class="uri">https://doi.org/10.3389/fpsyg.2015.00509</a></p>
+</div>
+<div>
+<p>Roberts, S. G., Torreira, F., &amp; Levinson, S. C. (2018). The effects of processing and sequence organization on the timing of turn taking: A corpus study. OSF. Retrieved from <a href="osf.io/dve6h" class="uri">osf.io/dve6h</a></p>
+</div>
+<div>
+<p>Salverda, A. P., Dahan, D., &amp; McQueen, J. M. (2003). The role of prosodic boundaries in the resolution of lexical embedding in speech comprehension. <em>Cognition</em>, <em>90</em>(1), 51–89.</p>
+</div>
+<div>
+<p>Schad, D. J., Hohenstein, S., Vasishth, S., &amp; Kliegl, R. (2018). How to capitalize on a priori contrasts in linear (mixed) models: A tutorial. <em>ArXiv Preprint ArXiv:1807.10451</em>. Retrieved from <a href="https://arxiv.org/abs/1807.10451v1" class="uri">https://arxiv.org/abs/1807.10451v1</a></p>
+</div>
+<div>
+<p>Schielzeth, H., &amp; Forstmeier, W. (2009). Conclusions beyond support: Over- confident estimates in mixed models. <em>Behavioral Ecology</em>, <em>20</em>(2), 416–420.</p>
+</div>
+<div>
+<p>Scott, D. R., &amp; Cutler, A. (1984). Segmental phonology and the perception of syntactic structure. <em>Journal of Verbal Learning and Verbal Behavior</em>, <em>23</em>(4), 450–466.</p>
+</div>
+<div>
+<p>Snijders, T., &amp; Bosker, R. (2011). <em>Multilevel analysis</em> (2nd ed.). London: Sage.</p>
+</div>
+<div>
+<p>Sonderegger, M., Bane, M., &amp; Graff, P. (2017). The medium-term dynamics of accents on reality television. <em>Language</em>, <em>93</em>(3), 598–640.</p>
+</div>
+<div>
+<p>Sonderegger, M., Bane, M., &amp; Graff, P. (2018). Medium-term dynamics of accents on reality TV. OSF. Retrieved from <a href="osf.io/dmxuj" class="uri">osf.io/dmxuj</a></p>
+</div>
+<div>
+<p>Sorensen, T., Hohenstein, S., &amp; Vasishth, S. (2015). Bayesian linear mixed models using stan: A tutorial for psychologists, linguists, and cognitive scientists. <em>ArXiv Preprint ArXiv:1506.06201</em>.</p>
+</div>
+<div>
+<p>Speelman, D., Heylen, K., &amp; Geeraerts, D. (Eds.). (2018). <em>Mixed-effects regression models in linguistics</em>. Springer.</p>
+</div>
+<div>
+<p>Torreira, F., &amp; Ernestus, M. (2010). Phrase-medial vowel devoicing in spontaneous french. In <em>11th Annual Conference of the International Speech Communication Association (Interspeech 2010)</em> (pp. 2006–2009).</p>
+</div>
+<div>
+<p>Torreira, F., &amp; Ernestus, M. (2018). French devoicing. Open Science Framework. Retrieved from <a href="osf.io/jverz" class="uri">osf.io/jverz</a></p>
+</div>
+<div>
+<p>Torreira, F., Adda-Decker, M., &amp; Ernestus, M. (2010). The Nijmegen corpus of casual French. <em>Speech Communication</em>, <em>52</em>(3), 201–212.</p>
+</div>
+<div>
+<p>Tukey, J. W. (1980). We need both exploratory and confirmatory. <em>The American Statistician</em>, <em>34</em>(1), 23–25.</p>
+</div>
+<div>
+<p>Vasishth, S. (2014). An introduction to statistical data analysis. <em>Summer 2014 Version. Available at <a href="https://github.com/vasishth/Statistics-lecture-notes-Potsdam/">Https://Github.com/Vasishth/Statistics-Lecture-Notes-Potsdam/</a></em>.</p>
+</div>
+<div>
+<p>Vasishth, S., &amp; Broe, M. B. (2011). <em>The foundations of statistics: A simulation-based approach</em>. Springer.</p>
+</div>
+<div>
+<p>Vasishth, S., &amp; Nicenboim, B. (2016). Statistical methods for linguistic research: Foundational ideas–Part i. <em>Language and Linguistics Compass</em>, <em>10</em>(8), 349–369.</p>
+</div>
+<div>
+<p>Venables, W., &amp; Ripley, B. (2002). <em>Modern applied statistics with S</em>. New York: Springer.</p>
+</div>
+<div>
+<p>Wagner, M. (2012). A givenness illusion. <em>Language and Cognitive Processes</em>, <em>27</em>(10), 1433–1458. <a href="https://doi.org/http://dx.doi.org/10.1080/01690965.2011.607713" class="uri">https://doi.org/http://dx.doi.org/10.1080/01690965.2011.607713</a></p>
+</div>
+<div>
+<p>Wagner, M. (2016). Information structure and production planning. In C. Féry &amp; S. Ishihara (Eds.), <em>The Oxford handbook of information structure</em> (pp. 541–561). Oxford University Press.</p>
+</div>
+<div>
+<p>Wagner, M. (2018a). A givenness illusion. Open Science Framework. Retrieved from <a href="osf.io/r4j2w" class="uri">osf.io/r4j2w</a></p>
+</div>
+<div>
+<p>Wagner, M. (2018b). Asymmetries in half-rhyme. Open Science Framework. Retrieved from <a href="osf.io/k5pnu" class="uri">osf.io/k5pnu</a></p>
+</div>
+<div>
+<p>Wagner, M. (2018c). Information structure and production planning. Open Science Framework. Retrieved from <a href="osf.io/dha2j" class="uri">osf.io/dha2j</a></p>
+</div>
+<div>
+<p>Wagner, M., Kilbourn-Ceron, O., &amp; Clayards, M. (2018). The effect of production planning locality on external sandhi: A study in /t/. OSF. Retrieved from <a href="osf.io/8rjxu" class="uri">osf.io/8rjxu</a></p>
+</div>
+<div>
+<p>Wickham, H. (2016). <em>Ggplot2: Elegant graphics for data analysis</em>. Springer-Verlag New York. Retrieved from <a href="http://ggplot2.org" class="uri">http://ggplot2.org</a></p>
+</div>
+<div>
+<p>Wickham, H., &amp; Henry, L. (2018). <em>Tidyr: Easily tidy data with ’spread()’ and ’gather()’ functions</em>. Retrieved from <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a></p>
+</div>
+<div>
+<p>Wickham, H., François, R., Henry, L., &amp; Müller, K. (2018). <em>Dplyr: A grammar of data manipulation</em>. Retrieved from <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a></p>
+</div>
+<div>
+<p>Williams, E. (1980). Remarks on stress and anaphora. <em>Journal of Linguistic Research</em>, <em>1</em>(3), 1–16.</p>
+</div>
+<div>
+<p>Wurm, L. H., &amp; Fisicaro, S. A. (2014). What residualizing predictors in regression analyses does (and what it does not do). <em>Journal of Memory and Language</em>, <em>72</em>, 37–48.</p>
+</div>
+<div>
+<p>Xie, Y. (2018). <em>Bookdown: Authoring books and technical documents with R markdown</em>. Retrieved from <a href="https://github.com/rstudio/bookdown" class="uri">https://github.com/rstudio/bookdown</a></p>
+</div>
+<div>
+<p>Zuur, A. F. (2009). <em>Mixed effects models and extensions in ecology with R</em>. Springer.</p>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="datasets-appendix.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

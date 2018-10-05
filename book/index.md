@@ -1,0 +1,104 @@
+---
+title: "Quantitative Methods for Linguistic Data"
+author: "Morgan Sonderegger, Michael Wagner, Francisco Torreira"
+date: "v. 1.0: October 2018"
+knit: "bookdown::render_book"
+site: bookdown::bookdown_site
+documentclass: krantz
+bibliography: [statsBook.bib]
+biblio-style: apalike
+csl: apa.csl
+link-citations: yes
+---
+
+
+
+<script src="js/hideOutput.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { 
+      equationNumbers: {
+             autoNumber: "all",
+      } 
+  }
+});
+</script>
+
+
+
+# Preface{-}
+
+This e-book grew out of lecture notes for the one-semester graduate course on methods for  Experimental Linguistics given in the Department of Linguistics at McGill University. "Experimental Linguistics" is a cover term sometimes used for any linguistic study based on quantitative data collected from the world, whether from laboratory experiments, speech or text corpora, online surveys, or another source. From the beginning, the course was taken by a mix of linguists and language scientists from other fields (psychology, communication sciences and disorders, computer science), so we have attempted to make these materials useful and understandable for language scientists more broadly.  While this book hopefully can stand alone, readers should bear in mind that it is still fairly tailored to the McGill course, in ways we describe below.
+
+**What is in this book?**
+
+There are two sets of "Methods" for doing experimental studies: 
+
+1. Everything that goes into getting data, such as experimental design and common methodologies (lab studies), or methods for extracting data from naturalistic data (corpus studies).
+
+2. Methods for visualization and quantitative analysis of data that has already been collected.
+
+Very different types of training are required for (1) depending on the type of data, while there is a common set of methods for (2) across different types of data---especially regression modeling. Thus, the original course covered only (2), and the book shares this focus. 
+
+The book focuses on different kinds of regression models widely used in practice, and background needed to understand them:
+
+* Basic inferential statistics and hypothesis testing (Chapters 1-2)
+
+* Linear regression (Chapter 3)
+
+* Categorical data analysis and logistic regression (Chapters 4-5)
+
+* Practical topics for regression modeling, such as factors, contrast coding, interpreting interactions, and post-hoc tests (Chapters 6, 9)
+
+* Mixed-effects linear and logistic regression models (Chapters 7-8)
+
+This book is incomplete, in the sense of missing content from course lectures on additional topics:
+
+* Beginning: Probability; Data summarization and visualization; Exploratory Data Analysis (beginning)
+
+* End of book: Dimensionality reduction (PCA, LDA); Classification (CART trees, random forests, SVMs)
+
+These will hopefully be incorporated into a future version.
+
+The course was taught for the first time by [Morgan](http://people.linguistics.mcgill.ca/~morgan/) and [Michael](https://www.mcgill.ca/linguistics/people-0/faculty/wagner) in 2013, with most lecture notes drafted by Morgan, and most datasets taken from Michael's [prosody.lab](http://prosodylab.org/lab/). Other examples come from Morgan and [Francisco's](https://www.mcgill.ca/linguistics/people-0/faculty/francisco-torreira) work, and the notes were used and updated yearly in 2013--2017 in courses taught by subsets of us.  The notes eventually contained much more than can be reasonably covered in a semester, and we thought it could be useful to release them as a "book".
+
+All three of us are linguists working primarily on speech sounds, and work with psychologists to varying degrees, hence the examples used in these notes come largely from studies of speech sounds and/or psycholinguistics.
+
+**What do I need to know?**
+
+We assume readers have familiarity with statistics from a basic course (e.g. up to ANOVAs), and our goal is for readers to finish the book proficient in state-of-the-art statistical models (mixed-effect regression models) for analyzing linguistic data in the mid-2010s. We focus on conceptual understanding and practical skills by doing the course "in R", but without actually providing instruction in R. Thus, this book assumes basic familiarity with R and R programming, for which many good tutorials now exist online. In practice, graduate and advanced undergraduate students with a variety of backgrounds in statistics and programming (including "none") have done well in the McGill course.
+
+**Caveats**
+
+Any citable source on quantitative methods, including those written by practitioners (and not statisticians, data scientists, etc.) is liable to be treated as a reference whose text contains Truth.  We would like to emphasize that this "book" remains fundamentally a set of expanded lecture notes, and should not be thought of as an authoritative reference for several reasons:
+
+1. *None of us are statisticians*. While one of us (Morgan) has some math/statistics [training](https://www.maths.cam.ac.uk/postgrad/prospective/part-iii), we all are essentially self-taught data analysts.  If you frequently use a particular tool or framework for data analysis, we recommend (eventually) consulting a more authoritative source.
+
+2.  *We only cover a fraction of the techniques and types of data* used in quantitative studies of linguistic data---those we happen to be most familiar with and deemed most important for a one-semester course.
+
+3. *Statistical practice is not static*.  This book emphasizes practical skills (which package to use, best practices for fitting and interpreting models), for which best practices are constantly evolving.
+
+Another consequence of this book being extended lecture notes is that the References (Chapter 11) are incomplete.
+
+Thus, this book certainly contains errors, is incomplete and out of date, and under-cites.  We welcome any feedback on errors or ways the book can be improved!
+
+
+**Datasets**
+
+The book uses publicly-available datasets and is written in [RMarkdown](https://rmarkdown.rstudio.com/), so that readers can follow along and replicate everything in R. The `.Rmd` source files used to generate each chapter are in [this repository](https://github.com/mlml/stats_book), which readers can consult to see exactly how anything was done.  
+
+The datasets are either from our own work---in which case they are available in [Open Science Framework](https://osf.io) repositories---or were already included in the R package [`languageR`](https://cran.r-project.org/web/packages/languageR/index.html).  Each dataset is described in [an appendix](#datasets-appendix). Most datasets arise from collaborative work, and we are grateful to our collaborators for their willingness to post data publicly:  [Mirjam Ernestus](http://www.mirjamernestus.nl/Ernestus/Home.php) (`devoicing`); [Oriana Kilbourn-Ceron](http://people.linguistics.mcgill.ca/~oriana.kilbourn-ceron/) and [Meghan Clayards](https://www.mcgill.ca/linguistics/people-0/faculty/clayards) (`tapping`); Laura Harder (`halfrhyme`); [Max Bane](https://www.linkedin.com/in/max-bane-b1211aa9) and [Peter Graff](https://www.linkedin.com/in/peter-graff-13bb6a63/?originalSubdomain=at) (`vot`); and [Seán Roberts](http://www.bristol.ac.uk/school-of-arts/people/sean-g-roberts/index.html) and [Stephen Levinson](https://www.mpi.nl/people/levinson-stephen) (`transitions`).
+We are also grateful to [R. Harald Baayen](http://www.sfs.uni-tuebingen.de/~hbaayen/contact.html) and his co-authors for making the datasets in `languageR` available in the first place.  
+
+**Thanks**
+
+Many people deserve thanks along the way from hastily-written slides to a book.  Above all, students in each of the 2013--2017 McGill classes provided feedback on what worked and what didn't, as did McGill Linguistics students who continued to use the materials for their research---especially [Hye-Young Bang](https://hyeyoungbang.wordpress.com/), [Guilherme Garcia](https://guilhermegarcia.github.io/), [Oriana Kilbourn-Ceron](http://people.linguistics.mcgill.ca/~oriana.kilbourn-ceron/), [Donghyun Kim](http://dkim.rbind.io/), [Jeff Lamontagne](http://mcgill.academia.edu/JeffreyLamontagne), and [James Tanner](http://people.linguistics.mcgill.ca/~james.tanner/).  Guilherme Garcia and [Michael McAuliffe](http://mmcauliffe.github.io/) offered R tutorials and general help in some years, and provided important feedback on course materials.  [David Flesicher](https://www.linkedin.com/in/fleischerdavid/?originalSubdomain=ca)  and [Vanna Willerton](https://secureweb.mcgill.ca/linguistics/people-0/students) did substantial typesetting and editing legwork to edit the notes into a coherent whole.  Colleagues who saw subsets of these notes encouraged Morgan to clean them up and release publicly, including Meghan Clayards, Tim O'Donnell, Jane Stuart-Smith, and Alan Yu.  More than citations convey, we are indebted to existing materials by R. Harald Baayen, Ben Bolker, Samprit Chatterjee & Ali Hadi, Florian Jaeger, Roger Levy, Shravan Vasishth, Hadley Wickham, and especially Andrew Gelman & Jennifer Hill (*Data analysis using regression and multilevel/hierarchical models*).
+
+
+<!-- TODO FUTURE: I don't think this is actually the case anymore..? unless probability chapter incorporated? -->
+<!-- We thank James Kirby for permission to incorporate some material from a statistics course module co-taught with Morgan at University of Chicago in 2010. -->
+
+-- Morgan Sonderegger, Michael Wagner, Francisco Torreira
+
+October 2018

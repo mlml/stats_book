@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Quantitative Methods for Linguistic Data</title>
+  <meta name="description" content="Quantitative Methods for Linguistic Data">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Quantitative Methods for Linguistic Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Quantitative Methods for Linguistic Data" />
+  
+  
+  
+
+<meta name="author" content="Morgan Sonderegger, Michael Wagner, Francisco Torreira">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Quantitative Methods for Linguistic Data</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html"><i class="fa fa-check"></i><b>1</b> Inferential statistics: Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sample-population"><i class="fa fa-check"></i><b>1.1</b> Population vs. sample</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sample-to-population-high-level"><i class="fa fa-check"></i><b>1.1.1</b> Sample <span class="math inline">\(\to\)</span> population: High level</a></li>
+<li class="chapter" data-level="1.1.2" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sdsm"><i class="fa fa-check"></i><b>1.1.2</b> Sampling distribution of the sample mean</a></li>
+<li class="chapter" data-level="1.1.3" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#sampling-from-a-non-normal-distribution"><i class="fa fa-check"></i><b>1.1.3</b> Sampling from a non-normal distribution</a></li>
+<li class="chapter" data-level="" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#exercises"><i class="fa fa-check"></i>Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#confidence-intervals"><i class="fa fa-check"></i><b>1.2</b> Confidence intervals</a></li>
+<li class="chapter" data-level="1.3" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#t-distribution"><i class="fa fa-check"></i><b>1.3</b> <span class="math inline">\(t\)</span> distribution</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#t-based-confidence-intervals"><i class="fa fa-check"></i><b>1.3.1</b> <span class="math inline">\(t\)</span>-based confidence intervals</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="inferential-statistics-introduction.html"><a href="inferential-statistics-introduction.html#other-reading"><i class="fa fa-check"></i><b>1.4</b> Other reading</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>2</b> Hypothesis testing</a><ul>
+<li class="chapter" data-level="2.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-high-level"><i class="fa fa-check"></i><b>2.1</b> Hypothesis testing: High-level</a></li>
+<li class="chapter" data-level="2.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#z-scores"><i class="fa fa-check"></i><b>2.2</b> <span class="math inline">\(z\)</span>-scores</a></li>
+<li class="chapter" data-level="2.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#t-tests"><i class="fa fa-check"></i><b>2.3</b> <span class="math inline">\(t\)</span>-tests</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#single-sample-t-test-setup"><i class="fa fa-check"></i><b>2.3.1</b> Single-sample <span class="math inline">\(t\)</span>-test: Setup</a></li>
+<li class="chapter" data-level="2.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-in-general"><i class="fa fa-check"></i><b>2.3.2</b> Hypothesis testing in general</a></li>
+<li class="chapter" data-level="2.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#two-sample-t-test"><i class="fa fa-check"></i><b>2.3.3</b> Two-sample <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#welch-example"><i class="fa fa-check"></i><b>2.3.4</b> Unequal variances: Welch <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#t-test-assumptions"><i class="fa fa-check"></i><b>2.3.5</b> Assumptions behind <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#paired-t-test"><i class="fa fa-check"></i><b>2.3.6</b> Paired <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="2.3.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#reporting-a-hypothesis-test"><i class="fa fa-check"></i><b>2.3.7</b> Reporting a hypothesis test</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#checking-normality"><i class="fa fa-check"></i><b>2.4</b> Checking normality</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#visual-methods"><i class="fa fa-check"></i><b>2.4.1</b> Visual methods</a></li>
+<li class="chapter" data-level="2.4.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#q-q-plots"><i class="fa fa-check"></i><b>2.4.2</b> Q-Q plots</a></li>
+<li class="chapter" data-level="2.4.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#shapiro-wilk-example"><i class="fa fa-check"></i><b>2.4.3</b> Hypothesis test</a></li>
+<li class="chapter" data-level="2.4.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#other-parametric-tests"><i class="fa fa-check"></i><b>2.4.4</b> Other parametric tests</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#non-parametric-tests"><i class="fa fa-check"></i><b>2.5</b> Non-parametric tests</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#wilcoxson-tests"><i class="fa fa-check"></i><b>2.5.1</b> Wilcoxson tests</a></li>
+<li class="chapter" data-level="2.5.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#two-sample-wilcoxson-test"><i class="fa fa-check"></i><b>2.5.2</b> Two-sample Wilcoxson test</a></li>
+<li class="chapter" data-level="2.5.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#parametric-versus-non-parametric-tests"><i class="fa fa-check"></i><b>2.5.3</b> Parametric versus non-parametric tests</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#other-reading-1"><i class="fa fa-check"></i><b>2.6</b> Other reading</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>3</b> Linear regression</a><ul>
+<li class="chapter" data-level="3.1" data-path="linear-regression.html"><a href="linear-regression.html#regression-general-introduction"><i class="fa fa-check"></i><b>3.1</b> Regression: General introduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="linear-regression.html"><a href="linear-regression.html#linear-models"><i class="fa fa-check"></i><b>3.1.1</b> Linear models</a></li>
+<li class="chapter" data-level="3.1.2" data-path="linear-regression.html"><a href="linear-regression.html#terminology"><i class="fa fa-check"></i><b>3.1.2</b> Terminology</a></li>
+<li class="chapter" data-level="3.1.3" data-path="linear-regression.html"><a href="linear-regression.html#steps-and-assumptions-of-regression-analysis"><i class="fa fa-check"></i><b>3.1.3</b> Steps and assumptions of regression analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="linear-regression.html"><a href="linear-regression.html#simple-linear-regression"><i class="fa fa-check"></i><b>3.2</b> Simple linear regression</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="linear-regression.html"><a href="linear-regression.html#slr-continuous-predictor"><i class="fa fa-check"></i><b>3.2.1</b> SLR: Continuous predictor</a></li>
+<li class="chapter" data-level="3.2.2" data-path="linear-regression.html"><a href="linear-regression.html#slr-parameter-estimation"><i class="fa fa-check"></i><b>3.2.2</b> SLR: Parameter estimation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="linear-regression.html"><a href="linear-regression.html#hypothesis-testing-1"><i class="fa fa-check"></i><b>3.2.3</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="3.2.4" data-path="linear-regression.html"><a href="linear-regression.html#quality-of-fit"><i class="fa fa-check"></i><b>3.2.4</b> Quality of fit</a></li>
+<li class="chapter" data-level="3.2.5" data-path="linear-regression.html"><a href="linear-regression.html#categorical-predictor"><i class="fa fa-check"></i><b>3.2.5</b> Categorical predictor</a></li>
+<li class="chapter" data-level="3.2.6" data-path="linear-regression.html"><a href="linear-regression.html#slr-with-a-binary-categorical-predictor-vs.two-sample-t-test"><i class="fa fa-check"></i><b>3.2.6</b> SLR with a binary categorical predictor vs. two-sample <span class="math inline">\(t\)</span>-test</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="linear-regression.html"><a href="linear-regression.html#multiple-linear-regression"><i class="fa fa-check"></i><b>3.3</b> Multiple linear regression</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="linear-regression.html"><a href="linear-regression.html#goodness-of-fit-metrics"><i class="fa fa-check"></i><b>3.3.1</b> Goodness of fit metrics</a></li>
+<li class="chapter" data-level="3.3.2" data-path="linear-regression.html"><a href="linear-regression.html#interactions-and-factors"><i class="fa fa-check"></i><b>3.3.2</b> Interactions and factors</a></li>
+<li class="chapter" data-level="3.3.3" data-path="linear-regression.html"><a href="linear-regression.html#plotting-interactions"><i class="fa fa-check"></i><b>3.3.3</b> Plotting interactions</a></li>
+<li class="chapter" data-level="3.3.4" data-path="linear-regression.html"><a href="linear-regression.html#categorical-factors-with-more-than-two-levels"><i class="fa fa-check"></i><b>3.3.4</b> Categorical factors with more than two levels</a></li>
+<li class="chapter" data-level="3.3.5" data-path="linear-regression.html"><a href="linear-regression.html#releveling-factors"><i class="fa fa-check"></i><b>3.3.5</b> Releveling factors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-assumptions"><i class="fa fa-check"></i><b>3.4</b> Linear regression assumptions</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="linear-regression.html"><a href="linear-regression.html#visual-methods-1"><i class="fa fa-check"></i><b>3.4.1</b> Visual methods</a></li>
+<li class="chapter" data-level="3.4.2" data-path="linear-regression.html"><a href="linear-regression.html#assumption-1-linearity"><i class="fa fa-check"></i><b>3.4.2</b> Assumption 1: Linearity</a></li>
+<li class="chapter" data-level="3.4.3" data-path="linear-regression.html"><a href="linear-regression.html#c2ioe"><i class="fa fa-check"></i><b>3.4.3</b> Assumption 2: Independence of errors</a></li>
+<li class="chapter" data-level="3.4.4" data-path="linear-regression.html"><a href="linear-regression.html#assumption-3-normality-of-errors"><i class="fa fa-check"></i><b>3.4.4</b> Assumption 3: Normality of errors</a></li>
+<li class="chapter" data-level="3.4.5" data-path="linear-regression.html"><a href="linear-regression.html#assumtion-4-constancy-of-variance"><i class="fa fa-check"></i><b>3.4.5</b> Assumtion 4: Constancy of variance</a></li>
+<li class="chapter" data-level="3.4.6" data-path="linear-regression.html"><a href="linear-regression.html#interim-summary"><i class="fa fa-check"></i><b>3.4.6</b> Interim summary</a></li>
+<li class="chapter" data-level="3.4.7" data-path="linear-regression.html"><a href="linear-regression.html#transforming-to-normality"><i class="fa fa-check"></i><b>3.4.7</b> Transforming to normality</a></li>
+<li class="chapter" data-level="3.4.8" data-path="linear-regression.html"><a href="linear-regression.html#assumption-5-linear-independence-of-predictors"><i class="fa fa-check"></i><b>3.4.8</b> Assumption 5: Linear independence of predictors</a></li>
+<li class="chapter" data-level="3.4.9" data-path="linear-regression.html"><a href="linear-regression.html#collinearity"><i class="fa fa-check"></i><b>3.4.9</b> Collinearity</a></li>
+<li class="chapter" data-level="3.4.10" data-path="linear-regression.html"><a href="linear-regression.html#assumption-6-observations"><i class="fa fa-check"></i><b>3.4.10</b> Assumption 6: Observations</a></li>
+<li class="chapter" data-level="3.4.11" data-path="linear-regression.html"><a href="linear-regression.html#lin-reg-measuring-influence"><i class="fa fa-check"></i><b>3.4.11</b> Measuring influence</a></li>
+<li class="chapter" data-level="3.4.12" data-path="linear-regression.html"><a href="linear-regression.html#outliers"><i class="fa fa-check"></i><b>3.4.12</b> Outliers</a></li>
+<li class="chapter" data-level="3.4.13" data-path="linear-regression.html"><a href="linear-regression.html#regression-assumptions-reassurance"><i class="fa fa-check"></i><b>3.4.13</b> Regression assumptions: Reassurance</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="linear-regression.html"><a href="linear-regression.html#lm-model-comparison"><i class="fa fa-check"></i><b>3.5</b> Model comparison</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="linear-regression.html"><a href="linear-regression.html#nested-model-comparison"><i class="fa fa-check"></i><b>3.5.1</b> Nested model comparison</a></li>
+<li class="chapter" data-level="3.5.2" data-path="linear-regression.html"><a href="linear-regression.html#non-nested-model-comparison"><i class="fa fa-check"></i><b>3.5.2</b> Non-nested model comparison</a></li>
+<li class="chapter" data-level="3.5.3" data-path="linear-regression.html"><a href="linear-regression.html#c2varselect"><i class="fa fa-check"></i><b>3.5.3</b> Variable selection</a></li>
+<li class="chapter" data-level="3.5.4" data-path="linear-regression.html"><a href="linear-regression.html#interpretability-issues"><i class="fa fa-check"></i><b>3.5.4</b> Interpretability issues</a></li>
+<li class="chapter" data-level="3.5.5" data-path="linear-regression.html"><a href="linear-regression.html#interim-recipe-building-a-multiple-linear-regression-model"><i class="fa fa-check"></i><b>3.5.5</b> Interim recipe: Building a multiple linear regression model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="linear-regression.html"><a href="linear-regression.html#c2solns"><i class="fa fa-check"></i><b>3.6</b> Solutions</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="linear-regression.html"><a href="linear-regression.html#multiple-linear-regression-solutions"><i class="fa fa-check"></i><b>3.6.1</b> Multiple linear regression: Solutions</a></li>
+<li class="chapter" data-level="3.6.2" data-path="linear-regression.html"><a href="linear-regression.html#linear-regression-assumptions-solutions"><i class="fa fa-check"></i><b>3.6.2</b> Linear regression assumptions: Solutions</a></li>
+<li class="chapter" data-level="3.6.3" data-path="linear-regression.html"><a href="linear-regression.html#model-comparison-solutions"><i class="fa fa-check"></i><b>3.6.3</b> Model comparison: Solutions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="cda.html"><a href="cda.html"><i class="fa fa-check"></i><b>4</b> Categorical data analysis: Preliminaries</a><ul>
+<li class="chapter" data-level="4.1" data-path="cda.html"><a href="cda.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="cda.html"><a href="cda.html#x2-contingency-tables"><i class="fa fa-check"></i><b>4.1.1</b> 2x2 contingency tables</a></li>
+<li class="chapter" data-level="4.1.2" data-path="cda.html"><a href="cda.html#the-chi-squared-test"><i class="fa fa-check"></i><b>4.1.2</b> The chi-squared test</a></li>
+<li class="chapter" data-level="4.1.3" data-path="cda.html"><a href="cda.html#fishers-exact-test"><i class="fa fa-check"></i><b>4.1.3</b> Fisher’s exact test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="cda.html"><a href="cda.html#towards-logistic-regression"><i class="fa fa-check"></i><b>4.2</b> Towards logistic regression</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="cda.html"><a href="cda.html#odds"><i class="fa fa-check"></i><b>4.2.1</b> Odds</a></li>
+<li class="chapter" data-level="4.2.2" data-path="cda.html"><a href="cda.html#log-odds"><i class="fa fa-check"></i><b>4.2.2</b> Log-odds</a></li>
+<li class="chapter" data-level="4.2.3" data-path="cda.html"><a href="cda.html#odds-ratios"><i class="fa fa-check"></i><b>4.2.3</b> Odds ratios</a></li>
+<li class="chapter" data-level="4.2.4" data-path="cda.html"><a href="cda.html#log-odds-sample-and-population"><i class="fa fa-check"></i><b>4.2.4</b> Log odds: sample and population</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="cda.html"><a href="cda.html#cda-other-readings"><i class="fa fa-check"></i><b>4.3</b> Other readings</a></li>
+<li class="chapter" data-level="4.4" data-path="cda.html"><a href="cda.html#c3solns"><i class="fa fa-check"></i><b>4.4</b> Solutions</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="cda.html"><a href="cda.html#solutions-to-exercise-1"><i class="fa fa-check"></i><b>4.4.1</b> Solutions to Exercise 1:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>5</b> Logistic regression</a><ul>
+<li class="chapter" data-level="5.1" data-path="logistic-regression.html"><a href="logistic-regression.html#simple-logistic-regression"><i class="fa fa-check"></i><b>5.1</b> Simple logistic regression</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="logistic-regression.html"><a href="logistic-regression.html#log-reg-hyp-test"><i class="fa fa-check"></i><b>5.1.1</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="5.1.2" data-path="logistic-regression.html"><a href="logistic-regression.html#interpreting-the-coefficients-logit-odds-and-probability"><i class="fa fa-check"></i><b>5.1.2</b> Interpreting the coefficients: Logit, odds, and probability</a></li>
+<li class="chapter" data-level="5.1.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-as-a-glm"><i class="fa fa-check"></i><b>5.1.3</b> Logistic regression as a GLM</a></li>
+<li class="chapter" data-level="5.1.4" data-path="logistic-regression.html"><a href="logistic-regression.html#c4differences"><i class="fa fa-check"></i><b>5.1.4</b> Differences from linear regression: Fitting and interpretation</a></li>
+<li class="chapter" data-level="5.1.5" data-path="logistic-regression.html"><a href="logistic-regression.html#fitting-a-logistic-regression-model"><i class="fa fa-check"></i><b>5.1.5</b> Fitting a logistic regression model</a></li>
+<li class="chapter" data-level="5.1.6" data-path="logistic-regression.html"><a href="logistic-regression.html#interpretation"><i class="fa fa-check"></i><b>5.1.6</b> Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="logistic-regression.html"><a href="logistic-regression.html#evaluating-logistic-regression-models"><i class="fa fa-check"></i><b>5.2</b> Evaluating logistic regression models</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="logistic-regression.html"><a href="logistic-regression.html#c4lrt"><i class="fa fa-check"></i><b>5.2.1</b> Likelihood ratio test</a></li>
+<li class="chapter" data-level="5.2.2" data-path="logistic-regression.html"><a href="logistic-regression.html#classification-accuracy"><i class="fa fa-check"></i><b>5.2.2</b> Classification accuracy</a></li>
+<li class="chapter" data-level="5.2.3" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-regression-pseudo-r2"><i class="fa fa-check"></i><b>5.2.3</b> Pseudo-<span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="logistic-regression.html"><a href="logistic-regression.html#multiple-logistic-regression"><i class="fa fa-check"></i><b>5.3</b> Multiple logistic regression</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#likelihood-ratio-test-general-case"><i class="fa fa-check"></i><b>5.3.1</b> Likelihood ratio test: General case</a></li>
+<li class="chapter" data-level="5.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#log-reg-worked-example"><i class="fa fa-check"></i><b>5.3.2</b> Worked example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="logistic-regression.html"><a href="logistic-regression.html#model-criticism-for-logistic-regression"><i class="fa fa-check"></i><b>5.4</b> Model criticism for logistic regression</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#residual-plots"><i class="fa fa-check"></i><b>5.4.1</b> Residual plots</a></li>
+<li class="chapter" data-level="5.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#cooks-distance"><i class="fa fa-check"></i><b>5.4.2</b> Cook’s distance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="logistic-regression.html"><a href="logistic-regression.html#other-readings"><i class="fa fa-check"></i><b>5.5</b> Other readings</a></li>
+<li class="chapter" data-level="5.6" data-path="logistic-regression.html"><a href="logistic-regression.html#c4solns"><i class="fa fa-check"></i><b>5.6</b> Solutions</a></li>
+<li class="chapter" data-level="5.7" data-path="logistic-regression.html"><a href="logistic-regression.html#c4appendix2"><i class="fa fa-check"></i><b>5.7</b> Appendix: Other Generalized Linear Models</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><i class="fa fa-check"></i><b>6</b> Practical Regression Topics 1: Multi-level factors, contrast coding, interactions</a><ul>
+<li class="chapter" data-level="6.1" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#multi-level-factors-introduction"><i class="fa fa-check"></i><b>6.1</b> Multi-level factors: Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#contrast-coding"><i class="fa fa-check"></i><b>6.2</b> Contrast coding</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#first-examples"><i class="fa fa-check"></i><b>6.2.1</b> First examples</a></li>
+<li class="chapter" data-level="6.2.2" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#basic-interpretation-of-contrasts"><i class="fa fa-check"></i><b>6.2.2</b> Basic interpretation of contrasts</a></li>
+<li class="chapter" data-level="6.2.3" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#contrast-coding-schemes"><i class="fa fa-check"></i><b>6.2.3</b> Contrast coding schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#c5mlf"><i class="fa fa-check"></i><b>6.3</b> Assessing a multi-level factor’s contribution</a></li>
+<li class="chapter" data-level="6.4" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#practice-with-interactions"><i class="fa fa-check"></i><b>6.4</b> Practice with interactions</a></li>
+<li class="chapter" data-level="6.5" data-path="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html"><a href="practical-regression-topics-1-multi-level-factors-contrast-coding-interactions.html#c5solns"><i class="fa fa-check"></i><b>6.5</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="lmem.html"><a href="lmem.html"><i class="fa fa-check"></i><b>7</b> Linear mixed models</a><ul>
+<li class="chapter" data-level="7.1" data-path="lmem.html"><a href="lmem.html#mixed-effects-models-motivation"><i class="fa fa-check"></i><b>7.1</b> Mixed-effects models: Motivation</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="lmem.html"><a href="lmem.html#simpsons-paradox"><i class="fa fa-check"></i><b>7.1.1</b> Simpson’s paradox</a></li>
+<li class="chapter" data-level="7.1.2" data-path="lmem.html"><a href="lmem.html#repeated-measure-anovas"><i class="fa fa-check"></i><b>7.1.2</b> Repeated-measure ANOVAs</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="lmem.html"><a href="lmem.html#linear-mixed-models-1-one-grouping-factor-random-intercepts"><i class="fa fa-check"></i><b>7.2</b> Linear mixed models 1: One grouping factor, random intercepts</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="lmem.html"><a href="lmem.html#c6model1A"><i class="fa fa-check"></i><b>7.2.1</b> Model 1A: Simple linear regression</a></li>
+<li class="chapter" data-level="7.2.2" data-path="lmem.html"><a href="lmem.html#c6model1b"><i class="fa fa-check"></i><b>7.2.2</b> Model 1B: Random intercept only</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="lmem.html"><a href="lmem.html#c6lmm2"><i class="fa fa-check"></i><b>7.3</b> Linear mixed models 2: One grouping factor, random intercepts and slopes</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="lmem.html"><a href="lmem.html#c6model1c"><i class="fa fa-check"></i><b>7.3.1</b> Model 1C</a></li>
+<li class="chapter" data-level="7.3.2" data-path="lmem.html"><a href="lmem.html#fitting-model-1c"><i class="fa fa-check"></i><b>7.3.2</b> Fitting Model 1C</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="lmem.html"><a href="lmem.html#linear-mixed-models-3-two-grouping-factors"><i class="fa fa-check"></i><b>7.4</b> Linear mixed models 3: Two grouping factors</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="lmem.html"><a href="lmem.html#c6model2A"><i class="fa fa-check"></i><b>7.4.1</b> Model 2A: By-participant and by-item random intercepts</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="lmem.html"><a href="lmem.html#evaluating-lmms"><i class="fa fa-check"></i><b>7.5</b> Evaluating LMMs</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="lmem.html"><a href="lmem.html#hypothesis-testing-2"><i class="fa fa-check"></i><b>7.5.1</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="7.5.2" data-path="lmem.html"><a href="lmem.html#significance-of-a-random-effect-term"><i class="fa fa-check"></i><b>7.5.2</b> Significance of a random effect term</a></li>
+<li class="chapter" data-level="7.5.3" data-path="lmem.html"><a href="lmem.html#c6fixedp"><i class="fa fa-check"></i><b>7.5.3</b> Significance of fixed effects</a></li>
+<li class="chapter" data-level="7.5.4" data-path="lmem.html"><a href="lmem.html#evaluating-goodness-of-fit"><i class="fa fa-check"></i><b>7.5.4</b> Evaluating goodness of fit</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="lmem.html"><a href="lmem.html#linear-mixed-models-4-multiple-predictors"><i class="fa fa-check"></i><b>7.6</b> Linear mixed models 4: Multiple predictors</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="lmem.html"><a href="lmem.html#types-of-predictors"><i class="fa fa-check"></i><b>7.6.1</b> Types of predictors</a></li>
+<li class="chapter" data-level="7.6.2" data-path="lmem.html"><a href="lmem.html#c6model3A"><i class="fa fa-check"></i><b>7.6.2</b> Model 3A: Random intercepts only</a></li>
+<li class="chapter" data-level="7.6.3" data-path="lmem.html"><a href="lmem.html#c6model3B"><i class="fa fa-check"></i><b>7.6.3</b> Model 3B: Random intercepts and all possible random slopes</a></li>
+<li class="chapter" data-level="7.6.4" data-path="lmem.html"><a href="lmem.html#assessing-variability"><i class="fa fa-check"></i><b>7.6.4</b> Assessing variability</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="lmem.html"><a href="lmem.html#more-on-random-slopes"><i class="fa fa-check"></i><b>7.7</b> More on random slopes</a><ul>
+<li class="chapter" data-level="7.7.1" data-path="lmem.html"><a href="lmem.html#what-does-adding-a-random-slope-term-do"><i class="fa fa-check"></i><b>7.7.1</b> What does adding a random slope term do?</a></li>
+<li class="chapter" data-level="7.7.2" data-path="lmem.html"><a href="lmem.html#adding-a-random-slope"><i class="fa fa-check"></i><b>7.7.2</b> Discussion: Adding a random slope</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="lmem.html"><a href="lmem.html#random-effect-correlations"><i class="fa fa-check"></i><b>7.8</b> Random effect correlations</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="lmem.html"><a href="lmem.html#model-1e-correlated-random-slope-intercept"><i class="fa fa-check"></i><b>7.8.1</b> Model 1E: <strong>Correlated</strong> random slope &amp; intercept</a></li>
+<li class="chapter" data-level="7.8.2" data-path="lmem.html"><a href="lmem.html#c6discuss"><i class="fa fa-check"></i><b>7.8.2</b> Dicussion: Adding a correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="lmem.html"><a href="lmem.html#model-criticism-for-linear-mixed-models"><i class="fa fa-check"></i><b>7.9</b> Model criticism for linear mixed models</a><ul>
+<li class="chapter" data-level="7.9.1" data-path="lmem.html"><a href="lmem.html#model-3b-residual-plots"><i class="fa fa-check"></i><b>7.9.1</b> Model 3B: Residual plots</a></li>
+<li class="chapter" data-level="7.9.2" data-path="lmem.html"><a href="lmem.html#model-3b-random-effect-distribution"><i class="fa fa-check"></i><b>7.9.2</b> Model 3B: Random effect distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.10" data-path="lmem.html"><a href="lmem.html#c6factorsissue"><i class="fa fa-check"></i><b>7.10</b> Random slopes for factors</a><ul>
+<li class="chapter" data-level="7.10.1" data-path="lmem.html"><a href="lmem.html#model-with-random-effect-correlations"><i class="fa fa-check"></i><b>7.10.1</b> Model with random-effect correlations</a></li>
+<li class="chapter" data-level="7.10.2" data-path="lmem.html"><a href="lmem.html#models-without-random-effect-correlations"><i class="fa fa-check"></i><b>7.10.2</b> Models without random-effect correlations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="lmem.html"><a href="lmem.html#other-readings-1"><i class="fa fa-check"></i><b>7.11</b> Other readings</a></li>
+<li class="chapter" data-level="7.12" data-path="lmem.html"><a href="lmem.html#c6extraexamples"><i class="fa fa-check"></i><b>7.12</b> Appendix: Extra examples</a><ul>
+<li class="chapter" data-level="7.12.1" data-path="lmem.html"><a href="lmem.html#predicting-confidence-intervals-by-simulation"><i class="fa fa-check"></i><b>7.12.1</b> Predicting confidence intervals by simulation</a></li>
+<li class="chapter" data-level="7.12.2" data-path="lmem.html"><a href="lmem.html#random-intercept-and-slope-model-for-givenness-data"><i class="fa fa-check"></i><b>7.12.2</b> Random intercept and slope model for <code>givenness</code> data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.13" data-path="lmem.html"><a href="lmem.html#c6extendedexercise"><i class="fa fa-check"></i><b>7.13</b> Appendix: Extended exercise</a></li>
+<li class="chapter" data-level="7.14" data-path="lmem.html"><a href="lmem.html#c6solns"><i class="fa fa-check"></i><b>7.14</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html"><i class="fa fa-check"></i><b>8</b> Mixed-effects logistic regression</a><ul>
+<li class="chapter" data-level="8.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#preliminaries"><i class="fa fa-check"></i><b>8.1</b> Preliminaries</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#motivation"><i class="fa fa-check"></i><b>8.1.1</b> Motivation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#basics"><i class="fa fa-check"></i><b>8.2</b> Basics</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7m1"><i class="fa fa-check"></i><b>8.2.1</b> Model 1: <code>givenness</code> data, crossed random effects (intercepts + slopes)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#hypothesis-testing-3"><i class="fa fa-check"></i><b>8.3</b> Hypothesis testing</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#fixed-effects"><i class="fa fa-check"></i><b>8.3.1</b> Fixed effects</a></li>
+<li class="chapter" data-level="8.3.2" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#random-effects"><i class="fa fa-check"></i><b>8.3.2</b> Random effects</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#fixed-and-random-effects"><i class="fa fa-check"></i><b>8.4</b> Fixed and random effects</a></li>
+<li class="chapter" data-level="8.5" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#melr-practice"><i class="fa fa-check"></i><b>8.5</b> MELR Practice</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7ex1"><i class="fa fa-check"></i><b>8.5.1</b> Exercise 1: tapping</a></li>
+<li class="chapter" data-level="8.5.2" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7ex2"><i class="fa fa-check"></i><b>8.5.2</b> Exercise 2: t/d deletion</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#model-criticism-for-mixed-effects-logistic-regression"><i class="fa fa-check"></i><b>8.6</b> Model criticism for mixed-effects logistic regression</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#random-effect-distributions"><i class="fa fa-check"></i><b>8.6.1</b> Random-effect distributions</a></li>
+<li class="chapter" data-level="8.6.2" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#residual-plots-1"><i class="fa fa-check"></i><b>8.6.2</b> Residual plots</a></li>
+<li class="chapter" data-level="8.6.3" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#influence"><i class="fa fa-check"></i><b>8.6.3</b> Influence</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#evaluation-measures"><i class="fa fa-check"></i><b>8.7</b> Evaluation measures</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#evaluation-measure-1-likelihood-ratio-test"><i class="fa fa-check"></i><b>8.7.1</b> Evaluation measure 1: Likelihood ratio test</a></li>
+<li class="chapter" data-level="8.7.2" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#evaluation-measure-2-classification-accuracy"><i class="fa fa-check"></i><b>8.7.2</b> Evaluation measure 2: Classification accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#miscellaneous-mixed-effects-regression-topics"><i class="fa fa-check"></i><b>8.8</b> Miscellaneous mixed-effects regression topics</a><ul>
+<li class="chapter" data-level="8.8.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7m2"><i class="fa fa-check"></i><b>8.8.1</b> Random-effect correlation issues</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#appendices"><i class="fa fa-check"></i><b>8.9</b> Appendices</a><ul>
+<li class="chapter" data-level="8.9.1" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#appendix-random-slopes-for-factors"><i class="fa fa-check"></i><b>8.9.1</b> Appendix: Random slopes for factors</a></li>
+<li class="chapter" data-level="8.9.2" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7appendix2"><i class="fa fa-check"></i><b>8.9.2</b> Appendix: Multi-level factors and uncorrelated random effects</a></li>
+<li class="chapter" data-level="8.9.3" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#appendix-what-can-happen-if-a-random-slope-isnt-included"><i class="fa fa-check"></i><b>8.9.3</b> Appendix: What can happen if a random slope isn’t included?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#other-readings-2"><i class="fa fa-check"></i><b>8.10</b> Other readings</a></li>
+<li class="chapter" data-level="8.11" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7classAppendix"><i class="fa fa-check"></i><b>8.11</b> Appendix: By-participant and by-item classification accuracy</a></li>
+<li class="chapter" data-level="8.12" data-path="mixed-effects-logistic-regression.html"><a href="mixed-effects-logistic-regression.html#c7solns"><i class="fa fa-check"></i><b>8.12</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><i class="fa fa-check"></i><b>9</b> Practical regression topics 2: Ordered factors, nonlinear effects, model predictions, post-hoc tests</a><ul>
+<li class="chapter" data-level="9.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#introduction-1"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#ordered-factors"><i class="fa fa-check"></i><b>9.2</b> Ordered factors</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#orthogonal-polynomial-contrasts"><i class="fa fa-check"></i><b>9.2.1</b> Orthogonal polynomial contrasts</a></li>
+<li class="chapter" data-level="9.2.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#using-an-ordered-factor-as-a-predictor"><i class="fa fa-check"></i><b>9.2.2</b> Using an ordered factor as a predictor</a></li>
+<li class="chapter" data-level="9.2.3" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#further-points"><i class="fa fa-check"></i><b>9.2.3</b> Further points</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#nonlinear-effects"><i class="fa fa-check"></i><b>9.3</b> Nonlinear effects</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#splines-definition-and-benefits"><i class="fa fa-check"></i><b>9.3.1</b> Splines: Definition and benefits</a></li>
+<li class="chapter" data-level="9.3.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#restricted-cubic-splines"><i class="fa fa-check"></i><b>9.3.2</b> Restricted cubic splines</a></li>
+<li class="chapter" data-level="9.3.3" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#choosing-spline-complexity"><i class="fa fa-check"></i><b>9.3.3</b> Choosing spline complexity</a></li>
+<li class="chapter" data-level="9.3.4" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#rcs-components"><i class="fa fa-check"></i><b>9.3.4</b> RCS components</a></li>
+<li class="chapter" data-level="9.3.5" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#using-rcs-in-a-mixed-model"><i class="fa fa-check"></i><b>9.3.5</b> Using RCS in a mixed model</a></li>
+<li class="chapter" data-level="9.3.6" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#random-slopes-for-rcs-terms"><i class="fa fa-check"></i><b>9.3.6</b> Random slopes for RCS terms</a></li>
+<li class="chapter" data-level="9.3.7" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#nonlinear-effects-summary"><i class="fa fa-check"></i><b>9.3.7</b> Nonlinear effects: Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#predictions-from-mixed-models"><i class="fa fa-check"></i><b>9.4</b> Predictions from mixed models</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#making-model-predictions"><i class="fa fa-check"></i><b>9.4.1</b> Making Model Predictions</a></li>
+<li class="chapter" data-level="9.4.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#simulation-based-predictions"><i class="fa fa-check"></i><b>9.4.2</b> Simulation-based predictions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#post-hoc-mult-comp"><i class="fa fa-check"></i><b>9.5</b> Post-hoc tests and multiple comparisons</a></li>
+<li class="chapter" data-level="9.6" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#c8indivpreds"><i class="fa fa-check"></i><b>9.6</b> Appendix: Model predictions for indiviudal participants</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#predictions-incorporating-offsets-for-individual-speakers"><i class="fa fa-check"></i><b>9.6.1</b> Predictions incorporating offsets for individual speakers</a></li>
+<li class="chapter" data-level="9.6.2" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#predicted-williams-effect-for-each-speaker"><i class="fa fa-check"></i><b>9.6.2</b> Predicted Williams effect for each speaker</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#c8slopesForFactors"><i class="fa fa-check"></i><b>9.7</b> Appendix: Random slopes for factors</a></li>
+<li class="chapter" data-level="9.8" data-path="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html"><a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html#c8solns"><i class="fa fa-check"></i><b>9.8</b> Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="appendix-datasets.html"><a href="appendix-datasets.html"><i class="fa fa-check"></i><b>10</b> Appendix: Datasets</a><ul>
+<li class="chapter" data-level="10.1" data-path="appendix-datasets.html"><a href="appendix-datasets.html#engdata"><i class="fa fa-check"></i><b>10.1</b> <code>english</code> lexical decision and naming latencies</a></li>
+<li class="chapter" data-level="10.2" data-path="appendix-datasets.html"><a href="appendix-datasets.html#dutch-regularity"><i class="fa fa-check"></i><b>10.2</b> Dutch <code id="dregdata">regularity</code></a></li>
+<li class="chapter" data-level="10.3" data-path="appendix-datasets.html"><a href="appendix-datasets.html#european-french-phrase-medial-vowel-devoicing"><i class="fa fa-check"></i><b>10.3</b> European French phrase-medial vowel <code id="devdata">devoicing</code></a><ul>
+<li class="chapter" data-level="10.3.1" data-path="appendix-datasets.html"><a href="appendix-datasets.html#background"><i class="fa fa-check"></i><b>10.3.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="appendix-datasets.html"><a href="appendix-datasets.html#north-american-english-tapping"><i class="fa fa-check"></i><b>10.4</b> North American English <code id="tapdata">tapping</code></a><ul>
+<li class="chapter" data-level="10.4.1" data-path="appendix-datasets.html"><a href="appendix-datasets.html#background-1"><i class="fa fa-check"></i><b>10.4.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="appendix-datasets.html"><a href="appendix-datasets.html#halfdata"><i class="fa fa-check"></i><b>10.5</b> <code>halfrhyme</code>: English half-rhymes</a></li>
+<li class="chapter" data-level="10.6" data-path="appendix-datasets.html"><a href="appendix-datasets.html#givedata"><i class="fa fa-check"></i><b>10.6</b> <code>givenness</code> data: the Williams Effect</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="appendix-datasets.html"><a href="appendix-datasets.html#background-2"><i class="fa fa-check"></i><b>10.6.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="appendix-datasets.html"><a href="appendix-datasets.html#alternatives"><i class="fa fa-check"></i><b>10.7</b> <code id="altdata">alternatives</code></a><ul>
+<li class="chapter" data-level="10.7.1" data-path="appendix-datasets.html"><a href="appendix-datasets.html#background-3"><i class="fa fa-check"></i><b>10.7.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="appendix-datasets.html"><a href="appendix-datasets.html#votdata"><i class="fa fa-check"></i><b>10.8</b> VOT</a><ul>
+<li class="chapter" data-level="10.8.1" data-path="appendix-datasets.html"><a href="appendix-datasets.html#background-4"><i class="fa fa-check"></i><b>10.8.1</b> Background</a></li>
+</ul></li>
+<li class="chapter" data-level="10.9" data-path="appendix-datasets.html"><a href="appendix-datasets.html#transitionsdata"><i class="fa fa-check"></i><b>10.9</b> Transitions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Quantitative Methods for Linguistic Data</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="appendix-datasets" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Appendix: Datasets</h1>
+<p>All datasets used in this book are publicly available, either as:</p>
+<ul>
+<li><p>Datasets in the <code>languageR</code> R package (<span class="citation">Baayen (<a href="#ref-languageR">2013</a>)</span>) associated with R.H. Baayen’s book <em>Analyzing Linguistic Data</em>: <code>english</code>, <code>regularity</code> datasets</p></li>
+<li><p>Open Science Framework (<a href="https://osf.io/">OSF</a>) projects: all other datasets</p></li>
+</ul>
+<div id="engdata" class="section level2">
+<h2><span class="header-section-number">10.1</span> <code>english</code> lexical decision and naming latencies</h2>
+<p>Description from <a href="https://www.rdocumentation.org/packages/languageR/versions/1.4.1/topics/english"><code>languageR</code> documentation</a>:</p>
+<blockquote>
+<p>“This data set gives mean visual lexical decision latencies and word naming latencies to 2284 monomorphemic English nouns and verbs, averaged for old and young subjects, with various predictor variables.”</p>
+</blockquote>
+<p>The original source of this data is the <a href="http://elexicon.wustl.edu/">English Lexicon Project</a>.</p>
+<p>To load this data and learn what different columns mean, execute in R:</p>
+<pre><code>library(languageR)
+?english</code></pre>
+<p>In this book we often use <code>RTlexdec</code>, <code>Word</code>, <code>AgeSubject</code>, <code>WrittenFrequency</code>, <code>LengthInLetters</code>.</p>
+</div>
+<div id="dutch-regularity" class="section level2">
+<h2><span class="header-section-number">10.2</span> Dutch <code id="dregdata">regularity</code></h2>
+<p>This dataset, originally from the study reported by <span class="citation">Baayen and Prado Martin (<a href="#ref-baayen05semantic">2005</a>)</span>, is described in the <a href="https://www.rdocumentation.org/packages/languageR/versions/0.2/topics/regularity"><code>languageR</code> documentation</a>:</p>
+<blockquote>
+<p>Regular and irregular Dutch verbs and selected lexical and distributional properties.</p>
+</blockquote>
+<p>To load this data and learn what different columns mean, execute in R:</p>
+<pre><code>library(languageR)
+?regularity</code></pre>
+<p>In this book we often use <code>WrittenFrequency,</code>Verb<code>,</code>Auxiliary<code>,</code>Regularity`.</p>
+</div>
+<div id="european-french-phrase-medial-vowel-devoicing" class="section level2">
+<h2><span class="header-section-number">10.3</span> European French phrase-medial vowel <code id="devdata">devoicing</code></h2>
+<p>This dataset is from <span class="citation">Torreira and Ernestus (<a href="#ref-torreira2010phrase">2010</a>)</span>, a study examining phrase-medial vowel devoicing in European French. The data is posted as <code>french_medial_vowel_devoicing.txt</code> in the OSF project <span class="citation">(Torreira and Ernestus <a href="#ref-frenchDevoicing_data">2018</a>)</span>.</p>
+<div id="background" class="section level3">
+<h3><span class="header-section-number">10.3.1</span> Background</h3>
+<p>This is an example from the paper:</p>
+<center>
+<img src="../images/phrase_medial_devoicing_euroFr.png" />
+</center>
+<p>The <code>french_medial_vowel_devoicing</code> data (or just <code>devoicing</code>) consists of:</p>
+<ul>
+<li><p>550 French syllables with voiceless obstruent onset (/pktsf/) followed by a high vowel (/iuy/),</p></li>
+<li><p>located in non-final position within the intonational phrase (IP)</p></li>
+<li><p>extracted from a corpus of spontaneous conversational speech <span class="citation">(Torreira, Adda-Decker, and Ernestus <a href="#ref-torreira2010nijmegen">2010</a>)</span>.</p></li>
+</ul>
+<p>One way to measure to what extent “devoicing” has occured is syllable duration.</p>
+<p>The research question considered for this dataset (in this book) is: <strong>are function words (e.g. “qui”, “tu”, “si”) shorter than other syllables</strong>?</p>
+<p>Variables:</p>
+<ul>
+<li><p>Response variable: <strong>syllable duration</strong> (<code>syldur</code>)</p></li>
+<li><p>Predictors:</p>
+<ul>
+<li><p><strong>word type</strong> (function/content) (<code>func</code>)</p></li>
+<li><p><strong>speech rate</strong> (<code>speechrate</code>)</p></li>
+<li><p><strong>onset type</strong> (<code>c1</code>)</p></li>
+<li><p><strong>vowel type</strong> (<code>v</code>)</p></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="north-american-english-tapping" class="section level2">
+<h2><span class="header-section-number">10.4</span> North American English <code id="tapdata">tapping</code></h2>
+<p>This data is from a speech production experiment by <span class="citation">Kilbourn-Ceron (<a href="#ref-kilbourn2017speech">2017</a>)</span>, <span class="citation">Kilbourn-Ceron, Wagner, and Clayards (<a href="#ref-kilbourn2017effect">2017</a>)</span> examining tapping in North American English. The dataset, which contains only a subset of the data analyzed in the publications, is posted as <code>tappedMcGillLing620.csv</code> in an <a href="https://osf.io/8rjxu/">OSF project</a> <span class="citation">(Wagner, Kilbourn-Ceron, and Clayards <a href="#ref-tapping_data">2018</a>)</span>.</p>
+<div id="background-1" class="section level3">
+<h3><span class="header-section-number">10.4.1</span> Background</h3>
+<p>In North American English, the sounds [t] and [d] can sometimes be optionally pronounced as [ɾ] (a “tap”) if followed by a vowel:</p>
+<ul>
+<li><p>“For those of you who’d like to ea<strong>t</strong> early, lunch will be served.”</p></li>
+<li><p>“For those of you who’d like to ea<strong>ɾ</strong> early, lunch will be served.”</p></li>
+</ul>
+<p>According to earlier work, tapping interacts with syntax (e.g <span class="citation">Scott and Cutler (<a href="#ref-scott1984segmental">1984</a>)</span>):</p>
+<ul>
+<li><p>Sounds OK: “For those of you who’d like to ea<strong>t</strong>, early lunch will be served.”</p></li>
+<li><p>Doesn’t: “For those of you who’d like to ea<strong>ɾ</strong>, early lunch will be served.”</p></li>
+</ul>
+<p>It seems that a syntactic juncture following [t/d] makes tapping less likely. But is this true? The effect could result either from</p>
+<ol style="list-style-type: decimal">
+<li><p>A syntactic juncture</p></li>
+<li><p>A stronger prosodic boundary, which correlates with a syntactic juncture</p></li>
+</ol>
+<p><span class="citation">Kilbourn-Ceron (<a href="#ref-kilbourn2017speech">2017</a>)</span>, <span class="citation">Kilbourn-Ceron, Wagner, and Clayards (<a href="#ref-kilbourn2017effect">2017</a>)</span> report a production experiment to investigate.</p>
+<p>Participants produced sentences like:</p>
+<ul>
+<li><p>“If you plit, Alice will be mad”</p></li>
+<li><p>“If you plit Alice, John will be mad”</p></li>
+</ul>
+<p>for nonce words like “plit” ending in [t] or [d], followed by a vowel initial word (such as “Alice”).</p>
+<p>The two manipulations are:</p>
+<ol style="list-style-type: decimal">
+<li><code>syntax</code>: the nonce word can be
+<ul>
+<li><em>intransitive</em> (next word = following clause)</li>
+<li><em>transitive</em> (next word = complement)</li>
+</ul></li>
+<li><code>speakingRate</code>:
+<ul>
+<li>Normal vs. fast</li>
+</ul></li>
+</ol>
+<p>The research questions are:</p>
+<ol style="list-style-type: decimal">
+<li>How often did participants tap, depending on <code>speakingRate</code> and <code>syntax</code>
+<ul>
+<li>This is a categorical response variable, <code>tapped</code> (0/1).</li>
+</ul></li>
+<li>Does tapping rate depend on the prosodic juncture between words?
+<ul>
+<li>The juncture strength is estimated using the duration of the preceding vowel: <code>vowelDuration</code>.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="halfdata" class="section level2">
+<h2><span class="header-section-number">10.5</span> <code>halfrhyme</code>: English half-rhymes</h2>
+<p>This data is from a speech perception experiment by <span class="citation">Harder (<a href="#ref-harder2013">2013</a>)</span>, examining what determines how “good” English speakers think imperfect rhymes are (e.g. <em>time</em>/<em>tide</em>). The dataset is posted as <code>halfrhymeMcGillLing620.csv</code> in an <a href="https://osf.io/k5pnu/">OSF project</a> <span class="citation">(Wagner <a href="#ref-halfrhyme_data">2018</a><a href="#ref-halfrhyme_data">b</a>)</span>.</p>
+<!-- TODO future: dataset background -->
+</div>
+<div id="givedata" class="section level2">
+<h2><span class="header-section-number">10.6</span> <code>givenness</code> data: the Williams Effect</h2>
+<p>This data is from a speech production experiment, reported in <span class="citation">Wagner (<a href="#ref-wagner12illusion">2012</a>)</span>, examining how information structure affects which words in a sentence are pronounced with more emphasis (“prominence”). The dataset is posted as <code>givennessMcGillLing620.csv</code> in an <a href="https://osf.io/r4j2w/">OSF project</a> <span class="citation">(Wagner <a href="#ref-givenness_data">2018</a><a href="#ref-givenness_data">a</a>)</span>.</p>
+<div id="background-2" class="section level3">
+<h3><span class="header-section-number">10.6.1</span> Background</h3>
+<p>When we speak, some words have more emphasis than others: this is an aspect of prosody that linguists call <em>prominence</em>. (For example, if you read the preceding sentence out loud, “prominence” is probably emphasized.) The opposite of prominence is <em>reduction</em>, where a word is produced without any emphasis.</p>
+<p>Constituents (e.g. words) that are “given” or salient in discourse (usually because they have just been used before) and constituents whose referents are highly salient (for example the referent of a pronoun may be given, even if the pronoun itself has not been used before) are often prosodically reduced. For example, the referring expression “John” in the second sentence below is unlikely to carry an accent, and instead prominence (shown with bold) is likely to be shifted to “greeted” (shifted compared to where prominence would have fallen had the first sentence not been there):</p>
+<ul>
+<li>“John finally arrived at the function. Mary <strong>greeted</strong> John.”</li>
+</ul>
+<p>A systematic exception is cases in which a constituent is contrastive in addition to being given. Consider the following case, where the second sentence marks a double contrast: the agent “Mary” is contrasted with the agent of the previous sentence, “John”; in addition, the patient “John” is contrasted with the patient of the previous clause, “Mary”. The fact that both “John” and “Mary” are given does not seem to be relevant if they are also contrastive:</p>
+<ul>
+<li>“<strong>John</strong> kissed <strong>Mary</strong>. Then <strong>Mary</strong> kissed <strong>John</strong>.”</li>
+</ul>
+<p>We can conclude that contrast (marked by accenting) trumps givenness (marked by lack of accentuation). This dataset was used by <span class="citation">Wagner (<a href="#ref-wagner12illusion">2012</a>)</span> to investigate a systematic class of apparent counterexamples, which were first observed by <span class="citation">Williams (<a href="#ref-williams1980remarks">1980</a>)</span>. According to Williams, in these cases accenting a contrastive referring expressions sounds odd, contrary to what we would expect from a semantic point of view:</p>
+<ul>
+<li># “<strong>John</strong> kissed <strong>Mary</strong>. Then <strong>John</strong> was kissed by <strong>Mary</strong>.”</li>
+</ul>
+<p>That is, even though “Mary”&quot; is contrastive in the second sentence, and thus should be accented, doing so sounds odd (indicated by “#”). Wagner’s experiment, and the analysis used in this book, tests whether this <em>Williams effect</em> is real, and how it affects the way speakers produce sentences like the one above (with “#”).</p>
+<p>The dataset <code>givenness</code> contains data from the experiment, where participants produced sentences of four types:</p>
+<ol style="list-style-type: decimal">
+<li>John greeted Mary, and then John was greeted by Mary.</li>
+<li>Mary was greeted by John, and then John was greeted by Mary.</li>
+<li>John greeted her, and then John was greeted by her.</li>
+<li>She was greeted by John, and then John was greeted by her.</li>
+</ol>
+<p>These four sentences constitute one <code>item</code> in the dataset. There are many other items, each with a similar structure: two clauses, with a meaning equivalent to “noun<span class="math inline">\(_1\)</span> verbed noun<span class="math inline">\(_2\)</span>, and then noun<span class="math inline">\(_2\)</span> verbed noun<span class="math inline">\(_1\)</span>”, for different choices of the verb, noun<span class="math inline">\(_1\)</span>, and noun<span class="math inline">\(_2\)</span>.</p>
+<p>The sentences convey the same information in four ways. In each one, the second clause is passive, and the NP referring to Mary appears at the end of the clause. The four sentences differ in whether the NP referring to Mary is a full NP (her name) or a pronoun, and whether the NP referring to Mary appears at the end of the first clause, or not:</p>
+<ul>
+<li>Full NP, at the end of clause 1</li>
+<li>Full NP, not at the end of clause 1</li>
+<li>Pronoun, at the end of clause 1</li>
+<li>Pronoun, not at the end of clause 1</li>
+</ul>
+<p>This experiment thus has a <em>2x2 design</em>, with two within-item variables. Within an item, the sentences corresponding to #1-#4 were seen by four different <code>participant</code>’s, and each participant saw exactly 1 sentence from each item. (Thus, this experiment has a <em>latin-square design</em>.)</p>
+<!-- We will ignore variability between participants in the current analysis.  We will also ignore that observations from the same participant or the same item do not have independent errors, so that we can analyze this data using the tools we have so far. -->
+<p>The experiment examined what factors affect whether the final NP (henceforth the <em>target NP</em>) in sentences like #1-#4 is accented (as in (a) below), or whether the accent is shifted to an earlier word (as in (b)-(d)).</p>
+<ol style="list-style-type: lower-alpha">
+<li><strong>John</strong> greeted <strong>Mary</strong>, and then John was greeted by <strong>Mary</strong>.</li>
+<li><strong>John</strong> greeted <strong>Mary</strong>, and then <strong>John</strong> was greeted by Mary.</li>
+<li><strong>John</strong> greeted <strong>Mary</strong>, and then John was <strong>greeted</strong> by Mary.</li>
+<li><strong>John</strong> greeted <strong>Mary</strong>, and then John was greeted <strong>by</strong> Mary.</li>
+</ol>
+<p>We consider four <strong>predictors</strong> which could affect whether stress is shifted:</p>
+<ul>
+<li><code>conditionLabel</code> (within-item variable 1): Whether the target NP (the last word of the second clause) previously appears
+<ul>
+<li>at the beginning of clause 1 (level <em>Contrast</em>)</li>
+<li>at the end of clause 1 (level <em>Williams</em>), in which case both clauses end with the same word.</li>
+</ul></li>
+<li><code>npType</code> (within-item variable 2): Whether the second NP is a full NP or a pronoun
+<ul>
+<li>corresponds to the two-level factor <code>npType</code> (levels: <em>full</em>, <em>pronoun</em>).</li>
+</ul></li>
+<li><code>voice</code>: Whether clause 2 is active or passive.
+<ul>
+<li>(Note that the values of <code>voice</code> and <code>conditionLabel</code> together determine whether clause 1 is active or passive.)</li>
+</ul></li>
+<li><code>order</code>: Stimulus presentation order (within each participant).<a href="#fn53" class="footnoteRef" id="fnref53"><sup>53</sup></a></li>
+</ul>
+<p>Why these predictors? In order:</p>
+<ul>
+<li>The main motivation of the experiment was the observation that sentences like the one marked with “#” above sound odd, at least when the final word is accented.
+<ul>
+<li>Cases like <code>conditionLabel</code>=<em>Williams</em>, where two consecutive sentences end with identical accented phonological chunks, are dispreferred.</li>
+<li>This is the called the <em>Williams effect</em> by Wagner.</li>
+</ul></li>
+<li><p>Speakers might be more or less willing to stress pronouns versus full NPs in general, or the Williams effect might differ in strength between the two types of NPs.</p></li>
+<li><p>Whether clause 2 is active or passive affects what word stress would be shifted to, which might also interfere with the Williams effect.</p></li>
+<li><p>Finally, how much participants shift stress might change over the course of the experiment as they get used to the stimuli.</p></li>
+</ul>
+<p>Examples in this book consider two <strong>response</strong> variables indicating whether prominence has shifted.</p>
+<ol style="list-style-type: decimal">
+<li><p>The variable <code>shifted</code> is a binary (0/1) factor indicating whether a research assistant heard prominence as shifted or not (levels <em>shift</em>, <em>noshift</em>)</p></li>
+<li>The variable <code>acoustics</code> is a linear combination of various acoustic cues that acts as a proxy for <code>shifted</code>.<a href="#fn54" class="footnoteRef" id="fnref54"><sup>54</sup></a>
+<ul>
+<li>The acoustic cues are related to pitch, duration, and intensity of the target NP.</li>
+<li>A higher <code>acoustics</code> value correlates with a lowering of the promiinence of the target NP relative to earlier words in clause 2, and hence whether stress has been shifted from the target NP (higher <code>acoustics</code>) or not (lower <code>acoustics</code>).</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="alternatives" class="section level2">
+<h2><span class="header-section-number">10.7</span> <code id="altdata">alternatives</code></h2>
+<p>This data is from a speech production experiment, reported in <span class="citation">Wagner (<a href="#ref-wagner16informationstructure">2016</a>)</span>, examining how information structure affects which words in a sentence are pronounced with more emphasis (“prominence”). The dataset, which contains only a subset of the data analyzed in the paper, is posted as <code>alternativesMcGillLing620.csv</code> in an <a href="https://osf.io/dha2j/">OSF project</a> <span class="citation">(Wagner <a href="#ref-alternatives_data">2018</a><a href="#ref-alternatives_data">c</a>)</span>.</p>
+<div id="background-3" class="section level3">
+<h3><span class="header-section-number">10.7.1</span> Background</h3>
+<p>In the experiment, participants read sentences like “She brought a new bicycle”, where an adjective modifies a noun. The manipulation was whether a contrast to new was mentioned in the context. There were three conditions, captured by a three-level variable <code>context</code>:</p>
+<ol style="list-style-type: decimal">
+<li><em>New</em> (No previous mention of bicycle)
+<ul>
+<li>Ex: “Guess what John’s aunt, who is incredibly generous, brought for his birthday: A new bicycle!”</li>
+</ul></li>
+<li><em>NoAlternative</em> (previous mention of bicycle, but no true alternatives to “new bicycle”)
+<ul>
+<li>Ex: “Guess what John’s aunt, who produces expensive bicycles, brought for his birthday: A new bicycle!”</li>
+</ul></li>
+<li><em>Alternative</em> (previous mention of bicycle, with a true alternative to “new bicycle”:)</li>
+</ol>
+<p>The question of interest is: when do speakers shift prominence from “bicycle” to “new”? In condition (1), presumably they don’t, because “bicycle” has not been mentioned before. But what about (2) vs. (3)?</p>
+<p>The <strong>response</strong> is the binary (0/1) variable <code>shifted</code>, which catpures whether prominence was shifted to the adjective (as perceived by a research assistant).</p>
+<!-- ## Givenness {#givedata} -->
+<!-- The dataset givenness contains data from an experiment where participants produced sentences of four types, shown below: -->
+<!-- 1. "John greeted Mary, and then John was greeted by Mary." -->
+<!-- 2. "Mary was greeted by John, and then John was greeted by Mary." -->
+<!-- 3. "John greeted her, and then John was greeted by her. -->
+<!-- 4. She was greeted by John, and then John was greeted by her. -->
+<!-- These four sentences constitute one *item* in the dataset. There are many other items, each with a similar structure: two clauses, with a meaning equivalent to “noun1 verbed noun2, and then noun2 verbed noun1”, for different choices of the verb, noun1, and noun2. -->
+<!-- The sentences convey the same information in four ways. In each one, the second clause is passive, and the NP referring to Mary appears at the end of the clause. The four sentences differ in whether the NP referring to Mary is a full NP (her name) or a pronoun, and whether the NP referring to Mary appears at the end of the first clause, or not. This experiment thus has a **2x2 design**, with two within-item variables. The experiment examined what factors affect whether the final NP (henceforth the *target NP*) in sentences like those above is accented (as in sentence 5), or whether the accent is shifted to an earlier word (as in sentences 6-8). Bold denotes an accented word. -->
+<!-- 5. **John** greeted **Mary**, and then John was greeted by **Mary**. -->
+<!-- 6. **John** greeted **Mary**, and then **John** was greeted by Mary. -->
+<!-- 7. **John** greeted **Mary**, and then John was **greeted** by Mary. -->
+<!-- 8. **John** greeted **Mary**, and then John was greeted **by** Mary -->
+<!-- We consider four *predictors* which could affect whether stress is shifted: -->
+<!-- * `conditionLabel` (within-item variable 1): Whether the target NP (the last word of the second clause) previously appears (a) at the beginning of clause 1 (level `Contrast`); (b) at the end of clause 1 (level `Williams`), in which case both clauses end with the same word. -->
+<!-- * `npType` (within-item variable 2): Whether the second NP is a full NP or a pronoun. corresponding to the two-level factor npType (levels: `full`, `pronoun`). -->
+<!-- * `voice`: Whether clause 2 is active or passive. (Note that the values of `voice` and `conditionLabel` together determine whether clause 1 is active or passive.) -->
+<!-- * `order`: Stimulus presentation order (within each participant). -->
+<!-- Why these predictors? -->
+<!-- * The main motivation of the experiment was the observation that sentences like 3 sound odd, at least when the final word is accented. Cases like `conditionLabel=Williams`, where two consecutive sentences end with identical accented phonological chunks, are dispreferred. This is the called the *Williams effect* by Wagner (2012). -->
+<!-- * Speakers might be more or less willing to stress pronouns versus full NPs in general, or the Williams effect might differ in strength between the two types of NPs. -->
+<!-- * Whether clause 2 is active or passive affects what word stress would be shifted to, which might also interfere with the Williams effect. -->
+<!-- * Finally, how much participants shift stress might change over the course of the experiment as they get used to the stimuli. -->
+<!-- The *response* indicating whether stress has shifted is `acoustics`: this continuous variable is a linear combination of various acoustic cues (related to pitch, duration, and intensity of the target NP) and correlates with a lowering of the prominence of the target NP relative to earlier words in clause 2, and hence whether stress has been shifted from the target NP (higher `acoustics`) or not (lower `acoustics`). -->
+</div>
+</div>
+<div id="votdata" class="section level2">
+<h2><span class="header-section-number">10.8</span> VOT</h2>
+<p>This dataset contains voice onset times (VOTs) measured for speech from from a corpus of speakers of different British English dialects—a subset of the VOT data analyzed by <span class="citation">Sonderegger, Bane, and Graff (<a href="#ref-sonderegger2017medium">2017</a>)</span>. The data is posted as <code>votMcGillLing620.csv</code> in an <a href="https://osf.io/dmxuj/">OSF project</a> <span class="citation">(Sonderegger, Bane, and Graff <a href="#ref-vot_data">2018</a>)</span>.</p>
+<div id="background-4" class="section level3">
+<h3><span class="header-section-number">10.8.1</span> Background</h3>
+<p>The dataset contains VOT measurements (in msec) for 4728 word-initial voiceless stops, corresponding to 424 word types and 21 speakers. Only stops beginning with /t/ and /k/ are included (/p/-initial stops have been omitted, to simplify the analysis). Like most corpus data, this dataset is very unbalanced: there are between 1 and 1505 tokens per word type, and 35-619 tokens per speaker.</p>
+<p>The dataframe contains columns corresponding to a number of variables, at the level of the speaker, the word, and individual observations:</p>
+<ul>
+<li>Speaker-level
+<ul>
+<li>`maleSpeaker: 1/0 for tokens from male/female speakers.</li>
+<li><code>speakingRateMean</code>: Mean speaking rate (syllables/second) for data points from this speaker.</li>
+</ul></li>
+<li>Word-level
+<ul>
+<li><code>poaVelar</code>: 1/0 when place of articulation is velar/alveolar (i.e. /k/ vs. /t/)</li>
+<li><code>followingHigh</code>: 1/0 when the following vowel is high/non-high (e.g. tea vs. tap)</li>
+<li><code>stressedSyll</code>: 1/0 when the syllable containing the stop is stressed/unstressed (including function words).</li>
+</ul></li>
+<li>Observation-level
+<ul>
+<li><code>speakingRateDev</code>: Speaking rate for this observation, minus <code>speakingRateMean</code> for this speaker.</li>
+</ul></li>
+</ul>
+<p>The expected effects of some of these predictors on VOT can be intuitively understood as consequences of reduction. Faster speaking rate means (by definition) that speech is compressed, including the part of stop consonants corresponding to VOT. This compression might take place across speakers (those who talk faster, on average, have lower VOTs), within speakers (faster speech <span class="math inline">\(\Rightarrow\)</span> lower VOT, for a single speaker), or both. Unstressed syllables are often realized as more reduced phonetically, corresponding to shorter segments (and hence shorter VOT). The source of the place of articulation effect on VOT is more mysterious (there are several proposed explanations), but has been observed across many languages <span class="citation">(Cho and Ladefoged <a href="#ref-cho1999vot">1999</a>)</span>. The source of the gender effect is also not totally clear, and studies differ on whether men truly have lower VOTs than women, or whether they just speak faster than women, on average (which is true for English) <span class="citation">(Morris, Mccrea, and Herring <a href="#ref-morris2008voice">2008</a>)</span>.</p>
+<p>The response is <code>logVOT</code>. We log-transform VOT because this brings its distribution closer to normality, and because VOT can only be positive for voiceless stops, hence a model which can predict negative VOT would not make sense.</p>
+</div>
+</div>
+<div id="transitionsdata" class="section level2">
+<h2><span class="header-section-number">10.9</span> Transitions</h2>
+<!-- TODO FUTURE: make description of this dataset more understandable for readers -->
+<p>This dataset is from <span class="citation">Roberts, Torreira, and Levinson (<a href="#ref-roberts2015effects">2015</a>)</span>, a study examining the factors which determine the speed of turn-taking in conversation. The data is posted as <code>transitions.txt</code> in an <a href="https://osf.io/dve6h/">OSF project</a> <span class="citation">(Roberts, Torreira, and Levinson <a href="#ref-transitions_data">2018</a>)</span>.</p>
+<p>The dataset contains around 20,000 conversational transitions between speakers engaged in spontaneous conversation during telephone calls, from the <a href="https://catalog.ldc.upenn.edu/ldc97s62">Switchboard Corpus</a> <span class="citation">(Godfrey and Holliman <a href="#ref-godfrey1997switchboard">1997</a>)</span>. The dataset contains fifty variables, but ohly some of them are used in this book. Here is a brief explanation of some relevant variables (columns):</p>
+<ul>
+<li><code>dur</code>: the duration (ms) of the floor transition between turn A (the turn preceding the floor transition), and turn B (the turn following the transition)</li>
+<li><code>spkA</code>: the id of the speaker of the turn preceding the floor transition.</li>
+<li><code>spkB</code>: the id of the speaker of the turn following the floor transition.</li>
+<li><code>sexA</code>: the sex of the speaker of the turn preceding the floor transition.</li>
+<li><code>sexB</code>: the sex of the speaker of the turn following the floor transition.</li>
+<li><code>dialActA</code>: the dialogue act (e.g. yes-no question, wh-question, statement, answer, backchannel) of the turn preceding the floor transition.</li>
+<li><code>dialActB</code>: the dialogue act of the turn following the floor transition.</li>
+<li><code>uttNSylA</code>: the number of syllables in the turn preceding the floor transition.</li>
+<li><code>uttNSylB</code>: the number of syllables in the turn following the floor transition.</li>
+<li><code>uttDurA</code>: the duration (ms) of the turn preceding the floor transition.</li>
+<li><code>uttDurB</code>: the duration (ms) of the turn following the floor transition.</li>
+</ul>
+<p>Letter A is used in the name of variables referring to the turn <strong>preceding</strong> the floor transition, whereas letter B is used in the name of variables referring to the turn <strong>following</strong> a floor transition.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-languageR">
+<p>Baayen, R. H. 2013. <em>LanguageR: Data Sets and Functions with “Analyzing Linguistic Data: A Practical Introduction to Statistics”.</em> <a href="https://CRAN.R-project.org/package=languageR" class="uri">https://CRAN.R-project.org/package=languageR</a>.</p>
+</div>
+<div id="ref-baayen05semantic">
+<p>Baayen, R Harald, and Fermin Moscoso del Prado Martin. 2005. “Semantic Density and Past-Tense Formation in Three Germanic Languages.” <em>Language</em> 81 (3). Linguistic Society of America: 666–98.</p>
+</div>
+<div id="ref-torreira2010phrase">
+<p>Torreira, Francisco, and Mirjam Ernestus. 2010. “Phrase-Medial Vowel Devoicing in Spontaneous French.” In <em>11th Annual Conference of the International Speech Communication Association (Interspeech 2010),</em> 2006–9.</p>
+</div>
+<div id="ref-frenchDevoicing_data">
+<p>Torreira, Francisco, and Mirjam Ernestus. 2018. “French Devoicing.” Open Science Framework. <a href="osf.io/jverz" class="uri">osf.io/jverz</a>.</p>
+</div>
+<div id="ref-torreira2010nijmegen">
+<p>Torreira, Francisco, Martine Adda-Decker, and Mirjam Ernestus. 2010. “The Nijmegen Corpus of Casual French.” <em>Speech Communication</em> 52 (3). Elsevier: 201–12.</p>
+</div>
+<div id="ref-kilbourn2017speech">
+<p>Kilbourn-Ceron, Oriana. 2017. “Speech Production Planning Affects Variation in External Sandhi.” PhD thesis, McGill University.</p>
+</div>
+<div id="ref-kilbourn2017effect">
+<p>Kilbourn-Ceron, Oriana, Michael Wagner, and Meghan Clayards. 2017. “The Effect of Production Planning Locality on External Sandhi: A Study in /T/.” In <em>Proceedings of the 52nd Annual Meeting of the Chicago Linguistic Society</em>.</p>
+</div>
+<div id="ref-tapping_data">
+<p>Wagner, Michael, Oriana Kilbourn-Ceron, and Meghan Clayards. 2018. “The Effect of Production Planning Locality on External Sandhi: A Study in /T/.” OSF. <a href="osf.io/8rjxu" class="uri">osf.io/8rjxu</a>.</p>
+</div>
+<div id="ref-scott1984segmental">
+<p>Scott, Donia R, and Anne Cutler. 1984. “Segmental Phonology and the Perception of Syntactic Structure.” <em>Journal of Verbal Learning and Verbal Behavior</em> 23 (4). Elsevier: 450–66.</p>
+</div>
+<div id="ref-harder2013">
+<p>Harder, Laura. 2013. “Feature Mismatch in Half-Rhymes.” <em>Unpublished MA Research Paper McGill University</em>.</p>
+</div>
+<div id="ref-halfrhyme_data">
+<p>Wagner, Michael. 2018b. “Asymmetries in Half-Rhyme.” Open Science Framework. <a href="osf.io/k5pnu" class="uri">osf.io/k5pnu</a>.</p>
+</div>
+<div id="ref-wagner12illusion">
+<p>Wagner, Michael. 2012. “A Givenness Illusion.” <em>Language and Cognitive Processes</em> 27 (10): 1433–58. doi:<a href="https://doi.org/http://dx.doi.org/10.1080/01690965.2011.607713">http://dx.doi.org/10.1080/01690965.2011.607713</a>.</p>
+</div>
+<div id="ref-givenness_data">
+<p>Wagner, Michael. 2018a. “A Givenness Illusion.” Open Science Framework. <a href="osf.io/r4j2w" class="uri">osf.io/r4j2w</a>.</p>
+</div>
+<div id="ref-williams1980remarks">
+<p>Williams, Edwin. 1980. “Remarks on Stress and Anaphora.” <em>Journal of Linguistic Research</em> 1 (3): 1–16.</p>
+</div>
+<div id="ref-wagner16informationstructure">
+<p>Wagner, Michael. 2016. “Information Structure and Production Planning.” In, edited by Caroline Féry and Shinishiro Ishihara, 541–61. Oxford University Press. doi:<a href="https://doi.org/10.1093/oxfordhb/9780199642670.013.39">10.1093/oxfordhb/9780199642670.013.39</a>.</p>
+</div>
+<div id="ref-alternatives_data">
+<p>Wagner, Michael. 2018c. “Information Structure and Production Planning.” Open Science Framework. <a href="osf.io/dha2j" class="uri">osf.io/dha2j</a>.</p>
+</div>
+<div id="ref-sonderegger2017medium">
+<p>Sonderegger, Morgan, Max Bane, and Peter Graff. 2017. “The Medium-Term Dynamics of Accents on Reality Television.” <em>Language</em> 93 (3): 598–640.</p>
+</div>
+<div id="ref-vot_data">
+<p>Sonderegger, Morgan, Max Bane, and Peter Graff. 2018. “Medium-Term Dynamics of Accents on Reality Tv.” OSF. <a href="osf.io/dmxuj" class="uri">osf.io/dmxuj</a>.</p>
+</div>
+<div id="ref-cho1999vot">
+<p>Cho, Taehong, and Peter Ladefoged. 1999. “Variation and universals in VOT: evidence from 18 languages.” <em>Journal of Phonetics</em> 27 (2): 207–29. doi:<a href="https://doi.org/10.1006/jpho.1999.0094">10.1006/jpho.1999.0094</a>.</p>
+</div>
+<div id="ref-morris2008voice">
+<p>Morris, Richard J., Christopher R. Mccrea, and Kaileen D. Herring. 2008. “Voice Onset Time Differences Between Adult Males and Females: Isolated Syllables.” <em>Journal of Phonetics</em> 36 (2): 308–17. doi:<a href="https://doi.org/10.1016/j.wocn.2007.06.003">10.1016/j.wocn.2007.06.003</a>.</p>
+</div>
+<div id="ref-roberts2015effects">
+<p>Roberts, Seán G, Francisco Torreira, and Stephen C Levinson. 2015. “The Effects of Processing and Sequence Organization on the Timing of Turn Taking: A Corpus Study.” <em>Frontiers in Psychology</em> 6: 1–16. doi:<a href="https://doi.org/10.3389/fpsyg.2015.00509">10.3389/fpsyg.2015.00509</a>.</p>
+</div>
+<div id="ref-transitions_data">
+<p>Roberts, Sean G, Francisco Torreira, and Stephen C Levinson. 2018. “The Effects of Processing and Sequence Organization on the Timing of Turn Taking: A Corpus Study.” OSF. <a href="osf.io/dve6h" class="uri">osf.io/dve6h</a>.</p>
+</div>
+<div id="ref-godfrey1997switchboard">
+<p>Godfrey, J.J., and E. Holliman. 1997. <em>Switchboard-1 Release 2</em>. Philadelphia: Linguistic Data Consortium.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="53">
+<li id="fn53"><p>Although <code>order</code> can only take on a discrete set of values, in applications in this book we treat it as a continuous variable (not a factor).<a href="appendix-datasets.html#fnref53">↩</a></p></li>
+<li id="fn54"><p>Importantly, <code>acoustics</code> was artificially constructed, and should not be used for any re-analysis or replication of the original experiment. In the original experiment, only <code>shifted</code> was annotated, and various acoustic prosodic measures (pitch, duration and intensity of different words) automatically extracted. We constructed the <code>acoustics</code> variable for teaching purposes, by running a logistic regression predicting <code>shifted</code> from the prosodic measures, and taking the resulting linear predictor from the regression to be <code>acoustics</code>. This allows us to analyze the same dataset using both linear regression (response = <code>acoustics</code>) and logistic regression (response = <code>shifted</code>).<a href="appendix-datasets.html#fnref54">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="practical-regression-topics-2-ordered-factors-nonlinear-effects-model-predictions-post-hoc-tests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
