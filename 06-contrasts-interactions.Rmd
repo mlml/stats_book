@@ -154,7 +154,7 @@ as can be seen in the two columns of the contrast matrix:
 contrasts(devoicing$v)
 ```
 
-### Basic interpretation of contrasts
+### Basic interpretation of contrasts {#basic-interpretation-of-contrasts}
 
 These examples illustrate the most crucial aspect of contrasts: **contrasts correspond to different hypotheses you're testing about how the response differs between groups**.^[Contrasts also correspond to different interpretations of the intercept, but this is often less important in practice.]
 

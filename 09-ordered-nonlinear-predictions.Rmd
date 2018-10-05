@@ -5,6 +5,9 @@ knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
 # Practical regression topics 2: Ordered factors, nonlinear effects, model predictions, post-hoc tests
 
 **Preliminary code**
+
+This code is needed to make other code below work:
+
 ```{r, message=F, error=F, warning=F}
 library(gridExtra) # for grid.arrange() to print plots side-by-side
 library(dplyr)
@@ -16,9 +19,14 @@ library(arm)
 library(lsmeans)
 
 
-vot <- read.csv("datasets/vot.csv")
-halfrhyme <- read.csv("datasets/halfrhyme2.csv")
-alternatives <- read.delim("datasets/alternatives.txt")
+## loads votMcGillLing620.csv from OSF project for Sonderegger et al. (2017) data
+vot <- read.csv(url("https://osf.io/qpab9/download"))
+
+## loads halfrhymeMcGillLing620.csv from OSF project for Harder (2013) data
+halfrhyme <- read.csv(url("https://osf.io/37uqt/download"))
+
+## loads alternativesMcGillLing620.csv from OSF project for Wagner (2016) data
+alternatives <- read.csv(url("https://osf.io/6qctp/download"))
 
 ## remove rows where response is NA (shouldn't be any...)
 alternatives <- filter(alternatives, !is.na(prominence))
@@ -33,7 +41,8 @@ alternatives <- mutate(alternatives, context=as.ordered(factor(context, levels=c
 ## order levels for Auxiliary in their natural order
 regularity$Auxiliary <- factor(regularity$Auxiliary, levels=c("hebben", "zijnheb", "zijn"))
 
-givenness <- read.csv("datasets/givenness2.csv")
+## loads givennessMcGillLing620.csv from OSF project for Wagner (2012) data
+givenness <- read.csv(url("https://osf.io/q9e3a/download"))
 
 givenness <- mutate(givenness,
                     conditionLabel.williams = arm::rescale(conditionLabel),
@@ -46,26 +55,28 @@ givenness <- mutate(givenness,
 )
 ```
 
+<script src="js/hideOutput.js"></script>
 
-**Note**: Answers to questions/exercises not listed in text are in [Solutions](#c8solns)
+
+**Note**: Answers to some questions/exercises not listed in text are in [Solutions](#c8solns)
 
 ## Introduction
 
 These notes cover several practical topics which come up in fitting regression models (mixed-effects or not):
 
-* Ordered Factors
+* Ordered factors
 
-* Nonlinear Effects
+* Nonlinear effects
 
-* Making Model Predictions
+* Making model predictions
 
 We also briefly discuss:
 
-* Post-Hoc Tests
+* Post-hoc tests
 
-* Multiple Comparisons
+* Multiple comparisons
 
-<!-- TODO in future: flesh out last two topics -->
+<!-- TODO FUTURE: flesh out last two topics -->
 
 ## Ordered factors
 
@@ -79,7 +90,7 @@ Second: **factors**, which are discrete and unordered: no level of a factor is "
          
 #### Example 1 {- #c8ex1}
 
-Consider the Dutch verb regularity data `regularity`. (See [Dataset appendix](#dregdata) for a detailed description)
+Consider the [Dutch verb regularity dataset](#dregdata), `regularity`.
 
 * The **response** variable is `Regularity`: whether the verb has a regular or irregular past tense (1/0)
 
@@ -100,7 +111,7 @@ head(regularity$Auxiliary)
 
 ### Orthogonal polynomial contrasts
 
-What "converting to an ordered factor" (the `as.ordered` command) actually means is using a particular contrast coding scheme (See Sec. \@ref(dummy-coding) for details): *orthogonal polynomial contrasts*.  For three levels, the contrasts are:
+What "converting to an ordered factor" (the `as.ordered` command) actually means is using a particular contrast coding scheme (See Sec. \@ref(contrast-coding-schemes) for details): *orthogonal polynomial contrasts*.  For three levels, the contrasts are:
 ```{r}
 round(contrasts(regularity$Auxiliary.ord), 3)
 ```
@@ -171,7 +182,7 @@ summary(regularity.mod.1)
 
 The linear trend has large effect size and is very significant ($p<0.0001$), while the quadratic trend has low effect size and is not significant ($p=0.91$). This means the model predicts an essentially linear relationship between `Auxiliary.ord` and `Regularity`.  
 
-This example illustrates one use for ordered factors---dimensionality reduction, by reducing the number of contrasts needed to represent a factor's effect.  If we wanted to simplify the model, it would be justified at this point to drop the quadratic trend, and just use the linear contrast to represent the effect of `Auxiliary.ord`.^[To do this we'd have to use numeric variables for the contrast, as shown for mixed models (TODO MORGAN REF).]   We wouldn't gain much by doing so here (just one fewer regression coefficient), but when dealing with ordered factors with 5+ levels, dimensionality reduction can make model fitting and interpretation much easier.
+This example illustrates one use for ordered factors---dimensionality reduction, by reducing the number of contrasts needed to represent a factor's effect.  If we wanted to simplify the model, it would be justified at this point to drop the quadratic trend, and just use the linear contrast to represent the effect of `Auxiliary.ord`.^[To do this we'd have to use numeric variables for the contrast, as [shown for mixed models](#lmem-mwrec).]   We wouldn't gain much by doing so here (just one fewer regression coefficient), but when dealing with ordered factors with 5+ levels, dimensionality reduction can make model fitting and interpretation much easier.
 
 <!-- Note that the ordered -->
 <!-- * More specific information than "significant effect of `Auxiliary`" -->
@@ -240,7 +251,7 @@ For [the `alternatives` data](#altdata), we model the probability of stress shif
 
 * Random effects: by-item and by-participant intercept and slope
 
-This predictor is conceptually ordered, with levels *Alternative* < *NoAlternative* < *New* (see [the Dataset appendix](#altdata) to convince yourself of this).  So we can convert it to an ordered factor:
+This predictor is conceptually ordered, with levels *Alternative* < *NoAlternative* < *New* (see [the dataset description](#altdata) to understand why).  So we can convert it to an ordered factor:
 ```{r}
 alternatives <- mutate(alternatives, context=as.ordered(factor(context, levels=c("Alternative", "NoAlternative", "New"))))
 ```
@@ -358,7 +369,6 @@ ggplot(aes(x=WrittenFrequency, y=RTlexdec), data=english) +
   geom_point(alpha=0.15, size=1)
 ```
 
-(MORGAN: when compiling this plot does come up but also gives a warning message.)
 
 it is clear the relationship is not linear. Certainly RT decreases as a function of frequency, but the relationship is not a straight line. We would like to model this kind of relationship in a regression model. 
 
@@ -438,7 +448,6 @@ ggplot(aes(x=WrittenFrequency, y=RTlexdec), data=english) +
   geom_point(alpha=0.15, size=1)
 ```
 
-(MORGAN: same thing, plot shows up, get a warning about 'object 'C_crspl' not found')
 
 so we would choose $k=4$.
 
@@ -461,14 +470,14 @@ The significant difference between the linear model and the $k=3$ model means th
 
 **Practical note**
 
-Choosing $k$ is a model selection problem (as discussed in Sec. \@ref(lm-model-comparison)), and like all model selection techniques the resulting model needs to be sanity-checked against the empirical data.  In practice, models with very high $k$ often are "better" than a model with lower $k$ by model comparison via `anova()`, even when the value of $k$ makes no sense given visual inspection. For example, a model with 9 knots significantly improves on the $k=5$ model:
+Choosing $k$ is a [model selection problem](#lm-model-comparison), and like all model selection techniques the resulting model needs to be sanity-checked against the empirical data.  In practice, models with very high $k$ often are "better" than a model with lower $k$ by model comparison via `anova()`, even when the value of $k$ makes no sense given visual inspection. For example, a model with 9 knots significantly improves on the $k=5$ model:
 ```{r}
 mod.rcs9<- lm(RTlexdec ~ rcs(WrittenFrequency,9), data=english)
 anova(mod.rcs5, mod.rcs9)
 ```
 but there are obviously not 7 clear bends in the empirical relationship between `WrittenFrequency` and `RTlexdec`.  In practice, you might use the lowest value of $k$ for which model comparison shows a significant improvement (over $k-1$) *and* the predicted relationship is sensical.
 
-Another option to choose a good value of $k$ would be to use another method for model comparison, rather than the F test (what `anova` does by default for linear regressions). BIC (See Sec. \@ref(non-nested-model-comparison)) may be a good choice, as it tends to penalize extra terms more highly than other methods we've considered (e.g. AIC, F test, LR test for logistic regressions).  For the current example:
+Another option to choose a good value of $k$ would be to use another method for model comparison, rather than the F test (what `anova` does by default for linear regressions). BIC (Sec. \@ref(non-nested-model-comparison)) may be a good choice, as it tends to penalize extra terms more highly than other [methods we've considered](#lm-model-comparison) (e.g. AIC, F test, [LR test for logistic regressions](#c4lrt)).  For the current example:
 ```{r}
 BIC(mod.linear, mod.rcs3, mod.rcs4, mod.rcs5, mod.rcs6, mod.rcs9)
 ```
@@ -492,9 +501,11 @@ The short answer is: these coefficients are hard to interpret, and it's fine to 
 
 For the current example: code to visualize the nonlinear relationship is above, and you could report this in a paper as:
 
-"There was a nonlinear effect of frequency on reaction time, modeled using a restricted cubic spline with 5 knots ($F_{4567,4} = 303$, $p<0.0001$), where the number of knots was chosen by picking the value which gave lowest BIC."
+> "There was a nonlinear effect of frequency on reaction time, modeled using a restricted cubic spline with 5 knots ($F_{4567,4} = 303$, $p<0.0001$), where the number of knots was chosen by picking the value which gave lowest BIC."
 
-If you want to also report that a *nonlinear* effect in particular was justified, you could add a sentence like "A nonlinear relationship is clear from the empirical data (Fig. X), and significantly improves on a linear effect of frequency ($F_{4566,3}=40$, $p<0.0001$)."^[This probably isn't necessary as long as there is an empirical plot where a nonlinear relationship is clear.]  
+If you want to also report that a *nonlinear* effect in particular was justified, you could add a sentence like 
+
+> "A nonlinear relationship is clear from the empirical data (Fig. X), and significantly improves on a linear effect of frequency ($F_{4566,3}=40$, $p<0.0001$)."^[This probably isn't necessary as long as there is an empirical plot where a nonlinear relationship is clear.]  
 
 
 The model comparisons used in these reports are:
@@ -575,7 +586,7 @@ From the last two figures, we can see that each RCS component only grows **linea
 As an example, we model the effect of speech rate deviation (`speakingRateDev`) on log-transformed voice onset time (`logVOT`) for [the VOT dataset](#votdata). 
 
 The empirical effect seems clearly non-linear:
-```{r, fig.align='center', fig.width=4, fig.height=3}
+```{r, message=F, fig.align='center', fig.width=4, fig.height=3}
 ggplot(aes(x=speakingRateDev, y=logVOT), data=vot) + 
   geom_smooth() + 
   geom_point(alpha=0.15, size=1) + 
@@ -600,7 +611,7 @@ To choose $k$ in a data-driven fashion, try fitting these models using just rand
 
 ### Random slopes for RCS terms        
 
-Fitting a "maximal" mixed-effects model with random slopes for RCS terms often results in issues that are by now familiar (From Sec. \@ref(c6factorsissue)):
+Fitting a "maximal" mixed-effects model with random slopes for RCS terms often results in issues that are by now familiar (Sec. \@ref(c6factorsissue)):
 
 ```{r}
 votMod.corr <- lmer(logVOT ~ rcs(speakingRateDev, 3) + (1+rcs(speakingRateDev, 3) | Word) + (1+rcs(speakingRateDev,3)|Speaker), data=vot)
@@ -636,7 +647,9 @@ votMod.nocorr <- lmer(logVOT ~ rateDev.comp1 + rateDev.comp2 +
                       data=vot)
 ```
 
-The model now converges.  (This may not be kosher, though---there are conceptual issues with using uncorrelated random effects for non-centered variables (TODO MORGAN ref - Barr et al?))
+The model now converges.  (This may not be kosher, though---there are conceptual issues with using uncorrelated random effects for non-centered variables [@barr2013random].
+
+<!-- TODO FUTURE: check if that's right, or just something Roger has said in online posts..? get a better ref -->
 
 The model is:
 ```{r}
@@ -681,7 +694,7 @@ ggplot(aes(x=speakingRateDev, y=logVOT), data=vot) +
 
 #### Option 2: Use centered predictors {-}
 
-Note that RCS components are not centered, by default---as can be seen in the plots of these components for $k=4$ and $k=5$ in \@ref(c8longanswer), where each component is positive for all values of `WrittenFrequency`.  Less problematically, they are not orthogonal---for example, components 1 and 2 are clearly correlated (for $k=4$ and $k=5$), as component 2 is a line for `WrittenFrequency`>6.
+Note that RCS components are not centered, by default---as can be seen in the plots of these components for $k=4$ and $k=5$ in Sec. \@ref(c8longanswer), where each component is positive for all values of `WrittenFrequency`.  Less problematically, they are not orthogonal---for example, components 1 and 2 are clearly correlated (for $k=4$ and $k=5$), as component 2 is a line for `WrittenFrequency`>6.
 
 We can address both issues by using the *principal components* of the RCS components: a linear transformation which makes them centered and orthogonal.  You can extract the principal components in R using the `pc=TRUE` flag:
 ```{r}
@@ -736,7 +749,7 @@ To summarize:
     * Modeling nonlinear relationships **somehow** is more important than the actual method used!
 
 
-* In terms of a method: we recommend using *splines* to code nonlinear effects. (Here we have demonstrated restricted cubic splines, but other flavors are OK.)
+* In terms of a method: we recommend using splines to code nonlinear effects. (Here we have demonstrated restricted cubic splines, but other flavors are OK.)
 
     * Pro: Splines are well-behaved and should lead to better generalization to new data.
     
@@ -760,7 +773,7 @@ To visualize the predictions of mixed models, it is useful to make:
 
 Decent software (in 2018) exists for making such predictions from mixed models, such as:
 
-* The `effects` package
+* The [`effects`](https://cran.r-project.org/web/packages/effects/index.html) package (see [vignette](https://cran.r-project.org/web/packages/effects/vignettes/effectsMethods.pdf))
 
 * The [`sjPlot`](http://www.strengejacke.de/sjPlot/sjp.lmer/) package
 
@@ -782,15 +795,15 @@ Visualizing predictions from a model in R always involves three steps:
     
 #### Example {-}
 
-Let's use a basic model of the `acoustics` correlate of stress shifting, for [the `givenness` data](#givedata):
+Let's use a basic model of the `acoustics` correlate of stress shifting, for [the `givenness` data](#givedata):^[We use uncorrelated by-item random effects in this model because the correlations do not significantly improve model likelihood (by an LR test), the by-item random effects have smaller magnitudes, and the model with correlations does not converge.]
 ```{r}
 mod1 <- lmer(acoustics ~ conditionLabel*npType + voice +
-                 (1 + clabel.williams*npType.pron | item) +
+                 (1 + clabel.williams*npType.pron || item) +
                  (1 + clabel.williams*npType.pron + voice.passive| participant),
              data=givenness)
 ```
 
-(TODO MORGAN: deal with model convergence issue)
+
 
 #### Predictions only (no confidence intervals) {-}
 
@@ -868,19 +881,21 @@ ggplot(aes(x=conditionLabel, y=prediction, ymin=prediction-1.96*SE, ymax=predict
 
 Extracting partial effects, and "overall" values (intercepts) for each participant (etc.) is also of interest. Some examples are given in previous chapters, and further examples are shown in an Appendix (Sec. \@ref(c8indivpreds)).
 
+<!-- TODO FUTURE: link to previous chapter examples -->
+
 ### Simulation-based predictions    
 
 The examples seen so far calculate model predictions and confidence intervals using the terms of the fitted models---fixed-effect coefficient values and SEs, and so on.   This requires writing some code (and some knowledge), but the predictions/CIs are computed quickly.
 
 The more general solution, which requires little code or knowledge---but can be very slow---is computing model predictions and confidence intervals using simulation.   Parametric or semi-parametric bootstrapping, as implemented in the `bootMer` package or the `simulate` function (from the `arm` package), can be used to estimate the probability distribution over values of **any** quantity predicted by the model---including a particular combination of predictor values, as in a partial-effect plot.  This distribution can be used to obtain a "prediction" and "95% confidence interval" by computing e.g. the median and the 2.5%/97.5%  quantiles.  The downside is that simulation can be very computationally intensive---you essentially have to re-fit the model many (1000+) times to get reasonable estimates. 
 
-Useful examples are given on:
+Useful examples are given in:
 
-* A [page](https://cran.r-project.org/web/packages/merTools/vignettes/Using_predictInterval.html) by J. Knowles and C. Frederick
+* A [vignette](https://cran.r-project.org/web/packages/merTools/vignettes/Using_predictInterval.html) by J. Knowles and C. Frederick
 
 * An [R-bloggers](https://www.r-bloggers.com/confidence-intervals-for-prediction-in-glmms/) page by grumble10.
 
-An example of a simple simulation-based method is shown for LMMs in Section \@ref(c6extraexamples).
+An example of a simple simulation-based method is shown for LMMs in Section \@ref(lmm-simulation-confint).
 
 ## Post-hoc tests and multiple comparisons {#post-hoc-mult-comp}
 
@@ -894,13 +909,13 @@ A solution commonly used is to correct the $p$-values for "multiple comparisons"
 * The *Holm* method
     * Less conservative than Bonferroni
     
-* Tukey HSD ("Honestly Significant Difference")
+* *Tukey HSD* ("Honestly Significant Difference")
 
-* FDR ("False Discovery Rate"), a.k.a. the Benjamini & Hochberg (BH) method
+* *FDR* ("False Discovery Rate"), a.k.a. the Benjamini & Hochberg (BH) method
 
 Not correcting for multiple comparisons when doing many statistical tests can easily lead to spurious results---this is often called "data dredging" or "p-hacking". 
 
-Which multiple comparison method should be used?  As always, there is a trade-off between methods with higher power and lower Type I error.  Reasonable and widely-used methods are Holm and Tukey HSD.
+Which multiple comparison method should be used?  There is a trade-off between methods with higher power and lower Type I error.  Reasonable and widely-used methods are Holm and Tukey HSD.
 
 One place where the multiple comparisons problem comes up is for factors with multiple (>2) levels.  When a model includes a categorical variable $X$ with $k$ levels, we know how to:
 
@@ -908,7 +923,7 @@ One place where the multiple comparisons problem comes up is for factors with mu
     
 2. Ask "does $X$ affect the response?": **likelihood ratio test** (discussed in Sec. \@ref(c5mlf))
 
-It is customary to not correct for multiple comparisons for (1)---and indeed, for any set of predictors in multiple regression models in general. (It is beyond our knowledge whether there is actually a good reason for this.)
+It is customary to not correct for multiple comparisons for (1)---and indeed, for any set of predictors in multiple regression models in general.^[It is beyond our knowledge whether there is actually a good reason for this, but googling  (e.g. [here](https://stats.stackexchange.com/questions/3200/is-adjusting-p-values-in-a-multiple-regression-for-multiple-comparisons-a-good-i?noredirect=1&lq=1), [here](https://stats.stackexchange.com/questions/59670/multiple-regression-and-multiple-comparisons)) suggests that "why don't we correct for multiple comparisons in multiple regression models?" is a common question.]
 
 But often, we would like to ask more than $k-1$ questions, such as:
 
@@ -979,7 +994,7 @@ The two significant fixed-effect coefficients can be interpreted as:
 
 But what about *NoAlternative* versus *New*, or *Alternative* versus *New*?
 
-The `lsmeans` package is invaluable for carrying out post-hoc tests.  In this case, we  examine every difference between two levels:
+The `lsmeans` package (now superceded by the `emmeans` package, with expanded functionality) is invaluable for carrying out post-hoc tests [@lsmeans; @emmeans].  In this case, we  examine every difference between two levels:
 ```{r, message=FALSE}
 mod.lsmeans <- lsmeans::lsmeans(mod.nocorr, ~context)
 pairs(mod.lsmeans)
@@ -1002,7 +1017,7 @@ temp <- lsmeans::lsmeans(mod1, ~conditionLabel | npType)
 pairs(temp)
 ```
 
-You can read more in the very useful [vignette]( http://cran.r-project.org/web/packages/lsmeans/vignettes/using-lsmeans.pdf) for `lsmeans`
+You can read more in the very useful [vignette]( http://cran.r-project.org/web/packages/lsmeans/vignettes/using-lsmeans.pdf) for `lsmeans` (or [for `emmeans`](https://cran.r-project.org/web/packages/emmeans/vignettes/)).
 
 **Exercise** 
 
@@ -1010,14 +1025,15 @@ You can read more in the very useful [vignette]( http://cran.r-project.org/web/p
     
 * Use `lsmeans` to test: is there a difference between
     
-    * Zijn/hebben
+    * *zijn*/*hebben*
         
-    * Zijnheb/hebben
+    * *zijnheb*/*hebben*
         
-    * Zijn/zijnheb
+    * *zijn*/*zijnheb*
     
 ?
 
+<!-- TODO FUTURE: "other readings" section -->
 
 ## Appendix: Model predictions for indiviudal participants {#c8indivpreds}
 
@@ -1132,11 +1148,11 @@ lmer(shifted ~ context +
 
 **Exercise**: carry out the same procedure to implement uncorrelated random effects as we saw for multi-level factors in Section \@ref(c7appendix2)
 
-    * Manually make numeric variables for each contrast, called `context1`, `context2`
+* Manually make numeric variables for each contrast, called `context1`, `context2`
     
-    * Fit a model with uncorrelated random effects using these numeric variables
+* Fit a model with uncorrelated random effects using these numeric variables
     
-    * Check using a model comparison whether the models with and without correlations significantly differ
+* Check using a model comparison whether the models with and without correlations significantly differ
 
 
 ## Solutions {#c8solns}
@@ -1148,7 +1164,7 @@ lmer(shifted ~ context +
 * By-participant and by-item variability in the `context` effect?
 
 
-**A**: There is a significant linear effect of the ordered predictor linear, but the quadratic component does not reach significance. There is substantial by-item and by-participant variability with respect to both linear and quandratic effect.
+**A**: There is a significant linear effect of the ordered predictor linear, but the quadratic component does not reach significance. There is substantial by-item and by-participant variability with respect to both linear and quadratic effect.
 
 ---
 
@@ -1192,5 +1208,5 @@ The results are line with the visual inspection: Having splines with k = 4 does 
 
 
 
-**A**: The fact that both are signfiicant tells us that just fitting a linear predictor would not be justified--the non-linear component contributes significantly to the model. Participants show variability in the linear effect.
+**A**: The fact that both are significant tells us that just fitting a linear predictor would not be justified--the non-linear component contributes significantly to the model. Participants show variability in the linear effect.
 

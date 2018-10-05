@@ -3,7 +3,7 @@ knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
 ```
 
 
-# Linear mixed models
+# Linear mixed models {#lmem}
 
 **Preliminary code**
 
@@ -889,7 +889,7 @@ These fixed effects are one possible set one could arrive at via exploratory dat
 
 We will denote the fixed-effect coefficients for (1)--(5) as $\beta_{\texttt{conditionLabel}}$, and so on.
 
-### Types of predictors
+### Types of predictors {#types-of-predictors}
 
 For fitting and interpreting mixed models, it is important to think of predictors in terms of their *level*.  A predictor which describes something about participants (e.g. participant gender) is *participant-level*, a predictor which describes a property of items (e.g. word frequency) is *item-level*, and so on.  Participant-level predictors are sometimes called "between-participant", because they do not vary within participants, while a predictor that varies within participant is "within-participant" (and similarly for "between-item", etc.). (We will not use within/between-X terminology, but you may be familiar with it, and it's widely used in the literature.)   A predictor which has a different value for every observation---that is, varies within item and participant---is called *observation-level*.
 
@@ -1151,13 +1151,13 @@ This is a good thing, from the perspective of not finding spurious effects.  In 
 
 Similar logic holds for by-item random slopes, and so on: whenever the effect of a predictor $X$ could vary among levels of a grouping factor $Z$, it is anti-conservative to not include a by-$Z$ random slope for $X$.  This issue is discussed at length by  @barr2013random.
 
-On the other hand, adding a random slope for $X$ also **increases Type II error**---that is, lowers power to detect a non-zero (fixed) effect of $X$.  This is especially true if there is little by-participant variability in the effect of $X$.  This issue is emphasized by @bates2014fitting and @matuschek2017balancing.
+On the other hand, adding a random slope for $X$ also **increases Type II error**---that is, lowers power to detect a non-zero (fixed) effect of $X$.  This is especially true if there is little by-participant variability in the effect of $X$.  This issue is emphasized by  @matuschek2017balancing and @bates2015parsimonious.
 
 These points seem to imply that adding random slopes can be both good (lower Type I error) and bad (higher Type II error). What practical advice can be given on when to include a given random slope term?  The more general issue is: how do we decide on a random effect structure?  This usually means, what random slope terms (and correlation terms---see below) should we include in our model?
 
 This is a **model selection** problem (with respect to random effect terms)---and as we saw when discussing model selection for fixed effects in the context of multiple linear regression (Sec. \@ref(lm-model-comparison)), there is no "best" answer.  What model selection procedure you use depends on the goals of your analysis. There are two broad perspectives:
 
-* **Perspective 1** (@barr2013random advice): include random slope(s) for any fixed effect coefficient you care about
+* **Perspective 1** (@barr2013random advice):^[See also @schielzeth2009conclusions, who had earlier emphasized the importance of random slopes for analyzing ecological data.] include random slope(s) for any fixed effect coefficient you care about
 
     * Ideal: "Maximal" random effect structure, meaning all possible random effect terms (modulo issues with model convergence)
     
@@ -1473,7 +1473,6 @@ We have so far only used factors with two levels as predictors in mixed-effects 
 
 As an example, we will use the `halfrhyme` data. To load the data and code contrasts:
 ```{r}
-halfrhyme <- read.csv("datasets/halfrhyme2.csv")
 halfrhyme <- mutate(halfrhyme,
                     conditionLabel = 
                       factor(conditionLabel, levels = c("bad", "voice", "good")))
@@ -1517,7 +1516,7 @@ Although there don't seem to be any issues with fitting this model---it converge
 <!-- TODO FUTURE: use an example where we actually see these issues -->
 
 
-### Models without random-effect correlations
+### Models without random-effect correlations {#lmem-mwrec}
 
 If we instead try to fit a model with uncorrelated random effects, we get a warning from R:
 
@@ -1567,6 +1566,8 @@ Mixed-effects models are widely used in behavioral and social sciences. Many ful
     * About half of @gelman2007data is focused on mixed models, called "hierarchical" (different name, same models).
   
     * Textbooks on statistics for linguists, such as @baayen2008analyzing, @levy2012probabilistic, @johnson2008quantitative have mixed model sections.
+    
+    * @speelman2018mixed is an edited volume of case studies which apply mixed-effects models to linguistic data.
 
 * Shorter
 
@@ -1581,10 +1582,9 @@ Mixed-effects models are widely used in behavioral and social sciences. Many ful
     * The `r-sig-mixed-models` mailing list. (Search the archives)
 
 
-
 ## Appendix: Extra examples {#c6extraexamples}
 
-### Predicting confidence intervals by simulation
+### Predicting confidence intervals by simulation {#lmm-simulation-confint}
 
 To get 95% CIs of our Model 1B:
 
@@ -1642,7 +1642,7 @@ Under `Random effects` we find the variance estimator for the by-participant ran
 
 In this exercise you'll build a linear mixed-effects model using:
 
-* Data: `tapped3.txt`
+* Data: [tapping data](#c7tapdata)
 
 of how `vowelduration` (response) depends on the predictors `syntax` and `speechrate`.
 
@@ -1650,7 +1650,8 @@ of how `vowelduration` (response) depends on the predictors `syntax` and `speech
 
 The empirical effect is:
 ```{r, echo=F, fig.align='center', fig.height=3, fig.width=4}
-tapped <- read.table("datasets/tapped3.txt")
+## loads tappedMcGillLing620.csv from OSF project for Kilbourn-Ceron et al (2017) data
+tapped <- read.csv(url("https://osf.io/pwdzx/download"))
 
 tapped2MN <- aggregate(vowelduration ~ syntax + speechrate, data = tapped, FUN = mean)
 tapped2SE <- aggregate(vowelduration ~ syntax + speechrate, data = tapped, 

@@ -1,8 +1,8 @@
-# Appendix: Datasets
+# Appendix: Datasets and packages {#datasets-appendix}
 
 All datasets used in this book are publicly available, either as:
 
-* Datasets in the `languageR` R package (@languageR) associated with R.H.\ Baayen's book _Analyzing Linguistic Data_: `english`, `regularity` datasets
+* Datasets in the `languageR` R package [@languageR] associated with R.H.\ Baayen's book _Analyzing Linguistic Data_: `english`, `regularity` datasets
 
 * Open Science Framework ([OSF](https://osf.io/)) projects: all other datasets
 
@@ -358,6 +358,23 @@ The dataset contains around 20,000 conversational transitions between speakers e
 
 
 Letter A is used in the name of variables referring to the turn **preceding** the floor transition, whereas letter B is used in the name of variables referring to the turn **following** a floor transition.
+
+## Packages
+
+In addition to `languageR`, packages used in this book include:
+
+* `arm` [@arm]
+
+* `bookdown` [@bookdown]
+
+* `rms` and `Hmisc` [@Hmisc; @rms]
+
+* `influence.ME` [@influence.ME]
+
+* `lsmeans` and successor `emmeans` [@lsmeans; @emmeans]
+
+* "Tidyverse" packages `ggplot2`, `dplyr`, `tidyr`, etc. [@ggplot2; @dplyr; @tidyr]
+
 
 
 

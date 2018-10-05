@@ -329,7 +329,7 @@ badmodel <- glm(stressshift ~ acoustics.std, data=filter(givenness, stressshift=
 This means that the numeric algorithm used to maximize likelihood couldn't find a good solution for the regression coefficients. This makes sense, because the model is trying to fit 100\% probabilities (so log-odds = $\infty$), and has no data on the basis of which it can estimate the slope ($\beta_1$).  
 
 
-## Evaluating logistic regression models
+## Evaluating logistic regression models {#evaluating-logistic-regression-models}
 
 We would like a measure of goodness-of-fit for logistic regression models: how well does the model predict $Y$, compared to a baseline model?  For linear regression, we used $R^2$ to quantify how similar the model's predictions ($\hat{y}_i$) were to the observations ($y_i$), relative to a baseline model where the model's prediction is always the grand mean---$R^2$ was simply the correlation between observed and predicted values.
 
@@ -771,7 +771,7 @@ lrAcc(mod3, 'stressshift')
 
 So accuracy actually **decreases** slightly when this interaction is added.  This can happen, because improving model likelihood and improving classification accuracy are not the same thing.^[It's worth noting that classification accuracy is very similar for the two models---close enough to be effectively the same, taking finite sample size into account. For a proportion estimated at $\hat{p} = 0.80$ (like classification accuracy, here) from $n=382$ observations, standard error is $\sqrt{p(1-p)/n} = 0.02$, so the 95\% CIs of classification accuracy of the two models overlap.]
 
-## Model criticism for logistic regression
+## Model criticism for logistic regression {#model-criticism-logistic-regression}
 
 Regression assumptions and model diagnostics are just as necessary to assess a fitted model ("model criticism") as for linear regression, where [we covered these topics](#linear-regression-assumptions) in depth.  The assumptions and diagnostics differ somewhat for logistic regression, but not at a qualitative level.  For example:
 
@@ -784,7 +784,7 @@ Regression assumptions and model diagnostics are just as necessary to assess a f
 We will only briefly discuss these topics here, but you should read more (e.g.  @chatterjee2012regression, @baayen2008analyzing, @gelman2007data) if you are using logistic regression to analyze data.
 
     
-### Residual plots
+### Residual plots {#residual-plots}
 
 The **raw** residuals for logistic regression would consist of the model prediction (log-odds, or probabilities) minus the observation (0 or 1) for point $i$.  R will give you these residuals if you call `resid` on a logistic regression model, but any plot using these residuals is not very informative,  because the model's predictions and the observations are conceptually different (as discussed in Sec. \@ref(c4differences)).   For example, here is a fitted-residuals plot for a model we fit above, of the kind used to assess homoscedasticity for linear regression models:
 ```{r}
@@ -822,7 +822,7 @@ binnedplot(predict(ex1.mod), resid(ex1.mod))
 
 The diagnostic plot doesn't suggest any major issue (like a "funnel" shape would), but the observations around expected value = -2.5 merit further investigation.
 
-### Cook's distance
+### Cook's distance {#logistic-regression-cooks-distance}
 
 Cook's distance (CD) can be defined for each observation in a logistic regression model, similarly [to linear regression](#lin-reg-measuring-influence).  In R, the `glm.diag()` function in the `boot` package computes CD.  Similarly to linear regression, the distribution of CD values can be plotted and used to identify observations with extreme values.
 

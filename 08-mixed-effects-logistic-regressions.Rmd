@@ -5,6 +5,9 @@ knitr::opts_chunk$set(echo = TRUE, cache=TRUE)
 # Mixed-effects logistic regression
 
 **Preliminary code**
+
+This code is needed to make other code below work:
+
 ```{r, message=F, error=F, warning=F}
 library(gridExtra) # for grid.arrange() to print plots side-by-side
 library(dplyr)
@@ -13,7 +16,9 @@ library(arm)
 library(languageR)
 library(influence.ME)
 
-tapped <- read.delim("datasets/tapped2.txt")
+## loads tappedMcGillLing620.csv from OSF project for Kilbourn-Ceron et al (2017) data
+tapped <- read.csv(url("https://osf.io/pwdzx/download"))
+
 
 ## there is some missing data for 'tapped' variable -- exclude to avoid warnings later
 tapped <- filter(tapped, !is.na(tapped))
@@ -25,8 +30,14 @@ tapped <- mutate(tapped,
                  speechrate.slow = arm::rescale(speechrate)
 )
                 
-givenness <- read.csv("datasets/givenness2.csv")
-alternatives <- read.delim("datasets/alternatives.txt")
+
+## loads alternativesMcGillLing620.csv from OSF project for Wagner (2016) data
+alternatives <- read.csv(url("https://osf.io/6qctp/download"))
+
+
+
+## loads givennessMcGillLing620.csv from OSF project for Wagner (2012) data
+givenness <- read.csv(url("https://osf.io/q9e3a/download"))
 
 givenness <- mutate(givenness,
                     conditionLabel.williams = arm::rescale(conditionLabel),
@@ -87,11 +98,14 @@ baselineAcc <- function(lrMod, responseVar){
 }
 ```
 
-**Note**: Answers to questions/exercises not listed in text are in [Solutions](#c7solns)
+<script src="js/hideOutput.js"></script>
+
+
+**Note**: Answers to some questions/exercises not listed in text are in [Solutions](#c7solns).
 
 ## Preliminaries
 
-*Mixed-effects logistic regression* (MELR) is to logistic regression as linear mixed-effects models are to linear regression.  MELRs combine pieces we have seen previously:
+*Mixed-effects logistic regression* (MELR) is to logistic regression as linear mixed-effects models are to linear regression.  MELRs combine pieces we have seen previously in chapters on [logistic regression](#logistic-regression) and [linear mixed-effects models](#lmem):
 
 1. **Logistic regression**
 
@@ -117,11 +131,10 @@ baselineAcc <- function(lrMod, responseVar){
 
 Remember that logistic regression models the **log-odds** of a "hit" ($Y=1$) as a function of predictors. Not the number of hits, the probability of a hit, or anything else.
 
-Some additional readings on MELR models can be found in @gelman2007data [ch. 14], [@jaeger08], @johnson2008quantitative [ch. 7.4].
 
 ### Motivation
 
-To get a sense of what kind of variability is captured by the random effects in MELR models, we can examine by-participant and by-item variability in two datasets we modeled using logistic regression(TODO VANNA: link?), just plotting the empirical data.
+To get a sense of what kind of variability would be captured by the random effects in MELR models, we can examine by-participant and by-item variability in two datasets where the outcome is a binary (0/1) variable, just plotting the empirical data.
 
 #### Tapping data {- #c7tapdata}
 
@@ -181,7 +194,7 @@ Random effects are defined with respect to one or more *grouping levels*. For ex
 
 Mixed-effect logistic regressions are one kind of *generalized linear mixed model* (GLMM)---analogously to logistic regression being one kind of generalized linear model. To fit a MELR model in the `lme4` package, you use the `glmer()` function (**g**eneralized **l**inear **m**ixed **e**ffects **r**egression), with a `family=binomial()` argument, similarly to fitting a logistic regression using the `glm()` function.^[The `family='binomial'` argument specifies this regression uses a "logit link", as for logistic regressions (see @baayen2008analyzing).]  
 
-All pieces of an MELR model are familiar from our units on linear mixed models (Chapter 6) and logistic regression (Chapter 4), so we will dive right in to a realistic example model that uses:
+All pieces of an MELR model are familiar from our units on linear mixed models (Chapter \@ref(lmem)) and logistic regression (Chapter \@ref(logistic-regression)), so we will dive right in to a realistic example model that uses:
 
 * Crossed random effects (participants, items)
     
@@ -207,7 +220,7 @@ We use these fixed effect terms, to build a relatively simple model (no interact
 
 * `voice.passive` (varies across participants, not across items)
 
-Recall that `clabel.williams` and `npType.pron` are observation-level (they vary across participants and items) while `voice.passive` is item-level (it varies across participants, but not items).
+[Recall](#types-of-predictors) that `clabel.williams` and `npType.pron` are observation-level (they vary across participants and items) while `voice.passive` is item-level (it varies across participants, but not items).
     
 The random effects contain intercepts and all possible random slopes:
 
@@ -271,7 +284,7 @@ The terms fitted in this model---and hence shown in the regression model output-
         
     * No correlations
         
-Note that unlike linear mixed-effects models, there is no residual error variance term, for the same reasons as for logistic regression, discussed in Sec. \@ref(c4differences).
+Note that unlike linear mixed-effects models, there is no residual error variance term, for the same reasons as for logistic regression (see Sec. \@ref(c4differences)).
     
 #### Fitting the model
 
@@ -355,7 +368,7 @@ Thus: participants (but not items) differ in the intercept, while items (but not
 
 ### Fixed effects
 
-Recall that for linear mixed-effects models, there is not a consensus on how to calculate p-values and whether doing so is a good idea, (see Sec \@ref(c6fixedp) for more detail) so no test statistic or $p$-value is given by default in the `lmer` output. One rough method was to assume that the estimated coefficient value divided by its standard error was normally distributed, and use this to calculate a $p$-value (for a two-sided "Wald test").
+Recall that for linear mixed-effects models, there is not a consensus on how to calculate p-values and whether doing so is a good idea (see Sec. \@ref(c6fixedp)), so no test statistic or $p$-value is given by default in the `lmer` output. One rough method was to assume that the estimated coefficient value divided by its standard error was normally distributed, and use this to calculate a $p$-value (for a two-sided "Wald test").
 
 For generalized linear mixed-effects models, this is a somewhat more kosher method, and `glmer()` shows by default:
 
@@ -373,7 +386,7 @@ See the discussion for linear mixed models in @baayen2008analyzing for more deta
 
 #### Likelihood ratio test for one term {-}
 
-To calculate an LR test $p$-value for just the `npType.pron` fixed-effect term in Model 1:
+To calculate an LR test $p$-value for just the `npType.pron` fixed-effect term in [Model 1](#c7m1):
 ```{r, cache=TRUE}
 lrMod1.sub <- update(lrMod1, . ~ . - npType.pron)
 anova(lrMod1, lrMod1.sub)
@@ -384,7 +397,7 @@ The $p$-value ($p=0.059$) is slightly higher than for the Wald test used in `lrM
 #### Likelihood ratio test for each term {-} 
 
 The `afex` package lets you quickly compute an LR-based $p$-value for each term:
-```{r, message=FALSE, cache=TRUE}
+```{r, message=FALSE, cache=TRUE, warning=FALSE}
 library(afex)
 
 ## fit model and get LR-based p-values:
@@ -399,7 +412,7 @@ lrMod1.lr
 
 #### Parametric bootstrap (PB) test for each term {-}
 
-This example uses a version of Model 1 with random intercepts only, because using random slopes takes a very long time. Note this is only for pedagogical purposes---it is never a good idea to report a model where the only random effects are random intercepts!
+This example uses a version of [Model 1](#c7m1) with random intercepts only, because using random slopes takes a very long time. Note this is only for pedagogical purposes---it is never a good idea to report a model where the only random effects are random intercepts!
 ```{r, message=FALSE, cache=TRUE}
 library(afex)
 
@@ -428,7 +441,7 @@ It may also be of interest to test whether random-effect terms significantly imp
     
 #### Example {-}
 
-Do items significantly differ in the `clabel` effect (i.e. the Williams effect), in Model 1?
+Do items significantly differ in the `clabel` effect (i.e. the Williams effect), in [Model 1](#c7m1)?
 
 ```{r, cache=TRUE}
 lrMod1.1 <- glmer(stressshift ~ clabel.williams + npType.pron + voice.passive + 
@@ -446,7 +459,7 @@ This result could be reported as: "A likelihood ratio test showed that items dif
 
 In a model with random slopes, it is not clear what the best way is to assess "does predictor $X$ significantly improve the model?"  Testing the fixed-effect only (as above) is the most common method---but this does not take into account variability in the effect among participants or items.  It is possible for a predictor to show no **overall** effect (across participants and items), but to show significant variability among participants or items---indeed, this may be **why** there is no significant overall effect.   
 
-We can instead assess the contribution of predictor $X$ by doing model comparison (via a LR test) with a model where all terms involving $X$ are excluded (fixed and random effects). For example, to assess the contribution of `voice` to Model 1, we would exclude the fixed effect and the by-participant random effect:
+We can instead assess the contribution of predictor $X$ by doing model comparison (via a LR test) with a model where all terms involving $X$ are excluded (fixed and random effects). For example, to assess the contribution of `voice` to [Model 1](#c7m1), we would exclude the fixed effect and the by-participant random effect:
 
 ```{r, cache=TRUE}
 ## all terms involving `voice` excluded
@@ -461,15 +474,16 @@ anova(lrMod1, lrMod1.1)
 
 So adding information about item voicing (the `voice` predictor) does significantly improve the model ($\chi^2(2)=7.4$, $p=0.024$)---even though there is no overall effect (fixed effect: $p=0.11$). This is because there is a lot of between-participant variability in the effect.
 
-It is not standard (in 2018) to assess a predictor's contribution by excluding both fixed and random effects, but this option is worth keeping in mind, depending on your research questions.
+<!-- It is not standard (in 2018) to assess a predictor's contribution by excluding both fixed and random effects, but this option is worth keeping in mind, depending on your research questions. -->
 
 ## MELR Practice
 
-These two exercises give practice fitting and interpreting mixed-effects logistic regression models.
+This exercise gives practice fitting and interpreting mixed-effects logistic regression models.
 
 ### Exercise 1: tapping {#c7ex1}   
 
-For this exercise, use the updated version of the `tapping` data, in `tapped2.txt`.  For this data: the **response** is `tapped`, and let the **predictors** be:
+<!-- For this exercise, use the updated version of the `tapping` data, in `tapped2.txt`.   -->
+For the `tapping` data, loaded and processed at the beginning of this chapter, the **response** is `tapped`. We will take the **predictors** to be:
 
 * `syntax.trans`: whether `syntax` is *transitive* (0.5) or *intransitive* (-0.5)
     
@@ -497,67 +511,70 @@ How does this model assume tapping rate depends on syntax and speech rate, intui
     
 * Do the model results for `syntax.trans` fit with what we saw in the [empirical data](#c7tapdata)?
 
-### Exercise 2: t/d deletion {#c7ex2}
 
-This exercise uses data in `td.csv`, from @sonderegger2017medium, on English t/d deletion: whether word-final /t/ or /d/ in a consonant cluster is deleted (ex: "best cake" pronounced as "bes' cake" or bes[t] cake").  A long sociolinguistic literature shows that the rate of t/d deletion depends on many factors, including three which are included in this dataset:
+<!-- TODO FUTURE: add this exercise back in, along with changes to dataset chapter to describe. -->
 
-* The following phonological context: `following` has levels *vowel* and *consonant*
+<!-- ### Exercise 2: t/d deletion {#c7ex2} -->
 
-* Speaking rate: `speechrate` is a continuous variable (syllables/second)
+<!-- This exercise uses data in `td.csv`, from @sonderegger2017medium, on English t/d deletion: whether word-final /t/ or /d/ in a consonant cluster is deleted (ex: "best cake" pronounced as "bes' cake" or bes[t] cake").  A long sociolinguistic literature shows that the rate of t/d deletion depends on many factors, including three which are included in this dataset: -->
 
-* Morphological class: `morph` has levels *mono* (monomorphemes) and *past* (past-tense morphemes).
+<!-- * The following phonological context: `following` has levels *vowel* and *consonant* -->
 
-The morphological class effect is of primary interest, for understanding how variable speech phenomena are represented in the mind. The main research question is thus: is there a significant effect of `morph`, in the expected direction (*mono* words show more frequent deletion than *past* words)?
+<!-- * Speaking rate: `speechrate` is a continuous variable (syllables/second) -->
 
-In this dataset:
+<!-- * Morphological class: `morph` has levels *mono* (monomorphemes) and *past* (past-tense morphemes). -->
 
-* The response variable is `td` (1/0 if the word-final consonant is/isn't deleted)  
+<!-- The morphological class effect is of primary interest, for understanding how variable speech phenomena are represented in the mind. The main research question is thus: is there a significant effect of `morph`, in the expected direction (*mono* words show more frequent deletion than *past* words)? -->
 
-* The data is grouped by `speaker` and `word`
+<!-- In this dataset: -->
 
-    * This data is from a speech corpus and, like most corpus data, is very unbalanced: some speakers and words have many more observations than others. In particular, the number of observations for each level of `word` will be proportional to the word's frequency (ex: ~50% of the data is "and" and "just" observations).
+<!-- * The response variable is `td` (1/0 if the word-final consonant is/isn't deleted)   -->
 
-**Part 1**: Data preparation, model fitting
+<!-- * The data is grouped by `speaker` and `word` -->
 
-What does "all possible random slopes" mean here?
+<!--     * This data is from a speech corpus and, like most corpus data, is very unbalanced: some speakers and words have many more observations than others. In particular, the number of observations for each level of `word` will be proportional to the word's frequency (ex: ~50% of the data is "and" and "just" observations). -->
 
-* Hint: are there any word-level or speaker-level variables?
+<!-- **Part 1**: Data preparation, model fitting -->
 
-Code the data as "centered":
+<!-- What does "all possible random slopes" mean here? -->
 
-* Make numeric and centered versions of `following` and `morph`
+<!-- * Hint: are there any word-level or speaker-level variables? -->
 
-* Make a standardized (centered+scaled) version of `speechrate`
+<!-- Code the data as "centered": -->
 
-Discard all but the first 2000 observations of the dataset. (This makes the dataset size comparable to most previous work on t/d deletion.)
+<!-- * Make numeric and centered versions of `following` and `morph` -->
 
-Fit a mixed-effects logistic regression model, called `ex2.mod`, of `td` as a function of:
+<!-- * Make a standardized (centered+scaled) version of `speechrate` -->
 
-* Fixed effects: main effects for all three variables
+<!-- Discard all but the first 2000 observations of the dataset. (This makes the dataset size comparable to most previous work on t/d deletion.) -->
 
-* Random effects:
+<!-- Fit a mixed-effects logistic regression model, called `ex2.mod`, of `td` as a function of: -->
 
-    * All possible by-speaker and by-word random effects
-    
-    * No correlations between random effects
+<!-- * Fixed effects: main effects for all three variables -->
 
-**Part 2**: Interpretation
-    
-* Are the fixed effects in the expected direction?
+<!-- * Random effects: -->
 
-* Is there a (significant) effect of `morph`?
+<!--     * All possible by-speaker and by-word random effects -->
 
-Now, fit the same model but without any by-word random effects.  (This is close to the model fitted in most previous work.)
+<!--     * No correlations between random effects -->
 
-* How do the results change (esp. for `morph`)?
-    
-* Why do you think this is?
-    
-    * (Hint: word frequency)
+<!-- **Part 2**: Interpretation -->
+
+<!-- * Are the fixed effects in the expected direction? -->
+
+<!-- Now, fit the same model but without any by-word random effects.  (This is close to the model fitted in most previous work.) -->
+
+<!-- * How do the results change (esp. for `morph`)? -->
+
+<!-- * Why do you think this is? -->
+
+<!--     * (Hint: word frequency) -->
 
 ## Model criticism for mixed-effects logistic regression
 
-Model criticism tools are mostly similar to those used for logistic regression (@baayen2008analyzing), with one addition for mixed-effects models: **examining random-effect distributions**, to address whether
+Model criticism tools are mostly similar to those used for logistic regression (see discussion in Sec. \@ref(model-criticism-logistic-regression)),
+<!-- (@baayen2008analyzing),  -->
+with one addition for mixed-effects models: **examining random-effect distributions**, to address whether
 
 * they are approximately normal
 
@@ -566,7 +583,7 @@ Model criticism tools are mostly similar to those used for logistic regression (
 
 ### Random-effect distributions
 
-We use Model 1 from section \@ref(c7m1) as an example.  Recall that the random effects are:
+We use [Model 1](#c7m1) as an example.  Recall that the random effects are:
 
 * By-participant: intercept, slopes of `clabel.williams`, `npType.pron`, `voice.passive`
 
@@ -590,7 +607,9 @@ All histograms in these two plots look roughly like normal distributions, sugges
 
 ### Residual plots
 
-We will skip these, for lack of time.  Residual plots for MELR are similar to logistic regression, and similar issues arise (see Sec. \@ref(residual-plots) for more details.)
+<!-- TODO FUTURE: fill this part in. This is actually useful -->
+
+We will skip these, for lack of time.  Residual plots for MELR are similar to logistic regression, and similar issues arise (see Sec. \@ref(residual-plots)).
 
 * Raw residuals are uninformative, since the model predicts probabilities but observations are 0 or 1.
 
@@ -598,7 +617,7 @@ We will skip these, for lack of time.  Residual plots for MELR are similar to lo
 
 ### Influence
 
-For non-mixed-effects regression models, we used **Cook's distance** as a measure of influence, roughly defined as "how much do the model coefficients ($\hat{\beta}$'s) change when observation $i$ is removed?"
+[For non-mixed-effects regression models](#logistic-regression-cooks-distance), we used **Cook's distance** as a measure of influence, roughly defined as "how much do the model coefficients ($\hat{\beta}$'s) change when observation $i$ is removed?"
 
 Cook's distance can be similarly defined for mixed-effects models, at each "level" of the model:
 
@@ -628,14 +647,14 @@ qplot(cd) + xlab("Histogram Cook's distance (participants)")
 
 Two participants seem to have an unusual influence (as measured by cook's distance). How do you know which ones? 
 
-* The row names in the object cd tell you the participant number. 
-* You could just look at the individual values (type 'cd' at R prompt), but it's easier if you sort these values in decending order (the command used here assures that we keep the row names with the the participant number):
+* The row names in the object `cd` tell you the participant number. 
+* You could just look at the individual values (type `cd` at R prompt), but it's easier if you sort these values in descending order (the command used here assures that we keep the row names with the the participant number):
 
 ```{r, message=FALSE}
 cd[order(-cd),,drop = FALSE]
 ```
 
-It's even easier if you plot the indvidual distances:
+It's even easier if you plot the individual distances:
 
 ```{r, message=FALSE}
 
@@ -681,16 +700,15 @@ This example illustrates why examining influence can be beneficial, beyond simpl
 
 ## Evaluation measures
 
-As for logistic regression, mixed-effects logistic regression models are evaluated by comparing **baseline** and **full** models.  We considered these comparison methods:
+As [for logistic regression](#evaluating-logistic-regression-models), mixed-effects logistic regression models are evaluated by comparing **baseline** and **full** models.  We considered these comparison methods:
 
 1. Likelihood ratio test
     
 2. Classification accuracy
 
-
 For mixed-effects models, the baseline model is usually taken to be the **intercepts-only model**, which contains random intercepts for each grouping factor (e.g. participant, item) and the fixed-effect intercept ($\beta_0$).
 
-For our Model 1, the baseline intercepts-only model would be:
+For our [Model 1](#c7m1), the baseline intercepts-only model would be:
 ```{r}
 m0 <- glmer(stressshift ~ (1|item) + (1|participant), data=givenness, family="binomial")
 ```
@@ -707,7 +725,7 @@ As we've now seen in many cases, the difference in deviance between the baseline
 \end{equation*}
 can be used for a hypothesis-test for large enough samples. If any set of $k$ terms (fixed-effects $\beta$'s and/or random-effect $\sigma$'s) are 0, $\Delta D$ follows a $\chi^2(k)$ distribution.  Thus, we can test the hypothesis that these $k$ terms are 0 using a likelihood ratio test.
 
-For our Model 1, a LR test comparing the full model to the baseline gives:
+For our [Model 1](#c7m1), a LR test comparing the full model to the baseline gives:
 ```{r}
 anova(m0, lrMod1)
 ```
@@ -729,7 +747,7 @@ Classification accuracy is defined similarly to (non-mixed-effects) logistic reg
 
 As for non-ME case, a model's classification accuracy must be compared against the baseline model's accuracy.
 
-For our Model 1:
+For our [Model 1](#c7m1):
 ```{r}
 lrAcc(lrMod1, 'stressshift')
 ```
@@ -744,21 +762,25 @@ lrAcc(lrMod1, 'stressshift', use.ranef=FALSE)
 ```
 Thus, classification accuracy still improves over the baseline (14% increase), but by less than if computed over the participants/items in this dataset.
 
-Note that all these measures are **observation-level**: they give the percent of observations classified correctly.  This number is easy to report, but it should be remembered that we are usually interested in generalizing to new levels of the grouping factors (e.g. new participants and items)---not observations, per se.  It is also possible to examine accuracy by participant and item, to get a sense of how well the model will predict an unseen level, as shown in the Appendix of Sec. \@ref(c7classAppendix).
+Note that all these measures are **observation-level**: they give the percent of observations classified correctly.  This number is easy to report, but it should be remembered that we are usually interested in generalizing to new levels of the grouping factors (e.g. new participants and items)---not observations, per se.  It is also possible to examine accuracy by participant and item, to get a sense of how well the model will predict an unseen level. We leave an example for a future version of this book.
+<!-- as shown in the Appendix of Sec. \@ref(c7classAppendix). -->
+<!-- TODO FUTURE: the example already in slides... -->
     
 ## Miscellaneous mixed-effects regression topics
 
-Two miscellaneous but important topics for fitting mixed-effects models in general, with logistic regression examples:
+There are two important practical issues that arise frequently while fitting mixed-effects models:
 
-1. Correlations among random effects---discussed next.
+1. Factors and random effects
 
-2. Factors and random effects 
+    + The same issue arises for MELR models as for linear mixed-effects models, discussed in Sec. \@ref(c6factorsissue): problems arise if you want to use factors in models with uncorrelated random effects.  An example for MELR models is in [an appendix](#melr-random-slopes-for-factors).
+    
+2. Correlations among random effects
 
-Issue 2 was discussed for LMEMs in Section \@ref(c6factorsissue): problems arise if you want to use factors in models with uncorrelated random effects. The basic issues are the same for MELR models.  An example is given in the next section, but we advise skipping this section until this issue actually comes up in practice for you.
+    + We discuss this issue next.
 
 ### Random-effect correlation issues {#c7m2}
 
-Let's consider Model 1 with correlations between random effects added, which we call  **Model 2**: 
+Let's consider [Model 1](#c7m1) with correlations between random effects added, which we call  **Model 2**: 
 ```{r, cache=TRUE}
 lrMod2 <- glmer(stressshift ~ clabel.williams + npType.pron + voice.passive +
                     (1 + clabel.williams + npType.pron|item) +
@@ -785,7 +807,7 @@ Case 1 is sometimes resolvable by transforming your data: centering continuous v
 
 In Case 3, the model is said to be *overparametrized*: the random-effect structure of the model is too complex for the amount of data---either in terms of observations, or the number of levels of a grouping factor. That is, too many random effect terms are being estimated given the dataset size. (Intuitively: if there are 10 speakers and 10 random effect terms, the model is roughly trying to fit 10 variables using 10 numbers---for which there will be no unique 'best' solution.) 
 
-Overparametrization is very common (in 2017) (TODO MORGAN: is this still true? Maybe you could update this to 2018) in linguistic data, and is probably responsible for the perfect correlations in Model 2:
+Overparametrization is very common (in 2018) in linguistic data, and is probably responsible for the perfect correlations in Model 2:
 
 * There are 16 items, from which 6 by-item random-effect terms are being estimated (1 intercept, 2 slopes, 3 correlations).
 
@@ -793,13 +815,13 @@ Overparametrization is very common (in 2017) (TODO MORGAN: is this still true? M
 
 The issue of high random effect correlations:
 
-* occurs easily (in 2017) (TODO MORGAN: could prob update this one also) for the dataset sizes/number of grouping factor levels typical in linguistic data.
+* occurs easily (in 2018) for the dataset sizes/number of grouping factor levels typical in linguistic data.
 
 * is often problematic (e.g. can cause Type I errors), even if the model converges.
 
 <!-- How to deal with this issue?   -->
 
-It is not clear that there is a general solution to deal with this issue, without moving to Bayesian mixed-effects models (see below).  One "backwards elimination" option, similar to that recommended by @barr2013random, is:
+It is not clear that there is a general solution to deal with this issue, without moving to Bayesian mixed-effects models (see [below](#bayesian-mems)).  One "backwards elimination" option, similar to that recommended by @barr2013random, is:
 
 1. Iteratively remove correlations until remaining correlations are sensible.
         
@@ -816,7 +838,7 @@ Ben Bolker's FAQ [here](https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html#
 
 The "backwards" and "forwards" strategies often work, but they are ad-hoc solutions.  We first give an example of the "backward" strategy, then show an alternative (fit a Bayesian MELR model) that is cleaner, at the expense of fitting a model whose architecture is quite different from the original (problematic) model.
         
-#### Example: Dropping correlation terms {-}
+#### Example: Dropping correlation terms
 
 First, drop one of the perfect correlations:
 ```{r, cache=TRUE}
@@ -847,11 +869,13 @@ The models do not differ significantly ($\Delta D = 5.6$, $df=3$, $p=0.13$), sug
 
 We don't give an example here of the "forward strategy".  What's crucial to remember when worrying about random-effect correlations is that **whether/which correlations added is less important than including random slopes**, as we discussed for LMEMs in Sec. \@ref(c6discuss).
 
-#### Example: Bayesian MEMs {-}
+#### Example: Bayesian MEMs {#bayesian-mems}
 
-Another, more radical way to deal with overparametrized models is to fit a different class of model: a *Bayesian mixed-effects model*.  In Bayesian regression models, each parameter  has a "prior distribution" specifying how likely different parameter values are thought to be, a priori; these distributions are updated using the actual data, resulting in a "posterior distribution", which describes how likely different parameter values are given the observed data *and* the prior.  These distributions can be summarized to give familiar-looking model output: a most-likely value for each parameter (the "fixed-effect estimate": usually the posterior mode (MAP)), a "$p$-value" of sorts  estimated by where 0 lies on the posterior distribution for a parameter, and so on.^[In fact, a (non-Bayesian) mixed-effects model can be thought of as a Bayesian model with an "uninformative" prior (TODO MORGAN: reference?)---different parameter values are almost equally likely, a priori, and the posterior distribution is mostly determined by maximizing likelihood given the data.]
+Another way to deal with overparametrized models is to fit a different class of model entirely: a *Bayesian mixed-effects model*.  In Bayesian regression models, each parameter  has a "prior distribution" specifying how likely different parameter values are thought to be, a priori; these distributions are updated using the actual data, resulting in a "posterior distribution", which describes how likely different parameter values are given the observed data *and* the prior.  These distributions can be summarized to give familiar-looking model output: a most-likely value for each parameter (the "fixed-effect estimate": usually the posterior mode (MAP)), a "$p$-value" of sorts  estimated by where 0 lies on the posterior distribution for a parameter, and so on.
+<!-- ^[In fact, a (non-Bayesian) mixed-effects model can be thought of as a Bayesian model with an "uninformative" prior (TODO MORGAN: reference?)---different parameter values are almost equally likely, a priori, and the posterior distribution is mostly determined by maximizing likelihood given the data.] -->
+<!-- MS in 2018: I don't think that's actually true, or if it is I can't find a source. The fact that models fit by ML or REML might mean that we can think of this as MAP inference with "flat" priors, but not sure. The fact that variance params are first fit to point estimates, then fixed-effect params estimated conditional on variance param estimates, makes me think it's not the same as actual inference over a Bayesian model where both variance and fixed-effect params have distributions. -->
 
-The crucial aspect of Bayesian models for present purposes is that with properly chosen priors, they cannot be "overparametrized"---having less data  to estimate a parameter just means the prior will have more influence on the posterior distribution for that parameter (and hence its MAP estimate).
+The crucial aspect of Bayesian models for present purposes is that with properly chosen priors, they cannot give a non-nonsensical result due to overparametrization (perfect random-effect correlations)---having less data to estimate a parameter just means the prior will have more influence on the posterior distribution for that parameter (and hence its MAP estimate).^[That said, Bayesian MEMs can still be overparametrized (too complex for the data)---the resulting model will be more influenced by the priors, and will not generalize well to new data.  See @bates2015parsimonious for discussion.]
 
 For Bayesian mixed-effects models, the standard prior (Wishart) used for the random-effects covariance matrix (all random effects variances + correlations) is an "informative" prior where correlation parameters closer to 0 are progressively more likely.  This pulls the estimates for these correlation parameters towards zero, and avoids perfect (1 or -1) values.
 
@@ -873,26 +897,38 @@ The resulting model has no near-perfect correlations:
 summary(lrMod2.bayesian)
 ```
 
-This seems like a great solution---no need for hackily removing terms, as in the "backwards" method above.  You should just be aware that these (Bayesian) models are quite different from non-Bayesian ME models, and it's up to you whether you are comfortable using them without learning more about how they work. The resulting models are not simply `(g)lmer` fits with different correlation parameters---as you can see by comparing the fixed and random effects for `lrMod2.bayesian` and `lrMod2`:
+This seems like a great solution---no need for hackily removing terms, as in the "backwards" method above.  You should just be aware that these (Bayesian) models are quite different from non-Bayesian ME models, and it's up to you whether you are comfortable using them without learning more about how they work. The resulting models are not simply `(g)lmer` fits with different correlation parameters---as you can see by comparing the fixed and random effects for `lrMod2.bayesian` (above) and `lrMod2`:
+
+```{r}
+print(summary(lrMod2), corr=FALSE)
+```
+
 
 * Fixed effects estimates/SEs consistently larger/smaller in the Bayesian model
 
 * Random effect variances/correlations consistently further/closer to 0 in the Bayesian model
 
-It is possible that the Bayesian model is actually giving more accurate estimates---the point is just that it gives **different** estimates from the `(g)lmer` model. 
+It is possible that the Bayesian model is actually giving more accurate estimates---the point here is that it gives **different** estimates from the `(g)lmer` model. 
+
+## Other readings
+
+On MELR models: Ch. 14 of @gelman2007data is a good general reference, while @jaeger08 and Ch 7.4 of @johnson2008quantitative are shorter introductions for language scientists in particular.
+
+To learn more about Bayesian MEMs: @sorensen2015bayesian and @nicenboim2016statistical give (longer/shorter) introductions for language scientists.
+<!-- using [Stan](http://mc-stan.org/). -->
+Bayesian MEMs are one type of Bayesian data analysis, a broader set of methods to which @kruschke2014doing and @mcelreath2015statistical give accessible introductions using R.
 
 ## Appendices
 
-### Appendix: Random slopes for factors
+### Appendix: Random slopes for factors {#melr-random-slopes-for-factors}
 
 <!-- * This is miscellaneous but important topic in practical applications -->
 
 <!-- * Have so far only looked at factors with 2 levels in mixed models -->
 
 <!--     * Factors with >2 levels a little tricker -->
-(TODO MORGAN: this topic isn't mentioned anywhere else in the chapter. Consider introducing it -- maybe something like what is in the comments up here)
 
-We show an example using the [`alternatives` dataset](#altdata). Recall the basic results, for how the probability of shifting stress (to `prominence` = *Adjective*, from *Noun*) depends on `context`:
+How to deal with factors with more than 2 levels is an important issue in practical applications of MELR models. We show an example using the [`alternatives` dataset](#altdata). Recall [the basic results](#basic-interpretation-of-contrasts), for how the probability of shifting stress (to `prominence` = *Adjective*, from *Noun*) depends on `context`:
 
 ```{r, echo=F, fig.align='center', fig.width=4, fig.height=4}
 # code prominence shift
@@ -951,13 +987,13 @@ summary(alternativesMod1)
 ```
     
 
-The random-effect correlations in this model have the issue discussed above: some correlations are near perfect ($r \approx 0.95$), indicating that the model is probably overparametrized.  We can deal with this by omitting the correlation terms.
+The random-effect correlations in this model have the issue [discussed above](#c7m2): some correlations are near perfect ($r \approx 0.95$), indicating that the model is probably overparametrized.  We can deal with this by omitting the correlation terms.
 
 ### Appendix: Multi-level factors and uncorrelated random effects {#c7appendix2}
 
 (Only look through this section if you have a factor with multiple levels and you run into correlations that are too high.)
 
-As with linear mixed-effects models, in order to fit a model with no correlations between random effects, any factor must be converted into numeric variables corresponding to the contrasts (the notation || will not work when a factor has >2 levels!):
+[As with linear mixed-effects models](#lmem-mwrec), in order to fit a model with no correlations between random effects, any factor must be converted into numeric variables corresponding to the contrasts (the notation `||` will not work when a factor has >2 levels!):
 
 ```{r}
 alternatives$context1 <- model.matrix(~context, alternatives)[,2]
@@ -983,7 +1019,7 @@ anova(alternativesMod1, alternativesMod2)
 
 The difference in likelihood between the models is small and not significant ($\Delta D = 1.94$, $df=6$, $p=0.92$).  In addition, the fixed-effect estimates and standard errors are very similar in the two models.  Thus, it is reasonable to omit the random-effect correlations.
 
-As noted for linear mixed-effects models in Section \@ref(c6factorsissue):
+As discussed for linear mixed-effects models in Section \@ref(c6factorsissue):
 
 * To include a random slope for any factor  (even if just 2 levels) in a model with uncorrelated random effects, you need to code as numeric variable(s).
 
@@ -1059,9 +1095,14 @@ In other words: in this data, there is too much by-participant variability in `v
 
 But without a random slope term, the model was unduly influenced by one participant who does show an effect, leading us to spuriously conclude that there is a significant ($p<0.05$) $\hat{\beta}_{\texttt{voice}}$ effect---a Type I error.
 
-### Appendix: By-participant and by-item classification accuracy {#c7classAppendix}
 
-TODO (2018) (MORGAN - want to leave this appendix here incomplete? There is a refference to it in the chapter so it can either be populated or we'll have to remove the reference)
+
+<!-- TODO FUTURE: re-add this appendix -->
+<!-- ## Appendix: By-participant and by-item classification accuracy {#c7classAppendix} -->
+
+<!-- TODO (2018) (MORGAN - want to leave this appendix here incomplete? There is a refference to it in the chapter so it can either be populated or we'll have to remove the reference) -->
+
+
 <!-- ((Q4M: I couldn't find the code for these figures and it was taking a bit too long to reverse engineer since I wasn't familiar with the dataset)) -->
 
 <!-- --- -->
@@ -1113,29 +1154,34 @@ The model results are mostly consistent with this data:
 
 * There is substantial by-item variation the `syntax.trans` effect---the by-item $\sigma$ for the random slope (0.65) is comparable to the fixed effect size (1.09).  However, there is no by-participant variation predicted in the `syntax.trans` effect, which seems odd.
 
----
+<!-- TODO FUTURE: fill in exercise 2 (also part giving exercise in text)  -->
 
-[**Exercise 2**](#c7ex2)
+<!-- --- -->
 
-Data prep and fitting the two models:
+<!-- [**Exercise 2**](#c7ex2) -->
 
-```{r, cache=TRUE}
-td <- read.csv("datasets/td.csv")
+<!-- Data prep and fitting the two models: -->
 
-## take the first 2000 observations -- a typical sample size for previous work on t/d deletion
-td <- td[1:2000,]
+<!-- ```{r, cache=TRUE} -->
+<!-- td <- read.csv("datasets/td.csv") -->
 
-## make numeric versions of morph, following (two-level factors) that are centered
-td$morph.num <- arm::rescale(td$morph)
-td$following.num <- arm::rescale(td$following)
+<!-- ## take the first 2000 observations -- a typical sample size for previous work on t/d deletion -->
+<!-- td <- td[1:2000,] -->
 
-## make centered + divided by 2 SD version of speech rate
-td$speechrate.rs <- arm::rescale(td$speechrate)
+<!-- ## make numeric versions of morph, following (two-level factors) that are centered -->
+<!-- td$morph.num <- arm::rescale(td$morph) -->
+<!-- td$following.num <- arm::rescale(td$following) -->
 
-## fit model with all possible random effects (uncorrelated)
-mod.td <- glmer(td ~ following.num + speechrate.rs + morph.num + (1+following.num+speechrate.rs||Word) + (1+morph.num+speechrate.rs + following.num||Speaker), family='binomial', control=glmerControl(optimizer = "bobyqa"), data=td)
+<!-- ## make centered + divided by 2 SD version of speech rate -->
+<!-- td$speechrate.rs <- arm::rescale(td$speechrate) -->
 
-mod.td.nowordranef <- glmer(td ~ following.num + speechrate.rs + morph.num + (1+morph.num+speechrate.rs + following.num||Speaker), family='binomial', control=glmerControl(optimizer = "bobyqa"), data=td)
-```
+<!-- ## fit model with all possible random effects (uncorrelated) -->
+<!-- mod.td <- glmer(td ~ following.num + speechrate.rs + morph.num + (1+following.num+speechrate.rs||Word) + (1+morph.num+speechrate.rs + following.num||Speaker), family='binomial', control=glmerControl(optimizer = "bobyqa"), data=td) -->
 
-Interpretation: (No solutions yet!) (TODO MORGAN)
+<!-- mod.td.nowordranef <- glmer(td ~ following.num + speechrate.rs + morph.num + (1+morph.num+speechrate.rs + following.num||Speaker), family='binomial', control=glmerControl(optimizer = "bobyqa"), data=td) -->
+<!-- ``` -->
+
+<!-- Interpretation is left as an exercise. -->
+
+<!-- TODO FUTURE: fill in solutions...-->
+<!-- <!-- Interpretation: (No solutions yet!) (TODO MORGAN) --> 
